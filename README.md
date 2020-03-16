@@ -21,7 +21,7 @@
 
 
 
-### 1. 프로잭트 소개
+### 1. 프로젝트 소개
 
 AI Media Improvement Program
 
