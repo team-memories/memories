@@ -31,7 +31,7 @@ AI Media Improvement Program
 
 ### 2. 소개 영상
 
-프로젝트 소개하는 영상을 추가하세요
+
 
 ### 3. 팀 소개
 
@@ -41,11 +41,22 @@ Cosmo AI
 
 
 
-- 곽윤혁 : Software Project Leader, Frame interpolation Model
-- 권우철 : Colorization Model, Super Resolution Model
-- 김병조 : Frame interpolation Model, Super Resolution Model
-- 김수진 : Colorization Model, Front-End Development
-- 이혜진 : Frame interpolation Model, Colorization Model
+- 곽윤혁 
+> Software Project Leader, Frame interpolation Model
+> naska0906@kookmin.ac.kr
+- 권우철 
+> Colorization Model, Super Resolution Model
+> dncjf0223@kookmin.ac.kr
+- 김병조 
+> Frame interpolation Model, Super Resolution Model
+> gee05053@kookmin.ac.kr
+- 김수진 
+> Colorization Model, Front-End Development
+> agatha197@kookmin.ac.kr
+- 이혜진 
+> Frame interpolation Model, Colorization Model
+> dgw0913@gmail.com
+
 
 >  SNS 사진 필요
 
