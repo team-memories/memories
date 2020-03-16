@@ -41,7 +41,7 @@ Cosmo AI
 
 
 
-- 곽윤혁 : Software Project LeaderFrame, interpolation Model
+- 곽윤혁 : Software Project Leader, Frame interpolation Model
 - 권우철 : Colorization Model, Super Resolution Model
 - 김병조 : Frame interpolation Model, Super Resolution Model
 - 김수진 : Colorization Model, Front-End Development
