@@ -4,9 +4,9 @@
 
 ### 1. 프로젝트 소개
 
-AI Media Improvement Program
+AI Media Improvement Program 
 
-![](https://github.com/kookmin-sw/capstone-2020-12/blob/master/cosmoAI_logo.png?raw=true =250x250)  
+<img src="https://github.com/kookmin-sw/capstone-2020-12/blob/master/cosmoAI_logo.png?raw=true" style="zoom:50%;"  > 
 
 
 
