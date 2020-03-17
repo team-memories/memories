@@ -9,6 +9,9 @@ AI Media Improvement Program
 
 ### 2. Abstract
 
+
+As the demand to restore photos and videos shot in the past has increased, various technologies such as Colorization, Super Rsolution, and Frame Interpolation have been developed to meet the needs of customers. Currently, In display market, many companies are trying to increase the quality by applying deep learning technology, and there are products targeted at companies. However, few products have been properly developed for public use. We want to make up for the shortcomings of existing products, which are expensive for individuals to use, have minimum specifications that are required, and provide only small functions. It aims to improve the quality of media materials according to consumer choice and provide products that can be modified according to taste. You can demonstrate the service by uploading a video using a web app, and if you like the performance of the product, you can purchase the service and download the desktop app to use various functions.
+
 ### 3. 소개 영상
 
 > 추후 업로드
