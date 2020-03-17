@@ -29,15 +29,17 @@ AI Media Improvement Program
 
 웹 앱을 사용해 영상을 업로드 하여 서비스를 시연해볼 수 있고 제품의 성능이 마음에 든다면 서비스를 구매하여 데스크탑 앱을 다운로드해 다양한 기능을 사용할 수 있다.
 
-### 2. 소개 영상
+### 2. Abstract
+
+### 3. 소개 영상
 
 
 
-### 3. 팀 소개
+### 4. 팀 소개
 
 Cosmo AI 
 
-(**Co**lorization + **S**uper Resolution + Fra**m**e Interp**o**lation + **AI**) 
+(**Co**lorization + **S**uper Resolution + **Mo**re Frame Interpolation + **AI**) 
 
 
 
@@ -68,8 +70,8 @@ Cosmo AI
 
 
 
-### 4. 사용법
+### 5. 사용법
 
 
 
-### 5. 기타
+### 6. 기타
