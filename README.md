@@ -12,7 +12,7 @@ AI Media Improvement Program
 
 ### 3. 소개 영상
 
-
+> 추후 업로드
 
 ### 4. 팀 소개
 
@@ -23,9 +23,11 @@ Cosmo AI
 Professor : 이재구 교수님
 
 * 김병조(팀장)
-  - 학번 : 20171593
-  - 역할 : Frame Interpolation Model, Super Resolution Model
-  - E-mail : gee05053@kookmin.ac.kr
+'''
+학번 : 20171593
+역할 : Frame Interpolation Model, Super Resolution Model
+E-mail : gee05053@kookmin.ac.kr
+'''
 
 * 곽윤혁
   - 학번 : 20171578
@@ -50,10 +52,8 @@ Professor : 이재구 교수님
 
 >  SNS 사진 필요
 
-
-
 ### 5. 사용법
 
-
+> 추후 업로드
 
 ### 6. 기타
