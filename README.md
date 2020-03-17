@@ -29,25 +29,33 @@ Professor : 이재구 교수님
 E-mail : gee05053@kookmin.ac.kr
 ```
 
-* 곽윤혁
-  - 학번 : 20171578
-  - 역할 : Software Project Leader, Frame Interpolation Model
-  - E-mail : naska0906@kookmin.ac.kr
+* 곽윤혁  
+```
+학번 : 20171578  
+역할 : Software Project Leader, Frame Interpolation Model  
+E-mail : naska0906@kookmin.ac.kr
+```
 
-* 이혜진
-  - 학번 : 20171685
-  - 역할 : Frame Interpolation Model, Colorization Model
-  - E-mail : dgw0913@gamil.com
+* 이혜진  
+```
+학번 : 20171685  
+역할 : Frame Interpolation Model, Colorization Model  
+E-mail : dgw0913@gamil.com
+```
 
-* 김수진
-  - 학번 : 20171596
-  - 역할 : Colorization Model, Front-End Development
-  - E-mail : agatha197@kookmin.ac.kr
+* 김수진  
+```
+학번 : 20171596  
+역할 : Colorization Model, Front-End Development  
+E-mail : agatha197@kookmin.ac.kr
+```
 
-* 권우철
-  - 학번 : 20152875
-  - 역할 : Colorization Model, Super Resolution Model
-  - E-mail : dncjf0223@kookmin.ac.kr
+* 권우철  
+```
+학번 : 20152875  
+역할 : Colorization Model, Super Resolution Model  
+E-mail : dncjf0223@kookmin.ac.kr
+```
 
 
 >  SNS 사진 필요
@@ -57,3 +65,5 @@ E-mail : gee05053@kookmin.ac.kr
 > 추후 업로드
 
 ### 6. 기타
+
+> 추후 업로드
