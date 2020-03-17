@@ -24,8 +24,8 @@ Professor : 이재구 교수님
 
 * 김병조(팀장)
 `
-학번 : 20171593
-역할 : Frame Interpolation Model, Super Resolution Model
+학번 : 20171593   
+역할 : Frame Interpolation Model, Super Resolution Model   
 E-mail : gee05053@kookmin.ac.kr
 `
 
