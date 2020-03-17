@@ -1,4 +1,5 @@
-# CosmoAI (**Co**lorization + **S**uper Resolution + **Mo**re Frame Interpolation + **AI**)
+# CosmoAI  
+(**Co**lorization + **S**uper Resolution + **Mo**re Frame Interpolation + **AI**)
 
 ### 1. 프로젝트 소개
 
