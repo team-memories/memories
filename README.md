@@ -25,7 +25,7 @@ Professor : 이재구 교수님
 
 ```
 학번 : 20171593  
-역할 : Frame Interpolation Model, Super Resolution Model  
+역할 : Frame Interpolation Model, Super Resolution Model, Front end 개발 
 E-mail : gee05053@kookmin.ac.kr
 ```
 
@@ -33,7 +33,7 @@ E-mail : gee05053@kookmin.ac.kr
 
 ```
 학번 : 20171578  
-역할 : Software Project Leader, Frame Interpolation Model  
+역할 : Software Project Leader, Frame Interpolation Model, Back end 개발 
 E-mail : naska0906@kookmin.ac.kr
 ```
 
@@ -41,7 +41,7 @@ E-mail : naska0906@kookmin.ac.kr
 
 ```
 학번 : 20171685  
-역할 : Frame Interpolation Model, Colorization Model  
+역할 : Frame Interpolation Model, Colorization Model, Front end 개발 
 E-mail : dgw0913@gamil.com
 ```
 
@@ -49,7 +49,7 @@ E-mail : dgw0913@gamil.com
 
 ```
 학번 : 20171596  
-역할 : Colorization Model, Front-End Development  
+역할 : Colorization Model, Front-End Development, Front end 개발 
 E-mail : agatha197@kookmin.ac.kr
 ```
 
@@ -57,7 +57,7 @@ E-mail : agatha197@kookmin.ac.kr
 
 ```
 학번 : 20152875  
-역할 : Colorization Model, Super Resolution Model  
+역할 : Colorization Model, Super Resolution Model, Front end 개발 
 E-mail : dncjf0223@kookmin.ac.kr
 ```
 
