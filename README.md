@@ -1,21 +1,17 @@
-# CosmoAI  
-
-(**Co**lorization + **S**uper Resolution + **Mo**re Frames + **AI**)
+# Memories  
 
 ### 1. 프로젝트 소개
 
-AI Media Improvement Program 
+"내가 추억하는 그 때 그곳을 다시 생생하게 볼 수 있을까?"
 
-<img src="https://github.com/kookmin-sw/capstone-2020-12/blob/master/cosmoAI_logo.png?raw=true" style="zoom:50%;"  > 
-
-
-
-과거에 촬영했던 사진, 영상을 복원하고자 하는 수요가 증가함에 따라 고객들의 니즈에 맞춘 Colorization, Super Resolution, Frame Interpolation 등 다양한 기술들이 등장하고 개발되고 있습니다. 현재 디스플레이 시장에는 딥러닝 기술을 적용하여 Quality를 높이려는 노력을 하고 있고, 기업을 대상으로 한 제품들이 존재하고 있습니다. 하지만 대중적으로 사용할 수 있게 적절하게 개발된 제품은 많지 않습니다. 개인이 사용하기에는 가격이 높거나, 요구하는 최소사양이 있고, 적은 기능만을 제공하는 기존 제품들의 단점을 보완하고자 합니다. 미디어 자료를 소비자 선택에 따라 품질을 개선하고, 취향에 맞춰 수정할 수 있는 제품을 제공하는 것을 목적으로 한다. 웹 앱을 사용해 영상을 업로드 하여 서비스를 시연해볼 수 있고 제품의 성능이 마음에 든다면 서비스를 구매하여 데스크탑 앱을 다운로드해 다양한 기능을 사용할 수 있다.
+ 사람들은 여행, 우정, 기념일, 음식 등 일상을 간직해 놓기 위해 영상을 촬영한다. 기술이 발전하면서 1억 화소가 넘는 초고해상도 촬영이 가능해졌을 뿐만 아니라 고주사율(120fps, 144fps, …), 초고해상도(4k, 8k) 디스플레이가 등장하였다. 그 당시 최신 기술로 촬영되었던 20세기 영상들은 지금의 기준으로는 저품질(흑백, 저해상도, 저주사율, 노이즈, …)로써 존재한다. 역동적으로 나아가는 기술의 발전 속도를 기존의 영상, 미디어들이 따라가지 못하고 있는 상황에서 소비자들은 개개인이 가지고 있는 추억을 다시 꺼내보고 싶어 한다. 그중 일부는 추억하는 장소로 찾아가 보지만, 살던 곳이 재개발되거나, 기존의 건물 대신 다른 건물이 세워져 원래의 모습을 찾아볼 수 없는 때도 있다. “현재 시대는 정보화 사회에서 정보, 재화를 공유하는 공유 사회로 넘어가고 있다” 한계비용제로사회에서 언급한 제레미 리프킨의 말이다. SNS상에서 지인들에게 정보를 공유하며 살아가는 것이 익숙한 현대인들에게 본 프로젝트는 서로의 추억을 공유하며 볼 수 있는 플랫폼을 제공해주고자 한다. 사용자는 우리의 플랫폼을 이용해 자신이 다시 보고 싶은 그 시절 그 장소를 검색해 생생한 화질의 영상들을 보며 추억을 되살릴 수 있다. 또한, 함께 공유하고 싶은 풍경이나 물건 등의 영상이 있다면 플랫폼에 업로드하여 향상된 품질로 모든 사용자가 다 같이 볼 수 있게끔 할 수 있다.
 
 ### 2. Abstract
 
+"Can I vividly see the place again when I remember?"
 
-As the demand to restore photos and videos shot in the past has increased, various technologies such as Colorization, Super Resolution, and Frame Interpolation have been developed to meet the needs of customers. Currently, in display market, many companies are trying to increase the quality by applying deep learning technology, and there are products targeted at companies. However, few products have been properly developed for public use. We want to make up for the shortcomings of existing products, which are expensive for individuals to use, have minimum specifications that are required, and provide only small functions. It aims to improve the quality of media materials according to consumer choice and provide products that can be modified according to taste. You can demonstrate the service by uploading a video using a web app, and if you like the performance of the product, you can purchase the service and download the desktop app to use various functions.
+People film videos to keep their daily lives such as travel, friendship, anniversaries, and food. With the advancement of technology, not only has it been possible to shoot ultra-high resolutions of over 100 million pixels, but also high-resolution (120fps, 144fps,…) and ultra-high-resolution (4k, 8k) displays have appeared. At the time, the 20th century images that were filmed with the latest technology exist as low quality (black and white, low resolution, low scanning rate, noise, ...) as the current standard. In the situation where existing video and media are not keeping pace with the development speed of dynamic technology, consumers want to bring back memories of each individual. Some of them go to places of remembrance, but there are times when the place where you lived was redeveloped, or other buildings were built to find the original. “The current era is shifting from an information society to a sharing society that shares information and goods,” said Jeremy Rifkin, referring to the zero marginal society. Modern people who are accustomed to living by sharing information with friends on SNS
+This project aims to provide a platform for people to share and view each other's memories. Users can use our platform to search for the place in those days when they want to see it again, and watch videos with vivid image quality to bring back memories. In addition, if there are videos of scenery or objects that you want to share together, you can upload them to the platform so that all users can see them together with improved quality.
 
 ### 3. 소개 영상
 
