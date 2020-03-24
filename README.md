@@ -34,7 +34,7 @@ E-mail : gee05053@kookmin.ac.kr
 ```
 학번 : 20171578  
 역할 : Software Project Leader, Frame Interpolation Model, Back end 개발 
-E-mail : naska0906@kookmin.ac.kr
+E-mail : rev1c0sm0s@gmail.com
 ```
 
 * 이혜진  
