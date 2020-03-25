@@ -25,7 +25,7 @@ Professor : 이재구 교수님
 
 ```
 학번 : 20171593  
-역할 : Frame Interpolation Model, Super Resolution Model, Front end 개발 
+역할 : Team Leader, Frame Interpolation Model, Super Resolution Model, Front end 개발 
 E-mail : gee05053@kookmin.ac.kr
 ```
 
