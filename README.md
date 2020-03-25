@@ -23,7 +23,7 @@ Professor : 이재구 교수님
 
 * 김병조(팀장)  
 
-<img src="./doc/image/김병조.jpg"/>
+<img src="./doc/image/김병조.jpg" height="300" weight="300"/>
 ```
 학번 : 20171593  
 역할 : Frame Interpolation Model, Super Resolution Model, Front end 개발 
@@ -32,7 +32,7 @@ E-mail : gee05053@kookmin.ac.kr
 
 * 곽윤혁  
 
-<img src="./doc/image/곽윤혁.JPG"/>
+<img src="./doc/image/곽윤혁.JPG" height="300" weight="300"/>
 ```
 학번 : 20171578  
 역할 : Software Project Leader, Frame Interpolation Model, Back end 개발 
@@ -41,7 +41,7 @@ E-mail : rev1c0sm0s@gmail.com
 
 * 이혜진  
 
-<img src="./doc/image/이혜진.jpeg"/>
+<img src="./doc/image/이혜진.jpeg" height="300" weight="300"/>
 ```
 학번 : 20171685  
 역할 : Frame Interpolation Model, Colorization Model, Front end 개발 
@@ -50,7 +50,7 @@ E-mail : dgw0913@gamil.com
 
 * 김수진  
 
-<img src="./doc/image/김수진.jpg"/>
+<img src="./doc/image/김수진.jpg" height="300" weight="300"/>
 ```
 학번 : 20171596  
 역할 : Colorization Model, Front-End Development, Front end 개발 
@@ -59,7 +59,7 @@ E-mail : agatha197@kookmin.ac.kr
 
 * 권우철  
 
-<img src="./doc/image/권우철.jpg"/>
+<img src="./doc/image/권우철.jpg" height="300" weight="300"/>
 ```
 학번 : 20152875  
 역할 : Colorization Model, Super Resolution Model, Front end 개발 
