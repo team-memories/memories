@@ -72,9 +72,6 @@ E-mail : agatha197@kookmin.ac.kr
 E-mail : dncjf0223@kookmin.ac.kr
 ```
 
-
->  SNS 사진 필요
-
 ### 5. 사용법
 
 > 추후 업로드
