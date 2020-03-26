@@ -17,7 +17,7 @@ This project aims to provide a platform for people to share and view each other'
 
 ## 3. 소개 영상
 
-> 추후 업로드
+[![Watch the video](https://github.com/kookmin-sw/capstone-2020-12/tree/master/doc/image/video_image.png)](https://youtu.be/sUI4vGXoerw)
 
 ## 4. 팀 소개
 
