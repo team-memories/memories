@@ -19,6 +19,7 @@ This project aims to provide a platform for people to share and view each other'
 
 ### 4. 팀 소개
 
+<img src="./doc/image/이재구교수님.png" height="300" weight="300"/>
 Professor : 이재구 교수님
 
 * 김병조(팀장)  
