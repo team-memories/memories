@@ -64,7 +64,7 @@ E-mail : dgw0913@gamil.com
 
 ```
 학번 : 20171596  
-역할 : Colorization Model, Frame Interpolation, Front end 개발 
+역할 : Colorization Model, Frame Interpolation Model, Front end 개발 
 E-mail : agatha197@kookmin.ac.kr
 ```
 
