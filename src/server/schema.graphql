@@ -76,6 +76,7 @@ type Video implements Media {
 type User {
     email: String
     name: String
+    profileImgUrl: String
     myMedia: [Media]
 }
 
