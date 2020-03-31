@@ -6,9 +6,10 @@ type Query {
     media(id: ID!): Media
     search(title: String, location: String, From: Date, To: Date): [Media]!
 
-    # Production ready phase
+    ### Production ready phase ###
     user(id: ID!): User
     myMedia: [Media]!
+    ##############################
 }
 
 type Mutation {
@@ -16,9 +17,10 @@ type Mutation {
     uploadMedia(media: Upload!, title: String!, location: String!, date: Date!): Media
     deleteMedia(id: ID!): Media
 
-    # Production ready phase
+    ### Production ready phase ###
     signUp(email: String!, password: String!, name: String!): User!
     signIn(email: String!, password: String!): User!
+    ##############################
 }
 
 interface Media {
@@ -30,9 +32,10 @@ interface Media {
     location: String
     date: Date
 
-    # production ready phase
+    ### Production ready phase ###
     description: String
     comments: [Comment]
+    ##############################
 }
 
 # 현재로선, Photo type과 Video type간의 다른 점은 없다.
@@ -48,8 +51,10 @@ type Photo implements Media {
     location: String
     date: Date
 
+    ### Production ready phase ###
     description: String
     comments: [Comment]
+    ##############################
 }
 
 type Video implements Media {
@@ -61,13 +66,13 @@ type Video implements Media {
     location: String
     date: Date
 
+    ### Production ready phase ###
     description: String
     comments: [Comment]
+    ##############################
 }
 
-
-# Production ready phase
-
+### Production ready phase ###
 type User {
     email: String
     name: String
@@ -79,3 +84,4 @@ type Comment {
     author: User
     body: String # 댓글의 내용
 }
+##############################
