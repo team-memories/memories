@@ -1,12 +1,6 @@
-from ariadne import QueryType, graphql_sync, make_executable_schema
+from ariadne import QueryType, graphql_sync, make_executable_schema, load_schema_from_path
 from ariadne.constants import PLAYGROUND_HTML
 from flask import Flask, request, jsonify
-
-type_defs = """
-    type Query {
-        hello: String!
-    }
-"""
 
 query = QueryType()
 
@@ -17,6 +11,8 @@ def resolve_hello(_, info):
     user_agent = request.headers.get("User-Agent", "Guest")
     return "Hello, %s!" % user_agent
 
+
+type_defs = load_schema_from_path("schema.graphql")
 
 schema = make_executable_schema(type_defs, query)
 
