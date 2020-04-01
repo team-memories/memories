@@ -8,4 +8,4 @@ def resolve_media(_, info, _id):
     db: dict = info.context["db"]
     videos: dict = db["videos"]
 
-    return videos[id]
+    return videos[_id]
