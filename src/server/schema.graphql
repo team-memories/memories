@@ -3,11 +3,11 @@ scalar Upload
 
 type Query {
     # Beta version
-    media(id: ID!): Media
+    media(_id: ID!): Media
     search(title: String, location: String, From: Date, To: Date): [Media]!
 
     ### Production ready phase ###
-    user(id: ID!): User
+    user(_id: ID!): User
     myMedia: [Media]!
     ##############################
 }
@@ -15,7 +15,7 @@ type Query {
 type Mutation {
     # Beta version
     uploadMedia(media: Upload!, title: String!, location: String!, date: Date!): Media
-    deleteMedia(id: ID!): Media
+    deleteMedia(_id: ID!): Media
 
     ### Production ready phase ###
     signUp(email: String!, password: String!, name: String!): User!
