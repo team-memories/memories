@@ -26,12 +26,7 @@ def graphql_server():
 
     # Note: Passing the request to the context is optional.
     # In Flask, the current request is always accessible as flask.request
-    success, result = graphql_sync(
-        schema,
-        data,
-        context_value=request,
-        debug=app.debug
-    )
+    success, result = graphql_sync(schema, data, context_value=request, debug=app.debug)
 
     status_code = 200 if success else 400
     return jsonify(result), status_code
