@@ -4,7 +4,7 @@ scalar Upload
 type Query {
     # Beta version
     media(_id: ID!): Media
-    search(title: String, location: String, From: Date, To: Date): [Media]!
+    search(title: String, location: String, dateFrom: Date, dateTo: Date): [Media]!
 
     ### Production ready phase ###
     user(_id: ID!): User
