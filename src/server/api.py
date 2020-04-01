@@ -1,8 +1,7 @@
 from ariadne import ObjectType, graphql_sync, make_executable_schema, load_schema_from_path
 from ariadne.constants import PLAYGROUND_HTML
 from flask import Flask, request, jsonify
-
-query = ObjectType("Query")
+from resolvers.query import query
 
 type_defs = load_schema_from_path("schema.graphql")
 
