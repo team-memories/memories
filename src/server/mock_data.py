@@ -33,7 +33,7 @@ DB = {
             "subtitle": "By Google",
             "thumb": "images/ForBiggerBlazes.jpg",
             "title": "For Bigger Blazes",
-            "location": "충청북도 청주시 서원구",
+            "location": "경기도 군포시",
             "date": "1969-01-01",
         },
         {
@@ -80,7 +80,7 @@ DB = {
             "subtitle": "By Google",
             "thumb": "images/ForBiggerMeltdowns.jpg",
             "title": "For Bigger Meltdowns",
-            "location": "충청북도 청주시 서원구",
+            "location": "경기도 부천시",
             "date": "1976-01-01",
         },
         {
@@ -109,7 +109,7 @@ DB = {
             "subtitle": "By Garage419",
             "thumb": "images/SubaruOutbackOnStreetAndDirt.jpg",
             "title": "Subaru Outback On Street And Dirt",
-            "location": "충청북도 청주시 서원구",
+            "location": "경기도 군포시",
             "date": "1989-01-01",
         },
         {
@@ -161,7 +161,7 @@ DB = {
             "subtitle": "By Garage419",
             "thumb": "images/WhatCarCanYouGetForAGrand.jpg",
             "title": "What care can you get for a grand?",
-            "location": "경기도 부천",
+            "location": "경기도 부천시",
             "date": "1980-01-01",
         },
     ],
