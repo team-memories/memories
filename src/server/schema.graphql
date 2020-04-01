@@ -1,0 +1,88 @@
+scalar Date
+scalar Upload
+
+type Query {
+    # Beta version
+    media(id: ID!): Media
+    search(title: String, location: String, From: Date, To: Date): [Media]!
+
+    ### Production ready phase ###
+    user(id: ID!): User
+    myMedia: [Media]!
+    ##############################
+}
+
+type Mutation {
+    # Beta version
+    uploadMedia(media: Upload!, title: String!, location: String!, date: Date!): Media
+    deleteMedia(id: ID!): Media
+
+    ### Production ready phase ###
+    signUp(email: String!, password: String!, name: String!): User!
+    signIn(email: String!, password: String!): User!
+    ##############################
+}
+
+interface Media {
+    id: ID!
+    title: String
+    # 미디어 파일이 저장되어 있는 주소
+    url: String
+    author: User
+    location: String
+    date: Date
+
+    ### Production ready phase ###
+    description: String
+    comments: [Comment]
+    ##############################
+}
+
+# 현재로선, Photo type과 Video type간의 다른 점은 없다.
+# 특정 field에서 Media interface을 반환할 시
+# 실제로 반환하는 type이 Photo이냐 Video냐에 따라
+# 클라이언트 단에서 다르게 렌더링하기 위해 구현하였다.
+type Photo implements Media {
+    id: ID!
+    title: String
+    # 미디어 파일이 저장되어 있는 주소
+    url: String
+    author: User
+    location: String
+    date: Date
+
+    ### Production ready phase ###
+    description: String
+    comments: [Comment]
+    ##############################
+}
+
+type Video implements Media {
+    id: ID!
+    title: String
+    # 미디어 파일이 저장되어 있는 주소
+    url: String
+    author: User
+    location: String
+    date: Date
+
+    ### Production ready phase ###
+    description: String
+    comments: [Comment]
+    ##############################
+}
+
+### Production ready phase ###
+type User {
+    email: String
+    name: String
+    profileImgUrl: String
+    myMedia: [Media]
+}
+
+type Comment {
+    id: ID!
+    author: User
+    body: String # 댓글의 내용
+}
+##############################
