@@ -74,6 +74,7 @@ type Video implements Media {
 
 ### Production ready phase ###
 type User {
+    id: ID! # 일반적으로 사이트 로그인에 사용되는 아이디가 아니다. 유저의 고유번호.
     email: String
     name: String
     profileImgUrl: String
