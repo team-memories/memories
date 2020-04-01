@@ -48,4 +48,6 @@ def graphql_server():
 
 
 if __name__ == "__main__":
-    APP.run(debug=True)
+    print("GraphQL playground [GET]: http://localhost:9696/graphql")
+    print("GraphQL endpoint [POST]: http://localhost:9696/graphql")
+    APP.run(debug=True, port=9696)
