@@ -5,6 +5,7 @@ query = ObjectType("Query")
 
 @query.field("media")
 def resolve_media(_, info, id):
-    DB = info.context["db"]
+    db: dict = info.context["db"]
+    videos: dict = db["videos"]
 
-    return DB.videos[id]
+    return videos[id]
