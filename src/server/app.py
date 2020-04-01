@@ -3,14 +3,14 @@ from ariadne.constants import PLAYGROUND_HTML
 from flask import Flask, request, jsonify
 from resolvers.query import query
 
-type_defs = load_schema_from_path("schema.graphql")
+TYPE_DEFS = load_schema_from_path("schema.graphql")
 
-schema = make_executable_schema(type_defs, query)
+SCHEMA = make_executable_schema(TYPE_DEFS, query)
 
-app = Flask(__name__)
+APP = Flask(__name__)
 
 
-@app.route("/graphql", methods=["GET"])
+@APP.route("/graphql", methods=["GET"])
 def graphql_playgroud():
     # On GET request serve GraphQL Playground
     # You don't need to provide Playground if you don't want to
@@ -19,18 +19,18 @@ def graphql_playgroud():
     return PLAYGROUND_HTML, 200
 
 
-@app.route("/graphql", methods=["POST"])
+@APP.route("/graphql", methods=["POST"])
 def graphql_server():
     # GraphQL queries are always sent as POST
     data = request.get_json()
 
     # Note: Passing the request to the context is optional.
     # In Flask, the current request is always accessible as flask.request
-    success, result = graphql_sync(schema, data, context_value=request, debug=app.debug)
+    success, result = graphql_sync(SCHEMA, data, context_value=request, debug=APP.debug)
 
     status_code = 200 if success else 400
     return jsonify(result), status_code
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    APP.run(debug=True)

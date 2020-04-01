@@ -1,4 +1,4 @@
-db = {
+DB = {
     "videos": [
         {
             "description": "Big Buck Bunny tells the story of a giant rabbit with a heart bigger than himself. When "
