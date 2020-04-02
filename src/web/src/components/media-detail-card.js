@@ -1,23 +1,11 @@
 import React, {Component} from 'react';
-import PropTypes from "prop-types";
 import {Col, List, Avatar, Button, Skeleton} from 'antd';
 import MediaDetailDeleteButton from './media-detail-delete-button'
 
-// TODO(Lhyejin): Change fake data to media information props received  MediaDetailQuery
 class MediaDetailCard extends Component {
   // MediaDetailCard constructor
   constructor(props) {
     super(props);
-    // fake data
-    this.state = {
-          id : 1,
-          avatar : "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-          user : "이혜진",
-          title : 'title',
-          place : '충북 청주시',
-          time : '1998년',
-          videoUrl: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'
-        }
   }
 
   // Media Information Component
@@ -25,15 +13,15 @@ class MediaDetailCard extends Component {
     return(
       <List>
         <List.Item
-          actions={[<MediaDetailDeleteButton mediaId={this.state.id} />]}
+          actions={[<MediaDetailDeleteButton mediaId={this.props.media.id} />]}
         >
           <List.Item.Meta
-            avatar={<Avatar size={50} src={this.state.avatar}/>}
-            title={this.state.title}
-            description={this.state.place}
+            avatar={<Avatar size={50} src={this.props.media.user.profileImgUrl}/>}
+            title={this.props.media.title}
+            description={this.props.media.location}
             style={{textAlign:'left'}}
           />
-          <div>{this.state.time}</div>
+          <div>{this.props.media.date}</div>
         </List.Item>
         </List>
     )
@@ -45,7 +33,7 @@ class MediaDetailCard extends Component {
       <div>
           <Col xs={24}>
             <div style={{width: '80%', padding: '3rem 4rem'}}>
-              <video style={{width: '100%', height: '80%'}} src={this.state.videoUrl} controls />
+              <video style={{width: '100%', height: '80%'}} src={this.props.media.url} controls />
               <this.MediaInfo />
             </div>
           </Col>
@@ -55,5 +43,4 @@ class MediaDetailCard extends Component {
 
 }
 
-MediaDetailCard.propTypes = {};
 export default MediaDetailCard;

@@ -27,7 +27,7 @@ function MediaDetailDeleteButton(mediaId) {
         okText={"Yes"}
         cancelText={"No"}
       >
-      <Button>delete</Button>
+        <Button>delete</Button>
       </Popconfirm>
   );
 }
