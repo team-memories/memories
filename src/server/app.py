@@ -6,7 +6,8 @@ from ariadne import (
     make_executable_schema,
     load_schema_from_path,
     upload_scalar,
-    combine_multipart_data)
+    combine_multipart_data,
+)
 from ariadne.constants import PLAYGROUND_HTML
 from flask import Flask, jsonify, request
 
@@ -18,7 +19,13 @@ from resolvers.video import video
 TYPE_DEFS = load_schema_from_path("schema.graphql")
 
 SCHEMA = make_executable_schema(
-    TYPE_DEFS, query, mutation, media, video, upload_scalar, snake_case_fallback_resolvers
+    TYPE_DEFS,
+    query,
+    mutation,
+    media,
+    video,
+    upload_scalar,
+    snake_case_fallback_resolvers,
 )
 
 APP = Flask(__name__)
@@ -43,7 +50,7 @@ def graphql_server():
         data = combine_multipart_data(
             json.loads(request.form.get("operations")),
             json.loads(request.form.get("map")),
-            dict(request.files)
+            dict(request.files),
         )
     else:
         data = request.get_json()
