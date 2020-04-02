@@ -11,7 +11,7 @@ DB = {
             "subtitle": "By Blender Foundation",
             "thumb": "images/BigBuckBunny.jpg",
             "title": "Big Buck Bunny",
-            "location": "경기도 시흥시",
+            "location": "대한민국 경기도 시흥시",
             "date": "1997-09-06",
         },
         {
@@ -21,7 +21,7 @@ DB = {
             "subtitle": "By Blender Foundation",
             "thumb": "images/ElephantsDream.jpg",
             "title": "Elephant Dream",
-            "location": "충청북도 청주시 서원구",
+            "location": "대한민국 충청북도 청주시 서원구",
             "date": "1999-01-01",
         },
         {
@@ -33,7 +33,7 @@ DB = {
             "subtitle": "By Google",
             "thumb": "images/ForBiggerBlazes.jpg",
             "title": "For Bigger Blazes",
-            "location": "경기도 군포시",
+            "location": "대한민국 경기도 군포시",
             "date": "1969-01-01",
         },
         {
@@ -45,7 +45,7 @@ DB = {
             "subtitle": "By Google",
             "thumb": "images/ForBiggerEscapes.jpg",
             "title": "For Bigger Escape",
-            "location": "경기도 시흥시",
+            "location": "대한민국 경기도 시흥시",
             "date": "2010-01-01",
         },
         {
@@ -56,7 +56,7 @@ DB = {
             "subtitle": "By Google",
             "thumb": "images/ForBiggerFun.jpg",
             "title": "For Bigger Fun",
-            "location": "경기도 시흥시",
+            "location": "대한민국 경기도 시흥시",
             "date": "2006-01-01",
         },
         {
@@ -68,7 +68,7 @@ DB = {
             "subtitle": "By Google",
             "thumb": "images/ForBiggerJoyrides.jpg",
             "title": "For Bigger Joyrides",
-            "location": "경기도 시흥시",
+            "location": "대한민국 경기도 시흥시",
             "date": "1999-01-01",
         },
         {
@@ -80,7 +80,7 @@ DB = {
             "subtitle": "By Google",
             "thumb": "images/ForBiggerMeltdowns.jpg",
             "title": "For Bigger Meltdowns",
-            "location": "경기도 부천시",
+            "location": "대한민국 경기도 부천시",
             "date": "1976-01-01",
         },
         {
@@ -97,7 +97,7 @@ DB = {
             "subtitle": "By Blender Foundation",
             "thumb": "images/Sintel.jpg",
             "title": "Sintel",
-            "location": "경기도 시흥시",
+            "location": "대한민국 경기도 시흥시",
             "date": "1972-01-01",
         },
         {
@@ -109,7 +109,7 @@ DB = {
             "subtitle": "By Garage419",
             "thumb": "images/SubaruOutbackOnStreetAndDirt.jpg",
             "title": "Subaru Outback On Street And Dirt",
-            "location": "경기도 군포시",
+            "location": "대한민국 경기도 군포시",
             "date": "1989-01-01",
         },
         {
@@ -125,7 +125,7 @@ DB = {
             "subtitle": "By Blender Foundation",
             "thumb": "images/TearsOfSteel.jpg",
             "title": "Tears of Steel",
-            "location": "경기도 군포시",
+            "location": "대한민국 경기도 군포시",
             "date": "1957-01-01",
         },
         {
@@ -137,7 +137,7 @@ DB = {
             "subtitle": "By Garage419",
             "thumb": "images/VolkswagenGTIReview.jpg",
             "title": "Volkswagen GTI Review",
-            "location": "경기도 시흥시",
+            "location": "대한민국 경기도 시흥시",
             "date": "1969-01-01",
         },
         {
@@ -149,7 +149,7 @@ DB = {
             "subtitle": "By Garage419",
             "thumb": "images/WeAreGoingOnBullrun.jpg",
             "title": "We Are Going On Bullrun",
-            "location": "경기도 군포시",
+            "location": "대한민국 경기도 군포시",
             "date": "1977-01-01",
         },
         {
@@ -161,7 +161,7 @@ DB = {
             "subtitle": "By Garage419",
             "thumb": "images/WhatCarCanYouGetForAGrand.jpg",
             "title": "What care can you get for a grand?",
-            "location": "경기도 부천시",
+            "location": "대한민국 경기도 부천시",
             "date": "1980-01-01",
         },
     ],
