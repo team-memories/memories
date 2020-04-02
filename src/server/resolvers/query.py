@@ -16,12 +16,12 @@ def resolve_media(_, __, _id):
 @query.field("search")
 @convert_kwargs_to_snake_case
 def resolve_search(
-        _,
-        info,
-        title: str = "",
-        location: str = "대한민국",
-        date_from="1900-01-01",
-        date_to="2099-12-31",
+    _,
+    info,
+    title: str = "",
+    location: str = "대한민국",
+    date_from="1900-01-01",
+    date_to="2099-12-31",
 ):
     videos = DB["videos"]
     videos = filter(lambda video: video["title"].find(title) != -1, videos)

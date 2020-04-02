@@ -10,7 +10,13 @@ type Query {
     search(title: String, location: String, dateFrom: Date, dateTo: Date): [Media]!
 
     ### Production ready phase ###
+    """
+    Not-implemented yet.
+    """
     user(_id: ID!): User
+    """
+    Not-implemented yet.
+    """
     myMedia: [Media]!
     ##############################
 }
@@ -21,7 +27,13 @@ type Mutation {
     deleteMedia(_id: ID!): Media
 
     ### Production ready phase ###
+    """
+    Not-implemented yet.
+    """
     signUp(email: String!, password: String!, name: String!): User!
+    """
+    Not-implemented yet.
+    """
     signIn(email: String!, password: String!): User!
     ##############################
 }
@@ -36,9 +48,12 @@ interface Media {
     author: User
     location: String
     date: Date
+    description: String
 
     ### Production ready phase ###
-    description: String
+    """
+    Not-implemented yet.
+    """
     comments: [Comment]
     ##############################
 }
@@ -59,9 +74,12 @@ type Photo implements Media {
     author: User
     location: String
     date: Date
+    description: String
 
     ### Production ready phase ###
-    description: String
+    """
+    Not-implemented yet.
+    """
     comments: [Comment]
     ##############################
 }
@@ -76,14 +94,16 @@ type Video implements Media {
     author: User
     location: String
     date: Date
+    description: String
 
     ### Production ready phase ###
-    description: String
+    """
+    Not-implemented yet.
+    """
     comments: [Comment]
     ##############################
 }
 
-### Production ready phase ###
 type User {
     """
     일반적 사이트 로그인에 사용되는 그 아이디가 아니다.
@@ -93,9 +113,20 @@ type User {
     email: String
     name: String
     profileImgUrl: String
+
+
+    ### Production ready phase ###
+    """
+    Not-implemented yet.
+    """
     myMedia: [Media]
+    ##############################
 }
 
+### Production ready phase ###
+"""
+Not-implemented yet.
+"""
 type Comment {
     id: ID!
     author: User
