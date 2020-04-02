@@ -3,11 +3,14 @@ scalar Upload
 
 type Query {
     # Beta version
-    media(id: ID!): Media
-    search(title: String, location: String, From: Date, To: Date): [Media]!
+    media(_id: ID!): Media
+    """
+    dateFrom 과 dateTo 를 이용한 날짜 기반 서치는 아직 구현되지 않았습니다.
+    """
+    search(title: String, location: String, dateFrom: Date, dateTo: Date): [Media]!
 
     ### Production ready phase ###
-    user(id: ID!): User
+    user(_id: ID!): User
     myMedia: [Media]!
     ##############################
 }
@@ -15,7 +18,7 @@ type Query {
 type Mutation {
     # Beta version
     uploadMedia(media: Upload!, title: String!, location: String!, date: Date!): Media
-    deleteMedia(id: ID!): Media
+    deleteMedia(_id: ID!): Media
 
     ### Production ready phase ###
     signUp(email: String!, password: String!, name: String!): User!
@@ -26,7 +29,9 @@ type Mutation {
 interface Media {
     id: ID!
     title: String
-    # 미디어 파일이 저장되어 있는 주소
+    """
+    미디어 파일이 저장되어 있는 주소
+    """
     url: String
     author: User
     location: String
@@ -38,14 +43,18 @@ interface Media {
     ##############################
 }
 
-# 현재로선, Photo type과 Video type간의 다른 점은 없다.
-# 특정 field에서 Media interface을 반환할 시
-# 실제로 반환하는 type이 Photo이냐 Video냐에 따라
-# 클라이언트 단에서 다르게 렌더링하기 위해 구현하였다.
+"""
+현재로선, Photo type과 Video type간의 다른 점은 없다.
+특정 field에서 Media interface을 반환할 시
+실제로 반환하는 type이 Photo이냐 Video냐에 따라
+클라이언트 단에서 다르게 렌더링하기 위해 구현하였다.
+"""
 type Photo implements Media {
     id: ID!
     title: String
-    # 미디어 파일이 저장되어 있는 주소
+    """
+    미디어 파일이 저장되어 있는 주소
+    """
     url: String
     author: User
     location: String
@@ -60,7 +69,9 @@ type Photo implements Media {
 type Video implements Media {
     id: ID!
     title: String
-    # 미디어 파일이 저장되어 있는 주소
+    """
+    미디어 파일이 저장되어 있는 주소
+    """
     url: String
     author: User
     location: String
@@ -74,6 +85,11 @@ type Video implements Media {
 
 ### Production ready phase ###
 type User {
+    """
+    일반적 사이트 로그인에 사용되는 그 아이디가 아니다.
+    유저의 고유 번호를 나타낸다.
+    """
+    id: ID!
     email: String
     name: String
     profileImgUrl: String
@@ -83,6 +99,9 @@ type User {
 type Comment {
     id: ID!
     author: User
-    body: String # 댓글의 내용
+    """
+    댓글의 내용
+    """
+    body: String
 }
 ##############################
