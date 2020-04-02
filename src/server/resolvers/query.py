@@ -13,8 +13,8 @@ def resolve_media(_, __, _id):
     return video
 
 
-@convert_kwargs_to_snake_case
 @query.field("search")
+@convert_kwargs_to_snake_case
 def resolve_search(
         _,
         info,
