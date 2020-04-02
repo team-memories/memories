@@ -1,7 +1,7 @@
-from ariadne import ObjectType, convert_kwargs_to_snake_case
+from ariadne import QueryType, convert_kwargs_to_snake_case
 from mock_data import DB
 
-query = ObjectType("Query")
+query = QueryType()
 
 
 @query.field("media")
