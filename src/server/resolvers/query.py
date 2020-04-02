@@ -6,7 +6,7 @@ query = ObjectType("Query")
 
 @query.field("media")
 def resolve_media(_, info, _id):
-    videos: dict = DB["videos"]
+    videos = DB["videos"]
 
     return videos[int(_id)]
 
@@ -21,7 +21,7 @@ def resolve_search(
     date_from="1900-01-01",
     date_to="2099-12-31",
 ):
-    videos: dict = DB["videos"]
+    videos = DB["videos"]
     videos = filter(lambda video: video["title"].find(title) != -1, videos)
     videos = filter(lambda video: video["location"].find(location) != -1, videos)
 
