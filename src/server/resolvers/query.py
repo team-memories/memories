@@ -17,7 +17,7 @@ def resolve_search(
     _,
     info,
     title: str = "",
-    location: str = "",
+    location: str = "대한민국",
     date_from="1900-01-01",
     date_to="2099-12-31",
 ):
