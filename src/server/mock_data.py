@@ -97,7 +97,7 @@ DB = {
             "subtitle": "By Blender Foundation",
             "thumb": "images/Sintel.jpg",
             "title": "Sintel",
-            "location": "대한민국 경기도 시흥시",
+            "location": "대한민국 경기도",
             "date": "1972-01-01",
         },
         {
@@ -161,7 +161,7 @@ DB = {
             "subtitle": "By Garage419",
             "thumb": "images/WhatCarCanYouGetForAGrand.jpg",
             "title": "What care can you get for a grand?",
-            "location": "대한민국 경기도 부천시",
+            "location": "대한민국",
             "date": "1980-01-01",
         },
     ],
