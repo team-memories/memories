@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Col, Cascader } from 'antd'
+import { Cascader } from 'antd'
 
 export default class SearchBarPlaceSelect extends Component {
   render() {
@@ -436,9 +436,9 @@ export default class SearchBarPlaceSelect extends Component {
       },
     ];
     return (
-      <Col span={7} pull={4}>
+      <div>
         <Cascader options={options} placeholder="Please select" onChange={this.props.onChangeLocation}/>
-      </Col>
+      </div>
     )
   }
 }

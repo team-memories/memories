@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Col, Row } from 'antd'
+import { Row, Col } from 'antd'
 import SearchBarInput from './SearchBarInput'
 import SearchBarPlaceSelect from './SearchBarPlaceSelect'
 import SearchBarSubmitButton from './SearchBarSubmitButton'
@@ -37,14 +37,20 @@ export default class SearchBar extends Component {
   }
   render() {
     return (
-      <Col span={21} push={5}>
-        <Row gutter={[1,1]}>
+      <Row>
+        <Col span={10}>
           <SearchBarInput onChangeTitle={this.onChangeTitle}/>
-          <SearchBarPlaceSelect onChangeLocation={this.onChangeLocation}/>
+        </Col>
+        <Col span={3}>
+        < SearchBarPlaceSelect onChangeLocation={this.onChangeLocation}/>
+        </Col>
+        <Col span={5}>
           <SearchBarYearSelect onChangeDate={this.onChangeDate}/>
+        </Col>
+        <Col span={1}>
           <SearchBarSubmitButton title={this.state.title} url={this.state.url} location={this.state.location} dateFrom={this.state.dateFrom} dateTo={this.state.dateTo}/>
-        </Row>
-      </Col>
+        </Col>
+      </Row>
     )
   }
 }
