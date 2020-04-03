@@ -7,6 +7,12 @@ import {InMemoryCache} from "apollo-cache-inmemory";
 import {createUploadLink} from "apollo-upload-client";
 
 function App() {
+    const apolloCache = new InMemoryCache();
+
+    const uploadLink = createUploadLink({
+        uri: 'http://localhost:9696/graphql',
+    });
+
     const client = new ApolloClient({
         link: createUploadLink({uri: 'http://localhost:9696/graphql'}),
         cache: new InMemoryCache(),
