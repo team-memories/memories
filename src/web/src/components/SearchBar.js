@@ -10,7 +10,6 @@ export default class SearchBar extends Component {
     super(props);
     this.state = {
       title : '',
-      url : "/search/",
       dateFrom : '',
       dateTo : '',
       location : ''
@@ -48,7 +47,7 @@ export default class SearchBar extends Component {
           <SearchBarYearSelect onChangeDate={this.onChangeDate}/>
         </Col>
         <Col span={1}>
-          <SearchBarSubmitButton title={this.state.title} url={this.state.url} location={this.state.location} dateFrom={this.state.dateFrom} dateTo={this.state.dateTo}/>
+          <SearchBarSubmitButton title={this.state.title} location={this.state.location} dateFrom={this.state.dateFrom} dateTo={this.state.dateTo}/>
         </Col>
       </Row>
     )
