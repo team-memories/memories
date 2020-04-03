@@ -11,7 +11,7 @@ pylint = "*"
 [packages]
 ariadne = "*"
 flask = "*"
-
+flask_cors = "*"
 [requires]
 python_version = "3.6"
 
