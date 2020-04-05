@@ -43,7 +43,7 @@ export default class SearchBar extends Component {
         <Col span={3}>
         < SearchBarPlaceSelect onChangeLocation={this.onChangeLocation}/>
         </Col>
-        <Col span={5}>
+        <Col span={4}>
           <SearchBarYearSelect onChangeDate={this.onChangeDate}/>
         </Col>
         <Col span={1}>
