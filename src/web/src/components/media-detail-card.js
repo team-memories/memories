@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Col, List, Avatar, Button, Skeleton} from 'antd';
+import {List, Avatar, Typography} from 'antd';
 import MediaDetailDeleteButton from './media-detail-delete-button'
 
 class MediaDetailCard extends Component {
@@ -16,14 +16,18 @@ class MediaDetailCard extends Component {
           actions={[<MediaDetailDeleteButton mediaId={this.props.media.id} />]}
         >
           <List.Item.Meta
-            avatar={<Avatar size={50} src={this.props.media.user.profileImgUrl}/>}
+            avatar={<Avatar size={50} src={this.props.media.author.profileImgUrl}/>}
             title={this.props.media.title}
-            description={this.props.media.location}
+            description={this.props.media.author.name}
             style={{textAlign:'left'}}
           />
-          <div>{this.props.media.date}</div>
+          <Typography>{this.props.media.location}<br/>{this.props.media.date}</Typography>
+
         </List.Item>
-        </List>
+        <List.Item>
+          {this.props.media.description}
+        </List.Item>
+      </List>
     )
   }
 
@@ -31,12 +35,8 @@ class MediaDetailCard extends Component {
   render() {
     return (
       <div>
-          <Col xs={24}>
-            <div style={{width: '80%', padding: '3rem 4rem'}}>
-              <video style={{width: '100%', height: '80%'}} src={this.props.media.url} controls />
-              <this.MediaInfo />
-            </div>
-          </Col>
+        <video style={{width: '100%', height: '80%'}} src={this.props.media.url} controls />
+        <this.MediaInfo />
       </div>
     );
   }
