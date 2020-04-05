@@ -1,6 +1,5 @@
 import React from 'react';
 import gql from 'graphql-tag';
-import {Query} from 'react-apollo';
 import {useQuery} from '@apollo/react-hooks'
 import MediaDetailCard from './media-detail-card';
 
