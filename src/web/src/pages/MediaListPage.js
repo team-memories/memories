@@ -42,7 +42,7 @@ function cardclick() {
   
 }
 
-const SearchScreen = ({match}) => {
+const MediaListPage = ({match}) => {
     return (
         <div>
             <Header/>
@@ -60,21 +60,21 @@ const SearchScreen = ({match}) => {
                 return (
                   <div style={{width: '85%', margin: '3rem auto'}}>
                     <Row gutter = {[32, 16]}>
-                    { data.search.map(({title, location, date, url, author, id}) => {
+                    { data.search.map(({title, location, date, url, author}) => {
                         return (
                           <Col lg={6} md={8} xs={24}>
-                            <a href = {url} onClick = {cardclick}>
-                              <div style = {{postion: 'relative'}}>
-                                <img style= {{width : '100%'}} src = {'https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png'} alt="thumbnail"/>
+                            <a href={url} onClick={cardclick}>
+                              <div style={{postion:'relative'}}>
+                                <img style={{width:'100%'}} src={'https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png'} alt="thumbnail"/>
                               </div>              
                             </a>
-                            <Card bordered = {false}>
+                            <Card bordered={false}>
                             <Meta
-                              avatar = {           
-                              <Avatar size = {40} src = {author.profileImgUrl} shape = "circle" />
+                              avatar={           
+                              <Avatar size={40} src={author.profileImgUrl} shape="circle" />
                               }
-                              title ={title}
-                              description = {author.name}
+                              title={title}
+                              description={author.name}
                             >
                             </Meta>
                             <br/>
@@ -95,4 +95,4 @@ const SearchScreen = ({match}) => {
     )
 }
 
-export default SearchScreen
+export default MediaListPage
