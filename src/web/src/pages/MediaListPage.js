@@ -39,7 +39,6 @@ function cardclick() {
       </Link>
     </div>
   );
-  
 }
 
 const MediaListPage = ({match}) => {
