@@ -15,7 +15,6 @@ function DropzoneBox(props) {
             <div style={{display: 'flex', justifyContent: 'space-between'}}>
                 <Dropzone
                     type="file"
-                    // maxSize={100000000}
                     multiple={false}
                     value={props.value}
                     onDrop={props.onChange}
@@ -33,10 +32,15 @@ function DropzoneBox(props) {
                             }}
                             {...getRootProps()}>
                             <input {...getInputProps()} />
-                            <p className="ant-upload-drag-icon">
-                                <InboxOutlined/>
-                            </p>
-                            <p className="ant-upload-text">Click or drag file to this area to upload</p>
+                            {props.mediaName ?
+                                <p>{props.mediaName}</p> :
+                                <>
+                                    <p className="ant-upload-drag-icon">
+                                        <InboxOutlined/>
+                                    </p>
+                                    <p className="ant-upload-text">Click or drag file to this area to upload</p>
+                                </>
+                            }
                         </div>
                     )}
                 </Dropzone>
