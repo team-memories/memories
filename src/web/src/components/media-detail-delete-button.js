@@ -29,11 +29,11 @@ function MediaDetailDeleteButton(props) {
   const [deleteMedia] = useMutation(DELETE_MEDIA, {
     onCompleted({deleteMedia: {title, author}}){
       message.success(`${author.name}의 ${title}가(이) 삭제되었습니다.`);
-      history.push('/user');
+      history.goBack();
     },
     onError() {
       message.error('삭제를 요청한 미디어가 존재하지 않습니다.');
-      history.push('/user');
+      history.goBack();
     }
   });
 
