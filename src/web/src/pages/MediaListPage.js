@@ -28,6 +28,7 @@ const SearchQuery = gql `
 function MediaListPage (props) {
   let query = useQueryParm()
   const {loading, error, data} = useQuery(SearchQuery, {
+    /*TODO 파라미터 잘 받아왔는지 확인하기*/
     variables: {
       title: query.get("title"),
       location: query.get("location"),
@@ -43,6 +44,7 @@ function MediaListPage (props) {
     <div style={{width: '85%', margin: '3rem auto'}}>
       <Row gutter={[32,16]}>
         {data.search.map(({title, location, date, author, id}) => {
+          if (title === null || location === null || date === null || author === null || id === null) return <div>error</div>
           return (
             <Col lg={6} md={8} xs={24} key={id}>
               <MediaCard title={title} location={location} date={date} author={author} id={id}/>
