@@ -3,13 +3,12 @@
 * ====================================
 *
 * 영상, Title, 장소, 시간을 설정한다.
-* TODO : mutation - Media 파일 안올라가는 거 수정
+* TODO (Sujin) : mutation - Media 파일 안올라가는 거 수정
 */
 
 import React, {useState} from 'react';
 import {Form} from 'antd';
 import gql from "graphql-tag";
-import {useMutation} from '@apollo/react-hooks';
 
 import UploadPageTitle from "../components/UploadPage/UploadPageTitle";
 import UploadDateSelect from "../components/UploadPage/UploadDateSelect";
@@ -78,7 +77,7 @@ function UploadPage() {
                 <UploadPlaceSelect location={location} onChange={onLocationChange}/>
                 <UploadDateSelect date={date} onChange={onDateChange}/>
                 <UploadPageDescription description={description} onChange={onDescriptionChange}/>
-                {/*TODO : onCLick 시 mutation 올바르게 올라가게 */}
+                {/*TODO (Sujin) : onCLick 시 mutation 올바르게 올라가게 */}
                 <UploadSubmitButton/>
 
             </Form>
