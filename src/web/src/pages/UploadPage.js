@@ -64,9 +64,9 @@ function UploadPage() {
     };
 
     const handleSubmit = () => {
-        // console.log(media, title, location, date);
-        // mutate({variables: {media, title, location, date}})
-        //     .then();
+        console.log(media, title, location, date);
+        mutate({variables: {media, title, location, date}})
+            .then();
         alert('Submit!');
     };
 
