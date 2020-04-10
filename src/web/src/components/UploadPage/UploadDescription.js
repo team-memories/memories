@@ -8,10 +8,6 @@ const layout = {
 
 const { TextArea } = Input;
 
-/*
-* Description 작성
-* */
-
 function UploadPageDescription(props) {
     return (
         <Form.Item

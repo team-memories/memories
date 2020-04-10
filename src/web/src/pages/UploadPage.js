@@ -1,11 +1,3 @@
-/*====================================
-*              UploadPage
-* ====================================
-*
-* 영상, Title, 장소, 시간을 설정한다.
-* TODO (Sujin) : mutation - Media 파일 안올라가는 거 수정
-*/
-
 import React, { useState } from 'react';
 import { Form } from 'antd';
 import { useHistory } from 'react-router-dom'

@@ -6,10 +6,6 @@ const layout = {
     wrapperCol: {span: 16},
 };
 
-/*
-* Title 작성
-* */
-
 function UploadPageTitle(props) {
     return (
         <Form.Item
