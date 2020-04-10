@@ -3,20 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@ant-design/icons": "^4.0.5",
     "@apollo/react-hooks": "^3.1.3",
-    "@apollo/react-hooks": "latest",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "antd": "^4.1.0",
-    "apollo-boost": "^0.4.7",
     "graphql": "^14.6.0",
-    "graphql-tag": "^2.10.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "@ant-design/icons": "latest",
+    "apollo-cache-inmemory": "latest",
+    "apollo-upload-client": "latest",
+    "form-data": "latest",
+    "graphql-tag": "^2.10.3",
+    "node-fetch": "^2.6.0",
+    "react-apollo": "^3.1.4",
+    "react-dropzone": "latest"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -39,15 +43,5 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "@ant-design/icons": "latest",
-    "apollo-boost": "^0.4.7",
-    "apollo-cache-inmemory": "latest",
-    "apollo-upload-client": "latest",
-    "form-data": "latest",
-    "graphql-tag": "^2.10.3",
-    "node-fetch": "^2.6.0",
-    "react-apollo": "^3.1.4",
-    "react-dropzone": "latest"
-  }
+  "devDependencies": {}
 }
