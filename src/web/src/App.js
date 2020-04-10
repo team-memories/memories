@@ -10,7 +10,7 @@ const URI = 'http://localhost:9696/graphql';
 
 function App() {
   const client = new ApolloClient({
-    link: createUploadLink({URI}),
+    link: createUploadLink({uri: URI}),
     cache: new InMemoryCache(),
   });
 
