@@ -6,10 +6,10 @@
 * TODO (Sujin) : mutation - Media 파일 안올라가는 거 수정
 */
 
-import React, {useState} from 'react';
-import {Form} from 'antd';
+import React, { useState } from 'react';
+import { Form } from 'antd';
+import { useHistory } from 'react-router-dom'
 import gql from "graphql-tag";
-
 import UploadPageTitle from "../components/UploadPage/UploadPageTitle";
 import UploadDateSelect from "../components/UploadPage/UploadDateSelect";
 import UploadPlaceSelect from "../components/UploadPage/UploadPlaceSelect";
@@ -34,13 +34,13 @@ const UPLOAD_MEDIA = gql`
 
 function UploadPage() {
     const {useMutation} = require('@apollo/react-hooks');
-
     const [media, setMedia] = useState([]);
     const [title, setTitle] = useState('');
     const [location, setLocation] = useState('대한민국');
     const [date, setDate] = useState('');
     const [description, setDescription] = useState('');
     const [mutate] = useMutation(UPLOAD_MEDIA);
+    const history = useHistory();
 
     const onMediaChange = (e) => {
         setMedia(e[0]);
@@ -68,6 +68,7 @@ function UploadPage() {
         mutate({variables: {media, title, location, date}})
             .then();
         alert('Submit!');
+        history.push('/')
     };
 
     return (
