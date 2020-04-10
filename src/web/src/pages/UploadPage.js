@@ -44,7 +44,6 @@ function UploadPage() {
 
     const onMediaChange = (e) => {
         setMedia(e[0]);
-        console.log(e[0]);
     };
 
     const onTitleChange = (e) => {
@@ -64,7 +63,6 @@ function UploadPage() {
     };
 
     const handleSubmit = () => {
-        console.log(media, title, location, date);
         mutate({variables: {media, title, location, date}})
             .then();
         alert('Submit!');
@@ -79,7 +77,6 @@ function UploadPage() {
                 <UploadPlaceSelect location={location} onChange={onLocationChange}/>
                 <UploadDateSelect date={date} onChange={onDateChange}/>
                 <UploadPageDescription description={description} onChange={onDescriptionChange}/>
-                {/*TODO (Sujin) : onCLick 시 mutation 올바르게 올라가게 */}
                 <UploadSubmitButton onClick={handleSubmit}/>
 
             </Form>
