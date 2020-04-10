@@ -15,7 +15,7 @@ import UploadDateSelect from "../components/UploadPage/UploadDateSelect";
 import UploadPlaceSelect from "../components/UploadPage/UploadPlaceSelect";
 import UploadSubmitButton from "../components/UploadPage/UploadSubmitButton";
 import UploadPageDescription from "../components/UploadPage/UploadDescription";
-import InputFile from "../components/UploadPage/InputFile";
+import DropzoneBox from "../components/UploadPage/DropzoneBox";
 
 const UPLOAD_MEDIA = gql`
     mutation ($media: Upload!, $title: String!, $location: String!, $date: Date!) {
@@ -42,9 +42,9 @@ function UploadPage() {
     const [description, setDescription] = useState('');
     const [mutate] = useMutation(UPLOAD_MEDIA);
 
-    const onMediaChange = ({target: {validity, files: [file]}}) => {
-        if (validity.valid) setMedia(file);
-        console.log(file);
+    const onMediaChange = (e) => {
+        setMedia(e[0]);
+        console.log(e[0]);
     };
 
     const onTitleChange = (e) => {
@@ -64,21 +64,22 @@ function UploadPage() {
     };
 
     const handleSubmit = () => {
-        console.log(media, title, location, date);
-        mutate({variables: {media, title, location, date}})
-            .then();
+        // console.log(media, title, location, date);
+        // mutate({variables: {media, title, location, date}})
+        //     .then();
+        alert('Submit!');
     };
 
     return (
         <div style={{maxWidth: '700px', margin: '2rem auto'}}>
             <Form>
-                <InputFile onChange={onMediaChange}/>
+                <DropzoneBox onChange={onMediaChange} mediaName={media.name}/>
                 <UploadPageTitle title={title} onChange={onTitleChange}/>
                 <UploadPlaceSelect location={location} onChange={onLocationChange}/>
                 <UploadDateSelect date={date} onChange={onDateChange}/>
                 <UploadPageDescription description={description} onChange={onDescriptionChange}/>
                 {/*TODO (Sujin) : onCLick 시 mutation 올바르게 올라가게 */}
-                <UploadSubmitButton/>
+                <UploadSubmitButton onClick={handleSubmit}/>
 
             </Form>
         </div>
