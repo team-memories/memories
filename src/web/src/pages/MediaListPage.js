@@ -53,6 +53,7 @@ function MediaListPage (props) {
     <div style={{width: '85%', margin: '3rem auto'}}>
       <Row gutter={[32,16]}>
         {data.search.map(({title, location, date, author, id}) => {
+          //TODO(gee05053) error 처리, filter적용하기
           if (title === null || location === null || date === null || author === null) return null
           return (
             <Col lg={6} md={8} xs={24} key={id}>
