@@ -1,10 +1,15 @@
 import React from 'react';
+import { Route, Switch } from 'react-router-dom'
 import {ApolloProvider} from '@apollo/react-hooks';
 import {ApolloClient} from 'apollo-client';
-import UploadPage from './pages/UploadPage';
-import 'antd/dist/antd.css';
 import {InMemoryCache} from 'apollo-cache-inmemory';
 import {createUploadLink} from 'apollo-upload-client';
+import MediaListPage from './pages/MediaListPage'
+import MediaViewPage from './pages/media-view-page'
+import Header from './components/Header'
+import UploadPage from './pages/UploadPage'
+import 'antd/dist/antd.css'
+
 
 const URI = 'http://localhost:9696/graphql';
 
@@ -15,12 +20,15 @@ function App() {
   });
 
   return (
-      <div style={{paddingTop: '69px', minHeight: 'calc(100vh - 80px)'}}>
-        <ApolloProvider client={client}>
-          <UploadPage/>
-        </ApolloProvider>
-      </div>
-
+    <ApolloProvider client={client}>
+      <Header/>
+      <Switch>
+        <Route exact path="/" component={MediaListPage}/>
+        <Route exact path="/search" component={MediaListPage}/>
+        <Route exact path="/watch" component={MediaViewPage}/>
+        <Route exact path="/upload" component={UploadPage} />
+      </Switch>
+    </ApolloProvider>
   );
 }
 

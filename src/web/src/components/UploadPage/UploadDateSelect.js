@@ -6,10 +6,6 @@ const layout = {
     wrapperCol: {span: 16},
 };
 
-/*
-* Date 선택 : 영상을 찍은 년도를 선택한다.
-* */
-
 function UploadDateSelect(props) {
     return (
         <Form.Item

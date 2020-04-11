@@ -27,13 +27,22 @@ const SearchQuery = gql `
 
 function MediaListPage (props) {
   let query = useQueryParm()
+  let title = ''
+  let location = ''
+  let dateFrom = ''
+  let dateTo = ''
+  if (query.get('title') !== null) {
+    title = query.get("title")
+    location = query.get("location")
+    dateFrom = query.get("dateFrom")
+    dateTo = query.get("dateTo")
+  }
   const {loading, error, data} = useQuery(SearchQuery, {
-    /*TODO 파라미터 잘 받아왔는지 확인하기*/
     variables: {
-      title: query.get("title"),
-      location: query.get("location"),
-      dateFrom: query.get("dateFrom"),
-      dateTo: query.get("dateTo")
+      title: title,
+      location: location,
+      dateFrom: dateFrom,
+      dateTo: dateTo
     },
     errorPolicy: 'all'
   });
@@ -44,7 +53,8 @@ function MediaListPage (props) {
     <div style={{width: '85%', margin: '3rem auto'}}>
       <Row gutter={[32,16]}>
         {data.search.map(({title, location, date, author, id}) => {
-          if (title === null || location === null || date === null || author === null || id === null) return <div>error</div>
+          //TODO(gee05053) error 처리, filter적용하기
+          if (title === null || location === null || date === null || author === null) return null
           return (
             <Col lg={6} md={8} xs={24} key={id}>
               <MediaCard title={title} location={location} date={date} author={author} id={id}/>

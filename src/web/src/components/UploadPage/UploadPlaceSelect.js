@@ -440,10 +440,6 @@ const LocationOptions = [
     },
 ];
 
-/*
-* Location 선택 : onLocationOptions() 로 '국가, 시/도, 구/동' 을 설정한다.
-* */
-
 function UploadPlaceSelect(props) {
     return (
         <Form.Item
