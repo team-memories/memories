@@ -7,14 +7,14 @@ export default class HeaderIcons extends Component {
   render() {
     return (
       <Row>
-        <Col span={10}>
+        <Col>
           <Link to={'/upload'}>
             <Button type="link">
               <UploadOutlined style={{fontSize : "30px"}}/>
             </Button>
           </Link>
         </Col>
-        <Col span={2}>
+        <Col>
           <Button type="link">
             <UserOutlined style={{fontSize : "30px"}}/>
           </Button>

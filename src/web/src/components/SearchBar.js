@@ -27,16 +27,16 @@ function SearchBar() {
   }
   return (
     <Row>
-      <Col span={10}>
+      <Col flex={1}>
         <SearchBarInput onChangeTitle={onChangeTitle} onPressEnter={onPressEnter}/>
       </Col>
-      <Col span={3}>
-      < SearchBarPlaceSelect onChangeLocation={onChangeLocation}/>
+      <Col>
+        < SearchBarPlaceSelect onChangeLocation={onChangeLocation}/>
       </Col>
-      <Col span={4}>
+      <Col>
         <SearchBarYearSelect onChangeDate={onChangeDate}/>
       </Col>
-      <Col span={1}>
+      <Col>
         <SearchBarSubmitButton title={title} location={location} dateFrom={dateFrom} dateTo={dateTo}/>
       </Col>
     </Row>
