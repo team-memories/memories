@@ -68,11 +68,6 @@ function MediaListPage (props) {
     <div style={{width: '85%', margin: '3rem auto'}}>
       <Row gutter={[32,16]}>
         {data.search.filter(filtering).map(({title, location, date, author, id}) => {
-          if (title === null) return(
-            <Col lg={6} md={8} xs={24} key={id}>
-              <MediaCard title="temp" location={location} date={date} author={author} id={id}/>
-            </Col>
-          )
           return (
             <Col lg={6} md={8} xs={24} key={id}>
               <MediaCard title={title} location={location} date={date} author={author} id={id}/>
