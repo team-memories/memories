@@ -3,13 +3,6 @@ import { Input } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
 
 export default class SearchBarInput extends Component {
-  constructor(props) {
-    super(props)
-    this.onPressEnter = this.onPressEnter.bind(this)
-  }
-  onPressEnter () {
-    console.log("test")
-  }
   render() {
     return (
       <div>
