@@ -57,7 +57,7 @@ function MediaListPage (props) {
       value.date = ""
     }
     if (value.author == null) {
-      value.author = {name: 'Unkown', profileImgUrl: ''}
+      value.author = {name: 'Unknown', profileImgUrl: ''}
     }
     return value
   }
