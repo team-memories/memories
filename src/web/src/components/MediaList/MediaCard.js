@@ -18,12 +18,12 @@ export default class MediaCard extends Component {
             title={this.props.title}
             description={
             <p style={{marginTop: 10}}>
-            {this.props.author.name}
-            <br/>
-            {this.props.date}
-            <br/>
-            {this.props.location}
-          </p>
+              {this.props.author.name}
+              <br/>
+              {this.props.date}
+              <br/>
+              {this.props.location}
+            </p>
             }
           />
           
