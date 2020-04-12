@@ -46,14 +46,28 @@ function MediaListPage (props) {
     },
     errorPolicy: 'all'
   });
+  const filtering = (value) => {
+    if (value.title == null) {
+      value.title = ""
+    }
+    if (value.location == null) {
+      value.location = ""
+    }
+    if (value.date == null) {
+      value.date = ""
+    }
+    if (value.author == null) {
+      value.author = {name: 'Unkown', profileImgUrl: ''}
+    }
+    return value
+  }
   if (loading) return <div>Loading...</div>
   if (error) return <div>Error: {error.message}</div>
   if (data.search.length === 0) return <div>찾은 결과가 없습니다.</div>
   return (
     <div style={{width: '85%', margin: '3rem auto'}}>
       <Row gutter={[32,16]}>
-        {data.search.map(({title, location, date, author, id}) => {
-          //TODO(gee05053) error 처리, filter적용하기
+        {data.search.filter(filtering).map(({title, location, date, author, id}) => {
           if (title === null) return(
             <Col lg={6} md={8} xs={24} key={id}>
               <MediaCard title="temp" location={location} date={date} author={author} id={id}/>
