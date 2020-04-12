@@ -16,7 +16,7 @@ export default class Header extends Component {
             <Col flex={3}>
               <SearchBar />
             </Col>
-            <Col flex={1} style={{paddingInlineStart:"10%"}}>
+            <Col flex={1} style={{paddingInlineStart:"10%", top: "7px"}}>
               <HeaderIcons />
             </Col>
           </Row>
