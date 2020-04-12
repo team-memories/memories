@@ -10,13 +10,13 @@ export default class HeaderIcons extends Component {
         <Col>
           <Link to={'/upload'}>
             <Button type="link">
-              <UploadOutlined style={{fontSize : "30px"}}/>
+              <UploadOutlined style={{fontSize : "30px", color:"#949494"}}/>
             </Button>
           </Link>
         </Col>
         <Col>
           <Button type="link">
-            <UserOutlined style={{fontSize : "30px"}}/>
+            <UserOutlined style={{fontSize : "30px", color:"#949494"}}/>
           </Button>
         </Col>
       </Row>
