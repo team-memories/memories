@@ -54,7 +54,11 @@ function MediaListPage (props) {
       <Row gutter={[32,16]}>
         {data.search.map(({title, location, date, author, id}) => {
           //TODO(gee05053) error 처리, filter적용하기
-          if (title === null || location === null || date === null || author === null) return null
+          if (title === null) return(
+            <Col lg={6} md={8} xs={24} key={id}>
+              <MediaCard title="temp" location={location} date={date} author={author} id={id}/>
+            </Col>
+          )
           return (
             <Col lg={6} md={8} xs={24} key={id}>
               <MediaCard title={title} location={location} date={date} author={author} id={id}/>
