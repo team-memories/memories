@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Card, Avatar } from 'antd'
+import { Card, Avatar, Typography } from 'antd'
+
+const { Title } = Typography;
 
 export default class MediaCard extends Component {
   render() {
@@ -15,18 +17,15 @@ export default class MediaCard extends Component {
             avatar = {           
             <Avatar size={40} src={this.props.author.profileImgUrl} shape="circle" />
             }
-            title={this.props.title}
+            title={<Title level={4} ellipsis={true}>{this.props.title}</Title>}
             description={
             <p style={{marginTop: 10}}>
               {this.props.author.name}
               <br/>
-              {this.props.date}
-              <br/>
-              {this.props.location}
+              {this.props.date} / {this.props.location}
             </p>
             }
           />
-          
         </Card>
       </Link>
     )
