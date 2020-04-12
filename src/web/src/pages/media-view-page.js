@@ -1,22 +1,22 @@
-import React from 'react';
+import React from 'react'
 import MediaDetailCardQuery from '../components/media-detail-card-query'
 import { useLocation } from 'react-router-dom'
-import {withRouter} from 'react-router-dom';
-import {Row, Col} from 'antd'
+import { withRouter } from 'react-router-dom'
+import { Row, Col } from 'antd'
 
-function useQueryParm() {
+function useQueryParm () {
   return new URLSearchParams(useLocation().search)
 }
 
-function MediaViewPage(props) {
+function MediaViewPage () {
   let query = useQueryParm()
-  return(
-    <Row>
-      <Col span={18} style={{padding: '3rem 4rem'}}>
-        <MediaDetailCardQuery mediaId={query.get("id")} />
+  return (
+    <Row justify="center" style={{ paddingTop: '3rem' }}>
+      <Col span={18}>
+        <MediaDetailCardQuery mediaId={query.get('id')}/>
       </Col>
     </Row>
-  );
+  )
 }
 
-export default withRouter(MediaViewPage);
+export default withRouter(MediaViewPage)
