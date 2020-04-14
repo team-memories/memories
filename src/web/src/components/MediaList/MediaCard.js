@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Card, Avatar, Typography } from 'antd'
-
-const { Title } = Typography;
+import { Card, Avatar} from 'antd'
 
 export default class MediaCard extends Component {
   render() {
@@ -17,13 +15,26 @@ export default class MediaCard extends Component {
             avatar = {           
             <Avatar size={40} src={this.props.author.profileImgUrl} shape="circle" />
             }
-            title={<Title level={4} ellipsis={true}>{this.props.title}</Title>}
             description={
-            <p style={{marginTop: 10}}>
+            <div  style={{marinTop: 10, marginBottom:10}}>
+              <span style={{
+                            fontWeight:"bold", 
+                            fontSize:"1.5em", 
+                            color:"black",
+                            //반응형 말줄임표 
+                            display: 'inline-block',
+                            maxWidth: '100%',
+                            textOverflow: "ellipsis",
+                            whiteSpace: "nowrap",
+                            overflow: "hidden"
+                            }}>
+                              {this.props.title}
+              </span>
+              <br/>
               {this.props.author.name}
               <br/>
               {this.props.date} / {this.props.location}
-            </p>
+            </div>
             }
           />
         </Card>
