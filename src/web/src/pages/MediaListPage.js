@@ -46,34 +46,29 @@ function MediaListPage (props) {
     },
     errorPolicy: 'all'
   });
-  const filtering = (value) => {
-    if (value.title == null) {
-      value.title = ""
-    }
-    if (value.location == null) {
-      value.location = ""
-    }
-    if (value.date == null) {
-      value.date = ""
-    }
-    if (value.author == null) {
-      value.author = {name: 'Unknown', profileImgUrl: ''}
-    }
-    return value
-  }
   if (loading) return <div>Loading...</div>
   if (error) return <div>Error: {error.message}</div>
   if (data.search.length === 0) return <div>찾은 결과가 없습니다.</div>
   return (
     <div style={{width: '85%', margin: '3rem auto'}}>
       <Row gutter={[32,16]}>
-        {data.search.filter(filtering).map(({title, location, date, author, id}) => {
+        {data.search.filter(media => media !== null).map(media => {
+          let temp_media = {
+            ...media,
+            title : (media.title) ? media.title : "",
+            location : (media.location) ? media.location : "대한민국",
+            date : (media.date) ? media.date : "",
+            author : (media.author) ? media.author : {name: "Unknown", profileImgUrl: ""},
+          }
+          temp_media.author.name = (temp_media.author.name) ? temp_media.author.name : "Unknown"
+          temp_media.author.profileImgUrl = (temp_media.author.profileImgUrl) ? temp_media.author.profileImgUrl : ""
           return (
-            <Col xs={24} md={12} lg={8} xl={6} key={id}>
-              <MediaCard title={title} location={location} date={date} author={author} id={id}/>
+            <Col xs={24} md={12} lg={8} xl={6} key={temp_media.id}>
+              <MediaCard title={temp_media.title} location={temp_media.location} date={temp_media.date} author={temp_media.author} id={temp_media.id}/>
             </Col>
           )
-        })}
+        }
+      )}
       </Row>
     </div>
   )
