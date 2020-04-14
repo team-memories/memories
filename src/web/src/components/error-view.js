@@ -3,7 +3,6 @@ import {Result, Button} from 'antd';
 import {useHistory} from 'react-router-dom'
 
 // TODO(Lhyejin): error component 자세하게 구성
-// Error Component
 function ErrorView(){
   const history = useHistory();
   return(

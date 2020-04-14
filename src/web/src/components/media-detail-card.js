@@ -3,12 +3,6 @@ import {List, Avatar, Typography} from 'antd';
 import MediaDetailDeleteButton from './media-detail-delete-button'
 
 class MediaDetailCard extends Component {
-  // MediaDetailCard constructor
-  constructor(props) {
-    super(props);
-  }
-
-  // Media Information Component
   MediaInfo = () => {
     return(
       <List>
@@ -30,8 +24,6 @@ class MediaDetailCard extends Component {
       </List>
     )
   }
-
-  // Render of Media Detail Card
   render() {
     return (
       <div>

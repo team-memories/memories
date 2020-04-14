@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import logo from '../Image/memories_logo.jpg'
+import logo from '../Image/logo.png'
 import { Link } from 'react-router-dom'
 
 export default class HeaderLogo extends Component {
@@ -9,7 +9,7 @@ export default class HeaderLogo extends Component {
         <img
           src={logo}
           alt="logo"
-          style={{width: '63px'}}
+          style={{width: '150px', paddingLeft: '15px'}}
         />
       </Link>
     )
