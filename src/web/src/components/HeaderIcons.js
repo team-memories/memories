@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 export default class HeaderIcons extends Component {
   render() {
     return (
-      <Row>
+      <Row justify="end" align="middle" style={{top: "8%"}}>
         <Col>
           <Link to={'/upload'}>
             <Button type="link">
