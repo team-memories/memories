@@ -9,6 +9,7 @@ export default class Header extends Component {
     return (
       <Layout>
         <Layout.Header style={{backgroundColor:'#F8F8F8', boxShadow: "5px 1px 7px #B8B8B8"}}>
+          {/*TODO(gee05053) 반응형 완성하기*/}
           <Row>
             <Col flex={1}>
               <HeaderLogo />
