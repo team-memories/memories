@@ -69,7 +69,7 @@ function MediaListPage (props) {
       <Row gutter={[32,16]}>
         {data.search.filter(filtering).map(({title, location, date, author, id}) => {
           return (
-            <Col lg={6} md={8} xs={24} key={id}>
+            <Col xs={24} md={12} lg={8} xl={6} key={id}>
               <MediaCard title={title} location={location} date={date} author={author} id={id}/>
             </Col>
           )
