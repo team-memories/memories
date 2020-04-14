@@ -2,7 +2,7 @@
 
 ## 1. 프로젝트 소개
 
-<img src="./doc/image/Memories_logo.jpg" height="300" weight="300"/>
+<img src="./doc/image/logo2.png" height="300" weight="300"/>
 
 **"내가 추억하는 그 때 그곳을 다시 생생하게 볼 수 있을까?"**
 
