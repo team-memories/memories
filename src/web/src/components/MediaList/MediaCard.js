@@ -16,19 +16,19 @@ export default class MediaCard extends Component {
             <Avatar size={40} src={this.props.author.profileImgUrl} shape="circle" />
             }
             description={
-            <div  style={{marinTop: 10, marginBottom:10}}>
+            <div  style={{display: "inline-block",
+                          maxWidth: "100%",
+                          textOverflow: "ellipsis",
+                          whiteSpace: "nowrap",
+                          overflow: "hidden",
+                          marinTop: 10,
+                          marginBottom:10}}>
               <span style={{
                             fontWeight:"bold", 
                             fontSize:"1.5em", 
-                            color:"black",
-                            //반응형 말줄임표 
-                            display: 'inline-block',
-                            maxWidth: '100%',
-                            textOverflow: "ellipsis",
-                            whiteSpace: "nowrap",
-                            overflow: "hidden"
+                            color:"black",                            
                             }}>
-                              {this.props.title}
+                            {this.props.title}
               </span>
               <br/>
               {this.props.author.name}
