@@ -8,15 +8,15 @@ export default class Header extends Component {
   render() {
     return (
       <Layout>
-        <Layout.Header style={{backgroundColor:'#F8F8F8', paddingInlineStart:"1.5%", minWidth: 1300, overflowX: 'auto', boxShadow: "5px 1px 7px #B8B8B8"}}>
-          <Row align="middle" justify="center">
+        <Layout.Header style={{backgroundColor:'#F8F8F8', boxShadow: "5px 1px 7px #B8B8B8"}}>
+          <Row>
             <Col flex={1}>
               <HeaderLogo />
             </Col>
-            <Col flex={3}>
+            <Col flex={4}>
               <SearchBar />
             </Col>
-            <Col flex={1} style={{paddingInlineStart:"10%", top: "7px"}}>
+            <Col flex={1} style={{marginTop: "7px"}}>
               <HeaderIcons />
             </Col>
           </Row>
