@@ -18,6 +18,13 @@ def resolve_upload_media(_, __, media, title, location, date):
         "url": f"file://{os.path.abspath(file_path)}",
         "title": title,
         "location": location,
+        "isProcessing": True,
+        "author": {
+            "id": 1,
+            "email": "rev1c0sm0s@gmail.com",
+            "name": "YunHyeok Kwak",
+            "profile_img_url": "https://avatars2.githubusercontent.com/u/29162801?s=80&v=4",
+        },
         "date": date,
     }
     videos.append(video)
