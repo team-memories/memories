@@ -10,6 +10,7 @@ export default class SearchBarInput extends Component {
           placeholder="Search"
           onChange={this.props.onChangeTitle}
           prefix={<SearchOutlined/>}
+          onPressEnter={this.props.onPressEnter}
         />
       </div>
     )
