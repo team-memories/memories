@@ -22,7 +22,7 @@ const title = {
 }
 const beforeAfterSlider = { width: '60%', margin: 'auto', paddingTop: 50 }
 
-function ServiceIntroPage () {
+function ServiceIntro () {
   return (
     <div style={topDiv}>
       {/* logo Image */}
@@ -40,5 +40,5 @@ function ServiceIntroPage () {
   )
 }
 
-export default ServiceIntroPage
+export default ServiceIntro
 
