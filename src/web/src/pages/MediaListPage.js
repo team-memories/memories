@@ -52,15 +52,23 @@ function MediaListPage (props) {
   return (
     <div style={{width: '85%', margin: '3rem auto'}}>
       <Row gutter={[32,16]}>
-        {data.search.map(({title, location, date, author, id}) => {
-          //TODO(gee05053) error 처리, filter적용하기
-          if (title === null || location === null || date === null || author === null) return null
+        {data.search.filter(media => media !== null).map(media => {
+          let temp_media = {
+            ...media,
+            title : (media.title) ? media.title : "",
+            location : (media.location) ? media.location : "대한민국",
+            date : (media.date) ? media.date : "",
+            author : (media.author) ? media.author : {name: "Unknown", profileImgUrl: ""},
+          }
+          temp_media.author.name = (temp_media.author.name) ? temp_media.author.name : "Unknown"
+          temp_media.author.profileImgUrl = (temp_media.author.profileImgUrl) ? temp_media.author.profileImgUrl : ""
           return (
-            <Col lg={6} md={8} xs={24} key={id}>
-              <MediaCard title={title} location={location} date={date} author={author} id={id}/>
+            <Col xs={24} md={12} lg={8} xl={6} key={temp_media.id}>
+              <MediaCard title={temp_media.title} location={temp_media.location} date={temp_media.date} author={temp_media.author} id={temp_media.id}/>
             </Col>
           )
-        })}
+        }
+      )}
       </Row>
     </div>
   )
