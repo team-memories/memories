@@ -44,7 +44,8 @@ function MediaListPage (props) {
       dateFrom: dateFrom,
       dateTo: dateTo
     },
-    errorPolicy: 'all'
+    errorPolicy: 'all',
+    fetchPolicy: 'cache-and-network'
   });
   if (loading) return <div>Loading...</div>
   if (error) return <div>Error: {error.message}</div>
