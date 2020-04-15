@@ -55,10 +55,10 @@ function UploadPage() {
     };
 
     const handleSubmit = () => {
-        mutate({variables: {media, title, location, date}})
-            .then();
-        alert('Submit!');
-        history.push('/')
+        mutate({variables: {media, title, location, date}}).then(() =>{
+          alert('Submit!');
+          history.push('/')
+        });
     };
 
     return (
