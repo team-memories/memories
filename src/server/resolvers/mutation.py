@@ -6,7 +6,7 @@ mutation = MutationType()
 
 
 @mutation.field("uploadMedia")
-def resolve_upload_media(_, __, media, title, location, date):
+def resolve_upload_media(_, __, media, title, location, year):
     file_path = f"./{media.filename}"
     media.save(file_path)
     media.close()
@@ -25,7 +25,7 @@ def resolve_upload_media(_, __, media, title, location, date):
             "name": "YunHyeok Kwak",
             "profile_img_url": "https://avatars2.githubusercontent.com/u/29162801?s=80&v=4",
         },
-        "date": date,
+        "year": year,
     }
     videos.append(video)
 

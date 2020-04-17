@@ -16,7 +16,6 @@ from resolvers.mutation import mutation
 from resolvers.media import media
 from resolvers.video import video
 
-
 TYPE_DEFS = load_schema_from_path("schema.graphql")
 
 SCHEMA = make_executable_schema(
@@ -26,8 +25,9 @@ SCHEMA = make_executable_schema(
 APP = Flask(__name__)
 CORS(APP)
 
+
 @APP.route("/graphql", methods=["GET"])
-def graphql_playgroud():
+def graphql_playground():
     """
     On GET request serve GraphQL Playground
     You don't need to provide Playground if you don't want to

@@ -1,13 +1,12 @@
-scalar Date
 scalar Upload
 
 type Query {
     # Beta version
     media(_id: ID!): Media
     """
-    dateFrom 과 dateTo 를 이용한 날짜 기반 서치는 아직 구현되지 않았습니다.
+    yearFrom 과 yearTo 를 이용한 날짜 기반 서치는 아직 구현되지 않았습니다.
     """
-    search(title: String, location: String, dateFrom: Date, dateTo: Date): [Media]!
+    search(title: String, location: String, yearFrom: Int, yearTo: Int): [Media]!
 
     ### Production ready phase ###
     """
@@ -23,7 +22,7 @@ type Query {
 
 type Mutation {
     # Beta version
-    uploadMedia(media: Upload!, title: String!, location: String!, date: Date!): Media
+    uploadMedia(media: Upload!, title: String!, location: String!, year: Int!): Media
     deleteMedia(_id: ID!): Media
 
     ### Production ready phase ###
@@ -47,7 +46,7 @@ interface Media {
     url: String
     author: User
     location: String
-    date: Date
+    year: Int
     description: String
     """
     서버에서 미디어 파일의 변환 및 업로드 작업이 진행중이라면 True
@@ -78,7 +77,7 @@ type Photo implements Media {
     url: String
     author: User
     location: String
-    date: Date
+    year: Int
     description: String
     """
     서버에서 미디어 파일의 변환 및 업로드 작업이 진행중이라면 True
@@ -103,7 +102,8 @@ type Video implements Media {
     url: String
     author: User
     location: String
-    date: Date
+    year: Int
+
     description: String
     """
     서버에서 미디어 파일의 변환 및 업로드 작업이 진행중이라면 True
