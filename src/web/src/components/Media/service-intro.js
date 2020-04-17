@@ -28,7 +28,7 @@ function ServiceIntro (props) {
   return (
     <div style={topDiv}>
       {/* logo Image */}
-      <img src={logo} style={image}/>
+      <img src={logo} style={image} alt='Memories'/>
 
       {/* slogan */}
       <Title level={3} style={slogan}>그 때 그 시간을 다시 생생하게</Title>
