@@ -21,7 +21,7 @@ const slogan = {
   fontWeight: 200
 }
 const beforeAfterSlider = { width: '60%', margin: 'auto', paddingTop: 50, paddingBottom: 150 }
-const bottomTitle = { textAlign: 'center', color: 'gray', fontFamily: 'Nanum Pen Script', fontSize: 80 }
+const bottomTitle = { textAlign: 'center', color: 'gray', fontFamily: 'Nanum Pen Script', fontSize: 70 }
 
 function ServiceIntro (props) {
   return (

@@ -1,8 +1,7 @@
 import React from 'react'
-import MediaDetailCardQuery from '../components/media-detail-card-query'
-import { useLocation } from 'react-router-dom'
-import { withRouter } from 'react-router-dom'
-import { Row, Col } from 'antd'
+import MediaDetailCardQuery from '../components/Media/media-detail-card-query'
+import { useLocation, withRouter } from 'react-router-dom'
+import { Col, Row } from 'antd'
 
 function useQueryParm () {
   return new URLSearchParams(useLocation().search)
