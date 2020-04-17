@@ -1,22 +1,22 @@
 import React, { useState } from 'react'
-import { Row, Col } from 'antd'
-import SearchBarInput from './SearchBarInput'
-import SearchBarPlaceSelect from './SearchBarPlaceSelect'
-import SearchBarSubmitButton from './SearchBarSubmitButton'
-import SearchBarYearSelect from './SearchBarYearSelect'
+import { Col, Row } from 'antd'
+import SearchBarInput from './search-bar-input'
+import SearchBarPlaceSelect from './search-bar-place-select'
+import SearchBarSubmitButton from './search-bar-submit-button'
+import SearchBarYearSelect from './search-bar-year-select'
 import { useHistory } from 'react-router-dom'
 
-function SearchBar() {
-  const [title, setTitle] = useState("")
-  const [location, setLocation] = useState("")
-  const [dateFrom, setDateFrom] = useState("")
-  const [dateTo, setDateTo] = useState("")
+function SearchBar () {
+  const [title, setTitle] = useState('')
+  const [location, setLocation] = useState('')
+  const [dateFrom, setDateFrom] = useState('')
+  const [dateTo, setDateTo] = useState('')
   const history = useHistory()
-  const  onChangeTitle = (e) => {
+  const onChangeTitle = (e) => {
     setTitle(e.target.value)
   }
   const onChangeLocation = (value) => {
-    setLocation(value[0] + " "  + value[1] + " " + value[2])
+    setLocation(value[0] + ' ' + value[1] + ' ' + value[2])
   }
   const onChangeDate = (value) => {
     setDateFrom(value[0]._d.getFullYear())
@@ -42,4 +42,5 @@ function SearchBar() {
     </Row>
   )
 }
+
 export default SearchBar

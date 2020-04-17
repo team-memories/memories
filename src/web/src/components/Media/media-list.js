@@ -1,7 +1,7 @@
 import React from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import { Col, Row } from 'antd'
-import MediaCard from './MediaCard'
+import MediaCard from './media-card'
 import gql from 'graphql-tag'
 
 const SearchQuery = gql`
