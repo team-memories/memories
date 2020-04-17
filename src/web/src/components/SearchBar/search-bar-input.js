@@ -3,7 +3,7 @@ import { Input } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
 
 export default class SearchBarInput extends Component {
-  render() {
+  render () {
     return (
       <div>
         <Input

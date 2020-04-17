@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import { DatePicker } from 'antd'
 
 export default class SearchBarYearSelect extends Component {
-  render() {
+  render () {
     return (
       <div>
         <DatePicker.RangePicker
-        picker="year"
-        onChange={this.props.onChangeDate}
-      />
+          picker="year"
+          onChange={this.props.onChangeDate}
+        />
       </div>
     )
   }
