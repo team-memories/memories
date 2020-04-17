@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactCompareImage from 'react-compare-image'
 import { Typography } from 'antd'
+import '../../font.css'
 
 const { Title } = Typography
 
