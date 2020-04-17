@@ -3,9 +3,6 @@ scalar Upload
 type Query {
     # Beta version
     media(_id: ID!): Media
-    """
-    yearFrom 과 yearTo 를 이용한 날짜 기반 서치는 아직 구현되지 않았습니다.
-    """
     search(title: String, location: String, yearFrom: Int, yearTo: Int): [Media]!
 
     ### Production ready phase ###
