@@ -15,7 +15,7 @@ class MediaDetailCard extends Component {
             description={this.props.media.author.name}
             style={{ textAlign: 'left' }}
           />
-          <Typography>{this.props.media.location}<br/>{this.props.media.date}</Typography>
+          <Typography>{this.props.media.location}<br/>{this.props.media.year}</Typography>
 
         </List.Item>
         <List.Item>

@@ -6,7 +6,7 @@ export default class SearchBarSubmitButton extends Component {
   render () {
     return (
       <Link
-        to={`/search?title=${this.props.title}&location=${this.props.location}&dateFrom=${this.props.dateFrom}&dateTo=${this.props.dateTo}`}>
+        to={`/search?title=${this.props.title}&location=${this.props.location}&yearFrom=${this.props.yearFrom}&yearTo=${this.props.yearTo}`}>
         <Button>
           Search
         </Button>

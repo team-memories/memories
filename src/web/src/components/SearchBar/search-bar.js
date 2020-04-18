@@ -8,22 +8,22 @@ import { useHistory } from 'react-router-dom'
 
 function SearchBar () {
   const [title, setTitle] = useState('')
-  const [location, setLocation] = useState('')
-  const [dateFrom, setDateFrom] = useState('')
-  const [dateTo, setDateTo] = useState('')
+  const [location, setLocation] = useState('대한민국')
+  const [yearFrom, setYearFrom] = useState(new Date().getFullYear())
+  const [yearTo, setYearTo] = useState(new Date().getFullYear())
   const history = useHistory()
   const onChangeTitle = (e) => {
     setTitle(e.target.value)
   }
   const onChangeLocation = (value) => {
-    setLocation(value[0] + ' ' + value[1] + ' ' + value[2])
+    setLocation(value.join(' '))
   }
-  const onChangeDate = (value) => {
-    setDateFrom(value[0]._d.getFullYear())
-    setDateTo(value[1]._d.getFullYear())
+  const onChangeYear = (value) => {
+    setYearFrom(value[0]._d.getFullYear())
+    setYearTo(value[1]._d.getFullYear())
   }
   const onPressEnter = () => {
-    history.push(`/search?title=${title}&location=${location}&dateFrom=${dateFrom}&dateTo=${dateTo}`)
+    history.push(`/search?title=${title}&location=${location}&yearFrom=${yearFrom}&yearTo=${yearTo}`)
   }
   return (
     <Row>
@@ -34,10 +34,10 @@ function SearchBar () {
         < SearchBarPlaceSelect onChangeLocation={onChangeLocation}/>
       </Col>
       <Col>
-        <SearchBarYearSelect onChangeDate={onChangeDate}/>
+        <SearchBarYearSelect onChangeYear={onChangeYear}/>
       </Col>
       <Col>
-        <SearchBarSubmitButton title={title} location={location} dateFrom={dateFrom} dateTo={dateTo}/>
+        <SearchBarSubmitButton title={title} location={location} yearFrom={yearFrom} yearTo={yearTo}/>
       </Col>
     </Row>
   )

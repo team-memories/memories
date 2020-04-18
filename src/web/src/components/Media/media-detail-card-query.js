@@ -12,7 +12,7 @@ const GET_MEDIA = gql`
           title,
           url,
           location,
-          date,
+          year,
           description,
           author{
               name,

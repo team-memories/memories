@@ -7,7 +7,7 @@ export default class SearchBarYearSelect extends Component {
       <div>
         <DatePicker.RangePicker
           picker="year"
-          onChange={this.props.onChangeDate}
+          onChange={this.props.onChangeYear}
         />
       </div>
     )
