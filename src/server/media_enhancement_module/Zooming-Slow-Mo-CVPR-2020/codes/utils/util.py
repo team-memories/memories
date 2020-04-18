@@ -40,7 +40,7 @@ def OrderedYaml():
 
 ####################
 # miscellaneous
-####################
+# ###################
 def get_model_total_params(model):
     model_parameters = filter(lambda p: p.requires_grad, model.parameters())
     params = sum([np.prod(p.size()) for p in model_parameters])
@@ -99,7 +99,7 @@ def setup_logger(logger_name, root, phase, level=logging.INFO, screen=False, tof
 
 ####################
 # image convert
-####################
+# ###################
 
 
 def tensor2img(tensor, out_type=np.uint8, min_max=(0, 1)):
@@ -134,7 +134,7 @@ def save_img(img, img_path, mode='RGB'):
 
 ####################
 # metric
-####################
+# ###################
 
 
 def calculate_psnr(img1, img2):
@@ -246,7 +246,7 @@ class ProgressBar(object):
 
 ####################
 # read image
-####################
+# ###################
 
 def read_image(img_path):
     '''read one image from img_path
@@ -286,19 +286,22 @@ def test_index_generation(skip, N_out, len_in):
     N_in = 1 + N_out // 2
     # input length should be enough to generate the output frames
     assert N_in <= len_in
-
+    print('inner 1')
     sele_list = []
     if skip: 
         right = N_out # init
         while (right <= len_in):
+            print('inner 2')
             h_list = [right-N_out+x for x in range(N_out)]
             l_list = h_list[::2]
             right += (N_out - 1)
             sele_list.append([l_list,h_list])
     else:
+        print('inner 3')
         right = N_out # init
         right_in = N_in
         while (right_in <= len_in):
+            print('inner 4')
             h_list = [right-N_out+x for x in range(N_out)]
             l_list = [right_in-N_in+x for x in range(N_in)]
             right += (N_out - 1)
@@ -306,10 +309,12 @@ def test_index_generation(skip, N_out, len_in):
             sele_list.append([l_list,h_list])
     # check if it covers the last image, if not, we should cover it 
     if (skip) and (right != len_in - 1):
+        print('inner 5')
         h_list = [len_in - N_out + x for x in range(N_out)]
         l_list = h_list[::2]
         sele_list.append([l_list,h_list])
     if (not skip) and (right_in != len_in - 1):
+        print('inner 6')
         right = len_in * 2 - 1;
         h_list = [right-N_out+x for x in range(N_out)]
         l_list = [len_in - N_in + x for x in range(N_in)]
@@ -319,7 +324,7 @@ def test_index_generation(skip, N_out, len_in):
 
 ####################
 # video
-####################
+# ###################
 
 def extract_frames(ffmpeg_dir, video, outDir):
     """
