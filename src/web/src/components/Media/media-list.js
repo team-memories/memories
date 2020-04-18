@@ -36,8 +36,8 @@ function MediaList (props) {
   if (error) return <div>Error: {error.message}</div>
   if (data.search.length === 0) return <div>찾은 결과가 없습니다.</div>
   return (
-    <div style={{ width: '85%', margin: '3rem auto' }}>
-      <Row gutter={[32, 16]}>
+    <div style={{ width: '70%', margin: '3rem auto' }}>
+      <Row gutter={[36, 16]}>
         {data.search.filter(media => media !== null).map(media => {
             let temp_media = {
               ...media,
@@ -50,7 +50,7 @@ function MediaList (props) {
             temp_media.author.name = (temp_media.author.name) ? temp_media.author.name : 'Unknown'
             temp_media.author.profileImgUrl = (temp_media.author.profileImgUrl) ? temp_media.author.profileImgUrl : ''
             if(temp_media.isProcessing === true) return(
-              <Col xs={24} md={12} lg={8} xl={6} key={temp_media.id}>
+              <Col xs={24} md={12} lg={8} xl={8} key={temp_media.id}>
                 <Spin indicator={<LoadingOutlined style={{fontSize: 30, color: 'gray'}}/>}>
                 <MediaCard title={temp_media.title} location={temp_media.location} year={temp_media.year}
                            author={temp_media.author} id={temp_media.id}/>
@@ -58,7 +58,7 @@ function MediaList (props) {
               </Col>
             )
             return (
-              <Col xs={24} md={12} lg={8} xl={6} key={temp_media.id}>
+              <Col xs={24} md={12} lg={8} xl={8} key={temp_media.id}>
                 <MediaCard title={temp_media.title} location={temp_media.location} year={temp_media.year}
                            author={temp_media.author} id={temp_media.id}/>
               </Col>
