@@ -16,8 +16,8 @@ function HomePage () {
       <MediaList
         title={title}
         location={location}
-        dateFrom={yearFrom}
-        dateTo={yearTo}
+        yearFrom={yearFrom}
+        yearTo={yearTo}
       />
     </div>
   )
