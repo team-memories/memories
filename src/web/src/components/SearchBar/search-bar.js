@@ -9,8 +9,8 @@ import { useHistory } from 'react-router-dom'
 function SearchBar () {
   const [title, setTitle] = useState('')
   const [location, setLocation] = useState('대한민국')
-  const [yearFrom, setYearFrom] = useState(new Date().getFullYear())
-  const [yearTo, setYearTo] = useState(new Date().getFullYear())
+  const [yearFrom, setYearFrom] = useState(1900)
+  const [yearTo, setYearTo] = useState(2099)
   const history = useHistory()
   const onChangeTitle = (e) => {
     setTitle(e.target.value)

@@ -10,8 +10,8 @@ function MediaListPage () {
   let query = useQueryParam()
   let title = ''
   let location = ''
-  let yearFrom = new Date().getFullYear()
-  let yearTo = new Date().getFullYear()
+  let yearFrom = 1900
+  let yearTo = 2099
   if (query.get('title') !== null) {
     title = query.get('title')
     location = query.get('location')
