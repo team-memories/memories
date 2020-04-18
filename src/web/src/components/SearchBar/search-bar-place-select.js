@@ -437,7 +437,7 @@ export default class SearchBarPlaceSelect extends Component {
     ]
     return (
       <div>
-        <Cascader options={options} placeholder="Place select" onChange={this.props.onChangeLocation}/>
+        <Cascader options={options} placeholder="Place select" changeOnSelect onChange={this.props.onChangeLocation}/>
       </div>
     )
   }
