@@ -27,7 +27,8 @@ function MediaList (props) {
     variables: {
       title: props.title,
       location: props.location,
-      year: props.year
+      yearFrom: props.yearFrom,
+      yearTo: props.yearTo
     },
     errorPolicy: 'all',
     fetchPolicy: 'cache-and-network'
