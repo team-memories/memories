@@ -36,7 +36,7 @@ export default class MediaCard extends Component {
                 <br/>
                 {this.props.author.name}
                 <br/>
-                {this.props.date} / {this.props.location}
+                {this.props.year} / {this.props.location}
               </div>
             }
           />

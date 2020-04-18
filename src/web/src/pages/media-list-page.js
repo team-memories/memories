@@ -10,20 +10,17 @@ function MediaListPage (props) {
   let query = useQueryParam()
   let title = ''
   let location = ''
-  let dateFrom = ''
-  let dateTo = ''
+  let year = ''
   if (query.get('title') !== null) {
     title = query.get('title')
     location = query.get('location')
-    dateFrom = query.get('dateFrom')
-    dateTo = query.get('dateTo')
+    year = query.get('year')
   }
   return (
     <MediaList
       title={title}
       location={location}
-      dateFrom={dateFrom}
-      dateTo={dateTo}
+      year={year}
     />
   )
 }

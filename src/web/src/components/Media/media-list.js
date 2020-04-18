@@ -1,17 +1,19 @@
 import React from 'react'
 import { useQuery } from '@apollo/react-hooks'
-import { Col, Row } from 'antd'
+import { Col, Row, Spin } from 'antd'
+import { LoadingOutlined } from '@ant-design/icons'
 import MediaCard from './media-card'
 import gql from 'graphql-tag'
 
 const SearchQuery = gql`
-  query searchItems($title: String!, $location: String!, $dateFrom: Date, $dateTo: Date) {
-    search(title: $title, location: $location, dateFrom: $dateFrom, dateTo: $dateTo) {
+  query searchItems($title: String!, $location: String!, $yearTo: Int, $yearFrom: Int) {
+    search(title: $title, location: $location, yearTo: $yearTo, yearFrom: $yearFrom) {
       author{
         name
         profileImgUrl
       }
-      date
+      year
+      isProcessing
       id
       location
       title
@@ -25,8 +27,7 @@ function MediaList (props) {
     variables: {
       title: props.title,
       location: props.location,
-      dateFrom: props.dateFrom,
-      dateTo: props.dateTo
+      year: props.year
     },
     errorPolicy: 'all',
     fetchPolicy: 'cache-and-network'
@@ -42,14 +43,23 @@ function MediaList (props) {
               ...media,
               title: (media.title) ? media.title : '',
               location: (media.location) ? media.location : '대한민국',
-              date: (media.date) ? media.date : '',
+              year: (media.year) ? media.year : '',
               author: (media.author) ? media.author : { name: 'Unknown', profileImgUrl: '' },
+              isProcessing: (media.isProcessing) ? media.isProcessing : false,
             }
             temp_media.author.name = (temp_media.author.name) ? temp_media.author.name : 'Unknown'
             temp_media.author.profileImgUrl = (temp_media.author.profileImgUrl) ? temp_media.author.profileImgUrl : ''
+            if(temp_media.isProcessing === true) return(
+              <Col xs={24} md={12} lg={8} xl={6} key={temp_media.id}>
+                <Spin indicator={<LoadingOutlined style={{fontSize: 30, color: 'gray'}}/>}>
+                <MediaCard title={temp_media.title} location={temp_media.location} year={temp_media.year}
+                           author={temp_media.author} id={temp_media.id}/>
+                </Spin>
+              </Col>
+            )
             return (
               <Col xs={24} md={12} lg={8} xl={6} key={temp_media.id}>
-                <MediaCard title={temp_media.title} location={temp_media.location} date={temp_media.date}
+                <MediaCard title={temp_media.title} location={temp_media.location} year={temp_media.year}
                            author={temp_media.author} id={temp_media.id}/>
               </Col>
             )
