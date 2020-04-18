@@ -6,20 +6,20 @@ const layout = {
   wrapperCol: { span: 16 },
 }
 
-function UploadDateSelect (props) {
+function UploadYearSelect (props) {
   return (
     <Form.Item
       {...layout}
-      label="Date"
-      name="date"
+      label="Year"
+      name="year"
     >
       <DatePicker
         picker="year"
-        date={props.date}
+        year={props.year}
         onChange={props.onChange}
       />
     </Form.Item>
   )
 }
 
-export default UploadDateSelect
+export default UploadYearSelect
