@@ -6,21 +6,24 @@ function useQueryParam () {
   return new URLSearchParams(useLocation().search)
 }
 
-function MediaListPage (props) {
+function MediaListPage () {
   let query = useQueryParam()
   let title = ''
   let location = ''
-  let year = ''
+  let yearFrom = new Date().getFullYear()
+  let yearTo = new Date().getFullYear()
   if (query.get('title') !== null) {
     title = query.get('title')
     location = query.get('location')
-    year = query.get('year')
+    yearFrom = parseInt(query.get('yearFrom'))
+    yearTo = parseInt(query.get('yearTo'))
   }
   return (
     <MediaList
       title={title}
       location={location}
-      year={year}
+      yearFrom={yearFrom}
+      yearTo={yearTo}
     />
   )
 }
