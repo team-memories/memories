@@ -18,7 +18,7 @@ def resolve_upload_media(_, __, media, title, location, year):
         "url": f"file://{os.path.abspath(file_path)}",
         "title": title,
         "location": location,
-        "isProcessing": True,
+        "is_processing": True,
         "author": {
             "id": 1,
             "email": "rev1c0sm0s@gmail.com",
