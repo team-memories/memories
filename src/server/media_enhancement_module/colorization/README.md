@@ -32,3 +32,15 @@ python main_woflow_up.py --model ckpt_woflow --use_gpu 1 --test_dir ../data/colo
 
 
 ***only use main_woflow_up.py, the rest update later***
+
+
+### Citation
+```
+@InProceedings{Lei_2019_CVPR,
+author = {Lei, Chenyang and Chen, Qifeng},
+title = {Fully Automatic Video Colorization With Self-Regularization and Diversity},
+booktitle = {The IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+month = {June},
+year = {2019}
+}
+```
