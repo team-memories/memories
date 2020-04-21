@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.204443fc.chunk.css",
+    "main.js": "/static/js/main.a152c071.chunk.js",
+    "main.js.map": "/static/js/main.a152c071.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.3ce8a40d.js",
+    "runtime-main.js.map": "/static/js/runtime-main.3ce8a40d.js.map",
+    "static/css/2.556727a0.chunk.css": "/static/css/2.556727a0.chunk.css",
+    "static/js/2.4a6a1a28.chunk.js": "/static/js/2.4a6a1a28.chunk.js",
+    "static/js/2.4a6a1a28.chunk.js.map": "/static/js/2.4a6a1a28.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.c08464b2c3dacc2eb08cc5021f58f710.js": "/precache-manifest.c08464b2c3dacc2eb08cc5021f58f710.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.556727a0.chunk.css.map": "/static/css/2.556727a0.chunk.css.map",
+    "static/css/main.204443fc.chunk.css.map": "/static/css/main.204443fc.chunk.css.map",
+    "static/js/2.4a6a1a28.chunk.js.LICENSE.txt": "/static/js/2.4a6a1a28.chunk.js.LICENSE.txt",
+    "static/media/font.css": "/static/media/NanumPenScript-Regular.6238324b.ttf",
+    "static/media/logo.png": "/static/media/logo.b1c62000.png",
+    "static/media/index.css": "/static/media/roboto-latin-900italic.ebf6d164.woff2"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3ce8a40d.js",
+    "static/css/2.556727a0.chunk.css",
+    "static/js/2.4a6a1a28.chunk.js",
+    "static/css/main.204443fc.chunk.css",
+    "static/js/main.a152c071.chunk.js"
+  ]
+}
