@@ -7,10 +7,13 @@ import SearchBarYearSelect from './search-bar-year-select'
 import { useHistory } from 'react-router-dom'
 
 function SearchBar () {
+  const defaultYearFrom = 1900
+  const defaultYearTo = 2099
+
   const [title, setTitle] = useState('')
   const [location, setLocation] = useState('대한민국')
-  const [yearFrom, setYearFrom] = useState(1900)
-  const [yearTo, setYearTo] = useState(2099)
+  const [yearFrom, setYearFrom] = useState(defaultYearFrom)
+  const [yearTo, setYearTo] = useState(defaultYearTo)
   const history = useHistory()
   const onChangeTitle = (e) => {
     setTitle(e.target.value)
@@ -19,8 +22,13 @@ function SearchBar () {
     setLocation(value.join(' '))
   }
   const onChangeYear = (value) => {
-    setYearFrom(value[0]._d.getFullYear())
-    setYearTo(value[1]._d.getFullYear())
+    if (value) {
+      setYearFrom(value[0]._d.getFullYear())
+      setYearTo(value[1]._d.getFullYear())
+    } else {
+      setYearFrom(defaultYearFrom)
+      setYearTo(defaultYearTo)
+    }
   }
   const onPressEnter = () => {
     history.push(`/search?title=${title}&location=${location}&yearFrom=${yearFrom}&yearTo=${yearTo}`)
@@ -31,7 +39,7 @@ function SearchBar () {
         <SearchBarInput onChangeTitle={onChangeTitle} onPressEnter={onPressEnter}/>
       </Col>
       <Col>
-        < SearchBarPlaceSelect onChangeLocation={onChangeLocation}/>
+        <SearchBarPlaceSelect onChangeLocation={onChangeLocation}/>
       </Col>
       <Col>
         <SearchBarYearSelect onChangeYear={onChangeYear}/>
