@@ -11,7 +11,7 @@ import UploadPage from './pages/upload-page'
 import HomePage from './pages/home-page'
 import 'antd/dist/antd.css'
 
-const URI = 'http://localhost:9696/graphql'
+const URI = 'http://203.246.113.62:9696/graphql'
 
 function App () {
   const client = new ApolloClient({
