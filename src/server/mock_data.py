@@ -17,7 +17,7 @@ mock_data = {
                 "id": fake.building_number(),
                 "email": fake.email(),
                 "name": fake.name(),
-                "profile_img_url": fake.image_url()
+                "profile_img_url": "https://avatars2.githubusercontent.com/u/29162801?s=80&v=4"
             }
         },
         {
@@ -33,7 +33,7 @@ mock_data = {
                 "id": fake.building_number(),
                 "email": fake.email(),
                 "name": fake.name(),
-                "profile_img_url": fake.image_url()
+                "profile_img_url": "https://avatars2.githubusercontent.com/u/29162801?s=80&v=4"
             }
         },
         {
@@ -49,7 +49,7 @@ mock_data = {
                 "id": fake.building_number(),
                 "email": fake.email(),
                 "name": fake.name(),
-                "profile_img_url": fake.image_url()
+                "profile_img_url": "https://avatars2.githubusercontent.com/u/29162801?s=80&v=4"
             }
         },
         {
@@ -65,7 +65,7 @@ mock_data = {
                 "id": fake.building_number(),
                 "email": fake.email(),
                 "name": fake.name(),
-                "profile_img_url": fake.image_url()
+                "profile_img_url": "https://avatars2.githubusercontent.com/u/29162801?s=80&v=4"
             }
         },
         {
@@ -81,7 +81,7 @@ mock_data = {
                 "id": fake.building_number(),
                 "email": fake.email(),
                 "name": fake.name(),
-                "profile_img_url": fake.image_url()
+                "profile_img_url": "https://avatars2.githubusercontent.com/u/29162801?s=80&v=4"
             }
         },
         {
@@ -97,7 +97,7 @@ mock_data = {
                 "id": fake.building_number(),
                 "email": fake.email(),
                 "name": fake.name(),
-                "profile_img_url": fake.image_url()
+                "profile_img_url": "https://avatars2.githubusercontent.com/u/29162801?s=80&v=4"
             }
         },
         {
@@ -113,7 +113,7 @@ mock_data = {
                 "id": fake.building_number(),
                 "email": fake.email(),
                 "name": fake.name(),
-                "profile_img_url": fake.image_url()
+                "profile_img_url": "https://avatars2.githubusercontent.com/u/29162801?s=80&v=4"
             }
         },
         {
@@ -129,7 +129,7 @@ mock_data = {
                 "id": fake.building_number(),
                 "email": fake.email(),
                 "name": fake.name(),
-                "profile_img_url": fake.image_url()
+                "profile_img_url": "https://avatars2.githubusercontent.com/u/29162801?s=80&v=4"
             }
         },
         {
@@ -145,7 +145,7 @@ mock_data = {
                 "id": fake.building_number(),
                 "email": fake.email(),
                 "name": fake.name(),
-                "profile_img_url": fake.image_url()
+                "profile_img_url": "https://avatars2.githubusercontent.com/u/29162801?s=80&v=4"
             }
         },
         {
@@ -161,7 +161,7 @@ mock_data = {
                 "id": fake.building_number(),
                 "email": fake.email(),
                 "name": fake.name(),
-                "profile_img_url": fake.image_url()
+                "profile_img_url": "https://avatars2.githubusercontent.com/u/29162801?s=80&v=4"
             }
         },
         {
@@ -177,7 +177,7 @@ mock_data = {
                 "id": fake.building_number(),
                 "email": fake.email(),
                 "name": fake.name(),
-                "profile_img_url": fake.image_url()
+                "profile_img_url": "https://avatars2.githubusercontent.com/u/29162801?s=80&v=4"
             }
         },
         {
@@ -193,7 +193,7 @@ mock_data = {
                 "id": fake.building_number(),
                 "email": fake.email(),
                 "name": fake.name(),
-                "profile_img_url": fake.image_url()
+                "profile_img_url": "https://avatars2.githubusercontent.com/u/29162801?s=80&v=4"
             }
         },
 
