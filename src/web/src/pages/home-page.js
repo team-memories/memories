@@ -5,13 +5,14 @@ import MediaList from '../components/Media/media-list'
 function HomePage () {
   let title = ''
   let location = '경기도'
-  let yearFrom = 1990
+  let yearFrom = 1960
   let yearTo = 2000
   return (
     <div>
       <ServiceIntro
         location={location}
         yearFrom={yearFrom}
+        yearTo={yearTo}
       />
       <MediaList
         title={title}

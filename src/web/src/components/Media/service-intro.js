@@ -39,7 +39,7 @@ function ServiceIntro (props) {
       </div>
 
       {/* Typography  */}
-      <Title level={1} style={bottomTitle}>{props.yearFrom}년 {props.location}</Title>
+      <Title level={1} style={bottomTitle}>{props.yearFrom}년 ~ {props.yearTo}년 {props.location}</Title>
     </div>
   )
 }
