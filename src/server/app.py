@@ -42,12 +42,6 @@ def send_media(path):
     return send_from_directory('media', path)
 
 
-#
-# @APP.route('/<path:path>')
-# def static_file(path):
-#     return APP.send_static_file(path)
-
-
 @APP.route("/graphql", methods=["GET"])
 def graphql_playground():
     """
