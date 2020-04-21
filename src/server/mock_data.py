@@ -1,39 +1,44 @@
 import pickle
 from faker import Faker
-fake = Faker("ko_KR")
+
+fake = Faker()
+
+
+def make_name_and_profile_img_url():
+    name = fake.name()
+    return {"name": name, "profile_img_url": f"https://ui-avatars.com/api/?name={name}"}
+
 
 mock_data = {
     "photos": [
         {
             "id": 0,
             "description": fake.text(),
-            "original_url": "https://via.placeholder.com/480x270.png",
-            "url": "https://via.placeholder.com/1920x1080.png",
+            "original_url": "/media/original/경주_1980년.jpg",
+            "url": "/media/converted/경주_1980년.png",
             "is_processing": False,
             "title": fake.text(),
-            "location": f"대한민국 {fake.city()}",
-            "year": int(fake.year()),
+            "location": f"대한민국 경상북도 경주시",
+            "year": 1980,
             "author": {
                 "id": fake.building_number(),
                 "email": fake.email(),
-                "name": fake.name(),
-                "profile_img_url": "https://avatars2.githubusercontent.com/u/29162801?s=80&v=4"
+                **make_name_and_profile_img_url(),
             }
         },
         {
             "id": 1,
             "description": fake.text(),
-            "original_url": "https://via.placeholder.com/480x270.png",
-            "url": "https://via.placeholder.com/1920x1080.png",
+            "original_url": "/media/original/광화문_1970년6월.jpg",
+            "url": "/media/converted/광화문_1970년6월.png",
             "is_processing": False,
             "title": fake.text(),
-            "location": f"대한민국 {fake.city()}",
-            "year": int(fake.year()),
+            "location": f"대한민국 서울시",
+            "year": 1970,
             "author": {
                 "id": fake.building_number(),
                 "email": fake.email(),
-                "name": fake.name(),
-                "profile_img_url": "https://avatars2.githubusercontent.com/u/29162801?s=80&v=4"
+                **make_name_and_profile_img_url(),
             }
         },
         {
@@ -48,8 +53,7 @@ mock_data = {
             "author": {
                 "id": fake.building_number(),
                 "email": fake.email(),
-                "name": fake.name(),
-                "profile_img_url": "https://avatars2.githubusercontent.com/u/29162801?s=80&v=4"
+                **make_name_and_profile_img_url(),
             }
         },
         {
@@ -64,8 +68,7 @@ mock_data = {
             "author": {
                 "id": fake.building_number(),
                 "email": fake.email(),
-                "name": fake.name(),
-                "profile_img_url": "https://avatars2.githubusercontent.com/u/29162801?s=80&v=4"
+                **make_name_and_profile_img_url(),
             }
         },
         {
@@ -80,8 +83,7 @@ mock_data = {
             "author": {
                 "id": fake.building_number(),
                 "email": fake.email(),
-                "name": fake.name(),
-                "profile_img_url": "https://avatars2.githubusercontent.com/u/29162801?s=80&v=4"
+                **make_name_and_profile_img_url(),
             }
         },
         {
@@ -96,8 +98,7 @@ mock_data = {
             "author": {
                 "id": fake.building_number(),
                 "email": fake.email(),
-                "name": fake.name(),
-                "profile_img_url": "https://avatars2.githubusercontent.com/u/29162801?s=80&v=4"
+                **make_name_and_profile_img_url(),
             }
         },
         {
@@ -128,8 +129,7 @@ mock_data = {
             "author": {
                 "id": fake.building_number(),
                 "email": fake.email(),
-                "name": fake.name(),
-                "profile_img_url": "https://avatars2.githubusercontent.com/u/29162801?s=80&v=4"
+                **make_name_and_profile_img_url(),
             }
         },
         {
@@ -144,8 +144,7 @@ mock_data = {
             "author": {
                 "id": fake.building_number(),
                 "email": fake.email(),
-                "name": fake.name(),
-                "profile_img_url": "https://avatars2.githubusercontent.com/u/29162801?s=80&v=4"
+                **make_name_and_profile_img_url(),
             }
         },
         {
@@ -160,8 +159,7 @@ mock_data = {
             "author": {
                 "id": fake.building_number(),
                 "email": fake.email(),
-                "name": fake.name(),
-                "profile_img_url": "https://avatars2.githubusercontent.com/u/29162801?s=80&v=4"
+                **make_name_and_profile_img_url(),
             }
         },
         {
@@ -176,8 +174,7 @@ mock_data = {
             "author": {
                 "id": fake.building_number(),
                 "email": fake.email(),
-                "name": fake.name(),
-                "profile_img_url": "https://avatars2.githubusercontent.com/u/29162801?s=80&v=4"
+                **make_name_and_profile_img_url(),
             }
         },
         {
@@ -192,8 +189,7 @@ mock_data = {
             "author": {
                 "id": fake.building_number(),
                 "email": fake.email(),
-                "name": fake.name(),
-                "profile_img_url": "https://avatars2.githubusercontent.com/u/29162801?s=80&v=4"
+                **make_name_and_profile_img_url(),
             }
         },
 
