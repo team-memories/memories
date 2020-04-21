@@ -1,6 +1,203 @@
 import pickle
+from faker import Faker
+fake = Faker("ko_KR")
 
 mock_data = {
+    "photos": [
+        {
+            "id": 0,
+            "description": fake.text(),
+            "original_url": fake.image_url(),
+            "url": fake.image_url(),
+            "is_processing": False,
+            "title": fake.text(),
+            "location": f"대한민국 {fake.city()}",
+            "year": int(fake.year()),
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                "name": fake.name(),
+                "profile_img_url": fake.image_url()
+            }
+        },
+        {
+            "id": 1,
+            "description": fake.text(),
+            "original_url": fake.image_url(),
+            "url": fake.image_url(),
+            "is_processing": False,
+            "title": fake.text(),
+            "location": f"대한민국 {fake.city()}",
+            "year": int(fake.year()),
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                "name": fake.name(),
+                "profile_img_url": fake.image_url()
+            }
+        },
+        {
+            "id": 2,
+            "description": fake.text(),
+            "original_url": fake.image_url(),
+            "url": fake.image_url(),
+            "is_processing": False,
+            "title": fake.text(),
+            "location": f"대한민국 {fake.city()}",
+            "year": int(fake.year()),
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                "name": fake.name(),
+                "profile_img_url": fake.image_url()
+            }
+        },
+        {
+            "id": 3,
+            "description": fake.text(),
+            "original_url": fake.image_url(),
+            "url": fake.image_url(),
+            "is_processing": False,
+            "title": fake.text(),
+            "location": f"대한민국 {fake.city()}",
+            "year": int(fake.year()),
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                "name": fake.name(),
+                "profile_img_url": fake.image_url()
+            }
+        },
+        {
+            "id": 4,
+            "description": fake.text(),
+            "original_url": fake.image_url(),
+            "url": fake.image_url(),
+            "is_processing": False,
+            "title": fake.text(),
+            "location": f"대한민국 {fake.city()}",
+            "year": int(fake.year()),
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                "name": fake.name(),
+                "profile_img_url": fake.image_url()
+            }
+        },
+        {
+            "id": 5,
+            "description": fake.text(),
+            "original_url": fake.image_url(),
+            "url": fake.image_url(),
+            "is_processing": False,
+            "title": fake.text(),
+            "location": f"대한민국 {fake.city()}",
+            "year": int(fake.year()),
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                "name": fake.name(),
+                "profile_img_url": fake.image_url()
+            }
+        },
+        {
+            "id": 6,
+            "description": fake.text(),
+            "original_url": fake.image_url(),
+            "url": fake.image_url(),
+            "is_processing": False,
+            "title": fake.text(),
+            "location": f"대한민국 {fake.city()}",
+            "year": int(fake.year()),
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                "name": fake.name(),
+                "profile_img_url": fake.image_url()
+            }
+        },
+        {
+            "id": 7,
+            "description": fake.text(),
+            "original_url": fake.image_url(),
+            "url": fake.image_url(),
+            "is_processing": False,
+            "title": fake.text(),
+            "location": f"대한민국 {fake.city()}",
+            "year": int(fake.year()),
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                "name": fake.name(),
+                "profile_img_url": fake.image_url()
+            }
+        },
+        {
+            "id": 8,
+            "description": fake.text(),
+            "original_url": fake.image_url(),
+            "url": fake.image_url(),
+            "is_processing": False,
+            "title": fake.text(),
+            "location": f"대한민국 {fake.city()}",
+            "year": int(fake.year()),
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                "name": fake.name(),
+                "profile_img_url": fake.image_url()
+            }
+        },
+        {
+            "id": 9,
+            "description": fake.text(),
+            "original_url": fake.image_url(),
+            "url": fake.image_url(),
+            "is_processing": False,
+            "title": fake.text(),
+            "location": f"대한민국 {fake.city()}",
+            "year": int(fake.year()),
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                "name": fake.name(),
+                "profile_img_url": fake.image_url()
+            }
+        },
+        {
+            "id": 10,
+            "description": fake.text(),
+            "original_url": fake.image_url(),
+            "url": fake.image_url(),
+            "is_processing": False,
+            "title": fake.text(),
+            "location": f"대한민국 {fake.city()}",
+            "year": int(fake.year()),
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                "name": fake.name(),
+                "profile_img_url": fake.image_url()
+            }
+        },
+        {
+            "id": 11,
+            "description": fake.text(),
+            "original_url": fake.image_url(),
+            "url": fake.image_url(),
+            "is_processing": False,
+            "title": fake.text(),
+            "location": f"대한민국 {fake.city()}",
+            "year": int(fake.year()),
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                "name": fake.name(),
+                "profile_img_url": fake.image_url()
+            }
+        },
+
+    ],
     "videos": [
         {
             "id": 0,

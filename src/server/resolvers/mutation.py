@@ -11,9 +11,9 @@ def resolve_upload_media(_, __, media, title, location, year):
     media.save(file_path)
     media.close()
 
-    videos = DB["videos"]
-    video = {
-        "id": videos[-1]["id"] + 1,
+    photos = DB["photos"]
+    photo = {
+        "id": photos[-1]["id"] + 1,
         "description": "No Description",
         "url": f"file://{os.path.abspath(file_path)}",
         "title": title,
@@ -27,31 +27,31 @@ def resolve_upload_media(_, __, media, title, location, year):
         },
         "year": year,
     }
-    videos.append(video)
+    photos.append(photo)
 
-    DB["videos"] = videos
+    DB["photos"] = photos
 
-    return video
+    return photo
 
 
 @mutation.field("deleteMedia")
 def resolve_delete_media(_, __, _id):
-    videos = DB["videos"]
+    photos = DB["photos"]
 
-    video_idx = -1
+    photo_idx = -1
 
-    for i, ___ in enumerate(videos):
-        if videos[i]["id"] == int(_id):
-            video_idx = i
+    for i, ___ in enumerate(photos):
+        if photos[i]["id"] == int(_id):
+            photo_idx = i
             break
     else:
         raise ValueError("해당 id를 가진 미디어가 존재하지 않습니다.")
 
-    if videos[video_idx]["url"].find("file://") != -1:
-        os.remove(videos[video_idx]["url"].replace("file://", ""))
-    video = videos[video_idx]
+    if photos[photo_idx]["url"].find("file://") != -1:
+        os.remove(photos[photo_idx]["url"].replace("file://", ""))
+    photo = photos[photo_idx]
 
-    videos.pop(video_idx)
-    DB["videos"] = videos
+    photos.pop(photo_idx)
+    DB["photos"] = photos
 
-    return video
+    return photo

@@ -37,10 +37,11 @@ type Mutation {
 interface Media {
     id: ID!
     title: String
+    originalUrl: String!
     """
     미디어 파일이 저장되어 있는 주소
     """
-    url: String
+    url: String!
     author: User
     location: String
     year: Int
@@ -68,10 +69,11 @@ interface Media {
 type Photo implements Media {
     id: ID!
     title: String
+    originalUrl: String!
     """
     미디어 파일이 저장되어 있는 주소
     """
-    url: String
+    url: String!
     author: User
     location: String
     year: Int
@@ -93,10 +95,11 @@ type Photo implements Media {
 type Video implements Media {
     id: ID!
     title: String
+    originalUrl: String!
     """
     미디어 파일이 저장되어 있는 주소
     """
-    url: String
+    url: String!
     author: User
     location: String
     year: Int

@@ -15,11 +15,12 @@ from resolvers.query import query
 from resolvers.mutation import mutation
 from resolvers.media import media
 from resolvers.video import video
+from resolvers.photo import photo
 
 TYPE_DEFS = load_schema_from_path("schema.graphql")
 
 SCHEMA = make_executable_schema(
-    TYPE_DEFS, query, mutation, media, video, upload_scalar, snake_case_fallback_resolvers
+    TYPE_DEFS, query, mutation, media, video, photo, upload_scalar, snake_case_fallback_resolvers
 )
 
 APP = Flask(__name__)
