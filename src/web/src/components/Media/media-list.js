@@ -54,14 +54,14 @@ function MediaList (props) {
               <Col xs={24} md={12} lg={8} xl={8} key={temp_media.id}>
                 <Spin indicator={<LoadingOutlined style={{fontSize: 30, color: 'gray'}}/>}>
                 <MediaCard title={temp_media.title} location={temp_media.location} year={temp_media.year}
-                           author={temp_media.author} id={temp_media.id}/>
+                           author={temp_media.author} id={temp_media.id} url={temp_media.url}/>
                 </Spin>
               </Col>
             )
             return (
               <Col xs={24} md={12} lg={8} xl={8} key={temp_media.id}>
                 <MediaCard title={temp_media.title} location={temp_media.location} year={temp_media.year}
-                           author={temp_media.author} id={temp_media.id}/>
+                           author={temp_media.author} id={temp_media.id} url={temp_media.url}/>
               </Col>
             )
           }
