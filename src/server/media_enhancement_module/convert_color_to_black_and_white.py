@@ -6,5 +6,5 @@ path = 'data/color_input'
 
 files = [f for f in listdir(path) if isfile(join(path, f))]
 for file_name in files:
-    image = Image.open(join(path, file_name)).conver('LA')
+    image = Image.open(join(path, file_name)).convert('LA')
     image.save(join('data/bnw_original_input', file_name))
