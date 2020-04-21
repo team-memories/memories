@@ -4,14 +4,13 @@ import '../../font.css'
 
 
 // css
-const topDiv = { background: 'linear-gradient(#16355F 65%, white 35%)', paddingTop: 90 }
-const beforeAfterSlider = { width: '55%', margin: 'auto', paddingTop: 50, paddingBottom: 150 }
+const beforeAfterSlider = { width: '75%', margin: 'auto', paddingTop: 50, paddingBottom: 80 }
 
 function ImageCompare (props) {
   const before = props.originalUrl
   const after = props.url
   return (
-    <div style={topDiv}>
+    <div>
       {/* before after slide */}
       <div style={beforeAfterSlider}>
         <ReactCompareImage leftImage={before} rightImage={after}/>
