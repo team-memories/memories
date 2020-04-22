@@ -13,26 +13,11 @@ mock_data = {
     "photos": [
         {
             "id": 0,
-            "description": "경주_1980년",
-            "original_url": "/media/original/경주_1980년.jpg",
-            "url": "/media/converted/경주_1980년.png",
+            "description": "경부고속도로_1970",
+            "original_url": "/media/original/경부고속도로_1970년.jpg",
+            "url": "/media/converted/경부고속도로_1970년.png",
             "is_processing": False,
-            "title": "경주_1980년",
-            "location": f"대한민국 경상북도 경주시",
-            "year": 1980,
-            "author": {
-                "id": fake.building_number(),
-                "email": fake.email(),
-                **make_name_and_profile_img_url(),
-            }
-        },
-        {
-            "id": 1,
-            "description": "옛날 광화문의 모습을 다시 보고 싶다.",
-            "original_url": "/media/original/광화문_1970년6월.jpg",
-            "url": "/media/converted/광화문_1970년6월.png",
-            "is_processing": False,
-            "title": "다시 볼 수 없는 광화문의 원래 모습",
+            "title": "1970년 경부고속도로",
             "location": f"대한민국 서울특별시",
             "year": 1970,
             "author": {
@@ -42,12 +27,297 @@ mock_data = {
             }
         },
         {
+            "id": 1,
+            "description": "1980년 경주",
+            "original_url": "/media/original/경주_1980년.jpg",
+            "url": "/media/converted/경주_1980년.png",
+            "is_processing": False,
+            "title": "1980년 경주시 모습",
+            "location": f"대한민국 경상북도 경주시",
+            "year": 1980,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
             "id": 2,
-            "description": "보령해수욕장_2016년",
+            "description": "다시볼 수 없는 1970년 광화문",
+            "original_url": "/media/original/광화문_1970년6월.jpg",
+            "url": "/media/converted/광화문_1970년6월.png",
+            "is_processing": False,
+            "title": "광화문 1970년 6월",
+            "location": f"대한민국 서울특별시 종로구",
+            "year": 1970,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
+            "id": 3,
+            "description": "국회의사당_서울특별시 영등포구_1996년",
+            "original_url": "/media/original/국회의사당_서울특별시 영등포구_1996년.jpg",
+            "url": "/media/converted/국회의사당_서울특별시 영등포구_1996년.png",
+            "is_processing": False,
+            "title": "국회의사당 1996년",
+            "location": f"대한민국 서울특별시 영등포구",
+            "year": 1996,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
+            "id": 4,
+            "description": "1980년 김포 모습",
+            "original_url": "/media/original/김포군_고촌_1980년.jpg",
+            "url": "/media/converted/김포군_고촌_1980년.png",
+            "is_processing": False,
+            "title": "1980년 김포",
+            "location": f"대한민국 경기도 김포시",
+            "year": 1980,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
+            "id": 5,
+            "description": "2015년 김해도심",
+            "original_url": "/media/original/김해도심_2015.jpg",
+            "url": "/media/converted/김해도심_2015.png",
+            "is_processing": False,
+            "title": "2015년 김해도심 모습",
+            "location": f"대한민국 경상남도 김해시",
+            "year": 2015,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
+            "id": 6,
+            "description": "난지도 서울월드컵경기장 인근",
+            "original_url": "/media/original/난지도 서울월드컵경기장 인근_서울특별시 마포구_2000년.jpg",
+            "url": "/media/converted/난지도 서울월드컵경기장 인근_서울특별시 마포구_2000년.png",
+            "is_processing": False,
+            "title": "2000년 서울월드컵경기장 인근 모습",
+            "location": f"대한민국 서울특별시 마포구",
+            "year": 2000,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
+            "id": 7,
+            "description": "1995년 난지도 인근 가양대교",
+            "original_url": "/media/original/난지도 인근 가양대교_서울특별시 마포구_1995년.jpg",
+            "url": "/media/converted/난지도 인근 가양대교_서울특별시 마포구_1995년.png",
+            "is_processing": False,
+            "title": "1995년 가양대교 모습",
+            "location": f"대한민국 서울특별시 마포구",
+            "year": 1995,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
+            "id": 8,
+            "description": "1995년 난지도 인근",
+            "original_url": "/media/original/난지도 인근_서울특별시 마포구_1995년.jpg",
+            "url": "/media/converted/난지도 인근_서울특별시 마포구_1995년.png",
+            "is_processing": False,
+            "title": "1995년 난지도 인근 모습",
+            "location": f"대한민국 서울특별시 마포구",
+            "year": 1995,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
+            "id": 9,
+            "description": "1950년 남대문",
+            "original_url": "/media/original/남대문_1950년9월28일.jpeg",
+            "url": "/media/converted/남대문_1950년9월28일.png",
+            "is_processing": False,
+            "title": "1950년 9월 28일 남대문 모습",
+            "location": f"대한민국 서울특별시 중구",
+            "year": 1950,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
+            "id": 10,
+            "description": "1950년 남대문 주변 시가지",
+            "original_url": "/media/original/남대문_주변_시가지_1950년10월.jpeg",
+            "url": "/media/converted/남대문_주변_시가지_1950년10월.png",
+            "is_processing": False,
+            "title": "1950년 남대문 주변 시가지 모습",
+            "location": f"대한민국 서울특별시 중구",
+            "year": 1950,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
+            "id": 11,
+            "description": "1979년 대전 서부터미널 준공식",
+            "original_url": "/media/original/대전 서부터미널 준공식_대전광역시 중구_1979년.PNG",
+            "url": "/media/converted/대전 서부터미널 준공식_대전광역시 중구_1979년.png",
+            "is_processing": False,
+            "title": "1979년 대전 서부터미널 준공식 모습",
+            "location": f"대한민국 대전광역시 중구",
+            "year": 1979,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
+            "id": 12,
+            "description": "1960년 대전 중앙로",
+            "original_url": "/media/original/대전 중앙로_대전광역시 중구_1960년.PNG",
+            "url": "/media/converted/대전 중앙로_대전광역시 중구_1960년.png",
+            "is_processing": False,
+            "title": "1960년 대전 중앙로 모습",
+            "location": f"대한민국 대전광역시 중구",
+            "year": 1960,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
+            "id": 13,
+            "description": "1960년 대전 자동차",
+            "original_url": "/media/original/대전 차량_대전광역시 중구_1960년.PNG",
+            "url": "/media/converted/대전 차량_대전광역시 중구_1960년.png",
+            "is_processing": False,
+            "title": "1960년 대전 자동차 모습",
+            "location": f"대한민국 대전광역시 중구",
+            "year": 1960,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
+            "id": 14,
+            "description": "1989년 대전 시청",
+            "original_url": "/media/original/대전시청_대전광역시 서구_1989년.PNG",
+            "url": "/media/converted/대전시청_대전광역시 서구_1989년.png",
+            "is_processing": False,
+            "title": "1989년 대전 시청 모습",
+            "location": f"대한민국 대전광역시 서구",
+            "year": 1989,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
+            "id": 15,
+            "description": "1950년 대전 시청",
+            "original_url": "/media/original/대전시청사_대전광역시 서구_1950년.PNG",
+            "url": "/media/converted/대전시청사_대전광역시 서구_1950년.png",
+            "is_processing": False,
+            "title": "1950년 대전 시청 모습",
+            "location": f"대한민국 대전광역시 서구",
+            "year": 1950,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
+            "id": 16,
+            "description": "1959년 대전역",
+            "original_url": "/media/original/대전역사 준공식_대전광역시 동구_1959년.PNG",
+            "url": "/media/converted/대전역사 준공식_대전광역시 동구_1959년.png",
+            "is_processing": False,
+            "title": "1959년 대전역 모습",
+            "location": f"대한민국 대전광역시 동구",
+            "year": 1959,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
+            "id": 17,
+            "description": "1999년 대전정부청사 전경",
+            "original_url": "/media/original/대전정부청사 전경_대전광역시 서구_1999년.PNG",
+            "url": "/media/converted/대전정부청사 전경_대전광역시 서구_1999년.png",
+            "is_processing": False,
+            "title": "1999년 대전정부청사 전경 모습",
+            "location": f"대한민국 대전광역시 서구",
+            "year": 1999,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
+            "id": 18,
+            "description": "2000년 대한투자금융",
+            "original_url": "/media/original/대한투자금융(구 국립극장)_서울특별시 중구_2000년.jpg",
+            "url": "/media/converted/대한투자금융(구 국립극장)_서울특별시 중구_2000년.png",
+            "is_processing": False,
+            "title": "2000년 대한투자금융 모습",
+            "location": f"대한민국 서울특별시 중구",
+            "year": 1950,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
+            "id": 19,
+            "description": "1996년 청계고가도로",
+            "original_url": "/media/original/동족방향의 청계고가도로_서울특별시 중구_1996년.jpg",
+            "url": "/media/converted/동족방향의 청계고가도로_서울특별시 중구_1996년.png",
+            "is_processing": False,
+            "title": "1996년 청계고가도로 모습",
+            "location": f"대한민국 서울특별시 중구",
+            "year": 1996,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
+            "id": 21,
+            "description": "2016 보령시 해수욕장",
             "original_url": "/media/original/보령해수욕장_2016년.jpg",
             "url": "/media/converted/보령해수욕장_2016년.png",
             "is_processing": False,
-            "title": "보령해수욕장_2016년",
+            "title": "2016년 보령시 해수욕장 모습",
             "location": f"대한민국 충청남도 보령시",
             "year": 2016,
             "author": {
@@ -57,14 +327,14 @@ mock_data = {
             }
         },
         {
-            "id": 3,
-            "description": "청계천 주변_서울특별시 종로구_1999년",
-            "original_url": "/media/original/청계천 주변_서울특별시 종로구_1999년.jpg",
-            "url": "/media/converted/청계천 주변_서울특별시 종로구_1999년.png",
+            "id": 22,
+            "description": "1969년 보문산 전망대",
+            "original_url": "/media/original/보문산 전망대_대전광역시 중구_1969년.PNG",
+            "url": "/media/converted/보문산 전망대_대전광역시 중구_1969년.png",
             "is_processing": False,
-            "title": "청계천 주변 모습",
-            "location": f"대한민국 서울특별시",
-            "year": 1999,
+            "title": "1969년 보문산 전망대 모습",
+            "location": f"대한민국 대전광역시 중구",
+            "year": 1969,
             "author": {
                 "id": fake.building_number(),
                 "email": fake.email(),
@@ -72,13 +342,223 @@ mock_data = {
             }
         },
         {
-            "id": 4,
-            "description": "청계천_서울특별시 종로구_2014년",
-            "original_url": "/media/original/청계천_서울특별시 종로구_2014년.jpg",
-            "url": "/media/converted/청계천_서울특별시 종로구_2014년.png",
+            "id": 23,
+            "description": "1969년 삼광중학교",
+            "original_url": "/media/original/삼광중학교(경덕중학교) 행사_대전광역시 대덕구_1969년.PNG",
+            "url": "/media/converted/삼광중학교(경덕중학교) 행사_대전광역시 대덕구_1969년.png",
             "is_processing": False,
-            "title": "2014년 복구 후 청계천의 모습",
+            "title": "1969년 삼광중학교 모습",
+            "location": f"대한민국 대전광역시 대덕구",
+            "year": 1969,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
+            "id": 24,
+            "description": "1969년 서울대전고속도로",
+            "original_url": "/media/original/서울 대전 고속도로_대전광역시 대덕구_1969년.PNG",
+            "url": "/media/converted/서울 대전 고속도로_대전광역시 대덕구_1969년.png",
+            "is_processing": False,
+            "title": "1969년 서울대전고속도로 모습",
+            "location": f"대한민국 대전광역시 대덕구",
+            "year": 1969,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
+            "id": 25,
+            "description": "2017년 서울",
+            "original_url": "/media/original/서울_2017년.jpg",
+            "url": "/media/converted/서울_2017년.png",
+            "is_processing": False,
+            "title": "2017년 서울 모습",
             "location": f"대한민국 서울특별시",
+            "year": 2017,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
+            "id": 26,
+            "description": "1980년 서울 성북역 앞",
+            "original_url": "/media/original/서울성북역앞_1980년.jpg",
+            "url": "/media/converted/서울성북역앞_1980년.png",
+            "is_processing": False,
+            "title": "1980년 서울 성북역 앞 모습",
+            "location": f"대한민국 서울특별시 월계동",
+            "year": 1980,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
+            "id": 27,
+            "description": "1980년 서울역",
+            "original_url": "/media/original/서울역_1980년.jpg",
+            "url": "/media/converted/서울역_1980년.png",
+            "is_processing": False,
+            "title": "1980년 서울역 모습",
+            "location": f"대한민국 서울특별시 남영동",
+            "year": 1980,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
+            "id": 28,
+            "description": "1980년 서울역 플랫폼",
+            "original_url": "/media/original/서울역플랫폼_2018.jpg",
+            "url": "/media/converted/서울역플랫폼_2018.png",
+            "is_processing": False,
+            "title": "1980년 서울역 플랫폼 모습",
+            "location": f"대한민국 서울특별시 남영동",
+            "year": 1980,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
+            "id": 29,
+            "description": "1940년 동양극장",
+            "original_url": "/media/original/서울특별시_동양극장_1940년.jpg",
+            "url": "/media/converted/서울특별시_동양극장_1940년.png",
+            "is_processing": False,
+            "title": "1940년 동양극장 모습",
+            "location": f"대한민국 서울특별시 종로구",
+            "year": 1940,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
+            "id": 30,
+            "description": "2005년 석촌호수",
+            "original_url": "/media/original/석촌호수_서울특별시 송파구_2005년.jpg",
+            "url": "/media/converted/석촌호수_서울특별시 송파구_2005년.png",
+            "is_processing": False,
+            "title": "2005년 석촌호수 모습",
+            "location": f"대한민국 서울특별시 송파구",
+            "year": 2005,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
+            "id": 31,
+            "description": "2015년 석촌호수",
+            "original_url": "/media/original/석촌호수_서울특별시 송파구_2015년.png",
+            "url": "/media/converted/석촌호수_서울특별시 송파구_2015년.png",
+            "is_processing": False,
+            "title": "2015년 석촌호수 모습",
+            "location": f"대한민국 서울특별시 송파구",
+            "year": 2015,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
+            "id": 32,
+            "description": "1979년 대전 동구 성남2동 놀이터 준공식",
+            "original_url": "/media/original/성남2동 놀이터 준공식_대전광역시 동구_1979년.PNG",
+            "url": "/media/converted/성남2동 놀이터 준공식_대전광역시 동구_1979년.png",
+            "is_processing": False,
+            "title": "1979년 대전 동구 성남2동 놀이터 준공식",
+            "location": f"대한민국 대전광역시 동구",
+            "year": 1979,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
+            "id": 33,
+            "description": "2005년 성산대교",
+            "original_url": "/media/original/성산대교_서울특별시 양천구_2005년.jpg",
+            "url": "/media/converted/성산대교_서울특별시 양천구_2005년.png",
+            "is_processing": False,
+            "title": "2005년 성산대교",
+            "location": f"대한민국 서울특별시 영천구",
+            "year": 2005,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
+            "id": 34,
+            "description": "1970년 신촌",
+            "original_url": "/media/original/신촌_1970년.jpg",
+            "url": "/media/converted/신촌_1970년.png",
+            "is_processing": False,
+            "title": "1970년 신촌 모습",
+            "location": f"대한민국 서울특별시 서대문구",
+            "year": 1970,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
+            "id": 35,
+            "description": "2005년 양천구 목2동 용왕산 사방",
+            "original_url": "/media/original/양천구 목2동 용왕산 사방_서울특별시 양천구_2005년.jpg",
+            "url": "/media/converted/양천구 목2동 용왕산 사방_서울특별시 양천구_2005년.png",
+            "is_processing": False,
+            "title": "2005년 양천구 목2동 용왕산 사방",
+            "location": f"대한민국 서울특별시 양천구",
+            "year": 2005,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
+            "id": 36,
+            "description": "1996년 여의도 광장 인근지역",
+            "original_url": "/media/original/여의도 광장 인근지역_서울특별시 영등포구_1996년.jpg",
+            "url": "/media/converted/여의도 광장 인근지역_서울특별시 영등포구_1996년.png",
+            "is_processing": False,
+            "title": "1996년 여의도 광장 인근지역 모습",
+            "location": f"대한민국 서울특별시 영등포구",
+            "year": 1996,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
+            "id": 37,
+            "description": "2014년 여의도",
+            "original_url": "/media/original/여의도_2014년.jpg",
+            "url": "/media/converted/여의도_2014년.png",
+            "is_processing": False,
+            "title": "2014년 여의도 모습",
+            "location": f"대한민국 서울특별시 영등포구",
             "year": 2014,
             "author": {
                 "id": fake.building_number(),
@@ -87,12 +567,192 @@ mock_data = {
             }
         },
         {
-            "id": 5,
-            "description": "태화교_대구광역시 남구_1964",
+            "id": 38,
+            "description": "2004년 여의도공원",
+            "original_url": "/media/original/여의도공원_서울특별시 영등포구_2004년.jpg",
+            "url": "/media/converted/여의도공원_서울특별시 영등포구_2004년.png",
+            "is_processing": False,
+            "title": "2004년 여의도공원 모습",
+            "location": f"대한민국 서울특별시 영등포구",
+            "year": 2004,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
+            "id": 39,
+            "description": "1996년 여의도광장",
+            "original_url": "/media/original/여의도광장_서울특별시 영등포구_1996년.jpg",
+            "url": "/media/converted/여의도광장_서울특별시 영등포구_1996년.png",
+            "is_processing": False,
+            "title": "1996년 여의도광장 모습",
+            "location": f"대한민국 서울특별시 영등포구",
+            "year": 1996,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
+            "id": 40,
+            "description": "1979년 연정국악회관 성모병원방향 도로",
+            "original_url": "/media/original/연정국악회관 성모병원방향 도로모습_대전광역시 중구_1979년.PNG",
+            "url": "/media/converted/연정국악회관 성모병원방향 도로모습_대전광역시 중구_1979년.png",
+            "is_processing": False,
+            "title": "1979년 연정국악회관 성모병원방향 도로 모습",
+            "location": f"대한민국 대전광역시 중구",
+            "year": 1979,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
+            "id": 41,
+            "description": "1962년 울산항 공사",
+            "original_url": "/media/original/울산항 공사_울산광역시 남구_1962년.PNG",
+            "url": "/media/converted/울산항 공사_울산광역시 남구_1962년.png",
+            "is_processing": False,
+            "title": "1962년 울산항 공사 모습",
+            "location": f"대한민국 울산광역시 남구",
+            "year": 1962,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
+            "id": 42,
+            "description": "1940년 인천",
+            "original_url": "/media/original/인천_1940년.png",
+            "url": "/media/converted/인천_1940년.png",
+            "is_processing": False,
+            "title": "1940년 인천 모습",
+            "location": f"대한민국 인천광역시",
+            "year": 1940,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
+            "id": 43,
+            "description": "1970년 일산",
+            "original_url": "/media/original/일산_1970년.jpg",
+            "url": "/media/converted/일산_1970년.png",
+            "is_processing": False,
+            "title": "1970년 일산 모습",
+            "location": f"대한민국 경기도 고양시",
+            "year": 1970,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
+            "id": 44,
+            "description": "1970년 일산",
+            "original_url": "/media/original/일산_1970년 (1).jpg",
+            "url": "/media/converted/일산_1970년 (1).png",
+            "is_processing": False,
+            "title": "1970년 일산 모습",
+            "location": f"대한민국 경기도 일산시",
+            "year": 1970,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
+            "id": 45,
+            "description": "1996년 청계고가도로",
+            "original_url": "/media/original/청계고가도로와 동쪽 방향_서울특별시 중구_1996년.jpg",
+            "url": "/media/converted/청계고가도로와 동쪽 방향_서울특별시 중구_1996년.png",
+            "is_processing": False,
+            "title": "1996년 청계고가도로 모습",
+            "location": f"대한민국 서울특별시 중구",
+            "year": 1996,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
+            "id": 46,
+            "description": "1999년 청계천 주변",
+            "original_url": "/media/original/청계천 주변_서울특별시 종로구_1999년.jpg",
+            "url": "/media/converted/청계천 주변_서울특별시 종로구_1999년.png",
+            "is_processing": False,
+            "title": "1999년 청계천 주변 모습",
+            "location": f"대한민국 서울특별시 종로구",
+            "year": 1999,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
+            "id": 47,
+            "description": "2014년 청계천",
+            "original_url": "/media/original/청계천_서울특별시 종로구_2014년.jpg",
+            "url": "/media/converted/청계천_서울특별시 종로구_2014년.png",
+            "is_processing": False,
+            "title": "2014년 청계천 모습",
+            "location": f"대한민국 서울특별시 종로구",
+            "year": 2014,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
+            "id": 48,
+            "description": "2005년 청계천",
+            "original_url": "/media/original/청계천_서울특별시 중구_2005년.jpg",
+            "url": "/media/converted/청계천_서울특별시 중구_2005년.png",
+            "is_processing": False,
+            "title": "2005년 청계천 모습",
+            "location": f"대한민국 서울특별시 중구",
+            "year": 2005,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
+            "id": 49,
+            "description": "2014년 청계천문화관",
+            "original_url": "/media/original/청계천문화관_서울특별시 성동구_2014년.jpg",
+            "url": "/media/converted/청계천문화관_서울특별시 성동구_2014년.png",
+            "is_processing": False,
+            "title": "2014년 청계천문화관",
+            "location": f"대한민국 서울특별시 성동구",
+            "year": 2014,
+            "author": {
+                "id": fake.building_number(),
+                "email": fake.email(),
+                **make_name_and_profile_img_url(),
+            }
+        },
+        {
+            "id": 50,
+            "description": "1964년 태화교",
             "original_url": "/media/original/태화교_대구광역시 남구_1964년.PNG",
             "url": "/media/converted/태화교_대구광역시 남구_1964년.png",
             "is_processing": False,
-            "title": "옛날 대구 태화교 모습",
+            "title": "1964년 태화교 모습",
             "location": f"대한민국 대구광역시 남구",
             "year": 1964,
             "author": {
@@ -102,30 +762,14 @@ mock_data = {
             }
         },
         {
-            "id": 6,
-            "description": fake.text(),
-            "original_url": "https://via.placeholder.com/480x270.png",
-            "url": "https://via.placeholder.com/1920x1080.png",
+            "id": 51,
+            "description": "2005년 하늘공원 개발",
+            "original_url": "/media/original/하늘공원 개발_서울특별시 마포구_2005년.jpg",
+            "url": "/media/converted/하늘공원 개발_서울특별시 마포구_2005년.png",
             "is_processing": False,
-            "title": fake.text(),
-            "location": f"대한민국 {fake.city()}",
-            "year": int(fake.year()),
-            "author": {
-                "id": fake.building_number(),
-                "email": fake.email(),
-                "name": fake.name(),
-                "profile_img_url": "https://avatars2.githubusercontent.com/u/29162801?s=80&v=4"
-            }
-        },
-        {
-            "id": 7,
-            "description": fake.text(),
-            "original_url": "https://via.placeholder.com/640x360.png",
-            "url": "https://via.placeholder.com/2560x1440.png",
-            "is_processing": False,
-            "title": fake.text(),
-            "location": f"대한민국 {fake.city()}",
-            "year": int(fake.year()),
+            "title": "2005년 하늘공원 개발 모습",
+            "location": f"대한민국 서울특별시 마포구",
+            "year": 2005,
             "author": {
                 "id": fake.building_number(),
                 "email": fake.email(),
@@ -133,14 +777,14 @@ mock_data = {
             }
         },
         {
-            "id": 8,
-            "description": fake.text(),
-            "original_url": "https://via.placeholder.com/640x360.png",
-            "url": "https://via.placeholder.com/2560x1440.png",
+            "id": 53,
+            "description": "1960년 학산교 준공식",
+            "original_url": "/media/original/학산교 준공식_울산광역시 북구_1960.PNG",
+            "url": "/media/converted/학산교 준공식_울산광역시 북구_1960.png",
             "is_processing": False,
-            "title": fake.text(),
-            "location": f"대한민국 {fake.city()}",
-            "year": int(fake.year()),
+            "title": "1960년 학산교 준공식 모습",
+            "location": f"대한민국 울산광역시 북구",
+            "year": 1960,
             "author": {
                 "id": fake.building_number(),
                 "email": fake.email(),
@@ -148,51 +792,20 @@ mock_data = {
             }
         },
         {
-            "id": 9,
-            "description": fake.text(),
-            "original_url": "https://via.placeholder.com/640x360.png",
-            "url": "https://via.placeholder.com/2560x1440.png",
+            "id": 54,
+            "description": "1996년 LG트윈타워 앞",
+            "original_url": "/media/original/LG트윈타워 앞_서울특별시 영등포구_1996년 .jpg",
+            "url": "/media/converted/LG트윈타워 앞_서울특별시 영등포구_1996년 .png",
             "is_processing": False,
-            "title": fake.text(),
-            "location": f"대한민국 {fake.city()}",
-            "year": int(fake.year()),
+            "title": "1996년 LG트윈타워 앞 모습",
+            "location": f"대한민국 서울특별시 영등포구",
+            "year": 1996,
             "author": {
                 "id": fake.building_number(),
                 "email": fake.email(),
                 **make_name_and_profile_img_url(),
             }
         },
-        {
-            "id": 10,
-            "description": fake.text(),
-            "original_url": "https://via.placeholder.com/640x360.png",
-            "url": "https://via.placeholder.com/2560x1440.png",
-            "is_processing": False,
-            "title": fake.text(),
-            "location": f"대한민국 {fake.city()}",
-            "year": int(fake.year()),
-            "author": {
-                "id": fake.building_number(),
-                "email": fake.email(),
-                **make_name_and_profile_img_url(),
-            }
-        },
-        {
-            "id": 11,
-            "description": fake.text(),
-            "original_url": "https://via.placeholder.com/640x360.png",
-            "url": "https://via.placeholder.com/2560x1440.png",
-            "is_processing": False,
-            "title": fake.text(),
-            "location": f"대한민국 {fake.city()}",
-            "year": int(fake.year()),
-            "author": {
-                "id": fake.building_number(),
-                "email": fake.email(),
-                **make_name_and_profile_img_url(),
-            }
-        },
-
     ],
     "videos": [
         {
