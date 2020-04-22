@@ -3,10 +3,10 @@ import ServiceIntro from '../components/Media/service-intro'
 import MediaList from '../components/Media/media-list'
 
 function HomePage () {
-  let title = ''
-  let location = '경기도'
-  let yearFrom = 1960
-  let yearTo = 2000
+  let title = '청계천'
+  let location = '서울특별시'
+  let yearFrom = 1990
+  let yearTo = 2020
   return (
     <div>
       <ServiceIntro
