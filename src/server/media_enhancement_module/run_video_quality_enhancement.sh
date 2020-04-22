@@ -4,10 +4,10 @@
 ffmpeg -i data/input.mp4 2>&1 | sed -n "s/.*, \(.*\) fp.*/\1/p" > data/fps
 
 conda activate color && \
-ffmpeg -i "data/input.mp4" -vf scale=480:270 "data/input_scaled.mp4" && \
-ffmpeg -i "data/input_scaled.mp4" -vf hue=s=0 "data/input_bw.mp4"  && \
+ffmpeg -y -i "data/input.mp4" -vf scale=480:270 "data/input_scaled.mp4" && \
+ffmpeg -y -i "data/input_scaled.mp4" -vf hue=s=0 "data/input_bw.mp4"  && \
 mkdir data/color_input && \
-ffmpeg -i "data/input_bw.mp4" -vsync 0 "data/color_input/%06d.png"  && \
+ffmpeg -y -i "data/input_bw.mp4" -vsync 0 "data/color_input/%06d.png"  && \
 
 # Input => Colorization => Zooming Slow-mo => Output
 # Colorization
