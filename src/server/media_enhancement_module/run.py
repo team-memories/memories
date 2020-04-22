@@ -8,7 +8,7 @@ from shutil import rmtree
 
 def run_colorization():
     os.system(f"""
-    source activate color && \
+    conda run -n color \ 
     python colorization/main_woflow_up.py --model colorization/ckpt_woflow \
     --use_gpu 0 --test_dir data/color_input --out_dir data/SR_input/
     """)
@@ -16,46 +16,48 @@ def run_colorization():
 
 def run_image_sr():
     os.system(f"""
-    source activate imagesr && \
+    conda run -n imagesr \ 
     python Image_SR/image_sr.py --test_dir data/SR_input/ --out_dir data/SR_output/
     """)
 
 
 def run_video_VFI_SR():
     os.system(f"""
-    source activate zooming-slow-mo && \
-    cd Zooming-Slow-Mo-CVPR-2020/codes && \
+    conda run -n zooming-slow-mo \ 
+    'cd Zooming-Slow-Mo-CVPR-2020/codes && \
     python frames_to_video.py --model ../experiments/pretrained_models/xiang2020zooming.pth \
         --input ../../data/VFI_input \
-        --output ../../data/output.mp4 --fps 60 --N_out 2
+        --output ../../data/output.mp4 --fps 60 --N_out 2'
     """)
 
 
 def resize_video(scale="480:270"):
     os.system(f"""
-    source activate color && \
+    conda run -n color \ 
     ffmpeg -i "data/input_preprocessed.mp4" -vf scale={scale} "data/input_preprocessed.mp4" && \
     """)
 
 
 def convert_video_to_frames():
     os.system(f"""
-    source activate color && \
+    conda run -n color \ 
     ffmpeg -i "data/input_preprocessed.mp4" -vsync 0 "data/color_input/%06d.png" && \
     """)
 
 
 def convert_video_black_and_white():
     os.system(f"""
-    source activate color && \
+    conda run -n color \ 
     ffmpeg -i input_preprocessed.mp4 -vf hue=s=0 input_preprocessed.mp4
     """)
+
 
 def get_frame_rate_by_cv2(filename):
     import cv2
     cam = cv2.VideoCapture(filename)
     fps = cam.get(cv2.CAP_PROP_FPS)
     return fps
+
 
 def get_frame_rate(filename):
     if not os.path.exists(filename):
@@ -73,6 +75,7 @@ def get_frame_rate(filename):
 
 
 def run_image_quality_enhancement():
+    # Todo
     os.system("source color.sh")
     os.system("run_image_sr.sh")
 
