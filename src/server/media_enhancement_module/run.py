@@ -51,6 +51,11 @@ def convert_video_black_and_white():
     ffmpeg -i input_preprocessed.mp4 -vf hue=s=0 input_preprocessed.mp4
     """)
 
+def get_frame_rate_by_cv2(filename):
+    import cv2
+    cam = cv2.VideoCapture(filename)
+    fps = cam.get(cv2.CAP_PROP_FPS)
+    return fps
 
 def get_frame_rate(filename):
     if not os.path.exists(filename):
