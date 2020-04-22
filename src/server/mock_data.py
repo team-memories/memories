@@ -1,4 +1,3 @@
-import os
 import pickle
 from faker import Faker
 
@@ -455,7 +454,7 @@ mock_data = {
 }
 
 
-class MockDB:
+class MockDB(object):
     def __init__(self):
         pickle.dump(mock_data, open("mock_db.dump", "wb"))
 
@@ -466,12 +465,6 @@ class MockDB:
         mock_db_dump = pickle.load(open("mock_db.dump", "rb"))
         mock_db_dump[key] = value
         pickle.dump(mock_db_dump, open("mock_db.dump", "wb"))
-
-    def __del__(self):
-        try:
-            os.remove("mock_db.dump")
-        except OSError:
-            pass
 
 
 DB = MockDB()

@@ -20,6 +20,7 @@ parser.add_argument("--model", type=str, required=True, help='path of pretrained
 parser.add_argument("--fps", type=float, default=24, help='specify fps of output video. Default: 24.')
 parser.add_argument("--N_out", type=int, default=7, help='Specify size of output frames of the network for faster conversion. This will depend on your cpu/gpu memory. Default: 7')
 parser.add_argument("--output", type=str, default="output.mp4", help='Specify output file name. Default: output.mp4')
+parser.add_argument("--input", type=str, required=True, help='path of frames to be converted')
 args = parser.parse_args()
 
 def main():
@@ -33,8 +34,8 @@ def main():
     model = Sakuya_arch.LunaTokis(64, N_ot, 8, 5, 40)
 
     #### extract the input video to temporary folder
-    save_folder = osp.join(osp.dirname(args.output), 'VFI_input')
-    save_out_folder = osp.join(osp.dirname(args.output), 'VFI_output')
+    input_folder = args.input
+    save_out_folder = osp.join(osp.dirname(args.output), '.hr_delme')
     util.mkdirs(save_out_folder)
     # temporal padding mode
     padding = 'replicate'
@@ -67,7 +68,7 @@ def main():
     model.eval()
     model = model.to(device)
     #### zsm images
-    imgs = util.read_seq_imgs(save_folder)
+    imgs = util.read_seq_imgs(input_folder)
     select_idx_list = util.test_index_generation(False, N_ot, len(imgs))
     for select_idxs in select_idx_list:
         # get input images
@@ -88,7 +89,7 @@ def main():
     util.create_video(args.ffmpeg_dir, save_out_folder, args.output, args.fps)
 
     # remove tmp folder    
-    rmtree(save_folder)
+    rmtree(input_folder)
     rmtree(save_out_folder)
     
     exit(0)
