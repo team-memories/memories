@@ -75,6 +75,7 @@ def run_image_quality_enhancement():
 def run_video_quality_enhancement():
     # Pre-processing
     frame_rate = get_frame_rate("data/input.mp4")
+    print(f"frame_rate!!!!!!!!!!!: {frame_rate}")
     os.system("cp data/input.mp4 data/input_preprocessed.mp4")
     resize_video("480:270")
     convert_video_black_and_white()
