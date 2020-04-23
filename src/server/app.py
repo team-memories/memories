@@ -8,22 +8,38 @@ from ariadne import (
     upload_scalar,
     combine_multipart_data)
 from ariadne.constants import PLAYGROUND_HTML
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
 
 from resolvers.query import query
 from resolvers.mutation import mutation
 from resolvers.media import media
 from resolvers.video import video
+from resolvers.photo import photo
 
 TYPE_DEFS = load_schema_from_path("schema.graphql")
 
 SCHEMA = make_executable_schema(
-    TYPE_DEFS, query, mutation, media, video, upload_scalar, snake_case_fallback_resolvers
+    TYPE_DEFS, query, mutation, media, video, photo, upload_scalar, snake_case_fallback_resolvers
 )
 
-APP = Flask(__name__)
+APP = Flask(__name__, static_url_path='')
 CORS(APP)
+
+
+@APP.route('/static/<path:path>')
+def send_static(path):
+    return send_from_directory('static', path)
+
+
+@APP.route('/')
+def root():
+    return APP.send_static_file('index.html')
+
+
+@APP.route('/media/<path:path>')
+def send_media(path):
+    return send_from_directory('media', path)
 
 
 @APP.route("/graphql", methods=["GET"])
@@ -61,4 +77,4 @@ def graphql_server():
 if __name__ == "__main__":
     print("GraphQL playground [GET]: http://localhost:9696/graphql")
     print("GraphQL endpoint [POST]: http://localhost:9696/graphql")
-    APP.run(debug=True, port=9696)
+    APP.run(debug=True, port=9696, host='0.0.0.0')

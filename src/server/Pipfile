@@ -12,8 +12,7 @@ pylint = "*"
 ariadne = "*"
 flask = "*"
 flask_cors = "*"
-[requires]
-python_version = "3.6"
+Faker = "*"
 
 [pipenv]
 allow_prereleases = true

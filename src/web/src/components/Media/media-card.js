@@ -10,7 +10,7 @@ export default class MediaCard extends Component {
           style={{ height: '95%', borderRadius: 10 }}
           bordered={true}
           cover={<img style={{ width: '100%', borderTopLeftRadius: 10, borderTopRightRadius: 10 }}
-                      src={'https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png'} alt="thumbnail"/>}
+                      src={this.props.url} alt="thumbnail"/>}
         >
           <Card.Meta
             avatar={

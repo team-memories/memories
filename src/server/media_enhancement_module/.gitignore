@@ -1,0 +1,6 @@
+# colorization
+imagenet-vgg-verydeep-19.mat
+ckpt_woflow/
+data/
+colorization/ckpt_woflow.zip
+log_file

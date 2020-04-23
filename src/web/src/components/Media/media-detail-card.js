@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Avatar, List, Typography } from 'antd'
 import MediaDetailDeleteButton from './media-detail-delete-button'
+import ImageCompare from './media-detail-card-image-compare'
 
 class MediaDetailCard extends Component {
   MediaInfo = () => {
@@ -28,7 +29,7 @@ class MediaDetailCard extends Component {
   render () {
     return (
       <div>
-        <video style={{ width: '100%', height: '80%' }} src={this.props.media.url} controls/>
+        <ImageCompare url={this.props.media.url} originalUrl={this.props.media.originalUrl}/>
         <this.MediaInfo/>
       </div>
     )
