@@ -25,7 +25,7 @@ This project aims to provide a platform for people to share and view each other'
 
 ### 3.1) 중간 발표 영상
 
-[![Watch the video](https://github.com/kookmin-sw/capstone-2020-12/blob/master/doc/image/video_image2.png)](https://drive.google.com/file/d/1I_9BlYxRgy16tZGx10f_7mcNttZZk-Mr/view?usp=sharing)
+[![Watch the video](https://github.com/kookmin-sw/capstone-2020-12/blob/master/doc/image/video_image2.png)](https://drive.google.com/file/d/11GnQ5ppcaEti0KHbXU4I6XhiT305TU2Y/view?usp=sharing)
 
 ## 4. 팀 소개
 
