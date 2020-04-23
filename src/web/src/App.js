@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { Route, Switch } from 'react-router-dom'
+import { ApolloProvider } from '@apollo/react-hooks'
+import { ApolloClient } from 'apollo-client'
+import { InMemoryCache } from 'apollo-cache-inmemory'
+import { createUploadLink } from 'apollo-upload-client'
+import MediaListPage from './pages/media-list-page'
+import MediaViewPage from './pages/media-view-page'
+import Header from './components/Header/header'
+import UploadPage from './pages/upload-page'
+import HomePage from './pages/home-page'
+import 'antd/dist/antd.css'
 
-function App() {
+const URI = 'http://localhost:9696/graphql'
+
+function App () {
+  const client = new ApolloClient({
+    link: createUploadLink({ uri: URI }),
+    cache: new InMemoryCache(),
+  })
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <ApolloProvider client={client}>
+      <Header/>
+      <Switch>
+        <Route exact path="/" component={HomePage}/>
+        <Route exact path="/search" component={MediaListPage}/>
+        <Route exact path="/watch" component={MediaViewPage}/>
+        <Route exact path="/upload" component={UploadPage}/>
+      </Switch>
+    </ApolloProvider>
+  )
 }
 
-export default App;
+export default App

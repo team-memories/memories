@@ -1,0 +1,15 @@
+name: imagesr
+channels:
+  - conda-forge
+dependencies:
+  - python=3.6.9
+#  - cudatoolkit=10.0
+  - psutil
+  - opencv=3.4.2
+  - pyyaml>=5.1
+  - pillow<7.0
+  - pip
+  - pip:
+    - ISR
+    - matplotlib
+    - scipy==1.1.0
