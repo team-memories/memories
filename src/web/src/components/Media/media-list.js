@@ -6,20 +6,20 @@ import MediaCard from './media-card'
 import gql from 'graphql-tag'
 
 const SearchQuery = gql`
-  query searchItems($title: String!, $location: String!, $yearTo: Int, $yearFrom: Int) {
-    search(title: $title, location: $location, yearTo: $yearTo, yearFrom: $yearFrom) {
-      author{
-        name
-        profileImgUrl
-      }
-      year
-      isProcessing
-      id
-      location
-      title
-      url
+    query searchItems($title: String!, $location: String!, $yearTo: Int, $yearFrom: Int) {
+        search(title: $title, location: $location, yearTo: $yearTo, yearFrom: $yearFrom) {
+            author{
+                name
+                profileImgUrl
+            }
+            year
+            isProcessing
+            id
+            location
+            title
+            url
+        }
     }
-  }
 `
 
 function MediaList (props) {
@@ -50,11 +50,11 @@ function MediaList (props) {
             }
             temp_media.author.name = (temp_media.author.name) ? temp_media.author.name : 'Unknown'
             temp_media.author.profileImgUrl = (temp_media.author.profileImgUrl) ? temp_media.author.profileImgUrl : ''
-            if(temp_media.isProcessing === true) return(
+            if (temp_media.isProcessing === true) return (
               <Col xs={24} md={12} lg={8} xl={8} key={temp_media.id}>
-                <Spin indicator={<LoadingOutlined style={{fontSize: 30, color: 'gray'}}/>}>
-                <MediaCard title={temp_media.title} location={temp_media.location} year={temp_media.year}
-                           author={temp_media.author} id={temp_media.id} url={temp_media.url}/>
+                <Spin indicator={<LoadingOutlined style={{ fontSize: 30, color: 'gray' }}/>}>
+                  <MediaCard title={temp_media.title} location={temp_media.location} year={temp_media.year}
+                             author={temp_media.author} id={temp_media.id} url={temp_media.url}/>
                 </Spin>
               </Col>
             )

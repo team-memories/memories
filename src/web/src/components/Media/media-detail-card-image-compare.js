@@ -2,7 +2,6 @@ import React from 'react'
 import ReactCompareImage from 'react-compare-image'
 import '../../font.css'
 
-
 // css
 const beforeAfterSlider = { width: '75%', margin: 'auto', paddingTop: 50, paddingBottom: 80 }
 
