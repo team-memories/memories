@@ -70,7 +70,6 @@ function UploadPage () {
         <UploadYearSelect year={year} onChange={onYearChange}/>
         <UploadPageDescription description={description} onChange={onDescriptionChange}/>
         <UploadSubmitButton onClick={handleSubmit}/>
-
       </Form>
     </div>
   )
