@@ -1,27 +1,19 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { Avatar, Card } from 'antd'
 
 function MediaCard(props){
-  const id = useState(props.id)
-  const url = useState([props.url])
-  const profileImgUrl = useState([props.author.profileImgUrl])
-  const title = useState([props.title])
-  const location = useState([props.location])
-  const year = useState(props.year)
-  const name = useState([props.author.name])
-  
   return (
-    <Link to={`/watch?id=${id}`}>
+    <Link to={`/watch?id=${props.id}`}>
       <Card
         style={{ height: '95%', borderRadius: 10 }}
         bordered={true}
         cover={<img style={{ width: '100%', borderTopLeftRadius: 10, borderTopRightRadius: 10 }}
-                    src={url} alt="thumbnail"/>}
+                    src={props.url} alt="thumbnail"/>}
       >
         <Card.Meta
           avatar={
-            <Avatar size={40} src={profileImgUrl} shape="circle"/>
+            <Avatar size={40} src={props.author.profileImgUrl} shape="circle"/>
           }
           description={
             <div style={{
@@ -38,12 +30,12 @@ function MediaCard(props){
               fontSize: '1.5em',
               color: 'black',
             }}>
-              {title}
+              {props.title}
             </span>
               <br/>
-              {name}
+              {props.author.name}
               <br/>
-              {year} / {location}
+              {props.year} / {props.location}
             </div>
           }
         />
