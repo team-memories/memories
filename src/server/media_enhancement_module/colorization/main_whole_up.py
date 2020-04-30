@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #tensorflow 1.2.0 is needed
 from __future__ import absolute_import
 from __future__ import division
@@ -7,13 +8,15 @@ import tensorflow as tf
 import numpy as np
 import utils_up as utils
 import myflowlib_up as flowlib
-import flow_warp_up as flow_warp_op
+# import flow_warp_up as flow_warp_op
+import tensorflow_addons as tfa
 import scipy.misc as sic
 import subprocess
 import network_up as net
 import loss_up as loss
 import argparse
 from sklearn.neighbors import NearestNeighbors
+tf.compat.v1.disable_eager_execution()
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--model", default='Result_whole', type=str, help="Model Name")
@@ -22,7 +25,7 @@ parser.add_argument("--save_freq", default=1, type=int, help="save frequency")
 parser.add_argument("--test_dir", default='./data/test/JPEGImages/480p/cows', type=str, help="Test dir path")
 parser.add_argument("--train_root", default="./data/train/JPEGImages/480p/", type=str, help="Test dir path")
 parser.add_argument("--test_root", default="./data/test/JPEGImages/480p/", type=str, help="Test dir path")
-parser.add_argument("--imgs_dir", default='../data/Imagenet', type=str, help="Test dir path")
+parser.add_argument("--imgs_dir", default='./data/Imagenet/val_256', type=str, help="Test dir path")
 parser.add_argument("--is_training", default=1, type=int, help="Training or test")
 parser.add_argument("--continue_training", default=1, type=int, help="Restore checkpoint")
 
@@ -46,7 +49,10 @@ os.environ["CUDA_VISIBLE_DEVICES"]=str(np.argmax( [int(x.split()[2]) for x in su
 
 
 def occlusion_mask(im0, im1, flow10):
-    warp_im0 = flow_warp_op.flow_warp(im0, flow10)
+#     warp_im0 = flow_warp_op(im0, flow10)
+    warp_im0 = tfa.image.dense_image_warp(im0, flow10, name='occlusion_warp')
+    # im0의 channel이 무조건 3이라는 가정하에
+    warp_im0.set_shape([None, None, None, 3])
     diff = tf.abs(im1 - warp_im0)
     mask = tf.reduce_max(input_tensor=diff, axis=3, keepdims=True)
     mask = tf.less(mask, 0.05)
@@ -100,7 +106,9 @@ c0=tf.compat.v1.placeholder(tf.float32,shape=[None,None,None,3])
 c1=tf.compat.v1.placeholder(tf.float32,shape=[None,None,None,3])
 
 
+# loss function
 lossDict = {}
+# objective function => 이것을 이용해서 loss를 구하거나 함.
 objDict={} 
 
 #   X0, X1: Gray frames
@@ -109,12 +117,21 @@ objDict={}
 with tf.compat.v1.variable_scope(tf.compat.v1.get_variable_scope()):
     X0, X1 = input_i[:,:,:,0:1], input_i[:,:,:,1:2]
     Y0, Y1 = input_target[:,:,:,0:3], input_target[:,:,:,3:6]
+    
+    # colorization network 구축
     with tf.compat.v1.variable_scope('individual'):
-        C0=net.VCN(utils.build(tf.tile(X0, [1,1,1,3])),reuse=False)
-        C1=net.VCN(utils.build(tf.tile(X1, [1,1,1,3])),reuse=True)        
+        C0=net.VCN(utils.build(tf.tile(X0, [1,1,1,3])),reuse=False, div_num=4)
+        C1=net.VCN(utils.build(tf.tile(X1, [1,1,1,3])),reuse=True, div_num=4)        
 
     objDict["mask"],_=occlusion_mask(Y0,Y1,input_flow_backward[:,:,:,0:2])
-    objDict["warped"]=flow_warp_op.flow_warp(C0,input_flow_backward[:,:,:,0:2])
+#     objDict["warped"]=flow_warp_op(C0,input_flow_backward[:,:,:,0:2])
+#     objDict["warped"] = tfa.image.dense_image_warp(C0, input_flow_backward[:,:,:,0:2], name="op_warp")
+
+    # objDict에 warped를 저장할 때, C0를 warp 시키는 것이기 때문에 C0의 output channel에 맞춰서 shape를 맞춰줘야 함.
+    # 혹시 dense_image_warp의 channel이 3이어야만 한다면, 학습에 영향을 주는 것 같다면 for문을 div_num만큼 돌려서 concat(axis=3)하고 set_shape하기
+    temp_warped = tfa.image.dense_image_warp(C0, input_flow_backward[:,:,:,0:2], name="op_warp")
+    temp_warped.set_shape([None, None, None, 3*div_num])
+    objDict["warped"]= temp_warped
 
     lossDict["RankDiv_im1"]=loss.RankDiverse_loss(C0, tf.tile(input_target[:,:,:,0:3], [1,1,1,div_num]),div_num)
     lossDict["RankDiv_im2"]=loss.RankDiverse_loss(C1, tf.tile(input_target[:,:,:,3:6], [1,1,1,div_num]),div_num)
@@ -137,22 +154,26 @@ with tf.compat.v1.variable_scope(tf.compat.v1.get_variable_scope()):
     cmap_C, warp_C0 = occlusion_mask(c0, c1, gray_flow_backward[:,:,:,0:2])
     cmap_X, warp_X0 = occlusion_mask(tf.tile(input_i[:,:,:,0:1], [1,1,1,3]), tf.tile(input_i[:,:,:,1:2],[1,1,1,3]),gray_flow_backward[:,:,:,0:2])
     low_conf_mask = tf.cast(tf.greater(cmap_X - cmap_C, 0), tf.float32)
-   
+    
     coarse_C1 = c1*(-low_conf_mask+1) + tf.tile(input_i[:,:,:,1:2],[1,1,1,3])*low_conf_mask
     ref_input = tf.concat([coarse_C1, warp_C0, c1, low_conf_mask, cmap_C, cmap_X], axis=3)
     # ref_input = tf.concat([warp_C0, c1, cmap_C, cmap_X, low_conf_mask], axis=3)
+    
     final_r1 = net.VCRN(ref_input)
     # temporal_g_loss = tf.reduce_mean(tf.abs(input_target[:,:,:,3:6]-final_r1)) + tf.reduce_mean(tf.multiply(tf.abs(c1-final_r1),-low_conf_mask+1))
     temporal_g_loss = tf.reduce_mean(input_tensor=tf.abs(input_target[:,:,:,3:6]-final_r1)) + \
                   tf.reduce_mean(input_tensor=tf.multiply(tf.abs(warp_C0-final_r1),low_conf_mask)) + \
                   tf.reduce_mean(input_tensor=tf.multiply(tf.abs(c1-final_r1),-low_conf_mask+1))
 
+# optimization 정의
 opt=tf.compat.v1.train.AdamOptimizer(learning_rate=0.0001).minimize(lossDict["total"],var_list=[var for var in tf.compat.v1.trainable_variables()])
 opt2=tf.compat.v1.train.AdamOptimizer(learning_rate=0.0001).minimize(0.2*lossDict["RankDiv_im1"],var_list=[var for var in tf.compat.v1.trainable_variables()])
 opt_refine=tf.compat.v1.train.AdamOptimizer(learning_rate=0.0001).minimize(temporal_g_loss,var_list=[var for var in tf.compat.v1.trainable_variables() if var.name.startswith('VCRN')])
 
 
-print([var for var in tf.compat.v1.trainable_variables() if var.name.startswith('VCRN')])
+# +
+# print([var for var in tf.compat.v1.trainable_variables() if var.name.startswith('VCRN')])
+# -
 
 saver=tf.compat.v1.train.Saver(max_to_keep=1000)
 sess.run([tf.compat.v1.global_variables_initializer()])
@@ -180,14 +201,14 @@ if is_training:
         input_list_flow_backward=[None]*num_train
         gray_list_flow_forward=[None]*num_train   
         gray_list_flow_backward=[None]*num_train
-        if os.path.isdir("%s/%04d"%(model,epoch)):
+        if os.path.isdir("%s/%04d"%(model,epoch)) and continue_training:
             continue
         cnt=0
         all_RD,all_Bi = 0., 0.
-        #Images
-        for id in np.random.permutation(1431167):#1431167
+        #Imagenet 데이터 이용해서 bilateral + diversity를 훈련시킴
+        for id in np.random.permutation(31500):
             st=time.time()
-            color_image=np.float32(scipy.misc.imread("%s/%06d.jpg"%(imgs_dir, id+1)))/255.0
+            color_image=np.float32(scipy.misc.imread("%s/Places365_val_%08d.jpg"%(imgs_dir, id+1)))/255.0
             if len(color_image.shape)==2:
                 continue
             h=color_image.shape[0]//32*32
@@ -209,7 +230,7 @@ if is_training:
             if cnt>=5000:
                 break
 
-        # Video VCN
+        # Video VCN(Video Colorization Network)
         cnt=0
         all_D1, all_D2, all_B1, all_B2, all_T, all_loss = 0,0,0,0,0,0
         for id in np.random.permutation(num_train):
@@ -241,7 +262,7 @@ if is_training:
                     out_loss["Bilateral_im1"], all_B1/cnt, out_loss["Bilateral_im2"], all_B2/cnt,\
                     out_loss["temporal"], all_T/cnt))
 
-            # Video Refine
+            # Video Refinement network
             if epoch > 0:
                 _, _, gray_list_flow_forward[id], gray_list_flow_backward[id] = prepare_input_w_flow(train_low[id], num_frames=num_frame)
                 _, out_loss, final_C1 = sess.run([opt_refine, temporal_g_loss, final_r1],\

@@ -15,3 +15,4 @@ dependencies:
     - scipy==1.1.0
     - requests    
     - pypng
+    - tensorflow-addons==0.6.0
