@@ -1,42 +1,33 @@
-scalar Upload
-
 type Query {
-    # Beta version
-    media(_id: ID!): Media
-    search(title: String, location: String, yearFrom: Int, yearTo: Int): [Media]!
-
-    ### Production ready phase ###
+    media(id: ID!): Media!
     """
-    Not-implemented yet.
+    queryStr: 검색어. title, description 등 다양한 정보를 대상으로 검색하기 위해.
     """
-    user(_id: ID!): User
-    """
-    Not-implemented yet.
-    """
+    search(queryStr: String, location: String, yearFrom: Int, yearTo: Int): [Media]!
+    user(id: ID!): User!
     myMedia: [Media]!
-    ##############################
 }
 
 type Mutation {
-    # Beta version
     uploadMedia(media: Upload!, title: String!, location: String!, year: Int!): Media
-    deleteMedia(_id: ID!): Media
+    deleteMedia(id: ID!): Media
 
-    ### Production ready phase ###
-    """
-    Not-implemented yet.
-    """
     signUp(email: String!, password: String!, name: String!): User!
-    """
-    Not-implemented yet.
-    """
     signIn(email: String!, password: String!): User!
-    ##############################
+}
+
+enum Category {
+    City
+    Nature
+    """ 사물 """
+    Object
 }
 
 interface Media {
     id: ID!
     title: String
+    category: Category
+    thumbnailUrl: String!
     originalUrl: String!
     """
     미디어 파일이 저장되어 있는 주소
@@ -51,13 +42,7 @@ interface Media {
     완료되어서 미디어 조회가 가능하다면 False
     """
     isProcessing: Boolean
-
-    ### Production ready phase ###
-    """
-    Not-implemented yet.
-    """
     comments: [Comment]
-    ##############################
 }
 
 """
@@ -69,6 +54,8 @@ interface Media {
 type Photo implements Media {
     id: ID!
     title: String
+    category: Category
+    thumbnailUrl: String!
     originalUrl: String!
     """
     미디어 파일이 저장되어 있는 주소
@@ -83,18 +70,14 @@ type Photo implements Media {
     완료되어서 미디어 조회가 가능하다면 False
     """
     isProcessing: Boolean
-
-    ### Production ready phase ###
-    """
-    Not-implemented yet.
-    """
     comments: [Comment]
-    ##############################
 }
 
 type Video implements Media {
     id: ID!
     title: String
+    category: Category
+    thumbnailUrl: String!
     originalUrl: String!
     """
     미디어 파일이 저장되어 있는 주소
@@ -103,20 +86,13 @@ type Video implements Media {
     author: User
     location: String
     year: Int
-
     description: String
     """
     서버에서 미디어 파일의 변환 및 업로드 작업이 진행중이라면 True
     완료되어서 미디어 조회가 가능하다면 False
     """
     isProcessing: Boolean
-
-    ### Production ready phase ###
-    """
-    Not-implemented yet.
-    """
     comments: [Comment]
-    ##############################
 }
 
 type User {
@@ -128,20 +104,9 @@ type User {
     email: String
     name: String
     profileImgUrl: String
-
-
-    ### Production ready phase ###
-    """
-    Not-implemented yet.
-    """
-    myMedia: [Media]
-    ##############################
+    myMedia: [Media]!
 }
 
-### Production ready phase ###
-"""
-Not-implemented yet.
-"""
 type Comment {
     id: ID!
     author: User
@@ -150,4 +115,3 @@ type Comment {
     """
     body: String
 }
-##############################
