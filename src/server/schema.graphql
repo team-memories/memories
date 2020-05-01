@@ -1,9 +1,14 @@
 type Query {
     media(id: ID!): Media!
-    """
-    queryStr: 검색어. title, description 등 다양한 정보를 대상으로 검색하기 위해.
-    """
-    search(queryStr: String, location: String, yearFrom: Int, yearTo: Int): [Media]!
+    """미디어 검색"""
+    search(
+        """
+        queryStr: 검색어. title, description, category 등 다양한 정보를 대상으로 검색하기 위해.
+        """
+        queryStr: String,
+        location: String,
+        yearFrom: Int,
+        yearTo: Int): [Media]!
     user(id: ID!): User!
     myMedia: [Media]!
 }
@@ -17,10 +22,10 @@ type Mutation {
 }
 
 enum Category {
-    City
-    Nature
-    """ 사물 """
-    Object
+    CITY
+    NATURE
+    """ 물건 """
+    OBJECT
 }
 
 interface Media {
