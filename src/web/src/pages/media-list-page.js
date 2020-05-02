@@ -1,6 +1,7 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom'
 import MediaList from '../components/Media/media-list'
+import Header from '../components/Header/header'
 
 function useQueryParam () {
   return new URLSearchParams(useLocation().search)
@@ -19,12 +20,15 @@ function MediaListPage () {
     yearTo = parseInt(query.get('yearTo'))
   }
   return (
-    <MediaList
-      title={title}
-      location={location}
-      yearFrom={yearFrom}
-      yearTo={yearTo}
-    />
+    <div>
+      <Header/>
+      <MediaList
+        title={title}
+        location={location}
+        yearFrom={yearFrom}
+        yearTo={yearTo}
+      />
+    </div>
   )
 }
 
