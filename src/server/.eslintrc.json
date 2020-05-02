@@ -14,5 +14,6 @@
     "plugin:prettier/recommended"
   ],
   "rules": {
+    "require-jsdoc": "off"
   }
 }
