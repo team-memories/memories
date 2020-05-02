@@ -1,34 +1,47 @@
-type Query {
+const { gql } = require("apollo-server");
+
+const typeDefs = gql`
+  type Query {
     media(id: ID!): Media!
-    """미디어 검색"""
+    """
+    미디어 검색
+    """
     search(
-        """
-        queryStr: 검색어. title, description, category 등 다양한 정보를 대상으로 검색하기 위해.
-        """
-        queryStr: String,
-        location: String,
-        yearFrom: Int,
-        yearTo: Int): [Media]!
+      """
+      queryStr: 검색어. title, description, category 등 다양한 정보를 대상으로 검색하기 위해.
+      """
+      queryStr: String
+      location: String
+      yearFrom: Int
+      yearTo: Int
+    ): [Media]!
     user(id: ID!): User!
     myMedia: [Media]!
-}
+  }
 
-type Mutation {
-    uploadMedia(media: Upload!, title: String!, location: String!, year: Int!): Media
+  type Mutation {
+    uploadMedia(
+      media: Upload!
+      title: String!
+      location: String!
+      year: Int!
+    ): Media
     deleteMedia(id: ID!): Media
 
     signUp(email: String!, password: String!, name: String!): User!
     signIn(email: String!, password: String!): User!
-}
+  }
 
-enum Category {
+  enum Category {
     CITY
     NATURE
-    """ 물건 """
+    """
+    물건
+    """
     OBJECT
-}
+  }
 
-interface Media {
+  interface Media {
     id: ID!
     title: String
     category: Category
@@ -48,15 +61,15 @@ interface Media {
     """
     isProcessing: Boolean
     comments: [Comment]
-}
+  }
 
-"""
-현재로선, Photo type과 Video type간의 다른 점은 없다.
-특정 field에서 Media interface을 반환할 시
-실제로 반환하는 type이 Photo이냐 Video냐에 따라
-클라이언트 단에서 다르게 렌더링하기 위해 구현하였다.
-"""
-type Photo implements Media {
+  """
+  현재로선, Photo type과 Video type간의 다른 점은 없다.
+  특정 field에서 Media interface을 반환할 시
+  실제로 반환하는 type이 Photo이냐 Video냐에 따라
+  클라이언트 단에서 다르게 렌더링하기 위해 구현하였다.
+  """
+  type Photo implements Media {
     id: ID!
     title: String
     category: Category
@@ -76,9 +89,9 @@ type Photo implements Media {
     """
     isProcessing: Boolean
     comments: [Comment]
-}
+  }
 
-type Video implements Media {
+  type Video implements Media {
     id: ID!
     title: String
     category: Category
@@ -98,9 +111,9 @@ type Video implements Media {
     """
     isProcessing: Boolean
     comments: [Comment]
-}
+  }
 
-type User {
+  type User {
     """
     일반적 사이트 로그인에 사용되는 그 아이디가 아니다.
     유저의 고유 번호를 나타낸다.
@@ -110,13 +123,16 @@ type User {
     name: String
     profileImgUrl: String
     myMedia: [Media]!
-}
+  }
 
-type Comment {
+  type Comment {
     id: ID!
     author: User
     """
     댓글의 내용
     """
     body: String
-}
+  }
+`;
+
+module.exports = typeDefs;
