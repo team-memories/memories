@@ -9,7 +9,6 @@ import { useHistory } from 'react-router-dom'
 function SearchBar () {
   const defaultYearFrom = 1900
   const defaultYearTo = 2099
-
   const [title, setTitle] = useState('')
   const [location, setLocation] = useState('대한민국')
   const [yearFrom, setYearFrom] = useState(defaultYearFrom)

@@ -1,40 +1,37 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Avatar, List, Typography } from 'antd'
 import MediaDetailDeleteButton from './media-detail-delete-button'
 import ImageCompare from './media-detail-card-image-compare'
 
-class MediaDetailCard extends Component {
-  MediaInfo = () => {
-    return (
-      <List>
-        <List.Item
-          actions={[<MediaDetailDeleteButton mediaId={this.props.media.id}/>]}
-        >
-          <List.Item.Meta
-            avatar={<Avatar size={50} src={this.props.media.author.profileImgUrl}/>}
-            title={this.props.media.title}
-            description={this.props.media.author.name}
-            style={{ textAlign: 'left' }}
-          />
-          <Typography>{this.props.media.location}<br/>{this.props.media.year}</Typography>
+function MediaInfo (props) {
+  return (
+    <List>
+      <List.Item
+        actions={[<MediaDetailDeleteButton mediaId={props.media.id}/>]}
+      >
+        <List.Item.Meta
+          avatar={<Avatar size={50} src={props.media.author.profileImgUrl}/>}
+          title={props.media.title}
+          description={props.media.author.name}
+          style={{ textAlign: 'left' }}
+        />
+        <Typography>{props.media.location}<br/>{props.media.year}</Typography>
 
-        </List.Item>
-        <List.Item>
-          {this.props.media.description}
-        </List.Item>
-      </List>
-    )
-  }
+      </List.Item>
+      <List.Item>
+        {props.media.description}
+      </List.Item>
+    </List>
+  )
+}
 
-  render () {
-    return (
-      <div>
-        <ImageCompare url={this.props.media.url} originalUrl={this.props.media.originalUrl}/>
-        <this.MediaInfo/>
-      </div>
-    )
-  }
-
+function MediaDetailCard (props) {
+  return (
+    <div>
+      <ImageCompare url={props.media.url} originalUrl={props.media.originalUrl}/>
+      <MediaInfo media={props.media}/>
+    </div>
+  )
 }
 
 export default MediaDetailCard

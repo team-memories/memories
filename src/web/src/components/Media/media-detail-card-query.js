@@ -6,21 +6,21 @@ import { Spin } from 'antd'
 import ErrorView from '../error-view'
 
 const GET_MEDIA = gql`
-  query ($mediaId: ID!){
-    media(_id: $mediaId){
-      id
-      title
-      originalUrl
-      url
-      location
-      year
-      description
-      author{
-        name
-        profileImgUrl
-      }
+    query ($mediaId: ID!){
+        media(_id: $mediaId){
+            id
+            title
+            originalUrl
+            url
+            location
+            year
+            description
+            author{
+                name
+                profileImgUrl
+            }
+        }
     }
-  }
 `
 
 function MediaDetailCardQuery (props) {
