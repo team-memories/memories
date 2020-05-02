@@ -29,7 +29,7 @@ function MediaDetailCard (props) {
   return (
     <div>
       <ImageCompare url={props.media.url} originalUrl={props.media.originalUrl}/>
-      <MediaInfo/>
+      <MediaInfo media={props.media}/>
     </div>
   )
 }
