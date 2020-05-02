@@ -8,6 +8,7 @@ import UploadPlaceSelect from '../components/UploadPage/upload-place-select'
 import UploadSubmitButton from '../components/UploadPage/upload-submit-button'
 import UploadPageDescription from '../components/UploadPage/upload-description'
 import DropzoneBox from '../components/UploadPage/dropzone-box'
+import Header from '../components/Header/header'
 
 const UPLOAD_MEDIA = gql`
     mutation ($media: Upload!, $title: String!, $location: String!, $year: Int!) {
@@ -62,15 +63,18 @@ function UploadPage () {
   }
 
   return (
-    <div style={{ maxWidth: '700px', margin: '2rem auto' }}>
-      <Form>
-        <DropzoneBox onChange={onMediaChange} mediaName={media.name}/>
-        <UploadPageTitle title={title} onChange={onTitleChange}/>
-        <UploadPlaceSelect location={location} onChange={onLocationChange}/>
-        <UploadYearSelect year={year} onChange={onYearChange}/>
-        <UploadPageDescription description={description} onChange={onDescriptionChange}/>
-        <UploadSubmitButton onClick={handleSubmit}/>
-      </Form>
+    <div>
+      <Header/>
+      <div style={{ maxWidth: '700px', margin: '2rem auto' }}>
+        <Form>
+          <DropzoneBox onChange={onMediaChange} mediaName={media.name}/>
+          <UploadPageTitle title={title} onChange={onTitleChange}/>
+          <UploadPlaceSelect location={location} onChange={onLocationChange}/>
+          <UploadYearSelect year={year} onChange={onYearChange}/>
+          <UploadPageDescription description={description} onChange={onDescriptionChange}/>
+          <UploadSubmitButton onClick={handleSubmit}/>
+        </Form>
+      </div>
     </div>
   )
 }
