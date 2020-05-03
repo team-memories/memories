@@ -14,9 +14,11 @@ function HeaderIcons () {
         </Link>
       </Col>
       <Col>
-        <Button type="link">
-          <UserOutlined style={{ fontSize: '30px', color: '#949494' }}/>
-        </Button>
+        <Link to={'/login'}>
+          <Button type="link">
+            <UserOutlined style={{ fontSize: '30px', color: '#949494' }}/>
+          </Button>
+        </Link>
       </Col>
     </Row>
   )

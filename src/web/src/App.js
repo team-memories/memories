@@ -9,6 +9,7 @@ import MediaViewPage from './pages/media-view-page'
 import Header from './components/Header/header'
 import UploadPage from './pages/upload-page'
 import HomePage from './pages/home-page'
+import LoginPage from './pages/login-page'
 import 'antd/dist/antd.css'
 
 const URI = 'http://203.246.113.62:4000/'
@@ -27,6 +28,7 @@ function App () {
         <Route exact path="/search" component={MediaListPage}/>
         <Route exact path="/watch" component={MediaViewPage}/>
         <Route exact path="/upload" component={UploadPage}/>
+        <Route exact path="/login" component={LoginPage}/>
       </Switch>
     </ApolloProvider>
   )
