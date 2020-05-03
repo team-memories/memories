@@ -4,7 +4,11 @@ const CACHE_TTL = 17;
 
 class MediaDB extends SQLDataSource {
   async getAttribute(attrName, id) {
-    const result = await this.knex.select(attrName).from("media").where({ id });
+    const result = await this.knex
+      .select(attrName)
+      .from("media")
+      .where({ id })
+      .cache(CACHE_TTL);
     return result[0][attrName];
   }
   async searchMedia({
@@ -22,7 +26,8 @@ class MediaDB extends SQLDataSource {
           .orWhere("category", "like", `%${queryStr}%`);
       })
       .andWhere("location", "like", `${location}%`)
-      .andWhereBetween("year", [yearFrom, yearTo]);
+      .andWhereBetween("year", [yearFrom, yearTo])
+      .cache(CACHE_TTL);
   }
 }
 class UserDB extends SQLDataSource {
