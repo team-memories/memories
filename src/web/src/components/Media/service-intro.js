@@ -6,8 +6,8 @@ import '../../font.css'
 const { Title } = Typography
 
 // images
-const before = 'https://github.com/kookmin-sw/capstone-2020-12/blob/serviceIntro/src/web/src/Image/church-4911852_640.jpg?raw=true'
-const after = 'https://github.com/kookmin-sw/capstone-2020-12/blob/serviceIntro/src/web/src/Image/church-4911852_1920.jpg?raw=true'
+const before = 'https://github.com/kookmin-sw/capstone-2020-12/blob/master/src/web/src/Image/church-4911852_640.jpg?raw=true'
+const after = 'https://github.com/kookmin-sw/capstone-2020-12/blob/master/src/web/src/Image/church-4911852_1920.jpg?raw=true'
 const logo = 'https://github.com/kookmin-sw/capstone-2020-12/blob/master/doc/image/logo_white.png?raw=true'
 
 // css

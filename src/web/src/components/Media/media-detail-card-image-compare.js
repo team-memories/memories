@@ -3,7 +3,7 @@ import ReactCompareImage from 'react-compare-image'
 import '../../font.css'
 
 // css
-const beforeAfterSlider = { width: '75%', margin: 'auto', paddingTop: 50, paddingBottom: 80 }
+const beforeAfterSlider = { width: '75%', margin: 'auto', paddingTop: 50, paddingBottom: 50 }
 
 function ImageCompare (props) {
   const before = props.originalUrl
@@ -12,7 +12,11 @@ function ImageCompare (props) {
     <div>
       {/* before after slide */}
       <div style={beforeAfterSlider}>
-        <ReactCompareImage leftImage={before} rightImage={after}/>
+        <ReactCompareImage
+          leftImage={before}
+          rightImage={after}
+          sliderPositionPercentage='0.07'
+        />
       </div>
     </div>
   )

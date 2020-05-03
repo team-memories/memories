@@ -1,16 +1,11 @@
 import { Cascader, Form } from 'antd'
 import React from 'react'
-import { LocationOptions } from '../constants'
-
-const layout = {
-  labelCol: { span: 3 },
-  wrapperCol: { span: 16 },
-}
+import { LocationOptions, Layout } from '../constants'
 
 function UploadPlaceSelect (props) {
   return (
     <Form.Item
-      {...layout}
+      {...Layout}
       label="Location"
     >
       <Cascader

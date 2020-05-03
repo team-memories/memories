@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Form } from 'antd'
 
 const tailLayout = {
-  wrapperCol: { offset: 3, span: 16 },
+  wrapperCol: { offset: 4, span: 16 },
 }
 
 function UploadSubmitButton (props) {
