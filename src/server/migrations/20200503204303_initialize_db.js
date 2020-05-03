@@ -2,6 +2,7 @@ exports.up = async function (knex) {
   await knex.schema.createTable("user", function (table) {
     table.increments("id").unsigned().primary();
     table.string("email").notNullable();
+    table.string("password").notNullable();
     table.string("name").notNullable();
     table.text("profile_img_url");
   });
