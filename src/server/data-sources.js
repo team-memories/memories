@@ -7,6 +7,23 @@ class MediaDB extends SQLDataSource {
     const result = await this.knex.select(attrName).from("media").where({ id });
     return result[0][attrName];
   }
+  async searchMedia({
+    queryStr = "",
+    location = "대한민국",
+    yearFrom = 1900,
+    yearTo = 2100,
+  }) {
+    return this.knex
+      .from("media")
+      .where(function () {
+        // eslint-disable-next-line no-invalid-this
+        this.where("title", "like", `%${queryStr}%`)
+          .orWhere("description", "like", `%${queryStr}%`)
+          .orWhere("category", "like", `%${queryStr}%`);
+      })
+      .andWhere("location", "like", `${location}%`)
+      .andWhereBetween("year", [yearFrom, yearTo]);
+  }
 }
 class UserDB extends SQLDataSource {
   async getAttribute(attrName, id) {
