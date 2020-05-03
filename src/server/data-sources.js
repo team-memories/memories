@@ -3,19 +3,30 @@ const { SQLDataSource } = require("datasource-sql");
 const CACHE_TTL = 17;
 
 class MediaDB extends SQLDataSource {
-  getMedia(id) {}
+  async getAttribute(attrName, id) {
+    const result = await this.knex.select(attrName).from("media").where({ id });
+    return result[0][attrName];
+  }
 }
 class UserDB extends SQLDataSource {
-  getUser(id) {
+  async getAttribute(attrName, id) {
     return this.knex
-      .select("*")
+      .select(attrName)
       .from("user")
-      .where({ id: id })
+      .where({ id })
       .cache(CACHE_TTL)[0];
   }
 }
 
-class CommentDB extends SQLDataSource {}
+class CommentDB extends SQLDataSource {
+  async getAttribute(attrName, id) {
+    return this.knex
+      .select(attrName)
+      .from("comment")
+      .where({ id })
+      .cache(CACHE_TTL).rows[0];
+  }
+}
 
 module.exports = {
   MediaDB,

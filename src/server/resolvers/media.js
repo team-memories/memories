@@ -1,6 +1,8 @@
-const mediaResolvers = {
+const defaultAttributeResolverMaker = require("../utils/default-attribute-resolver-maker");
+
+const mediaTypeResolvers = {
   __resolveType: async ({ id }, { dataSources: { mediaDB } }) => {
-    const type = await mediaDB.getAttributeOfMedia("type", id);
+    const type = await mediaDB.getAttribute("type", id);
     switch (type) {
       case "PHOTO":
         return "Photo";
@@ -13,9 +15,51 @@ const mediaResolvers = {
         );
     }
   },
-  title: async ({ id }, args, { dataSources: { mediaDB } }) => {},
+};
+
+const commentResolver = async () => {
+  // TODO
+};
+
+const videoTypeResolvers = {
+  ...defaultAttributeResolverMaker(
+    [
+      "title",
+      "category",
+      "thumbnailUrl",
+      "originalUrl",
+      "url",
+      "author",
+      "location",
+      "year",
+      "description",
+      "isProcessing",
+    ],
+    "mediaDB"
+  ),
+  comments: commentResolver,
+};
+const photoTypeResolvers = {
+  ...defaultAttributeResolverMaker(
+    [
+      "title",
+      "category",
+      "thumbnailUrl",
+      "originalUrl",
+      "url",
+      "author",
+      "location",
+      "year",
+      "description",
+      "isProcessing",
+    ],
+    "mediaDB"
+  ),
+  comments: commentResolver,
 };
 
 module.exports = {
-  mediaResolvers,
+  media: mediaTypeResolvers,
+  video: videoTypeResolvers,
+  photo: photoTypeResolvers,
 };
