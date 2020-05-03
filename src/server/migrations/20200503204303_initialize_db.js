@@ -15,9 +15,9 @@ exports.up = async function (knex) {
     table.text("thumbnailUrl").notNullable();
     table.text("originalUrl").notNullable();
     table.text("url").notNullable();
-    table.integer("author_id").unsigned().notNullable();
+    table.integer("authorId").unsigned().notNullable();
     table
-      .foreign("author_id")
+      .foreign("authorId")
       .references("id")
       .inTable("user")
       .onUpdate("CASCADE")
@@ -31,16 +31,16 @@ exports.up = async function (knex) {
   await knex.schema.createTable("comment", function (table) {
     table.increments("id").unsigned().primary();
     table.text("body");
-    table.integer("media_id").unsigned().notNullable();
+    table.integer("mediaId").unsigned().notNullable();
     table
-      .foreign("media_id")
+      .foreign("mediaId")
       .references("id")
       .inTable("media")
       .onUpdate("CASCADE")
       .onDelete("CASCADE");
-    table.integer("author_id").unsigned().notNullable();
+    table.integer("authorId").unsigned().notNullable();
     table
-      .foreign("author_id")
+      .foreign("authorId")
       .references("id")
       .inTable("user")
       .onUpdate("CASCADE")
