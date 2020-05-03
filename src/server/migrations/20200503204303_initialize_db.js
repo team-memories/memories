@@ -4,7 +4,7 @@ exports.up = async function (knex) {
     table.string("email").notNullable();
     table.string("password").notNullable();
     table.string("name").notNullable();
-    table.text("profile_img_url");
+    table.text("profileImgUrl");
   });
 
   await knex.schema.createTable("media", function (table) {
@@ -12,8 +12,8 @@ exports.up = async function (knex) {
     table.string("title").notNullable();
     table.enum("type", ["VIDEO", "PHOTO"]).notNullable();
     table.enum("category", ["CITY", "NATURE", "OBJECT"]).nullable();
-    table.text("thumbnail_url").notNullable();
-    table.text("original_url").notNullable();
+    table.text("thumbnailUrl").notNullable();
+    table.text("originalUrl").notNullable();
     table.text("url").notNullable();
     table.integer("author_id").unsigned().notNullable();
     table
@@ -25,7 +25,7 @@ exports.up = async function (knex) {
     table.string("location").notNullable();
     table.integer("year").notNullable();
     table.text("description").nullable();
-    table.boolean("is_processing").notNullable();
+    table.boolean("isProcessing").notNullable();
   });
 
   await knex.schema.createTable("comment", function (table) {
