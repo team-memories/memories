@@ -40,7 +40,7 @@ knex
     process.exit(1);
   })
   .then((result) => {
-    console.log(result[0].title);
+    console.log(result[0].name);
     console.log("Database connected");
   });
 
