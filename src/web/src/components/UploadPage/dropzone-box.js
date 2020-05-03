@@ -4,7 +4,7 @@ import { InboxOutlined } from '@ant-design/icons'
 import { Form } from 'antd'
 
 const layout = {
-  wrapperCol: { offset: 3, span: 16 },
+  wrapperCol: { offset: 4, span: 16 },
 }
 
 function DropzoneBox (props) {
@@ -23,7 +23,7 @@ function DropzoneBox (props) {
           {({ getRootProps, getInputProps }) => (
             <div
               style={{
-                width: '600px',
+                width: '750px',
                 height: '150px',
                 border: '1px dashed lightgray',
                 display: 'flex',

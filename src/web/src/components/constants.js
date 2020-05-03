@@ -433,3 +433,9 @@ export const LocationOptions = [
     ],
   },
 ]
+
+// upload-page-components
+export const Layout = {
+  labelCol: { span: 4 },
+  wrapperCol: { span: 16 },
+}

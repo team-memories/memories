@@ -10,7 +10,7 @@ function useQueryParm () {
 function MediaViewPage () {
   let query = useQueryParm()
   return (
-    <Row justify="center" style={{ paddingTop: '3rem' }}>
+    <Row justify="center" style={{ paddingTop: '2rem' }}>
       <Col span={18}>
         <MediaDetailCardQuery mediaId={query.get('id')}/>
       </Col>
