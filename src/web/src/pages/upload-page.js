@@ -63,17 +63,15 @@ function UploadPage (props) {
   }
   props.onChangeIsMediaView(window.location.pathname === "/watch")
   return (
-    <div>
-      <div style={{ maxWidth: '700px', margin: '2rem auto' }}>
-        <Form>
-          <DropzoneBox onChange={onMediaChange} mediaName={media.name}/>
-          <UploadPageTitle title={title} onChange={onTitleChange}/>
-          <UploadPlaceSelect location={location} onChange={onLocationChange}/>
-          <UploadYearSelect year={year} onChange={onYearChange}/>
-          <UploadPageDescription description={description} onChange={onDescriptionChange}/>
-          <UploadSubmitButton onClick={handleSubmit}/>
-        </Form>
-      </div>
+    <div style={{ maxWidth: '750px', margin: '4.5rem auto' }}>
+      <Form>
+        <DropzoneBox onChange={onMediaChange} mediaName={media.name}/>
+        <UploadPageTitle title={title} onChange={onTitleChange}/>
+        <UploadPlaceSelect location={location} onChange={onLocationChange}/>
+        <UploadYearSelect year={year} onChange={onYearChange}/>
+        <UploadPageDescription description={description} onChange={onDescriptionChange}/>
+        <UploadSubmitButton onClick={handleSubmit}/>
+      </Form>
     </div>
   )
 }

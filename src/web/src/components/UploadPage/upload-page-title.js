@@ -1,15 +1,11 @@
 import { Form, Input } from 'antd'
 import React from 'react'
-
-const layout = {
-  labelCol: { span: 3 },
-  wrapperCol: { span: 16 },
-}
+import { Layout } from '../constants'
 
 function UploadPageTitle (props) {
   return (
     <Form.Item
-      {...layout}
+      {...Layout}
       label="Title"
       name="title"
       rules={[{ required: false, message: 'title' }]}
