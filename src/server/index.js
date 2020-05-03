@@ -31,5 +31,7 @@ const server = new ApolloServer({
 });
 
 server.listen().then(({ url }) => {
-  console.log(`🚀  Server ready at ${url}`);
+  console.log(
+    "그 때 그 시간을 다시 생생하게, Memories.\n" + `Server is ready at: ${url}`
+  );
 });

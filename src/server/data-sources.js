@@ -1,8 +1,10 @@
 const { SQLDataSource } = require("datasource-sql");
 
-const CACHE_TTL = 2;
+const CACHE_TTL = 17;
 
-class MediaDB extends SQLDataSource {}
+class MediaDB extends SQLDataSource {
+  getMedia(id) {}
+}
 class UserDB extends SQLDataSource {
   getUser(id) {
     return this.knex
