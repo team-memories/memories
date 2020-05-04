@@ -3,12 +3,12 @@ import {Input, Button, Form} from 'antd'
 
 function LoginForm () {
   const onFinish = values => {
-    console.log('Success:', values);
-  };
+    console.log('Success:', values)
+  }
 
   const onFinishFailed = errorInfo => {
-    console.log('Failed:', errorInfo);
-  };
+    console.log('Failed:', errorInfo)
+  }
   return (
     <Form
     onFinish={onFinish}
