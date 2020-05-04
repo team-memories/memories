@@ -63,7 +63,13 @@ const server = new ApolloServer({
       return {};
     }
     const token = auth.replace("Bearer ", "");
-    const { userId } = jwt.verify(token, process.env.SECRET);
+    let userId;
+    try {
+      userId = jwt.verify(token, process.env.SECRET).userId;
+    } catch {
+      throw new Error("Invalid token");
+    }
+
     return {
       userId,
     };
