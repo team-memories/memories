@@ -4,7 +4,7 @@ import HeaderLogo from './header-logo'
 import SearchBar from '../SearchBar/search-bar'
 import HeaderIcons from './header-icons'
 
-function Header () {
+function Header (props) {
   return (
     <Layout>
     {/*TODO(gee05053) 반응형 세분화하기*/}
@@ -17,7 +17,7 @@ function Header () {
             <SearchBar/>
           </Col>
           <Col flex={1} style={{ marginTop: '7px' }}>
-            <HeaderIcons/>
+            <HeaderIcons email={"gee05053@gmail.com"}/>
           </Col>
         </Row>
       </Layout.Header>

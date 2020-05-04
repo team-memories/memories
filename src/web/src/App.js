@@ -10,6 +10,7 @@ import Header from './components/Header/header'
 import UploadPage from './pages/upload-page'
 import HomePage from './pages/home-page'
 import LoginPage from './pages/login-page'
+import UserPage from './pages/user-page'
 import 'antd/dist/antd.css'
 
 const URI = 'http://localhost:9696/graphql'
@@ -29,6 +30,7 @@ function App () {
         <Route exact path="/watch" component={MediaViewPage}/>
         <Route exact path="/upload" component={UploadPage}/>
         <Route exact path="/login" component={LoginPage}/>
+        <Route exact path="/user" component={UserPage}/>
       </Switch>
     </ApolloProvider>
   )
