@@ -58,6 +58,8 @@ module.exports = {
       authorId: userId,
       isProcessing: true,
     });
+    // TODO(yun-kwak): thumbnail 추출
+    // TODO(yun-kwak): 품질 향상 서비스 연결
   },
   deleteMedia: async (_, { id }) => {},
   signUp: async (_, { email, password, name }, { dataSources: { userDB } }) => {
