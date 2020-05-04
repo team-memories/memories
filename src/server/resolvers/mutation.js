@@ -61,7 +61,20 @@ module.exports = {
     // TODO(yun-kwak): thumbnail 추출
     // TODO(yun-kwak): 품질 향상 서비스 연결
   },
-  deleteMedia: async (_, { id }) => {},
+  deleteMedia: async (_, { id }, { userId, dataSources: { mediaDB } }) => {
+    const media = await mediaDB.getMedia(id);
+    if (!userId) {
+      throw new Error("Login required");
+    }
+    if (!media) {
+      throw new Error("Media not found");
+    }
+    if (userId !== media.authorId) {
+      throw new Error("You are not the author of the media");
+    }
+    await mediaDB.deleteMedia(id);
+    return media;
+  },
   signUp: async (_, { email, password, name }, { dataSources: { userDB } }) => {
     const hashedPassword = await bcrypt.hash(password, 3);
     const user = await userDB.createUser({

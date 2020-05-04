@@ -1,9 +1,14 @@
 const defaultAttributeResolverMaker = require("../utils/default-attribute-resolver-maker");
 
 const mediaTypeResolvers = {
-  __resolveType: async ({ id }, { dataSources: { mediaDB } }) => {
-    const type = await mediaDB.getAttribute("type", id);
-    switch (type) {
+  __resolveType: async ({ id, type }, { dataSources: { mediaDB } }) => {
+    let mediaType;
+    if (type) {
+      mediaType = type;
+    } else {
+      mediaType = await mediaDB.getAttribute("type", id);
+    }
+    switch (mediaType) {
       case "PHOTO":
         return "Photo";
       case "VIDEO":

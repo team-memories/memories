@@ -1,8 +1,16 @@
 const { SQLDataSource } = require("datasource-sql");
 
-const CACHE_TTL = 17;
+const CACHE_TTL = 2;
 
 class MediaDB extends SQLDataSource {
+  async getMedia(id) {
+    return await this.knex
+      .select("*")
+      .first()
+      .from("media")
+      .where({ id })
+      .cache(CACHE_TTL);
+  }
   async getAttribute(attrName, id) {
     const result = await this.knex
       .select(attrName)
@@ -33,6 +41,10 @@ class MediaDB extends SQLDataSource {
   async createMedia(args) {
     const result = await this.knex.insert(args).into("media").returning("*");
     return result[0];
+  }
+  async deleteMedia(id) {
+    await this.knex("media").where({ id }).del();
+    return true;
   }
 }
 class UserDB extends SQLDataSource {
