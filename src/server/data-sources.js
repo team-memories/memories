@@ -1,6 +1,6 @@
 const { SQLDataSource } = require("datasource-sql");
 
-const CACHE_TTL = 2;
+const CACHE_TTL = 3;
 
 class MediaDB extends SQLDataSource {
   async getMedia(id) {
@@ -45,6 +45,11 @@ class MediaDB extends SQLDataSource {
   async deleteMedia(id) {
     await this.knex("media").where({ id }).del();
     return true;
+  }
+  async getMediaByAuthorId(id) {
+    // id: 유저의 고유 id
+    // 해당 유저가 올린 모든 미디어를 반환한다.
+    return this.knex("media").where({ authorId: id }).cache(CACHE_TTL);
   }
 }
 class UserDB extends SQLDataSource {
