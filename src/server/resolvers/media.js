@@ -17,8 +17,8 @@ const mediaTypeResolvers = {
   },
 };
 
-const commentResolver = async () => {
-  // TODO
+const commentResolver = async ({ id }, _, { dataSources: { commentDB } }) => {
+  return await commentDB.getCommentIdsByMediaId(id);
 };
 
 const videoTypeResolvers = {

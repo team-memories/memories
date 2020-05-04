@@ -3,7 +3,7 @@ const defaultAttributeResolverMaker = require("../utils/default-attribute-resolv
 module.exports = {
   ...defaultAttributeResolverMaker(
     ["email", "name", "profileImgUrl"],
-    "commentDB"
+    "userDB"
   ),
   myMedia: async () => {
     // TODO

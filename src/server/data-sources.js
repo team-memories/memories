@@ -6,10 +6,11 @@ class MediaDB extends SQLDataSource {
   async getAttribute(attrName, id) {
     const result = await this.knex
       .select(attrName)
+      .first()
       .from("media")
       .where({ id })
       .cache(CACHE_TTL);
-    return result[0][attrName];
+    return result[attrName];
   }
   async searchMedia({
     queryStr = "",
@@ -34,10 +35,11 @@ class UserDB extends SQLDataSource {
   async getAttribute(attrName, id) {
     const result = await this.knex
       .select(attrName)
+      .first()
       .from("user")
       .where({ id })
       .cache(CACHE_TTL);
-    return result[0][attrName];
+    return result[attrName];
   }
   async createUser({ email, password, name }) {
     const result = await this.knex
@@ -47,18 +49,30 @@ class UserDB extends SQLDataSource {
     return result[0];
   }
   async getUserByEmail(email) {
-    const result = await this.knex.select("*").from("user").where({ email });
-    return result[0];
+    return this.knex.select("*").first().from("user").where({ email });
   }
 }
 
 class CommentDB extends SQLDataSource {
   async getAttribute(attrName, id) {
-    return this.knex
+    const result = await this.knex
       .select(attrName)
       .from("comment")
       .where({ id })
-      .cache(CACHE_TTL).rows[0];
+      .cache(CACHE_TTL);
+    return result[0][attrName];
+  }
+  async getCommentIdsByAuthorId(id) {
+    return await this.knex
+      .from("comment")
+      .where({ authorId: id })
+      .cache(CACHE_TTL);
+  }
+  async getCommentIdsByMediaId(id) {
+    return await this.knex
+      .from("comment")
+      .where({ mediaId: id })
+      .cache(CACHE_TTL);
   }
 }
 
