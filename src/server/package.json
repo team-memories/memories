@@ -5,9 +5,9 @@
   "repository": "https://github.com/kookmin-sw/capstone-2020-12/src/server",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/index.js",
-    "start": "node src/index.js",
-    "start:ci": "node src/index.js",
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "start:ci": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
