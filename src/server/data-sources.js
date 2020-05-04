@@ -30,6 +30,10 @@ class MediaDB extends SQLDataSource {
       .andWhereBetween("year", [yearFrom, yearTo])
       .cache(CACHE_TTL);
   }
+  async createMedia(args) {
+    const result = await this.knex.insert(args).into("media").returning("*");
+    return result[0];
+  }
 }
 class UserDB extends SQLDataSource {
   async getAttribute(attrName, id) {
