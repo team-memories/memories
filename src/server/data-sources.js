@@ -32,11 +32,23 @@ class MediaDB extends SQLDataSource {
 }
 class UserDB extends SQLDataSource {
   async getAttribute(attrName, id) {
-    return this.knex
+    const result = await this.knex
       .select(attrName)
       .from("user")
       .where({ id })
-      .cache(CACHE_TTL)[0];
+      .cache(CACHE_TTL);
+    return result[0][attrName];
+  }
+  async createUser({ email, password, name }) {
+    const result = await this.knex
+      .insert({ email, password, name })
+      .into("user")
+      .returning("*");
+    return result[0];
+  }
+  async getUserByEmail(email) {
+    const result = await this.knex.select("*").from("user").where({ email });
+    return result[0];
   }
 }
 

@@ -3,12 +3,15 @@ const { ApolloServer } = require("apollo-server");
 const typeDefs = require("./schema");
 const { MediaDB, CommentDB, UserDB } = require("./data-sources");
 const query = require("./resolvers/query");
+const mutation = require("./resolvers/mutation");
 const { media, photo, video } = require("./resolvers/media");
 const user = require("./resolvers/user");
 const comment = require("./resolvers/comment");
+const jwt = require("jsonwebtoken");
 
 const resolvers = {
   Query: query,
+  Mutation: mutation,
   Media: media,
   Photo: photo,
   Video: video,
@@ -54,6 +57,17 @@ const commentDB = new CommentDB(knexConfig);
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  context: ({ req }) => {
+    const auth = req.get("Authorization");
+    if (!auth) {
+      return {};
+    }
+    const token = auth.replace("Bearer ", "");
+    const { userId } = jwt.verify(token, process.env.SECRET);
+    return {
+      userId,
+    };
+  },
   dataSources: () => ({ mediaDB, userDB, commentDB }),
 });
 

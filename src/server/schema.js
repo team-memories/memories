@@ -28,8 +28,13 @@ const typeDefs = gql`
     ): Media
     deleteMedia(id: ID!): Media
 
-    signUp(email: String!, password: String!, name: String!): User!
-    signIn(email: String!, password: String!): User!
+    signUp(email: String!, password: String!, name: String!): AuthPayload!
+    signIn(email: String!, password: String!): AuthPayload!
+  }
+
+  type AuthPayload {
+    token: String!
+    user: User!
   }
 
   enum Category {
