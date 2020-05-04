@@ -5,7 +5,7 @@ module.exports = {
     ["email", "name", "profileImgUrl"],
     "userDB"
   ),
-  myMedia: async () => {
-    // TODO
+  myMedia: async ({ id }, _, { dataSources: { mediaDB } }) => {
+    return mediaDB.getMediaByAuthorId(id);
   },
 };
