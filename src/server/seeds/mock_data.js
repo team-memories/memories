@@ -312,8 +312,8 @@ exports.seed = async function (knex) {
   await knex("media").insert([
     {
       description: "1980년 경주",
-      originalUrl: "/media/original/경주_1980년.jpg",
-      url: "/media/converted/경주_1980년.png",
+      originalUrl: process.env.URL + ":8080/media/original/경주_1980년.jpg",
+      url: process.env.URL + ":8080/media/converted/경주_1980년.png",
       isProcessing: false,
       type: "PHOTO",
       thumbnailUrl: "https://dummyimage.com/1920x1080.png/cc0000/ffffff",
@@ -324,8 +324,9 @@ exports.seed = async function (knex) {
     },
     {
       description: "다시볼 수 없는 1970년 광화문",
-      originalUrl: "/media/original/광화문_1970년6월.jpg",
-      url: "/media/converted/광화문_1970년6월.png",
+      originalUrl:
+        process.env.URL + ":8080/media/original/광화문_1970년6월.jpg",
+      url: process.env.URL + ":8080/media/converted/광화문_1970년6월.png",
       isProcessing: false,
       type: "PHOTO",
       thumbnailUrl: "https://dummyimage.com/1920x1080.png/cc0000/ffffff",
@@ -336,8 +337,12 @@ exports.seed = async function (knex) {
     },
     {
       description: "국회의사당_서울특별시 영등포구_1996년",
-      originalUrl: "/media/original/국회의사당_서울특별시 영등포구_1996년.jpg",
-      url: "/media/converted/국회의사당_서울특별시 영등포구_1996년.png",
+      originalUrl:
+        process.env.URL +
+        ":8080/media/original/국회의사당_서울특별시 영등포구_1996년.jpg",
+      url:
+        process.env.URL +
+        ":8080/media/converted/국회의사당_서울특별시 영등포구_1996년.png",
       isProcessing: false,
       type: "PHOTO",
       thumbnailUrl: "https://dummyimage.com/1920x1080.png/cc0000/ffffff",
@@ -348,8 +353,9 @@ exports.seed = async function (knex) {
     },
     {
       description: "1980년 김포 모습",
-      originalUrl: "/media/original/김포군_고촌_1980년.jpg",
-      url: "/media/converted/김포군_고촌_1980년.png",
+      originalUrl:
+        process.env.URL + ":8080/media/original/김포군_고촌_1980년.jpg",
+      url: process.env.URL + ":8080/media/converted/김포군_고촌_1980년.png",
       isProcessing: false,
       type: "PHOTO",
       thumbnailUrl: "https://dummyimage.com/1920x1080.png/cc0000/ffffff",
@@ -360,8 +366,8 @@ exports.seed = async function (knex) {
     },
     {
       description: "2015년 김해도심",
-      originalUrl: "/media/original/김해도심_2015.jpg",
-      url: "/media/converted/김해도심_2015.png",
+      originalUrl: process.env.URL + ":8080/media/original/김해도심_2015.jpg",
+      url: process.env.URL + ":8080/media/converted/김해도심_2015.png",
       isProcessing: false,
       type: "PHOTO",
       thumbnailUrl: "https://dummyimage.com/1920x1080.png/cc0000/ffffff",
@@ -374,9 +380,11 @@ exports.seed = async function (knex) {
       description: "난지도 서울월드컵경기장 인근",
       category: "CITY",
       originalUrl:
-        "/media/original/난지도 서울월드컵경기장 인근_서울특별시 마포구_2000년.jpg",
+        process.env.URL +
+        ":8080/media/original/난지도 서울월드컵경기장 인근_서울특별시 마포구_2000년.jpg",
       url:
-        "/media/converted/난지도 서울월드컵경기장 인근_서울특별시 마포구_2000년.png",
+        process.env.URL +
+        ":8080/media/converted/난지도 서울월드컵경기장 인근_서울특별시 마포구_2000년.png",
       isProcessing: false,
       type: "PHOTO",
       thumbnailUrl: "https://dummyimage.com/1920x1080.png/cc0000/ffffff",
@@ -389,8 +397,11 @@ exports.seed = async function (knex) {
       description: "1995년 난지도 인근 가양대교",
       category: "CITY",
       originalUrl:
-        "/media/original/난지도 인근 가양대교_서울특별시 마포구_1995년.jpg",
-      url: "/media/converted/난지도 인근 가양대교_서울특별시 마포구_1995년.png",
+        process.env.URL +
+        ":8080/media/original/난지도 인근 가양대교_서울특별시 마포구_1995년.jpg",
+      url:
+        process.env.URL +
+        ":8080/media/converted/난지도 인근 가양대교_서울특별시 마포구_1995년.png",
       isProcessing: false,
       type: "PHOTO",
       thumbnailUrl: "https://dummyimage.com/1920x1080.png/cc0000/ffffff",
@@ -401,8 +412,12 @@ exports.seed = async function (knex) {
     },
     {
       description: "1995년 난지도 인근",
-      originalUrl: "/media/original/난지도 인근_서울특별시 마포구_1995년.jpg",
-      url: "/media/converted/난지도 인근_서울특별시 마포구_1995년.png",
+      originalUrl:
+        process.env.URL +
+        ":8080/media/original/난지도 인근_서울특별시 마포구_1995년.jpg",
+      url:
+        process.env.URL +
+        ":8080/media/converted/난지도 인근_서울특별시 마포구_1995년.png",
       isProcessing: false,
       type: "PHOTO",
       thumbnailUrl: "https://dummyimage.com/1920x1080.png/cc0000/ffffff",
@@ -413,8 +428,9 @@ exports.seed = async function (knex) {
     },
     {
       description: "1950년 남대문",
-      originalUrl: "/media/original/남대문_1950년9월28일.jpeg",
-      url: "/media/converted/남대문_1950년9월28일.png",
+      originalUrl:
+        process.env.URL + ":8080/media/original/남대문_1950년9월28일.jpeg",
+      url: process.env.URL + ":8080/media/converted/남대문_1950년9월28일.png",
       isProcessing: false,
       type: "PHOTO",
       thumbnailUrl: "https://dummyimage.com/1920x1080.png/cc0000/ffffff",
@@ -426,8 +442,12 @@ exports.seed = async function (knex) {
     {
       description: "1950년 남대문 주변 시가지",
       category: "CITY",
-      originalUrl: "/media/original/남대문_주변_시가지_1950년10월.jpeg",
-      url: "/media/converted/남대문_주변_시가지_1950년10월.png",
+      originalUrl:
+        process.env.URL +
+        ":8080/media/original/남대문_주변_시가지_1950년10월.jpeg",
+      url:
+        process.env.URL +
+        ":8080/media/converted/남대문_주변_시가지_1950년10월.png",
       isProcessing: false,
       type: "PHOTO",
       thumbnailUrl: "https://dummyimage.com/1920x1080.png/cc0000/ffffff",
