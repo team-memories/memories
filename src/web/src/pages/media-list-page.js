@@ -1,13 +1,12 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom'
 import MediaList from '../components/Media/media-list'
-import Header from '../components/Header/header'
 
 function useQueryParam () {
   return new URLSearchParams(useLocation().search)
 }
 
-function MediaListPage () {
+function MediaListPage (props) {
   let query = useQueryParam()
   let title = ''
   let location = ''
@@ -19,9 +18,9 @@ function MediaListPage () {
     yearFrom = parseInt(query.get('yearFrom'))
     yearTo = parseInt(query.get('yearTo'))
   }
+  props.setMediaView(window.location.pathname === "/watch")
   return (
     <div>
-      <Header/>
       <MediaList
         title={title}
         location={location}

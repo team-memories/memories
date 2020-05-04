@@ -8,7 +8,6 @@ import UploadPlaceSelect from '../components/UploadPage/upload-place-select'
 import UploadSubmitButton from '../components/UploadPage/upload-submit-button'
 import UploadPageDescription from '../components/UploadPage/upload-description'
 import DropzoneBox from '../components/UploadPage/dropzone-box'
-import Header from '../components/Header/header'
 
 const UPLOAD_MEDIA = gql`
     mutation ($media: Upload!, $title: String!, $location: String!, $year: Int!) {
@@ -25,7 +24,7 @@ const UPLOAD_MEDIA = gql`
     }
 `
 
-function UploadPage () {
+function UploadPage (props) {
   const { useMutation } = require('@apollo/react-hooks')
   const [media, setMedia] = useState([])
   const [title, setTitle] = useState('')
@@ -61,10 +60,9 @@ function UploadPage () {
       history.push('/')
     })
   }
-
+  props.setMediaView(window.location.pathname === "/watch")
   return (
     <div>
-      <Header/>
       <div style={{ maxWidth: '700px', margin: '2rem auto' }}>
         <Form>
           <DropzoneBox onChange={onMediaChange} mediaName={media.name}/>

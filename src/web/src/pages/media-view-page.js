@@ -7,8 +7,7 @@ import Header from '../components/Header/header'
 function useQueryParm () {
   return new URLSearchParams(useLocation().search)
 }
-
-function MediaViewPage () {
+function MediaViewPage (props) {
   let query = useQueryParm()
   const [onHeader, setHeader] = useState(false)
   const move = (event) => {
@@ -19,6 +18,7 @@ function MediaViewPage () {
       setHeader(false)
     }
   }
+  props.setMediaView(window.location.pathname === "/watch")
   return (
     <div onMouseMove={move}>
       {onHeader ? <Header/> : <div/>}
