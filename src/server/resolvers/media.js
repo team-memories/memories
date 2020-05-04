@@ -23,7 +23,18 @@ const mediaTypeResolvers = {
 };
 
 const commentResolver = async ({ id }, _, { dataSources: { commentDB } }) => {
-  return await commentDB.getCommentIdsByMediaId(id);
+  return commentDB.getCommentIdsByMediaId(id);
+};
+
+const authorResolver = async (
+  { id, authorId },
+  _,
+  { dataSources: { mediaDB } }
+) => {
+  if (authorId) {
+    return { id: authorId };
+  }
+  return mediaDB.getAttribute("authorId", id);
 };
 
 const videoTypeResolvers = {
@@ -34,7 +45,6 @@ const videoTypeResolvers = {
       "thumbnailUrl",
       "originalUrl",
       "url",
-      "author",
       "location",
       "year",
       "description",
@@ -43,6 +53,7 @@ const videoTypeResolvers = {
     "mediaDB"
   ),
   comments: commentResolver,
+  author: authorResolver,
 };
 const photoTypeResolvers = {
   ...defaultAttributeResolverMaker(
@@ -52,7 +63,6 @@ const photoTypeResolvers = {
       "thumbnailUrl",
       "originalUrl",
       "url",
-      "author",
       "location",
       "year",
       "description",
@@ -61,6 +71,7 @@ const photoTypeResolvers = {
     "mediaDB"
   ),
   comments: commentResolver,
+  author: authorResolver,
 };
 
 module.exports = {
