@@ -7,9 +7,6 @@ function LoginPage() {
       <h1>
         Login
       </h1>
-      <h4 style={{marginTop : '2rem'}}>
-        Email address
-      </h4>
       <LoginForm/>
     </div>
   )

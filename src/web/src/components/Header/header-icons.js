@@ -4,7 +4,6 @@ import { UploadOutlined, UserOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 
 function HeaderIcons (props) {
-  console.log(props.email)
   return (
     <Row justify="end" align="middle" style={{ top: '8%' }}>
       <Col>

@@ -9,11 +9,15 @@ function LoginForm () {
   const onFinishFailed = errorInfo => {
     console.log('Failed:', errorInfo)
   }
+  
   return (
     <Form
     onFinish={onFinish}
     onFinishFailed={onFinishFailed}
     >
+      <h4 style={{marginTop : '2rem'}}>
+        Email address
+      </h4>
       <Form.Item
         name="email"
         rules={
