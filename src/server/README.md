@@ -6,3 +6,4 @@
 1. `docker exec -it pg-docker psql -U postgres -d postgres -c "CREATE DATABASE memories";`
 1. `knex migrate:latest && knex seed:run` (데이터 베이스에 테이블을 생성하고 데이터를 시딩한다. 데이터에 문제가 생겼을 경우 `knex migrate:rollback`으로 롤백 가능.)
 1. `npm start` or `npm run dev`(Nodemon 사용)
+1. NGINX 설정 `docker run --name nginx --rm -p 8080:80 -v $(pwd)/media:/usr/share/nginx/html/media:ro -d nginx`

@@ -26,6 +26,7 @@ module.exports = {
     const stream = createReadStream();
     const id = shortid.generate();
     const path = `${__dirname}/${UPLOAD_DIR}/original/${id}-${filename}`;
+    const originalUrl = `${process.env.URL}:8080/media/original/${id}-${filename}`;
 
     await new Promise((resolve, reject) => {
       const writeStream = createWriteStream(path);
@@ -52,9 +53,9 @@ module.exports = {
       location,
       type,
       category,
-      originalUrl: path,
-      thumbnailUrl: path,
-      url: path,
+      originalUrl: originalUrl,
+      thumbnailUrl: originalUrl,
+      url: originalUrl,
       authorId: userId,
       isProcessing: true,
     });
