@@ -34,7 +34,7 @@ const authorResolver = async (
   if (authorId) {
     return { id: authorId };
   }
-  return mediaDB.getAttribute("authorId", id);
+  return { id: await mediaDB.getAttribute("authorId", id) };
 };
 
 const videoTypeResolvers = {
