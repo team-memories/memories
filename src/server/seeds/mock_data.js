@@ -15,16 +15,16 @@ exports.seed = async function (knex) {
       password: await bcrypt.hash("8q5w2e0r123", 3),
     },
     {
-      name: "Jeremie McClaughlin",
-      email: "jmcclaughlin1@redcross.org",
+      name: "Byeong Jo King",
+      email: "gee05053@kookmin.ac.kr",
       profileImgUrl: "http://dummyimage.com/30x30.jpg/5fa2dd/ffffff",
-      password: "XgooAi9",
+      password: await bcrypt.hash("123", 3),
     },
     {
-      name: "Marsiella Rispen",
-      email: "mrispen2@devhub.com",
+      name: "Test",
+      email: "test@test.com",
       profileImgUrl: "http://dummyimage.com/30x30.png/cc0000/ffffff",
-      password: "Nq9Yf1TCWnX",
+      password: await bcrypt.hash("test", 3),
     },
     {
       name: "Theo Waine",
