@@ -5,12 +5,13 @@ import gql from 'graphql-tag'
 import UploadPageTitle from '../components/UploadPage/upload-page-title'
 import UploadYearSelect from '../components/UploadPage/upload-year-select'
 import UploadPlaceSelect from '../components/UploadPage/upload-place-select'
+import UploadCategorySelect from '../components/UploadPage/upload-category-select'
 import UploadSubmitButton from '../components/UploadPage/upload-submit-button'
 import UploadPageDescription from '../components/UploadPage/upload-description'
 import DropzoneBox from '../components/UploadPage/dropzone-box'
 
 const UPLOAD_MEDIA = gql`
-    mutation ($media: Upload!, $title: String!, $location: String!, $year: Int!) {
+    mutation ($media: Upload!, $title: String!, $location: String!, $year: Int!, $description: String! $category: Category) {
         uploadMedia(
             media: $media
             title: $title
@@ -31,6 +32,7 @@ function UploadPage () {
   const [location, setLocation] = useState('대한민국')
   const [year, setYear] = useState(new Date().getFullYear())
   const [description, setDescription] = useState('')
+  const [category, setCategory] = useState('')
   const [mutate] = useMutation(UPLOAD_MEDIA)
   const history = useHistory()
 
@@ -54,6 +56,10 @@ function UploadPage () {
     setDescription(e.target.value)
   }
 
+  const onCategoryChange = (e) => {
+    setCategory(e)
+  }
+
   const handleSubmit = () => {
     mutate({ variables: { media, title, location, year } }).then(() => {
       alert('Submit!')
@@ -62,11 +68,12 @@ function UploadPage () {
   }
 
   return (
-    <div style={{ maxWidth: '700px', margin: '2rem auto' }}>
+    <div style={{ maxWidth: '750px', margin: '4.5rem auto' }}>
       <Form>
         <DropzoneBox onChange={onMediaChange} mediaName={media.name}/>
         <UploadPageTitle title={title} onChange={onTitleChange}/>
         <UploadPlaceSelect location={location} onChange={onLocationChange}/>
+        <UploadCategorySelect category={category} onChange={onCategoryChange}/>
         <UploadYearSelect year={year} onChange={onYearChange}/>
         <UploadPageDescription description={description} onChange={onDescriptionChange}/>
         <UploadSubmitButton onClick={handleSubmit}/>

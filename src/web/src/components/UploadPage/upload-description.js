@@ -1,17 +1,13 @@
 import { Form, Input } from 'antd'
 import React from 'react'
-
-const layout = {
-  labelCol: { span: 3 },
-  wrapperCol: { span: 16 },
-}
+import { Layout } from '../constants'
 
 const { TextArea } = Input
 
 function UploadPageDescription (props) {
   return (
     <Form.Item
-      {...layout}
+      {...Layout}
       label="Description"
       name="Description"
       rules={[{ required: false, message: 'Description' }]}
