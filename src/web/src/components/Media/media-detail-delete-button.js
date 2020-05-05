@@ -5,14 +5,14 @@ import { useHistory } from 'react-router-dom'
 import { Button, message, Popconfirm } from 'antd'
 
 const DELETE_MEDIA = gql`
-    mutation deleteMedia($mediaId: ID!){
-        deleteMedia(_id: $mediaId){
-            title,
-            author{
-                name
-            }
-        }
+  mutation deleteMedia($mediaId: ID!){
+    deleteMedia(id: $mediaId){
+      title,
+      author{
+        name
+      }
     }
+  }
 `
 
 function MediaDetailDeleteButton (props) {

@@ -6,26 +6,26 @@ import MediaCard from './media-card'
 import gql from 'graphql-tag'
 
 const SearchQuery = gql`
-    query searchItems($title: String!, $location: String!, $yearTo: Int, $yearFrom: Int) {
-        search(title: $title, location: $location, yearTo: $yearTo, yearFrom: $yearFrom) {
-            author{
-                name
-                profileImgUrl
-            }
-            year
-            isProcessing
-            id
-            location
-            title
-            url
-        }
+  query searchItems($queryStr: String!, $location: String!, $yearTo: Int, $yearFrom: Int) {
+    search(queryStr: $queryStr, location: $location, yearTo: $yearTo, yearFrom: $yearFrom) {
+      author{
+        name
+        profileImgUrl
+      }
+      year
+      isProcessing
+      id
+      location
+      title
+      url
     }
+  }
 `
 
 function MediaList (props) {
   const { loading, error, data } = useQuery(SearchQuery, {
     variables: {
-      title: props.title,
+      queryStr: props.title,
       location: props.location,
       yearFrom: props.yearFrom,
       yearTo: props.yearTo
