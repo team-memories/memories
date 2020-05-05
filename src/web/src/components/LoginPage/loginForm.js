@@ -1,7 +1,7 @@
 import React from 'react'
 import {Input, Button, Form} from 'antd'
 
-function LoginForm () {
+function LoginForm (props) {
   const onFinish = values => {
     console.log('Success:', values)
   }
@@ -28,7 +28,7 @@ function LoginForm () {
           }
         ]}
       >
-        <Input />
+        <Input onChange={props.getEmail}/>
       </Form.Item>
       <h4 style={{marginTop : '1rem'}}>
         Password
@@ -42,10 +42,10 @@ function LoginForm () {
           }
         ]}
       >
-        <Input.Password />
+        <Input.Password onChange={props.getPassword}/>
       </Form.Item>
       <Form.Item>
-        <Button htmlType="submit">
+        <Button htmlType="submit" onClick={props.onClickLogin}>
           Log in
         </Button>
       </Form.Item>

@@ -17,7 +17,7 @@ function Header (props) {
             <SearchBar/>
           </Col>
           <Col flex={1} style={{ marginTop: '7px' }}>
-            <HeaderIcons email={""}/>
+            <HeaderIcons token={props.token}/>
           </Col>
         </Row>
       </Layout.Header>
