@@ -15,7 +15,7 @@ function HeaderIcons (props) {
       </Col>
       <Col>
         {
-          (props.email === "") ?
+          (props.token === "") ?
           <Link to={'/login'}>
             <Button type="link">
               <UserOutlined style={{ fontSize: '30px', color: '#949494' }}/>
