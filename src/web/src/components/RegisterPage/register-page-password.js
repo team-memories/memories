@@ -4,7 +4,7 @@ import { LockOutlined } from '@ant-design/icons';
 
 function RegisterPagePassword (props) {
   return (
-    <Form>
+    <div>
       <h4 style={{marginTop : '1rem'}}>
         Password
       </h4>
@@ -19,7 +19,7 @@ function RegisterPagePassword (props) {
       >
         <Input.Password prefix={<LockOutlined className="site-form-item-icon"/>} placeholder="Password" onChange={props.getPassword}/>
       </Form.Item>
-    </Form>
+    </div>
   )
 }
 

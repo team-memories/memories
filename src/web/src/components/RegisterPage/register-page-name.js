@@ -3,7 +3,7 @@ import {Input, Form} from 'antd'
 
 function RegisterPageName (props) {
   return (
-    <Form>
+    <div>
       <h4 style={{marginTop : '2rem'}}>
         Name
       </h4>
@@ -19,7 +19,7 @@ function RegisterPageName (props) {
       >
         <Input placeholder="Name" onChange={props.getName}/>
       </Form.Item>
-    </Form>
+    </div>
   )
 }
 

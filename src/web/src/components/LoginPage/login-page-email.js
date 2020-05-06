@@ -4,7 +4,7 @@ import { UserOutlined } from '@ant-design/icons';
 
 function LoginPageEmail (props) {
   return (
-    <Form>
+    <div>
       <h4 style={{marginTop : '2rem'}}>
         Email address
       </h4>
@@ -20,7 +20,7 @@ function LoginPageEmail (props) {
       >
         <Input prefix={<UserOutlined className="site-form-item-icon"/>} placeholder="Email" onChange={props.getEmail}/>
       </Form.Item>
-    </Form>
+    </div>
   )
 }
 
