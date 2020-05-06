@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
-import LoginForm from '../components/LoginPage/loginForm'
 import gql from 'graphql-tag'
 import { useMutation } from '@apollo/react-hooks'
 import { useHistory } from 'react-router-dom'
+import { Form } from 'antd'
+import LoginPageEmail from '../components/LoginPage/login-page-email'
+import LoginPagePassword from '../components/LoginPage/login-page-password'
+import LoginPageButton from '../components/LoginPage/login-page-button'
 
 const SIGNIN = gql`
   mutation ($email: String!, $password: String!) {
@@ -27,17 +30,36 @@ function LoginPage(props) {
     setPassword(e.target.value)
   }
   const onClickLogin = () => {
-    mutate({ variables: { email, password } }).then((data) => {
-      props.getToken(data.data.signIn.token)
-      history.push('/')
-    })
+    if (email === "" || password === "") {
+      alert("Email이나 Password를 입력해주세요.")
+    }
+    else {
+      mutate({ variables: { email, password } }).then((data) => {
+        props.getToken(data.data.signIn.token)
+        history.push('/')
+      })
+    }
+  }
+  const onFinish = values => {
+    console.log('Success:', values)
+  }
+
+  const onFinishFailed = errorInfo => {
+    console.log('Failed:', errorInfo)
   }
   return (
-    <div style={{ maxWidth: '500px', margin: '13rem auto'}} >
+    <div style={{ maxWidth: '450px', margin: '13rem auto'}} >
       <h1>
         Login
       </h1>
-      <LoginForm getEmail={getEmail} getPassword={getPassword} onClickLogin={onClickLogin}/>
+      <Form
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+      >
+        <LoginPageEmail getEmail={getEmail}/>
+        <LoginPagePassword getPassword={getPassword}/>
+        <LoginPageButton onClickLogin={onClickLogin}/>
+      </Form>
     </div>
   )
 }

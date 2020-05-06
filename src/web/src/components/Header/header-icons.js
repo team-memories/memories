@@ -5,20 +5,29 @@ import { Link } from 'react-router-dom'
 
 function HeaderIcons (props) {
   return (
-    <Row justify="end" align="middle" style={{ top: '8%' }}>
+    <Row justify="center" align="middle" style={{ top: '8%' }}>
       <Col>
-        <Link to={'/upload'}>
-          <Button type="link">
-            <UploadOutlined style={{ fontSize: '30px', color: '#949494' }}/>
-          </Button>
-        </Link>
+        {
+          (props.token === "") ?
+          <Link to={'/login'}>
+            <Button type="link">
+              <UploadOutlined style={{ fontSize: '30px', color: '#949494' }}/>
+            </Button>
+          </Link>
+          :
+          <Link to={'/upload'}>
+            <Button type="link">
+              <UploadOutlined style={{ fontSize: '30px', color: '#949494' }}/>
+            </Button>
+          </Link>
+        }
       </Col>
       <Col>
         {
           (props.token === "") ?
           <Link to={'/login'}>
             <Button type="link">
-              <UserOutlined style={{ fontSize: '30px', color: '#949494' }}/>
+              LogIn
             </Button>
           </Link>
           :
