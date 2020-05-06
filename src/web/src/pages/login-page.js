@@ -40,22 +40,12 @@ function LoginPage(props) {
       })
     }
   }
-  const onFinish = values => {
-    console.log('Success:', values)
-  }
-
-  const onFinishFailed = errorInfo => {
-    console.log('Failed:', errorInfo)
-  }
   return (
     <div style={{ maxWidth: '450px', margin: '13rem auto'}} >
       <h1>
         Login
       </h1>
-      <Form
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-      >
+      <Form>
         <LoginPageEmail getEmail={getEmail}/>
         <LoginPagePassword getPassword={getPassword}/>
         <LoginPageButton onClickLogin={onClickLogin}/>

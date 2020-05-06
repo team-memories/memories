@@ -10,6 +10,7 @@ import Header from './components/Header/header'
 import UploadPage from './pages/upload-page'
 import HomePage from './pages/home-page'
 import LoginPage from './pages/login-page'
+import RegisterPage from './pages/register-page'
 import 'antd/dist/antd.css'
 
 const URI = 'http://203.246.113.62:4000/'
@@ -32,6 +33,7 @@ function App () {
         <Route exact path="/watch" component={MediaViewPage}/>
         <Route exact path="/upload" component={UploadPage}/>
         <Route exact path="/login" render={()=> <LoginPage getToken={getToken}/>}/>
+        <Route exact path="/register" component={RegisterPage}/>
       </Switch>
     </ApolloProvider>
   )
