@@ -11,19 +11,20 @@ import UploadPageDescription from '../components/UploadPage/upload-description'
 import DropzoneBox from '../components/UploadPage/dropzone-box'
 
 const UPLOAD_MEDIA = gql`
-    mutation ($media: Upload!, $title: String!, $location: String!, $year: Int!, $description: String! $category: Category) {
+    mutation ($media: Upload!, $title: String!, $location: String!, $year: Int!, $description: String!, $category: Category!) {
         uploadMedia(
             media: $media
             title: $title
             location: $location
             year: $year
+            description: $description
+            category: $category
         ) {
             title
             location
             year
         }
     }
-  }
 `
 
 function UploadPage () {
