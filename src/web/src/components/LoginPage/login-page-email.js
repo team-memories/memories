@@ -1,6 +1,6 @@
 import React from 'react'
 import {Input, Form} from 'antd'
-import { UserOutlined } from '@ant-design/icons';
+import { UserOutlined } from '@ant-design/icons'
 
 function LoginPageEmail (props) {
   return (
@@ -8,6 +8,7 @@ function LoginPageEmail (props) {
       <h4 style={{marginTop : '2rem'}}>
         Email address
       </h4>
+      {/*이메일을 입력하지않으면 이메일을 입력하세요 메세지 출력, 이메일 양식이 @ .com이 아니라도 출력*/}
       <Form.Item
         name="email"
         rules={
@@ -15,8 +16,8 @@ function LoginPageEmail (props) {
             type: 'email',
             required: true,
             message: '이메일을 입력하세요.'
-          }
-        ]}
+          }]
+        }
       >
         <Input prefix={<UserOutlined className="site-form-item-icon"/>} placeholder="Email" onChange={props.getEmail}/>
       </Form.Item>

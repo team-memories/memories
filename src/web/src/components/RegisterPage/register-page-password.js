@@ -1,6 +1,6 @@
 import React from 'react'
 import { Input, Form } from 'antd'
-import { LockOutlined } from '@ant-design/icons';
+import { LockOutlined } from '@ant-design/icons'
 
 function RegisterPagePassword (props) {
   return (
@@ -8,6 +8,7 @@ function RegisterPagePassword (props) {
       <h4 style={{marginTop : '1rem'}}>
         Password
       </h4>
+      {/*비밀번호를 입력하지않으면 비밀번호를 입력하라는 메세지 출력*/}
       <Form.Item
         name="password"
         rules={

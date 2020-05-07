@@ -7,14 +7,17 @@ import { Link } from 'react-router-dom'
 function HeaderIcons () {
   const history = useHistory()
   
+  //logout 버튼을 누르면 sessionSotrage에 있는 token을 지우고 홈으로 이동
   const logout = () => {
     sessionStorage.removeItem("token")
     history.push('/')
   }
+
   return (
     <Row justify="center" align="middle" style={{ top: '8%' }}>
       <Col>
         {
+          //sessionStorage에 token이 있으면 upload버튼을 눌렀을 때 업로드로, 아니면 login화면으로 이동
           (sessionStorage.getItem("token")) ?
           <Link to={'/upload'}>
             <Button type="link">
@@ -31,6 +34,7 @@ function HeaderIcons () {
       </Col>
       <Col>
         {
+          //sessionStorage에 token이 있으면 user버튼과 logout 버튼이 navbar에 있고, token이 없으면 login 버튼이있음
           (sessionStorage.getItem("token")) ?
           <div>
             <Link to={'/user'}>

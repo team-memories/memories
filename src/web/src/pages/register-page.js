@@ -26,15 +26,21 @@ function RegisterPage () {
   const [name, setName] = useState("")
   const [mutate] = useMutation(SIGNIN)
   const history = useHistory()
+
+  //email state 변경
   const getEmail = (e) => {
     setEmail(e.target.value)
   }
+  //password state 변경
   const getPassword = (e) => {
     setPassword(e.target.value)
   }
+  //name state 변경
   const getName = (e) => {
     setName(e.target.value)
   }
+  //register 버튼이 눌렸을 때 실행, name, email, password가 입력되지 않았으면 alert로 경고
+  //다 입력되었다면 mutate진행, 로그인 화면으로 이동
   const onClickRegister = () => {
     if (email === "" || password === "" || name === "") {
       alert("Name, Email, Password를 입력해주세요.")

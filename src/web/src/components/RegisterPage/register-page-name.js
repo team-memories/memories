@@ -7,8 +7,9 @@ function RegisterPageName (props) {
       <h4 style={{marginTop : '2rem'}}>
         Name
       </h4>
+      {/*이름을 입력하지않고 Register 버튼을 누르면 이름을 입력하세요 메세지 출력*/}
       <Form.Item
-        name="email"
+        name="name"
         rules={
           [{
             type: 'string',

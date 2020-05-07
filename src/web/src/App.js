@@ -36,6 +36,7 @@ function App () {
     cache: new InMemoryCache()
   }))
 
+  //로그인하고 나서 client header 다시 설정
   const getToken = () => {
     const authLink = setContext((_, { headers }) => {
       const token = sessionStorage.getItem('token')
