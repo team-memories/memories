@@ -2,7 +2,7 @@ import React from 'react'
 import { Input, Form } from 'antd'
 import { LockOutlined } from '@ant-design/icons'
 
-function LoginPagePassword (props) {
+function SignPagePassword (props) {
   return (
     <div>
       <h4 style={{marginTop : '1rem'}}>
@@ -24,4 +24,4 @@ function LoginPagePassword (props) {
   )
 }
 
-export default LoginPagePassword
+export default SignPagePassword

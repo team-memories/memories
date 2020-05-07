@@ -3,10 +3,10 @@ import gql from 'graphql-tag'
 import { useMutation } from '@apollo/react-hooks'
 import { useHistory } from 'react-router-dom'
 import { Form } from 'antd'
-import RegisterPageEmail from '../components/RegisterPage/register-page-email'
-import RegisterPagePassword from '../components/RegisterPage/register-page-password'
-import RegisterPageButton from '../components/RegisterPage/register-page-button'
-import RegisterPageName from '../components/RegisterPage/register-page-name'
+import SignPageEmail from '../components/SignPage/sign-page-email'
+import SignPagePassword from '../components/SignPage/sign-page-password'
+import RegisterPageButton from '../components/SignPage/register-page-button'
+import RegisterPageName from '../components/SignPage/register-page-name'
 
 const SIGNIN = gql`
   mutation ($email: String!, $password: String!, $name: String!) {
@@ -58,8 +58,8 @@ function RegisterPage () {
       </h1>
       <Form>
         <RegisterPageName getName={getName}/>
-        <RegisterPageEmail getEmail={getEmail}/>
-        <RegisterPagePassword getPassword={getPassword}/>
+        <SignPageEmail getEmail={getEmail}/>
+        <SignPagePassword getPassword={getPassword}/>
         <RegisterPageButton onClickRegister={onClickRegister}/>
       </Form>
     </div>

@@ -3,9 +3,9 @@ import gql from 'graphql-tag'
 import { useMutation } from '@apollo/react-hooks'
 import { useHistory } from 'react-router-dom'
 import { Form } from 'antd'
-import LoginPageEmail from '../components/LoginPage/login-page-email'
-import LoginPagePassword from '../components/LoginPage/login-page-password'
-import LoginPageButton from '../components/LoginPage/login-page-button'
+import SignPageEmail from '../components/SignPage/sign-page-email'
+import SignPagePassword from '../components/SignPage/sign-page-password'
+import LoginPageButton from '../components/SignPage/login-page-button'
 
 const SIGNIN = gql`
   mutation ($email: String!, $password: String!) {
@@ -52,8 +52,8 @@ function LoginPage(props) {
         Login
       </h1>
       <Form>
-        <LoginPageEmail getEmail={getEmail}/>
-        <LoginPagePassword getPassword={getPassword}/>
+        <SignPageEmail getEmail={getEmail}/>
+        <SignPagePassword getPassword={getPassword}/>
         <LoginPageButton onClickLogin={onClickLogin}/>
       </Form>
     </div>
