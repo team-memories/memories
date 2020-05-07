@@ -1,9 +1,16 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import { Button, Col, Row } from 'antd'
 import { UploadOutlined, UserOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 
 function HeaderIcons () {
+  const history = useHistory()
+  
+  const logout = () => {
+    sessionStorage.removeItem("token")
+    history.push('/')
+  }
   return (
     <Row justify="center" align="middle" style={{ top: '8%' }}>
       <Col>
@@ -25,11 +32,16 @@ function HeaderIcons () {
       <Col>
         {
           (sessionStorage.getItem("token")) ?
-          <Link to={'/user'}>
-            <Button type="link">
-              <UserOutlined style={{ fontSize: '30px', color: '#949494' }}/>
+          <div>
+            <Link to={'/user'}>
+              <Button type="link">
+                <UserOutlined style={{ fontSize: '30px', color: '#949494' }}/>
+              </Button>
+            </Link>
+            <Button type="link" onClick={logout}>
+              Logout
             </Button>
-          </Link>
+          </div>
           :
           <Link to={'/login'}>
             <Button type="link">
