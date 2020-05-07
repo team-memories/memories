@@ -35,7 +35,8 @@ function LoginPage(props) {
     }
     else {
       mutate({ variables: { email, password } }).then((data) => {
-        props.getToken(data.data.signIn.token)
+        sessionStorage.setItem("token", data.data.signIn.token)
+        props.getToken()
         history.push('/')
       })
     }

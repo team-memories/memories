@@ -3,19 +3,19 @@ import { Button, Col, Row } from 'antd'
 import { UploadOutlined, UserOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 
-function HeaderIcons (props) {
+function HeaderIcons () {
   return (
     <Row justify="center" align="middle" style={{ top: '8%' }}>
       <Col>
         {
-          (props.token === "") ?
-          <Link to={'/login'}>
+          (sessionStorage.getItem("token")) ?
+          <Link to={'/upload'}>
             <Button type="link">
               <UploadOutlined style={{ fontSize: '30px', color: '#949494' }}/>
             </Button>
           </Link>
           :
-          <Link to={'/upload'}>
+          <Link to={'/login'}>
             <Button type="link">
               <UploadOutlined style={{ fontSize: '30px', color: '#949494' }}/>
             </Button>
@@ -24,16 +24,16 @@ function HeaderIcons (props) {
       </Col>
       <Col>
         {
-          (props.token === "") ?
-          <Link to={'/login'}>
-            <Button type="link">
-              LogIn
-            </Button>
-          </Link>
-          :
+          (sessionStorage.getItem("token")) ?
           <Link to={'/user'}>
             <Button type="link">
               <UserOutlined style={{ fontSize: '30px', color: '#949494' }}/>
+            </Button>
+          </Link>
+          :
+          <Link to={'/login'}>
+            <Button type="link">
+              LogIn
             </Button>
           </Link>
         }
