@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactCompareImage from 'react-compare-image'
+import ReactCompareImage from '../ReactCompareImage/ReactCompareImage'
 import '../../font.css'
 
 // css
