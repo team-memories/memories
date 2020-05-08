@@ -87,7 +87,6 @@ function ReactCompareImage(props) {
       const currentContainerWidth = containerRef.current.getBoundingClientRect()
         .width;
       setContainerWidth(currentContainerWidth);
-      console.log('width: ', currentContainerWidth, typeof(currentContainerWidth));
     };
 
     // initial execution must be done manually
