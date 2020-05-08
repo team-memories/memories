@@ -4,6 +4,7 @@ import { ApolloProvider } from '@apollo/react-hooks'
 import { ApolloClient } from 'apollo-client'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { createUploadLink } from 'apollo-upload-client'
+import Header from './components/Header/header'
 import MediaListPage from './pages/media-list-page'
 import MediaViewPage from './pages/media-view-page'
 import UploadPage from './pages/upload-page'
@@ -13,7 +14,7 @@ import RegisterPage from './pages/register-page'
 import 'antd/dist/antd.css'
 import { setContext } from 'apollo-link-context'
 
-const URI = 'http://203.246.113.62:4000/'
+const URI = 'http://15.164.244.125:4000/'
 
 const httpLink = createUploadLink({
   uri: URI
@@ -30,6 +31,10 @@ const authLink = setContext((_, { headers }) => {
 })
 
 function App () {
+  const [isMediaView, setIsMediaView] = useState(false)
+  const onChangeIsMediaView = (bool) => {
+    setIsMediaView(bool)
+  }
   const [client, setClient] = useState(new ApolloClient({
     link: authLink.concat(httpLink),
     cache: new InMemoryCache()
@@ -56,12 +61,12 @@ function App () {
     <ApolloProvider client={client}>
       {(!isMediaView) ? <Header/> : ""}
       <Switch>
-        <Route exact path="/" component={HomePage}/>
-        <Route exact path="/search" component={MediaListPage}/>
-        <Route exact path="/watch" component={MediaViewPage}/>
-        <Route exact path="/upload" component={UploadPage}/>
-        <Route exact path="/login" render={()=> <LoginPage getToken={getToken}/>}/>
-        <Route exact path="/register" component={RegisterPage}/>
+        <Route exact path="/" render={()=> <HomePage onChangeIsMediaView={onChangeIsMediaView}/>}/>
+        <Route exact path="/search" render={()=> <MediaListPage onChangeIsMediaView={onChangeIsMediaView}/>}/>
+        <Route exact path="/watch" render={()=> <MediaViewPage onChangeIsMediaView={onChangeIsMediaView}/>}/>
+        <Route exact path="/upload" render={()=> <UploadPage onChangeIsMediaView={onChangeIsMediaView}/>}/>
+        <Route exact path="/login" render={()=> <LoginPage getToken={getToken} onChangeIsMediaView={onChangeIsMediaView}/>}/>
+        <Route exact path="/register" render={()=> <RegisterPage onChangeIsMediaView={onChangeIsMediaView}/>}/>
       </Switch>
     </ApolloProvider>
   )

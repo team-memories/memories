@@ -61,7 +61,7 @@ function UploadPage (props) {
       history.push('/')
     })
   }
-  props.setMediaView(window.location.pathname === "/watch")
+  props.onChangeIsMediaView(window.location.pathname === "/watch")
   return (
     <div>
       <div style={{ maxWidth: '700px', margin: '2rem auto' }}>

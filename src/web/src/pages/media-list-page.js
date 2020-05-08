@@ -18,7 +18,7 @@ function MediaListPage (props) {
     yearFrom = parseInt(query.get('yearFrom'))
     yearTo = parseInt(query.get('yearTo'))
   }
-  props.setMediaView(window.location.pathname === "/watch")
+  props.onChangeIsMediaView(window.location.pathname === "/watch")
   return (
     <div>
       <MediaList
