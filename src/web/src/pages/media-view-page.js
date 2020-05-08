@@ -18,7 +18,7 @@ function MediaViewPage (props) {
       setHeader(false)
     }
   }
-  props.setMediaView(window.location.pathname === "/watch")
+  props.onChangeIsMediaView(window.location.pathname === "/watch")
   return (
     <div onMouseMove={move}>
       {onHeader ? <Header/> : <div/>}

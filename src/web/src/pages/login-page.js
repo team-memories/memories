@@ -18,7 +18,7 @@ const SIGNIN = gql`
   }
 `
 
-function LoginPage(props) {
+function LoginPage (props) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [mutate] = useMutation(SIGNIN)
@@ -46,6 +46,8 @@ function LoginPage(props) {
       })
     }
   }
+
+  props.onChangeIsMediaView(window.location.pathname === "/watch")
   return (
     <div style={{ maxWidth: '450px', margin: '13rem auto'}} >
       <h1>

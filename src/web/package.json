@@ -36,7 +36,10 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": ["react-app", "google"]
+    "extends": [
+      "react-app",
+      "google"
+    ]
   },
   "browserslist": {
     "production": [

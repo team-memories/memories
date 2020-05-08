@@ -7,7 +7,7 @@ function HomePage (props) {
   let location = '서울특별시'
   let yearFrom = 1990
   let yearTo = 2020
-  props.setMediaView(window.location.pathname === "/watch")
+  props.onChangeIsMediaView(window.location.pathname === "/watch")
   return (
     <div>
       <ServiceIntro

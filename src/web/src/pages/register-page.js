@@ -20,7 +20,7 @@ const SIGNIN = gql`
   }
 `
 
-function RegisterPage () {
+function RegisterPage (props) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [name, setName] = useState("")
@@ -51,6 +51,8 @@ function RegisterPage () {
       })
     }
   }
+
+  props.onChangeIsMediaView(window.location.pathname === "/watch")
   return (
     <div style={{ maxWidth: '450px', margin: '13rem auto'}} >
       <h1>
