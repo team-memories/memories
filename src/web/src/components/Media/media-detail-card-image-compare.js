@@ -3,7 +3,7 @@ import ReactCompareImage from '../ReactCompareImage/ReactCompareImage'
 import '../../font.css'
 
 // css
-const beforeAfterSlider = { width: '75%', margin: 'auto', paddingTop: 50, paddingBottom: 50 }
+const beforeAfterSlider = { width: '100%', margin: 'auto', paddingTop: 50, paddingBottom: 50 }
 
 function ImageCompare (props) {
   const before = props.originalUrl
