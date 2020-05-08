@@ -24,7 +24,7 @@ const UPLOAD_MEDIA = gql`
     }
 `
 
-function UploadPage () {
+function UploadPage (props) {
   const { useMutation } = require('@apollo/react-hooks')
   const [media, setMedia] = useState([])
   const [title, setTitle] = useState('')
@@ -60,17 +60,19 @@ function UploadPage () {
       history.push('/')
     })
   }
-
+  props.setMediaView(window.location.pathname === "/watch")
   return (
-    <div style={{ maxWidth: '700px', margin: '2rem auto' }}>
-      <Form>
-        <DropzoneBox onChange={onMediaChange} mediaName={media.name}/>
-        <UploadPageTitle title={title} onChange={onTitleChange}/>
-        <UploadPlaceSelect location={location} onChange={onLocationChange}/>
-        <UploadYearSelect year={year} onChange={onYearChange}/>
-        <UploadPageDescription description={description} onChange={onDescriptionChange}/>
-        <UploadSubmitButton onClick={handleSubmit}/>
-      </Form>
+    <div>
+      <div style={{ maxWidth: '700px', margin: '2rem auto' }}>
+        <Form>
+          <DropzoneBox onChange={onMediaChange} mediaName={media.name}/>
+          <UploadPageTitle title={title} onChange={onTitleChange}/>
+          <UploadPlaceSelect location={location} onChange={onLocationChange}/>
+          <UploadYearSelect year={year} onChange={onYearChange}/>
+          <UploadPageDescription description={description} onChange={onDescriptionChange}/>
+          <UploadSubmitButton onClick={handleSubmit}/>
+        </Form>
+      </div>
     </div>
   )
 }
