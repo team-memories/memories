@@ -29,7 +29,6 @@ function MediaDetailCardQuery (props) {
       errorPolicy: 'all'
     }
   )
-  console.log(error)
   if (loading) return (<Spin tip="Loading..."/>)
   // TODO(Lhyejin): 자세히 에러 처리 해주기
   if (error) {

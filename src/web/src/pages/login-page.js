@@ -14,6 +14,12 @@ const SIGNIN = gql`
       password: $password
     ) {
       token
+      user {
+        id
+        name
+        profileImgUrl
+        email
+      }
     }
   }
 `
@@ -22,11 +28,15 @@ function LoginPage (props) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [mutate] = useMutation(SIGNIN, {
-    onCompleted({signIn: {token}}) {
+    onCompleted({signIn: {token, user}}) {
       sessionStorage.setItem("token", token)
-      props.getToken()
-      history.push('/')
+      sessionStorage.setItem("user_id", user.id)
+      sessionStorage.setItem("user_name", user.name)
+      sessionStorage.setItem("user_profileImgUrl", user.profileImgUrl)
+      sessionStorage.setItem("user_email", user.email)
+      props.afterLogin()
       message.success("로그인 성공")
+      history.push('/')
     },
     onError() {
       message.error("이메일과 비밀번호를 확인해주세요.")
