@@ -18,7 +18,7 @@ function SignPagePassword (props) {
           }
         ]}
       >
-        <Input.Password prefix={<LockOutlined className="site-form-item-icon"/>} placeholder="Password" onChange={props.getPassword}/>
+        <Input.Password prefix={<LockOutlined className="site-form-item-icon"/>} placeholder="Password" onChange={props.onChangePassword}/>
       </Form.Item>
     </div>
   )

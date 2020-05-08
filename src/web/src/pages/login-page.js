@@ -25,11 +25,11 @@ function LoginPage(props) {
   const history = useHistory()
 
   //email state 변경
-  const getEmail = (e) => {
+  const onChangeEmail = (e) => {
     setEmail(e.target.value)
   }
   // password state 변경
-  const getPassword = (e) => {
+  const onChangePassword = (e) => {
     setPassword(e.target.value)
   }
   //login 버튼이 눌렸을 때 email이나 password가 입력되지 않았으면 alert로 경고
@@ -52,8 +52,8 @@ function LoginPage(props) {
         Login
       </h1>
       <Form>
-        <SignPageEmail getEmail={getEmail}/>
-        <SignPagePassword getPassword={getPassword}/>
+        <SignPageEmail onChangeEmail={onChangeEmail}/>
+        <SignPagePassword onChangePassword={onChangePassword}/>
         <LoginPageButton onClickLogin={onClickLogin}/>
       </Form>
     </div>

@@ -18,7 +18,7 @@ function RegisterPageName (props) {
           }
         ]}
       >
-        <Input placeholder="Name" onChange={props.getName}/>
+        <Input placeholder="Name" onChange={props.onChangeName}/>
       </Form.Item>
     </div>
   )

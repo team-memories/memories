@@ -19,7 +19,7 @@ function SignPageEmail (props) {
           }
         ]}
       >
-        <Input prefix={<UserOutlined className="site-form-item-icon"/>} placeholder="Email" onChange={props.getEmail}/>
+        <Input prefix={<UserOutlined className="site-form-item-icon"/>} placeholder="Email" onChange={props.onChangeEmail}/>
       </Form.Item>
     </div>
   )

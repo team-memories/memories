@@ -28,15 +28,15 @@ function RegisterPage () {
   const history = useHistory()
 
   //email state 변경
-  const getEmail = (e) => {
+  const onChangeEmail = (e) => {
     setEmail(e.target.value)
   }
   //password state 변경
-  const getPassword = (e) => {
+  const onChangePassword = (e) => {
     setPassword(e.target.value)
   }
   //name state 변경
-  const getName = (e) => {
+  const onChangeName = (e) => {
     setName(e.target.value)
   }
   //register 버튼이 눌렸을 때 실행, name, email, password가 입력되지 않았으면 alert로 경고
@@ -57,9 +57,9 @@ function RegisterPage () {
         Register
       </h1>
       <Form>
-        <RegisterPageName getName={getName}/>
-        <SignPageEmail getEmail={getEmail}/>
-        <SignPagePassword getPassword={getPassword}/>
+        <RegisterPageName onChangeName={onChangeName}/>
+        <SignPageEmail onChangeEmail={onChangeEmail}/>
+        <SignPagePassword onChangePassword={onChangePassword}/>
         <RegisterPageButton onClickRegister={onClickRegister}/>
       </Form>
     </div>
