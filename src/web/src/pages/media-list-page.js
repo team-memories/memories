@@ -6,7 +6,7 @@ function useQueryParam () {
   return new URLSearchParams(useLocation().search)
 }
 
-function MediaListPage () {
+function MediaListPage (props) {
   let query = useQueryParam()
   let title = ''
   let location = ''
@@ -18,13 +18,16 @@ function MediaListPage () {
     yearFrom = parseInt(query.get('yearFrom'))
     yearTo = parseInt(query.get('yearTo'))
   }
+  props.setMediaView(window.location.pathname === "/watch")
   return (
-    <MediaList
-      title={title}
-      location={location}
-      yearFrom={yearFrom}
-      yearTo={yearTo}
-    />
+    <div>
+      <MediaList
+        title={title}
+        location={location}
+        yearFrom={yearFrom}
+        yearTo={yearTo}
+      />
+    </div>
   )
 }
 
