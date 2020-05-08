@@ -1,6 +1,6 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import { Button, Col, Row } from 'antd'
+import { Button, Col, Row, message } from 'antd'
 import { UploadOutlined, UserOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 
@@ -26,7 +26,7 @@ function HeaderIcons () {
           </Link>
           :
           <Link to={'/login'}>
-            <Button type="link">
+            <Button type="link" onClick={() => message.warning("로그인이 필요한 페이지입니다.")}>
               <UploadOutlined style={{ fontSize: '30px', color: '#949494' }}/>
             </Button>
           </Link>
