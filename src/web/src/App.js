@@ -41,7 +41,7 @@ function App () {
   }))
 
   //로그인하고 나서 client header 다시 설정
-  const getToken = () => {
+  const afterLogin = () => {
     const authLink = setContext((_, { headers }) => {
       const token = sessionStorage.getItem('token')
       return {
@@ -65,7 +65,7 @@ function App () {
         <Route exact path="/search" render={()=> <MediaListPage onChangeIsMediaView={onChangeIsMediaView}/>}/>
         <Route exact path="/watch" render={()=> <MediaViewPage onChangeIsMediaView={onChangeIsMediaView}/>}/>
         <Route exact path="/upload" render={()=> <UploadPage onChangeIsMediaView={onChangeIsMediaView}/>}/>
-        <Route exact path="/login" render={()=> <LoginPage getToken={getToken} onChangeIsMediaView={onChangeIsMediaView}/>}/>
+        <Route exact path="/login" render={()=> <LoginPage afterLogin={afterLogin} onChangeIsMediaView={onChangeIsMediaView}/>}/>
         <Route exact path="/register" render={()=> <RegisterPage onChangeIsMediaView={onChangeIsMediaView}/>}/>
       </Switch>
     </ApolloProvider>

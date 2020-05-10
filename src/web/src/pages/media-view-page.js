@@ -11,7 +11,7 @@ function MediaViewPage (props) {
   let query = useQueryParm()
   const [onHeader, setHeader] = useState(false)
   const move = (event) => {
-    if (event.pageY<70) {
+    if (event.pageY<250) {
       setHeader(true)
     }
     else {
