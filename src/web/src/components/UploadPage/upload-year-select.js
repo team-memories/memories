@@ -4,7 +4,7 @@ import { Layout } from '../constants';
 import PropTypes from 'prop-types';
 
 const propTypes = {
-  yesr: PropTypes.string,
+  year: PropTypes.number,
   onChange: PropTypes.func,
 };
 

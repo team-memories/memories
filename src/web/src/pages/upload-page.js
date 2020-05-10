@@ -9,6 +9,7 @@ import UploadCategorySelect from '../components/UploadPage/upload-category-selec
 import UploadSubmitButton from '../components/UploadPage/upload-submit-button';
 import UploadPageDescription from '../components/UploadPage/upload-description';
 import DropzoneBox from '../components/UploadPage/dropzone-box';
+import PropTypes from 'prop-types';
 
 const UPLOAD_MEDIA = gql`
     mutation ($media: Upload!, $title: String!, $location: String!, $year: Int!, $description: String!, $category: Category!) {
@@ -26,6 +27,10 @@ const UPLOAD_MEDIA = gql`
         }
     }
 `;
+
+const propTypes = {
+  onChangeIsMediaView : PropTypes.bool,
+};
 
 function UploadPage (props) {
   const { useMutation } = require('@apollo/react-hooks');
@@ -83,5 +88,7 @@ function UploadPage (props) {
     </div>
   );
 }
+
+UploadPage.propTypes = propTypes;
 
 export default UploadPage;
