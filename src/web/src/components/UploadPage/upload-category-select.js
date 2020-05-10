@@ -1,6 +1,11 @@
-import { Select, Form } from 'antd'
-import React from 'react'
-import { Layout } from '../constants'
+import { Select, Form } from 'antd';
+import React from 'react';
+import { Layout } from '../constants';
+import PropTypes from 'prop-types';
+
+const propTypes = {
+  onChange: PropTypes.func,
+};
 
 function UploadCategorySelect (props) {
   return (
@@ -15,7 +20,9 @@ function UploadCategorySelect (props) {
         <Select.Option value="object">사물</Select.Option>
       </Select>
     </Form.Item>
-  )
+  );
 }
 
-export default UploadCategorySelect
+UploadCategorySelect.propTypes = propTypes;
+
+export default UploadCategorySelect;

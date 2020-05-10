@@ -1,6 +1,12 @@
-import { Cascader, Form } from 'antd'
-import React from 'react'
-import { LocationOptions, Layout } from '../constants'
+import { Cascader, Form } from 'antd';
+import React from 'react';
+import { LocationOptions, Layout } from '../constants';
+import PropTypes from 'prop-types';
+
+const propTypes = {
+  onChange: PropTypes.func,
+  location: PropTypes.string,
+};
 
 function UploadPlaceSelect (props) {
   return (
@@ -17,7 +23,9 @@ function UploadPlaceSelect (props) {
         location={props.location}
       />
     </Form.Item>
-  )
+  );
 }
 
-export default UploadPlaceSelect
+UploadPlaceSelect.propTypes = propTypes;
+
+export default UploadPlaceSelect;

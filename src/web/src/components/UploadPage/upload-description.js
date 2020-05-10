@@ -1,8 +1,14 @@
-import { Form, Input } from 'antd'
-import React from 'react'
-import { Layout } from '../constants'
+import { Form, Input } from 'antd';
+import React from 'react';
+import { Layout } from '../constants';
+import PropTypes from 'prop-types';
 
-const { TextArea } = Input
+const { TextArea } = Input;
+
+const propTypes = {
+  description: PropTypes.string,
+  onChange: PropTypes.func,
+};
 
 function UploadPageDescription (props) {
   return (
@@ -19,7 +25,9 @@ function UploadPageDescription (props) {
         onChange={props.onChange}
       />
     </Form.Item>
-  )
+  );
 }
 
-export default UploadPageDescription
+UploadPageDescription.propTypes = propTypes;
+
+export default UploadPageDescription;

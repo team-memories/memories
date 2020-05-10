@@ -1,6 +1,12 @@
-import { DatePicker, Form } from 'antd'
-import React from 'react'
-import { Layout } from '../constants'
+import { DatePicker, Form } from 'antd';
+import React from 'react';
+import { Layout } from '../constants';
+import PropTypes from 'prop-types';
+
+const propTypes = {
+  yesr: PropTypes.string,
+  onChange: PropTypes.func,
+};
 
 function UploadYearSelect (props) {
   return (
@@ -15,7 +21,9 @@ function UploadYearSelect (props) {
         onChange={props.onChange}
       />
     </Form.Item>
-  )
+  );
 }
 
-export default UploadYearSelect
+UploadYearSelect.propTypes = propTypes;
+
+export default UploadYearSelect;

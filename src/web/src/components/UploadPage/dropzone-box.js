@@ -1,11 +1,17 @@
-import React from 'react'
-import Dropzone from 'react-dropzone'
-import { InboxOutlined } from '@ant-design/icons'
-import { Form } from 'antd'
+import React from 'react';
+import Dropzone from 'react-dropzone';
+import { InboxOutlined } from '@ant-design/icons';
+import { Form } from 'antd';
+import PropTypes from 'prop-types';
 
 const layout = {
   wrapperCol: { offset: 4, span: 16 },
-}
+};
+
+const propTypes = {
+  onChange: PropTypes.func,
+  mediaName: PropTypes.string,
+};
 
 function DropzoneBox (props) {
   return (
@@ -16,7 +22,6 @@ function DropzoneBox (props) {
         <Dropzone
           type="file"
           multiple={false}
-          value={props.value}
           onDrop={props.onChange}
           required
         >
@@ -46,7 +51,9 @@ function DropzoneBox (props) {
         </Dropzone>
       </div>
     </Form.Item>
-  )
+  );
 }
 
-export default DropzoneBox
+DropzoneBox.propTypes = propTypes;
+
+export default DropzoneBox;
