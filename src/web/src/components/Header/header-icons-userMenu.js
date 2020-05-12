@@ -10,7 +10,7 @@ function UserMenu () {
     sessionStorage.removeItem("user_email")
     sessionStorage.removeItem("user_name")
     sessionStorage.removeItem("user_profileImgUrl")
-    window.location.reload()
+    window.location.replace('/')
   }
   const title = (
     <div>
