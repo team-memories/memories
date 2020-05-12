@@ -28,7 +28,14 @@ function UserPage (props) {
   if (error) return <div>Error: {error.message}</div>
   if (data.myMedia.length === 0) return <div>찾은 결과가 없습니다.</div>
   return (
-    <MediaList data={data.myMedia}/>
+    <div>
+      <div style={{ width: '70%', margin: '3rem auto' }}>
+        <h1>
+          내가 올린 이미지
+        </h1>
+      </div>
+      <MediaList data={data.myMedia}/>
+    </div>
   )
 }
 
