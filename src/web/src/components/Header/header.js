@@ -16,7 +16,7 @@ function Header () {
           <Col flex={4}>
             <SearchBar/>
           </Col>
-          <Col flex={1} style={{ marginTop: '7px' }}>
+          <Col flex={1}>
             <HeaderIcons/>
           </Col>
         </Row>
