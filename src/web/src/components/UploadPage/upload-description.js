@@ -28,6 +28,4 @@ function UploadPageDescription (props) {
   );
 }
 
-UploadPageDescription.propTypes = propTypes;
-
 export default UploadPageDescription;

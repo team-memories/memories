@@ -2,15 +2,9 @@ import React from 'react';
 import Dropzone from 'react-dropzone';
 import { InboxOutlined } from '@ant-design/icons';
 import { Form } from 'antd';
-import PropTypes from 'prop-types';
 
 const layout = {
   wrapperCol: { offset: 4, span: 16 },
-};
-
-const propTypes = {
-  onChange: PropTypes.func,
-  mediaName: PropTypes.string,
 };
 
 function DropzoneBox (props) {
@@ -53,7 +47,5 @@ function DropzoneBox (props) {
     </Form.Item>
   );
 }
-
-DropzoneBox.propTypes = propTypes;
 
 export default DropzoneBox;

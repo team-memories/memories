@@ -1,7 +1,7 @@
-import React from 'react'
-import { Avatar, List, Typography } from 'antd'
-import MediaDetailDeleteButton from './media-detail-delete-button'
-import ImageCompare from './media-detail-card-image-compare'
+import React from 'react';
+import { Avatar, List, Typography } from 'antd';
+import MediaDetailDeleteButton from './media-detail-delete-button';
+import ImageCompare from './media-detail-card-image-compare';
 
 function MediaInfo (props) {
   return (
@@ -22,7 +22,7 @@ function MediaInfo (props) {
         {props.media.description}
       </List.Item>
     </List>
-  )
+  );
 }
 
 function MediaDetailCard (props) {
@@ -31,7 +31,7 @@ function MediaDetailCard (props) {
       <ImageCompare url={props.media.url} originalUrl={props.media.originalUrl}/>
       <MediaInfo media={props.media}/>
     </div>
-  )
+  );
 }
 
-export default MediaDetailCard
+export default MediaDetailCard;

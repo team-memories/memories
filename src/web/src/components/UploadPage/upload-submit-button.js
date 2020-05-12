@@ -1,13 +1,8 @@
 import React from 'react';
 import { Button, Form } from 'antd';
-import PropTypes from 'prop-types';
 
 const tailLayout = {
   wrapperCol: { offset: 4, span: 16 },
-};
-
-const propTypes = {
-  onClick: PropTypes.func,
 };
 
 function UploadSubmitButton (props) {
@@ -23,7 +18,5 @@ function UploadSubmitButton (props) {
     </Form.Item>
   );
 }
-
-UploadSubmitButton.propTypes = propTypes;
 
 export default UploadSubmitButton;
