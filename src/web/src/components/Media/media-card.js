@@ -23,7 +23,8 @@ function MediaCard(props){
                 whiteSpace: 'nowrap',
                 overflow: 'hidden',
                 marinTop: 10,
-                marginBottom: 10
+                marginBottom: 10,
+                color: 'black'
               }}>
                 <span style={{
                   fontWeight: 'bold',
