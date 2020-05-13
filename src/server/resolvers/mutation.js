@@ -106,4 +106,35 @@ module.exports = {
       user,
     };
   },
+  createComment: async (
+    _,
+    { mediaId, body },
+    { userId, dataSources: { commentDB } }
+  ) => {
+    if (!userId) {
+      throw new Error("Login required");
+    }
+    const comment = await commentDB.createComment({
+      authorId: userId,
+      mediaId,
+      body,
+    });
+
+    return comment;
+  },
+  deleteComment: async (_, { id }, { userId, dataSources: { commentDB } }) => {
+    if (!userId) {
+      throw new Error("Login required");
+    }
+    const comment = await commentDB.getComment(id);
+    if (userId !== comment.authorId) {
+      throw new Error("You are not the author of the comment");
+    }
+    if ((await commentDB.deleteComment(id)) !== true) {
+      throw new Error("Cannot delete the comment");
+    }
+
+    // Success
+    return comment;
+  },
 };
