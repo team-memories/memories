@@ -44,7 +44,7 @@ function MediaCard(props){
       </figure>
   
     </Link>
-  );
+  )
 }
 
 export default MediaCard
