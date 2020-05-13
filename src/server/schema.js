@@ -30,7 +30,7 @@ const typeDefs = gql`
     ): Media
     deleteMedia(id: ID!): Media
 
-    writeComment(mediaId: ID!, body: String!): Comment
+    createComment(mediaId: ID!, body: String!): Comment
     deleteComment(
       """
       id: Comment의 ID

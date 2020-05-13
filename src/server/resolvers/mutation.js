@@ -127,6 +127,9 @@ module.exports = {
       throw new Error("Login required");
     }
     const comment = await commentDB.getComment(id);
+    if (!comment) {
+      throw new Error("Comment not found");
+    }
     if (userId !== comment.authorId) {
       throw new Error("You are not the author of the comment");
     }
