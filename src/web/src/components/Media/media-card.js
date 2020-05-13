@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Avatar, Card } from 'antd';
-import './background.css';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { Avatar, Card } from 'antd'
+import './background.css'
 
 function MediaCard(props){
   return (
@@ -47,4 +47,4 @@ function MediaCard(props){
   );
 }
 
-export default MediaCard;
+export default MediaCard
