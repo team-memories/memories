@@ -37,9 +37,13 @@ function MediaInfo (props) {
 function MediaDetailCard (props) {
   return (
     <div>
+      {/* slider */}
       <ImageCompare url={props.media.url} originalUrl={props.media.originalUrl}/>
+      {/* 상세 정보 */}
       <MediaInfo media={props.media}/>
+      {/* 댓글 추가 */}
       <MediaAddComment mediaId={props.media.id}/>
+      {/* 기존의 댓글들 */}
       <MediaCommentQuery mediaId={props.media.id}/>
     </div>
   );
