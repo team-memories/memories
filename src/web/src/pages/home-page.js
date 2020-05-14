@@ -1,6 +1,6 @@
 import React from 'react'
 import ServiceIntro from '../components/Media/service-intro'
-import MediaList from '../components/Media/media-list'
+import MediaSearchQuery from '../components/Media/media-search-query'
 
 function HomePage (props) {
   let title = '청계천'
@@ -15,7 +15,7 @@ function HomePage (props) {
         yearFrom={yearFrom}
         yearTo={yearTo}
       />
-      <MediaList
+      <MediaSearchQuery
         title={title}
         location={location}
         yearFrom={yearFrom}

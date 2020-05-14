@@ -1,6 +1,6 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom'
-import MediaList from '../components/Media/media-list'
+import MediaSearchQuery from '../components/Media/media-search-query'
 
 function useQueryParam () {
   return new URLSearchParams(useLocation().search)
@@ -21,7 +21,7 @@ function MediaListPage (props) {
   props.onChangeIsMediaView(window.location.pathname === "/watch")
   return (
     <div>
-      <MediaList
+      <MediaSearchQuery
         title={title}
         location={location}
         yearFrom={yearFrom}
