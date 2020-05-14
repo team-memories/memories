@@ -7,6 +7,7 @@ import MediaCommentQuery from './media-comment-query';
 
 function MediaInfo (props) {
   return (
+    <div>
     <List>
       <List.Item
         actions={[
@@ -31,6 +32,8 @@ function MediaInfo (props) {
         {props.media.description}
       </List.Item>
     </List>
+      <Divider/>
+    </div>
   );
 }
 
