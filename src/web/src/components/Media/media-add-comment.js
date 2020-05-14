@@ -68,8 +68,10 @@ function MediaAddComment (props) {
     };
 
     // 댓글 등록 mutation
+    // TODO: useEffect를 사용하여 page reload가 아닌 component update로 수정하기.
     mutate({ variables: variables }).then(() => {
       message.info('댓글 등록이 완료되었습니다.');
+      window.location.reload(false);
     });
   };
 
@@ -85,6 +87,7 @@ function MediaAddComment (props) {
 
   return (
     <div>
+      <div style={{fontWeight: 'bold', fontSize: '18px'}}>댓글</div>
       <Comment
         // 사용자 섬네일 이미지 설정 
         avatar={
