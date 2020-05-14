@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form } from 'antd';
+import { Form, message } from 'antd';
 import { useHistory } from 'react-router-dom';
 import gql from 'graphql-tag';
 import UploadPageTitle from '../components/UploadPage/upload-page-title';
@@ -64,7 +64,7 @@ function UploadPage (props) {
 
   const handleSubmit = () => {
     mutate({ variables: { media, title, location, year, description } }).then(() => {
-      alert('Submit!');
+      message.info('Submit!');
       history.push('/');
     });
   };
