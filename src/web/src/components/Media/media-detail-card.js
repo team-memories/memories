@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar, List, Typography } from 'antd';
+import { Avatar, List, Typography, Divider } from 'antd';
 import MediaDetailDeleteButton from './media-detail-delete-button';
 import ImageCompare from './media-detail-card-image-compare';
 import MediaAddComment from './media-add-comment';
@@ -7,6 +7,7 @@ import MediaCommentQuery from './media-comment-query';
 
 function MediaInfo (props) {
   return (
+    <div>
     <List>
       <List.Item
         actions={[
@@ -31,6 +32,8 @@ function MediaInfo (props) {
         {props.media.description}
       </List.Item>
     </List>
+      <Divider/>
+    </div>
   );
 }
 
