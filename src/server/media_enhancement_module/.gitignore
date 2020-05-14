@@ -4,3 +4,4 @@ ckpt_woflow/
 data/
 colorization/ckpt_woflow.zip
 log_file
+*.pytorch
