@@ -9,7 +9,9 @@ const GET_COMMENTS = gql`
         media(id: $mediaId) {
             id
             comments {
+                id
                 author {
+                    id
                     profileImgUrl
                     name
                 }
