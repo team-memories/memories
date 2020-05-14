@@ -1,7 +1,24 @@
 import React, { useState } from 'react';
+import gql from 'graphql-tag';
+import { useMutation } from '@apollo/react-hooks';
 import { Comment, Avatar, Form, Button, Input, message, Space } from 'antd';
 
 const { TextArea } = Input;
+
+const CREATE_COMMENT = gql`
+    mutation ($mediaId: ID!, $body: String!) {
+        createComment(
+            mediaId: $mediaId
+            body: $body
+        ) {
+            id
+            author {
+                id
+            }
+            body
+        }
+    }
+`;
 
 const Editor = ({ onChange, onCancel, onSubmit, submitting, value }) => (
   <div>
@@ -36,14 +53,24 @@ const Editor = ({ onChange, onCancel, onSubmit, submitting, value }) => (
 
 function MediaAddComment (props) {
   const [commentValue, setCommentValue] = useState('');
+  const [mutate] = useMutation(CREATE_COMMENT);
 
   const handleSubmit = () => {
-    // 글을 입력하지 않고 댓글 버튼을 누르면 메시지를 띄운다.
+    // 글을 입력하지 않고 댓글 버튼을 누르면 경고 메시지를 띄운다.
     if (!commentValue) {
       message.info('댓글을 작성해주세요.');
+      return;
     }
 
-    // TODO(sujin) : add comment mutation
+    const variables = {
+      mediaId: props.mediaId,
+      body: commentValue,
+    };
+
+    // 댓글 등록 mutation
+    mutate({ variables: variables }).then(() => {
+      message.info('댓글 등록이 완료되었습니다.');
+    });
   };
 
   // 취소 버튼을 누르면 작성중이던 댓글이 '' 로 초기화됨
