@@ -30,6 +30,13 @@ const typeDefs = gql`
     ): Media
     deleteMedia(id: ID!): Media
 
+    createComment(mediaId: ID!, body: String!): Comment
+    deleteComment(
+      """
+      id: Comment의 ID
+      """
+      id: ID!
+    ): Comment
     signUp(email: String!, password: String!, name: String!): AuthPayload!
     signIn(email: String!, password: String!): AuthPayload!
   }

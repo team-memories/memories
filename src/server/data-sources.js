@@ -11,6 +11,7 @@ class MediaDB extends SQLDataSource {
       .where({ id })
       .cache(CACHE_TTL);
   }
+
   async getAttribute(attrName, id) {
     const result = await this.knex
       .select(attrName)
@@ -20,6 +21,7 @@ class MediaDB extends SQLDataSource {
       .cache(CACHE_TTL);
     return result[attrName];
   }
+
   async searchMedia({
     queryStr = "",
     location = "대한민국",
@@ -38,20 +40,24 @@ class MediaDB extends SQLDataSource {
       .andWhereBetween("year", [yearFrom, yearTo])
       .cache(CACHE_TTL);
   }
+
   async createMedia(args) {
     const result = await this.knex.insert(args).into("media").returning("*");
     return result[0];
   }
+
   async deleteMedia(id) {
     await this.knex("media").where({ id }).del();
     return true;
   }
+
   async getMediaByAuthorId(id) {
     // id: 유저의 고유 id
     // 해당 유저가 올린 모든 미디어를 반환한다.
     return this.knex("media").where({ authorId: id }).cache(CACHE_TTL);
   }
 }
+
 class UserDB extends SQLDataSource {
   async getAttribute(attrName, id) {
     const result = await this.knex
@@ -62,6 +68,7 @@ class UserDB extends SQLDataSource {
       .cache(CACHE_TTL);
     return result[attrName];
   }
+
   async createUser({ email, password, name }) {
     const result = await this.knex
       .insert({ email, password, name })
@@ -69,12 +76,22 @@ class UserDB extends SQLDataSource {
       .returning("*");
     return result[0];
   }
+
   async getUserByEmail(email) {
     return this.knex.select("*").first().from("user").where({ email });
   }
 }
 
 class CommentDB extends SQLDataSource {
+  async getComment(id) {
+    return await this.knex
+      .select("*")
+      .first()
+      .from("comment")
+      .where({ id })
+      .cache(CACHE_TTL);
+  }
+
   async getAttribute(attrName, id) {
     const result = await this.knex
       .select(attrName)
@@ -83,17 +100,32 @@ class CommentDB extends SQLDataSource {
       .cache(CACHE_TTL);
     return result[0][attrName];
   }
+
   async getCommentIdsByAuthorId(id) {
     return await this.knex
       .from("comment")
       .where({ authorId: id })
       .cache(CACHE_TTL);
   }
+
   async getCommentIdsByMediaId(id) {
     return await this.knex
       .from("comment")
       .where({ mediaId: id })
       .cache(CACHE_TTL);
+  }
+
+  async createComment({ mediaId, authorId, body }) {
+    const result = await this.knex
+      .insert({ mediaId, authorId, body })
+      .into("comment")
+      .returning("*");
+    return result[0];
+  }
+
+  async deleteComment(id) {
+    await this.knex("comment").where({ id }).del();
+    return true;
   }
 }
 
