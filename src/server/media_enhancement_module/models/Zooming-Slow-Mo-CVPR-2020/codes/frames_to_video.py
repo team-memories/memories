@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 import os
 import os.path as osp
-import glob
-import logging
 import numpy as np
 import cv2
 import torch

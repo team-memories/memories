@@ -95,8 +95,8 @@ input_target=tf.placeholder(tf.float32,shape=[1,None,None,6])
 
 with tf.variable_scope(tf.get_variable_scope()):
     with tf.variable_scope('individual'):
-        g0=VCN(utils.build(tf.tile(input_i[:,:,:,0:1],[1,1,1,3])), reuse=False)
-        g1=VCN(utils.build(tf.tile(input_i[:,:,:,1:2],[1,1,1,3])), reuse=True)
+        g0=VCN(utils.build(tf.tile(input_i[:, :, :, 0:1], [1, 1, 1, 3])), reuse=False)
+        g1=VCN(utils.build(tf.tile(input_i[:, :, :, 1:2], [1, 1, 1, 3])), reuse=True)
 
 saver=tf.train.Saver(max_to_keep=1000)
 sess.run([tf.global_variables_initializer()])

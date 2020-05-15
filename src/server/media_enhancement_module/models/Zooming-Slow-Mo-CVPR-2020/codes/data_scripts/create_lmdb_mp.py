@@ -6,7 +6,6 @@ import os,sys
 import os.path as osp
 import glob
 import pickle
-from multiprocessing import Pool
 import numpy as np
 import lmdb
 import cv2

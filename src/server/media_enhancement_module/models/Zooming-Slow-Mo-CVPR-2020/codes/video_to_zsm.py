@@ -1,14 +1,11 @@
 #!/usr/bin/env python3
 import os
 import os.path as osp
-import glob
-import logging
 import numpy as np
 import cv2
 import torch
 
 import utils.util as util
-import data.util as data_util
 import models.modules.Sakuya_arch as Sakuya_arch
 
 import argparse

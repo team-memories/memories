@@ -35,7 +35,7 @@ In Zooming Slow-Mo, we firstly temporally interpolate features of the missing LR
 
 Zooming Slow-Mo achieves state-of-the-art performance by PSNR and SSIM in Vid4, Vimeo test sets.
 
-![framework](./dump/framework.png)
+![framework](dump/framework.png)
 
 ## Prerequisites
 
@@ -98,7 +98,7 @@ python $ZOOMING_ROOT/codes/data_scripts/create_lmdb_mp.py
 #### Part 2: Train
 **Note:** In this part, we assume you are in the directory **`$ZOOMING_ROOT/codes/`**
 
-1. Configure your training settings that can be found at [options/train](./codes/options/train). Our training settings in the paper can be found at [train_zsm.yml](https://github.com/Mukosame/Zooming-Slow-Mo-CVPR-2020/blob/master/codes/options/train/train_zsm.yml). We'll take this setting as an example to illustrate the following steps.
+1. Configure your training settings that can be found at [options/train](codes/options/train). Our training settings in the paper can be found at [train_zsm.yml](https://github.com/Mukosame/Zooming-Slow-Mo-CVPR-2020/blob/master/codes/options/train/train_zsm.yml). We'll take this setting as an example to illustrate the following steps.
 
 2. Train the Zooming Slow-Mo model.
 

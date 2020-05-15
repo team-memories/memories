@@ -5,12 +5,9 @@ Test Vid4 (SR) and REDS4 (SR-clean, SR-blur, deblur-clean, deblur-compression) d
 import os
 import os.path as osp
 import glob
-import logging
-import numpy as np
 import cv2
 import torch
 from PIL import Image
-from os.path import isfile, join
 
 import utils.util as util
 import data.util as data_util
