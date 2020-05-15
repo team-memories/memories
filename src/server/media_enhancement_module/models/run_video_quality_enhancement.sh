@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # Pre-processing
 
 # get frame rate

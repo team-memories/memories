@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 conda activate color && \
 ffmpeg -i "data/input.mp4" -vf scale=480:360 "data/input_shrink.mp4" && \
 ffmpeg -i "data/input_shrink.mp4" -vsync 0 "data/color_input/%06d.png" && \
