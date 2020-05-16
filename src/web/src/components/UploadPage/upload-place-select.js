@@ -1,17 +1,18 @@
-import { Cascader, Form } from 'antd'
-import React from 'react'
-import { LocationOptions } from '../constants'
-
-const layout = {
-  labelCol: { span: 3 },
-  wrapperCol: { span: 16 },
-}
+import { Cascader, Form } from 'antd';
+import React from 'react';
+import { LocationOptions, Layout } from '../constants';
 
 function UploadPlaceSelect (props) {
   return (
     <Form.Item
-      {...layout}
+      {...Layout}
       label="Location"
+      rules={[
+        {
+          required: true,
+          message: 'Please select location',
+        },
+      ]}
     >
       <Cascader
         options={LocationOptions}
@@ -22,7 +23,7 @@ function UploadPlaceSelect (props) {
         location={props.location}
       />
     </Form.Item>
-  )
+  );
 }
 
-export default UploadPlaceSelect
+export default UploadPlaceSelect;

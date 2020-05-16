@@ -1,9 +1,9 @@
-import React from 'react'
-import { Button, Form } from 'antd'
+import React from 'react';
+import { Button, Form } from 'antd';
 
 const tailLayout = {
-  wrapperCol: { offset: 3, span: 16 },
-}
+  wrapperCol: { offset: 4, span: 16 },
+};
 
 function UploadSubmitButton (props) {
   return (
@@ -11,12 +11,13 @@ function UploadSubmitButton (props) {
       <Button
         type="primary"
         size="large"
-        onClick={props.onClick}
+        onChange={props.onClick}
+        htmlType="submit"
       >
         Submit
       </Button>
     </Form.Item>
-  )
+  );
 }
 
-export default UploadSubmitButton
+export default UploadSubmitButton;

@@ -1,17 +1,19 @@
-import { DatePicker, Form } from 'antd'
-import React from 'react'
-
-const layout = {
-  labelCol: { span: 3 },
-  wrapperCol: { span: 16 },
-}
+import { DatePicker, Form } from 'antd';
+import React from 'react';
+import { Layout } from '../constants';
 
 function UploadYearSelect (props) {
   return (
     <Form.Item
-      {...layout}
+      {...Layout}
       label="Year"
       name="year"
+      rules={[
+        {
+          required: true,
+          message: 'Please select year',
+        },
+      ]}
     >
       <DatePicker
         picker="year"
@@ -19,7 +21,7 @@ function UploadYearSelect (props) {
         onChange={props.onChange}
       />
     </Form.Item>
-  )
+  );
 }
 
-export default UploadYearSelect
+export default UploadYearSelect;

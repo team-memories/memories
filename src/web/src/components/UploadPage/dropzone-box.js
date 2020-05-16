@@ -1,29 +1,34 @@
-import React from 'react'
-import Dropzone from 'react-dropzone'
-import { InboxOutlined } from '@ant-design/icons'
-import { Form } from 'antd'
+import React from 'react';
+import Dropzone from 'react-dropzone';
+import { InboxOutlined } from '@ant-design/icons';
+import { Form } from 'antd';
 
 const layout = {
-  wrapperCol: { offset: 3, span: 16 },
-}
+  wrapperCol: { offset: 4, span: 16 },
+};
 
 function DropzoneBox (props) {
   return (
     <Form.Item
       {...layout}
+      rules={[
+        {
+          required: true,
+          message: 'Please add your file',
+        },
+      ]}
     >
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <Dropzone
           type="file"
           multiple={false}
-          value={props.value}
           onDrop={props.onChange}
           required
         >
           {({ getRootProps, getInputProps }) => (
             <div
               style={{
-                width: '600px',
+                width: '750px',
                 height: '150px',
                 border: '1px dashed lightgray',
                 display: 'flex',
@@ -46,7 +51,7 @@ function DropzoneBox (props) {
         </Dropzone>
       </div>
     </Form.Item>
-  )
+  );
 }
 
-export default DropzoneBox
+export default DropzoneBox;
