@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Avatar, Card } from 'antd'
+import { Avatar, Card, Button } from 'antd'
+import { DeleteOutlined } from '@ant-design/icons'
 
 function MediaCard(props){
   return (
@@ -16,22 +17,22 @@ function MediaCard(props){
             <Avatar size={40} src={props.author.profileImgUrl} shape="circle"/>
           }
           description={
-            <div style={{
-              display: 'inline-block',
-              maxWidth: '100%',
-              textOverflow: 'ellipsis',
-              whiteSpace: 'nowrap',
-              overflow: 'hidden',
-              marinTop: 10,
-              marginBottom: 10
-            }}>
-              <span style={{
+            <div>
+              <div style={{
                 fontWeight: 'bold',
                 fontSize: '1.5em',
                 color: 'black',
+                display: 'inline-block',
+                maxInlineSize: '70%',
+                textOverflow: 'ellipsis',
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                marinTop: 10,
+                marginBottom: 10
               }}>
                 {props.title}
-              </span>
+              </div>
+              <Button type="link" icon={<DeleteOutlined style={{fontSize: '25px'}}/>} style={{float: "right"}} />
               <br/>
               {props.author.name}
               <br/>
