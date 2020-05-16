@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar, List, Typography } from 'antd';
+import { Avatar, List } from 'antd';
 import MediaDetailDeleteButton from './media-detail-delete-button';
 import ImageCompare from './media-detail-card-image-compare';
 
@@ -19,11 +19,11 @@ function MediaInfo (props) {
       >
         <List.Item.Meta
           avatar={<Avatar size={50} src={props.media.author.profileImgUrl}/>}
-          title={props.media.title}
-          description={props.media.author.name}
+          title={<div style={{fontSize: 20}}>{props.media.title}</div>}
+          description={<div style={{fontSize: 15}}>{props.media.author.name}</div>}
           style={{ textAlign: 'left' }}
         />
-        <Typography>{props.media.location}<br/>{props.media.year}</Typography>
+        <div style={{fontSize: 15}}>{props.media.location}<br/>{props.media.year}</div>
       </List.Item>
       <List.Item>
         {props.media.description}
