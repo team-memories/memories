@@ -16,7 +16,12 @@ function UploadPageDescription (props) {
       {...Layout}
       label="Description"
       name="Description"
-      rules={[{ required: false, message: 'Description' }]}
+      rules={[
+        {
+          required: true,
+          message: 'Please input description',
+        },
+      ]}
     >
       <TextArea
         rows={4}

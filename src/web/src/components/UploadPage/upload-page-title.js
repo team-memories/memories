@@ -8,7 +8,12 @@ function UploadPageTitle (props) {
       {...Layout}
       label="Title"
       name="title"
-      rules={[{ required: false, message: 'title' }]}
+      rules={[
+        {
+          required: true,
+          message: 'Please input title',
+        },
+      ]}
     >
       <Input placeholder="Title" onChange={props.onChange}/>
     </Form.Item>

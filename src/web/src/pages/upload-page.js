@@ -11,7 +11,7 @@ import UploadPageDescription from '../components/UploadPage/upload-description';
 import DropzoneBox from '../components/UploadPage/dropzone-box';
 
 const UPLOAD_MEDIA = gql`
-    mutation ($media: Upload!, $title: String!, $location: String!, $year: Int!, $description: String!, $category: Category!) {
+    mutation ($media: Upload!, $title: String!, $location: String!, $year: Int!, $description: String!, $category: Category) {
         uploadMedia(
             media: $media
             title: $title
@@ -32,9 +32,9 @@ function UploadPage (props) {
   const [media, setMedia] = useState([]);
   const [title, setTitle] = useState('');
   const [location, setLocation] = useState('대한민국');
+  const [category, setCategory] = useState('');
   const [year, setYear] = useState(new Date().getFullYear());
   const [description, setDescription] = useState('');
-  const [category, setCategory] = useState('');
   const [mutate] = useMutation(UPLOAD_MEDIA);
   const history = useHistory();
 

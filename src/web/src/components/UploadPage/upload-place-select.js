@@ -7,6 +7,12 @@ function UploadPlaceSelect (props) {
     <Form.Item
       {...Layout}
       label="Location"
+      rules={[
+        {
+          required: true,
+          message: 'Please select location',
+        },
+      ]}
     >
       <Cascader
         options={LocationOptions}

@@ -11,6 +11,12 @@ function DropzoneBox (props) {
   return (
     <Form.Item
       {...layout}
+      rules={[
+        {
+          required: true,
+          message: 'Please add your file',
+        },
+      ]}
     >
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <Dropzone

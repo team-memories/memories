@@ -8,6 +8,12 @@ function UploadYearSelect (props) {
       {...Layout}
       label="Year"
       name="year"
+      rules={[
+        {
+          required: true,
+          message: 'Please select year',
+        },
+      ]}
     >
       <DatePicker
         picker="year"
