@@ -4,7 +4,6 @@ import MediaCommentDeleteButton from './media-comment-delete-button';
 import ShowMoreText from './react-show-more-text';
 
 // single comment card
-// TODO(sujin) : 더보기, 간략히 기능 추가
 function MediaCommentCard (props) {
   return (
     <div>
