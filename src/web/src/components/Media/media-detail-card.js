@@ -2,7 +2,7 @@ import React from 'react';
 import { Avatar, List, Divider } from 'antd';
 import MediaDetailDeleteButton from './media-detail-delete-button';
 import ImageCompare from './media-detail-card-image-compare';
-import MediaAddComment from './media-add-comment';
+import MediaAddComment from './MediaComment/media-add-comment';
 import MediaCommentQuery from './MediaComment/media-comment-query';
 
 function MediaInfo (props) {
