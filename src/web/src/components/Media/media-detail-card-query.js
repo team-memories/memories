@@ -29,7 +29,7 @@ function MediaDetailCardQuery (props) {
       errorPolicy: 'all'
     }
   )
-  if (loading) return (<Spin tip="Loading..."/>)
+  if (loading) return (<Spin tip="Loading..." style={{ paddingTop: "25%", paddingLeft: "47%" }}/>)
   // TODO(Lhyejin): 자세히 에러 처리 해주기
   if (error) {
     return (<ErrorView/>)

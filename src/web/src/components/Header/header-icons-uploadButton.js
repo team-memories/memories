@@ -17,7 +17,7 @@ function UploadButton () {
     return (
       <Link to={'/login'}>
         <Button type="link" onClick={() => message.warning("로그인이 필요한 페이지입니다.")}>
-          <UploadOutlined style={{ fontSize: '30px', color: '#949494' }}/>
+          <UploadOutlined style={{ fontSize: '30px', color: '#76797C' }}/>
         </Button>
       </Link>
     )
