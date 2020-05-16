@@ -7,7 +7,15 @@ function MediaInfo (props) {
   return (
     <List>
       <List.Item
-        actions={[<MediaDetailDeleteButton mediaId={props.media.id}/>]}
+        actions={[
+          <div>
+            {
+            // 작성자와 로그인 정보가 같을 경우에만 deleteButton 보이도록 설정
+              (props.media.author.id === sessionStorage.getItem("user_id")) &&
+              <MediaDetailDeleteButton mediaId={props.media.id}/>
+            }
+          </div>
+        ]}
       >
         <List.Item.Meta
           avatar={<Avatar size={50} src={props.media.author.profileImgUrl}/>}
@@ -16,7 +24,6 @@ function MediaInfo (props) {
           style={{ textAlign: 'left' }}
         />
         <Typography>{props.media.location}<br/>{props.media.year}</Typography>
-
       </List.Item>
       <List.Item>
         {props.media.description}
@@ -30,6 +37,7 @@ function MediaDetailCard (props) {
     <div>
       <ImageCompare url={props.media.url} originalUrl={props.media.originalUrl}/>
       <MediaInfo media={props.media}/>
+      {console.log(props.media.author.id)}
     </div>
   );
 }

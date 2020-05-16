@@ -15,7 +15,8 @@ const GET_MEDIA = gql`
       location
       year
       description
-      author{
+      author {
+        id
         name
         profileImgUrl
       }
@@ -29,10 +30,10 @@ function MediaDetailCardQuery (props) {
     errorPolicy: 'all'
   }
   );
-  console.log(error);
   if (loading) return (<Spin tip="Loading..."/>);
   // TODO(Lhyejin): 자세히 에러 처리 해주기
   if (error) {
+    console.log(error);
     return (<ErrorView/>);
   } else
     return (

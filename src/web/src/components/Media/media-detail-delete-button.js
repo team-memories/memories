@@ -9,6 +9,7 @@ const DELETE_MEDIA = gql`
     deleteMedia(id: $mediaId){
       title,
       author{
+        id
         name
       }
     }
@@ -34,15 +35,17 @@ function MediaDetailDeleteButton (props) {
     message.error('삭제를 취소하였습니다.');
   };
   return (
-    <Popconfirm
-      title="미디어를 삭제하시겠습니까?"
-      onConfirm={() => confirm(props.mediaId)}
-      onCancel={cancel}
-      okText={'Yes'}
-      cancelText={'No'}
-    >
-      <Button>delete</Button>
-    </Popconfirm>
+    <div>
+      <Popconfirm
+        title="미디어를 삭제하시겠습니까?"
+        onConfirm={() => confirm(props.mediaId)}
+        onCancel={cancel}
+        okText={'Yes'}
+        cancelText={'No'}
+      >
+        <Button>delete</Button>
+      </Popconfirm>
+    </div>
   );
 }
 
