@@ -2,7 +2,7 @@ import React from 'react'
 import { Col, Row, Spin } from 'antd'
 import { LoadingOutlined } from '@ant-design/icons'
 import MediaCard from './media-card'
-import UserMediaCard from './user-media-card'
+import UserMediaCard from '../UserPage/user-media-card'
 
 function MediaList (props) {
   return (

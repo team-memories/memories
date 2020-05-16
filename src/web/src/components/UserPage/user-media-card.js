@@ -1,16 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Avatar, Card, Button } from 'antd'
-import { DeleteOutlined } from '@ant-design/icons'
+import { Avatar, Card } from 'antd'
+import UserMediaDeleteButton from './user-media-deleteButton'
 
 function MediaCard(props){
   return (
-    <Link to={`/watch?id=${props.id}`}>
       <Card
         style={{ height: '95%', borderRadius: 10 }}
         bordered={true}
-        cover={<img style={{ width: '100%', borderTopLeftRadius: 10, borderTopRightRadius: 10 }}
-          src={props.url} alt="thumbnail"/>}
+        cover={<Link to={`/watch?id=${props.id}`}><img style={{ width: '100%', borderTopLeftRadius: 10, borderTopRightRadius: 10 }}
+          src={props.url} alt="thumbnail"/></Link>}
       >
         <Card.Meta
           avatar={
@@ -32,7 +31,7 @@ function MediaCard(props){
               }}>
                 {props.title}
               </div>
-              <Button type="link" icon={<DeleteOutlined style={{fontSize: '25px'}}/>} style={{float: "right"}} />
+              <UserMediaDeleteButton mediaId={props.id}/>
               <br/>
               {props.author.name}
               <br/>
@@ -41,7 +40,6 @@ function MediaCard(props){
           }
         />
       </Card>
-    </Link>
   )
 }
 
