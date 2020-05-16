@@ -25,7 +25,7 @@ function MediaCommentCard (props) {
                 <MediaCommentDeleteButton commentId={props.commentId} />
               </div>
             }
-            style={{ background: '#f0f8ff', padding: '1%', margin: '1%' }}
+            style={{ background: '#f0f8ff', marginBottom: '1%'}}
           />
           // 다른 사람의 댓글
           : <Comment
@@ -39,7 +39,7 @@ function MediaCommentCard (props) {
             content={
               <p>{props.content}</p>
             }
-            style={{ padding: '1%', margin: '1%' }}
+            style={{ marginBottom: '1%'}}
           /> 
       }
     </div>
