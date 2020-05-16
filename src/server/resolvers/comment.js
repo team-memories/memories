@@ -2,10 +2,12 @@ const defaultAttributeResolverMaker = require("../utils/default-attribute-resolv
 
 module.exports = {
   ...defaultAttributeResolverMaker(["body"], "commentDB"),
-  author: async ({ id }, _, { dataSources: { commentDB } }) => {
-    const authorId = await commentDB.getAttribute("authorId", id);
+  author: async ({ id, authorId }, _, { dataSources: { commentDB } }) => {
+    if (authorId) {
+      return { id: authorId };
+    }
     return {
-      id: authorId,
+      id: await commentDB.getAttribute("authorId", id),
     };
   },
 };

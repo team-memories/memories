@@ -11,10 +11,11 @@ import UploadPage from './pages/upload-page'
 import HomePage from './pages/home-page'
 import LoginPage from './pages/login-page'
 import RegisterPage from './pages/register-page'
+import UserPage from './pages/user-page'
 import 'antd/dist/antd.css'
 import { setContext } from 'apollo-link-context'
 
-const URI = 'http://15.164.244.125:4000/'
+const URI = 'http://15.165.74.170:4000/'
 
 const httpLink = createUploadLink({
   uri: URI
@@ -41,7 +42,7 @@ function App () {
   }))
 
   //로그인하고 나서 client header 다시 설정
-  const getToken = () => {
+  const afterLogin = () => {
     const authLink = setContext((_, { headers }) => {
       const token = sessionStorage.getItem('token')
       return {
@@ -65,8 +66,9 @@ function App () {
         <Route exact path="/search" render={()=> <MediaListPage onChangeIsMediaView={onChangeIsMediaView}/>}/>
         <Route exact path="/watch" render={()=> <MediaViewPage onChangeIsMediaView={onChangeIsMediaView}/>}/>
         <Route exact path="/upload" render={()=> <UploadPage onChangeIsMediaView={onChangeIsMediaView}/>}/>
-        <Route exact path="/login" render={()=> <LoginPage getToken={getToken} onChangeIsMediaView={onChangeIsMediaView}/>}/>
+        <Route exact path="/login" render={()=> <LoginPage afterLogin={afterLogin} onChangeIsMediaView={onChangeIsMediaView}/>}/>
         <Route exact path="/register" render={()=> <RegisterPage onChangeIsMediaView={onChangeIsMediaView}/>}/>
+        <Route exact path="/user" render={()=> <UserPage onChangeIsMediaView={onChangeIsMediaView}/>}/>
       </Switch>
     </ApolloProvider>
   )

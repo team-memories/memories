@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 import gql from 'graphql-tag'
 import { useMutation } from '@apollo/react-hooks'
 import { useHistory } from 'react-router-dom'
-import { Form } from 'antd'
+import { Form, message } from 'antd'
 import SignPageEmail from '../components/SignPage/sign-page-email'
 import SignPagePassword from '../components/SignPage/sign-page-password'
 import RegisterPageButton from '../components/SignPage/register-page-button'
 import RegisterPageName from '../components/SignPage/register-page-name'
 
-const SIGNIN = gql`
+const SIGNUP = gql`
   mutation ($email: String!, $password: String!, $name: String!) {
     signUp(
       email: $email
@@ -24,7 +24,15 @@ function RegisterPage (props) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [name, setName] = useState("")
-  const [mutate] = useMutation(SIGNIN)
+  const [mutate] = useMutation(SIGNUP, {
+    onCompleted() {
+      message.success("회원가입 완료!")
+      history.goBack()
+    },
+    onError() {
+      message.error("중복된 이메일 입니다.")
+    }
+  })
   const history = useHistory()
 
   //email state 변경
@@ -46,9 +54,7 @@ function RegisterPage (props) {
       alert("Name, Email, Password를 입력해주세요.")
     }
     else {
-      mutate({ variables: { email, password, name } }).then(() => {
-        history.goBack()
-      })
+      mutate({ variables: { email, password, name } })
     }
   }
 
