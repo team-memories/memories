@@ -1,10 +1,10 @@
-import React  from 'react';
+import React from 'react';
 import { Comment, Avatar } from 'antd';
 import MediaCommentDeleteButton from './media-comment-delete-button';
+import ShowMoreText from './react-show-more-text';
 
 // single comment card
 // TODO(sujin) : 더보기, 간략히 기능 추가
-
 function MediaCommentCard (props) {
   return (
     <div>
@@ -21,7 +21,9 @@ function MediaCommentCard (props) {
             }
             content={
               <div>
-                <p>{props.content}</p>
+                <ShowMoreText more='더보기' less='간략히 보기'>
+                  <p>{props.content}</p>
+                </ShowMoreText>
                 <MediaCommentDeleteButton commentId={props.commentId} />
               </div>
             }
@@ -37,7 +39,9 @@ function MediaCommentCard (props) {
               />
             }
             content={
-              <p>{props.content}</p>
+              <ShowMoreText more='더보기' less='간략히 보기'>
+                <p>{props.content}</p>
+              </ShowMoreText>
             }
             style={{ marginBottom: '1%'}}
           /> 
