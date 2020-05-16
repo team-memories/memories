@@ -1,46 +1,13 @@
 import React from 'react';
-import { useQuery } from '@apollo/react-hooks';
 import { Col, Row, Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
-import MediaCard from './media-card';
-import gql from 'graphql-tag';
-
-const SearchQuery = gql`
-  query searchItems($queryStr: String!, $location: String!, $yearTo: Int, $yearFrom: Int) {
-    search(queryStr: $queryStr, location: $location, yearTo: $yearTo, yearFrom: $yearFrom) {
-      author{
-        id
-        name
-        profileImgUrl
-      }
-      year
-      isProcessing
-      id
-      location
-      title
-      url
-    }
-  }
-`;
+import MediaCard from './user-media-card';
 
 function MediaList (props) {
-  const { loading, error, data } = useQuery(SearchQuery, {
-    variables: {
-      queryStr: props.title,
-      location: props.location,
-      yearFrom: props.yearFrom,
-      yearTo: props.yearTo
-    },
-    errorPolicy: 'all',
-    fetchPolicy: 'cache-and-network'
-  });
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
-  if (data.search.length === 0) return <div>찾은 결과가 없습니다.</div>;
   return (
     <div style={{ width: '70%', margin: '3rem auto' }}>
       <Row gutter={[36, 16]}>
-        {data.search.filter(media => media !== null).map(media => {
+        {props.data.filter(media => media !== null).map(media => {
           let temp_media = {
             ...media,
             title: (media.title) ? media.title : '',
@@ -65,8 +32,7 @@ function MediaList (props) {
                 author={temp_media.author} id={temp_media.id} url={temp_media.url}/>
             </Col>
           );
-        }
-        )}
+        })}
       </Row>
     </div>
   );
