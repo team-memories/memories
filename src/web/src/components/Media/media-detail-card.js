@@ -37,7 +37,6 @@ function MediaDetailCard (props) {
     <div>
       <ImageCompare url={props.media.url} originalUrl={props.media.originalUrl}/>
       <MediaInfo media={props.media}/>
-      {console.log(props.media.author.id)}
     </div>
   );
 }
