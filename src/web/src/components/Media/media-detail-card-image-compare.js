@@ -1,13 +1,13 @@
-import React from 'react'
-import ReactCompareImage from '../ReactCompareImage/ReactCompareImage'
-import '../../font.css'
+import React from 'react';
+import ReactCompareImage from '../ReactCompareImage/ReactCompareImage';
+import '../../font.css';
 
 // css
-const beforeAfterSlider = { width: '100%', margin: 'auto', paddingTop: 50, paddingBottom: 50 }
+const beforeAfterSlider = { width: '100%', margin: 'auto', paddingTop: 50, paddingBottom: 30 };
 
 function ImageCompare (props) {
-  const before = props.originalUrl
-  const after = props.url
+  const before = props.originalUrl;
+  const after = props.url;
   return (
     <div>
       {/* before after slide */}
@@ -19,7 +19,7 @@ function ImageCompare (props) {
         />
       </div>
     </div>
-  )
+  );
 }
 
-export default ImageCompare
+export default ImageCompare;
