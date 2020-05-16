@@ -36,7 +36,7 @@ function UserMenu () {
       <p>
         <Link to="/user">
           <Button type="link">
-            내 채널
+            내 앨범
           </Button>
         </Link>
       </p>
