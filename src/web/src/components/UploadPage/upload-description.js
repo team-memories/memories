@@ -5,11 +5,6 @@ import PropTypes from 'prop-types';
 
 const { TextArea } = Input;
 
-const propTypes = {
-  description: PropTypes.string,
-  onChange: PropTypes.func,
-};
-
 function UploadPageDescription (props) {
   return (
     <Form.Item
