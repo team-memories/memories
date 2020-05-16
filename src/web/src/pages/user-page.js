@@ -1,6 +1,6 @@
 import React from 'react'
 import { useQuery } from '@apollo/react-hooks'
-import MediaList from '../components/Media/user-media-list'
+import MediaList from '../components/Media/media-list'
 import gql from 'graphql-tag'
 
 
