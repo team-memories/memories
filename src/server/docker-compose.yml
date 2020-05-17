@@ -8,7 +8,7 @@ services:
       - ~/media_data/:/media_data/
     environment:
       ISR_SERVICE_ADDR: image_super_resolution_service:4103
-      VIDEO_PREPROCESSING_SERVICE_ADDR: image_super_resolution_service:4201
+      VIDEO_PREPROCESSING_SERVICE_ADDR: video_preprocessing_service:4201
       VIDEO_COLORIZATION_SERVICE_ADDR: video_colorization_service:4202
       VSR_VFI_SERVICE_ADDR: vsr_vfi_service:4203
   image_super_resolution_service:
