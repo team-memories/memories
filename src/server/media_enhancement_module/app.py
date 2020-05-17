@@ -46,7 +46,7 @@ def image_super_resolution(file_in_path, file_out_path):
 @app.route('/v1/enhance/video', methods=['POST'])
 def enhance_video():
     param = request.get_json(force=True)
-    file_name, id = param["file_name"], param["id"]
+    file_name = param["file_name"]
     file_path = os.path.join(MEDIA_DATA_PATH, file_name)
     enhanced_media_folder_path = file_path + "_enhanced"
     os.system(f"mkdir -p {enhanced_media_folder_path}")
@@ -78,7 +78,7 @@ def enhance_video():
 @app.route("/v1/enhance/photo", methods=['POST'])
 def enhance_photo():
     param = request.get_json(force=True)
-    file_name, id = param["file_name"], param["id"]
+    file_name = param["file_name"]
     file_path = os.path.join(MEDIA_DATA_PATH, file_name)
     enhanced_media_folder_path = file_path + "_enhanced"
     os.system(f"mkdir -p {enhanced_media_folder_path}")
