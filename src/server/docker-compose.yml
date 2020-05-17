@@ -1,11 +1,25 @@
 version: '3.8'
 services:
+  main_graphql_api_server:
+    image: node
+    ports:
+      - "4000:4000"
+    environment:
+      MEDIA_QUALITY_ENHANCEMENT_SERVICE_ADDR: media_quality_enhancement_service:4001
+  db:
+    image: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./memories_db/:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: docker
   media_quality_enhancement_service:
     image: media_quality_enhancement_service:b0.1
     ports:
       - "4001:4001"
     volumes:
-      - ~/media_data/:/media_data/
+      - ./media_data/:/media_data/
     environment:
       ISR_SERVICE_ADDR: image_super_resolution_service:4103
       VIDEO_PREPROCESSING_SERVICE_ADDR: video_preprocessing_service:4201
