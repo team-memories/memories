@@ -17,6 +17,9 @@ services:
       - "4103:4103"
     volumes:
       - ~/media_data/:/media_data/
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=1
+
   video_preprocessing_service:
     image: video_preprocessing_service:b0.1
     ports:
@@ -29,9 +32,13 @@ services:
       - "4202:4202"
     volumes:
       - ~/media_data/:/media_data/
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=2
   vsr_vfi_service:
     image: vsr_vfi_service:b0.1
     ports:
       - "4203:4203"
     volumes:
       - ~/media_data/:/media_data/
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=3
