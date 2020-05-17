@@ -6,7 +6,7 @@ import './background.css'
 
 function MediaCard(props){
   return (
-    <Link to={`/watch?id=${props.id}`}>
+    <Link to={{pathname: `/watch`, search: `?id=${props.id}`, state: {data: props.data}}}>
       <figure className = "snip1361">
         <img style={{ width: '100%', borderTopLeftRadius: 10, borderTopRightRadius: 10 }}
           src={props.url} alt="thumbnail"/>
