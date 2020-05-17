@@ -16,8 +16,9 @@ RUN curl -o ~/miniconda.sh https://repo.anaconda.com/miniconda/Miniconda3-latest
     rm ~/miniconda.sh
 RUN /opt/conda/bin/conda install -y ffmpeg && \
     /opt/conda/bin/conda clean -ya
-
 ENV PATH /opt/conda/bin:$PATH
+RUN /opt/conda/bin/pip install Flask requests
+
 COPY app.py /app/app.py
 
 WORKDIR /app
