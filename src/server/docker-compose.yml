@@ -4,6 +4,8 @@ services:
     image: main_api_server:b0.1
     ports:
       - "4000:4000"
+    volumes:
+      - ~/media_data/:/media_data/
     environment:
       MEDIA_QUALITY_ENHANCEMENT_SERVICE_ADDR: media_quality_enhancement_service:4001
     restart: always
