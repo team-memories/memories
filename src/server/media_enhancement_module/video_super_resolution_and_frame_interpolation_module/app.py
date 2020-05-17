@@ -16,7 +16,7 @@ def zooming_slow_mo(folder_in_path, fps_in_path, file_out_path):
     """, shell=True)
 
 
-@app.route("/v1/enhance/", methods=['POST'])
+@app.route("/v1/enhance", methods=['POST'])
 def convert_photo():
     param = request.get_json(force=True)
     folder_in_path, fps_in_path, file_out_path = param["folder_in_path"], param["fps_in_path"], param[
