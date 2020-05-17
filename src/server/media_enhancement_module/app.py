@@ -8,18 +8,18 @@ MEDIA_DATA_PATH = "/media_data/"
 
 
 def preprocess_video(file_in_path, frames_folder_out_path, thumbnail_out_path, fps_out_path):
-    url = 'http://localhost:4201/v1/preprocess'
+    url = f'http://{os.environ["VIDEO_PREPROCESSING_SERVICE_ADDR"]}/v1/preprocess'
     requests.post(url, json={'file_in_path': file_in_path, 'frames_folder_out_path': frames_folder_out_path,
                              'thumbnail_out_path': thumbnail_out_path, 'fps_out_path': fps_out_path})
 
 
 def video_colorization(folder_in_path, folder_out_path):
-    url = 'http://localhost:4202/v1/enhance'
+    url = f'http://{os.environ["VIDEO_COLORIZATION_SERVICE_ADDR"]}/v1/enhance'
     requests.post(url, json={'folder_in_path': folder_in_path, 'folder_out_path': folder_out_path})
 
 
 def super_resolution_and_video_interpolation(folder_in_path, fps_in_path, file_out_path):
-    url = 'http://localhost:4203/v1/enhance'
+    url = f'http://{os.environ["VSR_VFI_SERVICE_ADDR"]}/v1/enhance'
     requests.post(url, json={'folder_in_path': folder_in_path, 'fps_in_path': fps_in_path,
                              'file_out_path': file_out_path})
 
@@ -39,7 +39,7 @@ def image_colorization(file_in_path, file_out_path):
 
 
 def image_super_resolution(file_in_path, file_out_path):
-    url = 'http://localhost:4103/v1/enhance'
+    url = f'http://{os.environ["ISR_SERVICE_ADDR"]}/v1/enhance'
     requests.post(url, json={'file_in_path': file_in_path, 'file_out_path': file_out_path})
 
 

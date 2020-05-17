@@ -1,27 +1,37 @@
 version: '3.8'
 services:
-  db:
-    image: postgres:9.4
+  media_quality_enhancement_service:
+    image: media_quality_enhancement_service:b0.1
     ports:
-      - "5432:5432"
+      - "4001:4001"
     volumes:
-      - db-data:/var/lib/postgresql/data
+      - ~/media_data/:/media_data/
     environment:
-      POSTGRES_PASSWORD=docker
-  web:
-    build: .
+      ISR_SERVICE_ADDR: image_super_resolution_service:4103
+      VIDEO_PREPROCESSING_SERVICE_ADDR: image_super_resolution_service:4201
+      VIDEO_COLORIZATION_SERVICE_ADDR: video_colorization_service:4202
+      VSR_VFI_SERVICE_ADDR: vsr_vfi_service:4203
+  image_super_resolution_service:
+    image: image_super_resolution_service:b0.1
     ports:
-    - "5000:5000"
+      - "4103:4103"
     volumes:
-    - .:/code
-    - logvolume01:/var/log
-    links:
-    - redis
-  redis:
-    image: redis
-  main-server:
-    depends_on:
-      - db
-
-volumes:
-  logvolume01: {}
+      - ~/media_data/:/media_data/
+  video_preprocessing_service:
+    image: video_preprocessing_service:b0.1
+    ports:
+      - "4201:4201"
+    volumes:
+      - ~/media_data/:/media_data/
+  video_colorization_service:
+    image: video_colorization_service:b0.1
+    ports:
+      - "4202:4202"
+    volumes:
+      - ~/media_data/:/media_data/
+  vsr_vfi_service:
+    image: vsr_vfi_service:b0.1
+    ports:
+      - "4203:4203"
+    volumes:
+      - ~/media_data/:/media_data/
