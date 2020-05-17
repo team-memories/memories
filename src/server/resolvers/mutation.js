@@ -53,8 +53,12 @@ module.exports = {
       stream.pipe(writeStream);
     });
 
+    const URL_EXT =
+      type === "PHOTO" ? "/v1/enhance/photo" : "/v1/enhance/video";
     axios
-      .post(`http://${process.env.MEDIA_QUALITY_ENHANCEMENT_SERVICE_ADDR}`)
+      .post(
+        `http://${process.env.MEDIA_QUALITY_ENHANCEMENT_SERVICE_ADDR}${URL_EXT}`
+      )
       .then(async (response) => {
         // TODO(yun-kwak): Promise 적극적으로 사용
         const originalFile = fs.readFileSync(response.data.originalFilePath);
