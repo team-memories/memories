@@ -42,10 +42,9 @@ in_dir = args.in_dir
 out_dir = args.out_dir
 grayscale = args.grayscale
 
-if not os.path.isdir('%s/Forward'%out_dir):
-    os.makedirs('%s/Forward'%out_dir)
-if not os.path.isdir('%s/Backward'%out_dir):
-    os.makedirs('%s/Backward'%out_dir)
+os.makedirs('%s'%out_dir, exist_ok=True)
+os.makedirs('%s/Forward'%out_dir, exist_ok=True)
+os.makedirs('%s/Backward'%out_dir, exit_ok=True)
 
 
 # +
