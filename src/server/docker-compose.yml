@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:9.4
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD=docker
+  web:
+    build: .
+    ports:
+    - "5000:5000"
+    volumes:
+    - .:/code
+    - logvolume01:/var/log
+    links:
+    - redis
+  redis:
+    image: redis
+  main-server:
+    depends_on:
+      - db
+
+volumes:
+  logvolume01: {}
