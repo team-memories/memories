@@ -126,7 +126,7 @@ if not len(test_img):
             os.makedirs(result_path)
 #         out_all = np.concatenate([output[:,:,:,3*i:3*i+3] for i in range(1)],axis=2)
         print('image name', img_name)
-        sic.imsave("%s%s.png"%(result_path, img_name),np.uint8(np.maximum(np.minimum(output[0,:,:,:3] * 255.0,255.0),0.0)))
+        sic.imsave("%s/%s.png"%(result_path, img_name),np.uint8(np.maximum(np.minimum(output[0,:,:,:3] * 255.0,255.0),0.0)))
 #         sic.imsave("%s%05d.png"%(result_path,ind),np.uint8(np.maximum(np.minimum(out_all[0,:,:,:] * 255.0,255.0),0.0)))        
         
         ind+=1
