@@ -51,6 +51,8 @@ def enhance_video():
     enhanced_media_folder_path = file_path + "_enhanced"
     os.system(f"mkdir -p {enhanced_media_folder_path}")
 
+    # TODO(yun-kwak): 흑백 판단하여 이미 컬러 비디오라면 colorization 건너 뛰게 만들기
+
     file_in_path = file_path
     frames_folder_out_path = os.path.join(enhanced_media_folder_path, "frames")
     thumbnail_out_path = os.path.join(enhanced_media_folder_path, "thumbnail.png")
@@ -66,7 +68,9 @@ def enhance_video():
     file_out_path = os.path.join(enhanced_media_folder_path, "enhanced_" + file_name)
     super_resolution_and_video_interpolation(folder_in_path, fps_in_path, file_out_path)
 
-    return {}, 200
+    return {"thumbnailFilePath": thumbnail_out_path,
+            "originalFilePath": os.path.join(enhanced_media_folder_path, "input_bw.mp4"),
+            "enhancedFilePath": file_out_path}, 200
 
     # file_path와 thumbnail_out_path, file_out_path를 저장
 
@@ -79,7 +83,7 @@ def enhance_photo():
     enhanced_media_folder_path = file_path + "_enhanced"
     os.system(f"mkdir -p {enhanced_media_folder_path}")
 
-    # image_preprocess(None, None)
+    # TODO(yun-kwak): 흑백 판단하여 이미 컬러 사진이면 colorization 건너 뛰게 만들기
 
     file_in_path = file_path
     file_out_path = os.path.join(enhanced_media_folder_path, "color_" + file_name)
@@ -89,11 +93,8 @@ def enhance_photo():
     file_out_path = os.path.join(enhanced_media_folder_path, "color_sr_" + file_name)
     image_super_resolution(file_in_path, file_out_path)
 
-    # file_path와 file_out_path를 AWS S3에 업로드
-
-    # 변환 완료시 DB에 업데이트
-
-    return {}, 200
+    return {"originalFilePath": file_path,
+            "enhancedFilePath": file_out_path}, 200
 
 
 app.run(debug=True, port=4001, host="0.0.0.0")
