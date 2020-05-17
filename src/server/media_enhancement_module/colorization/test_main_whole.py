@@ -152,20 +152,20 @@ if is_image:
         print("test time for %s --> %.3f"%(ind, time.time()-st))
         h,w = C0_im.shape[1:3]
         if not os.path.isdir("%s/%s" % (model, out_folder)):
-            os.makedirs("%s/%s/predictions0" % (model, out_folder))
-            os.makedirs("%s/%s/predictions1" % (model, out_folder))
-            os.makedirs("%s/%s/predictions2" % (model, out_folder))
-            os.makedirs("%s/%s/predictions3" % (model, out_folder))
+            os.makedirs("%s/%s/predictions0" % (model, out_folder), exist_ok=True)
+            os.makedirs("%s/%s/predictions1" % (model, out_folder), exist_ok=True)
+            os.makedirs("%s/%s/predictions2" % (model, out_folder), exist_ok=True)
+            os.makedirs("%s/%s/predictions3" % (model, out_folder), exist_ok=True)
 
         for ref_i in range(4):
             sic.imsave("%s/%s/predictions%d/final_%06d.jpg"%(model, out_folder, ref_i, ind),np.uint8(np.maximum(np.minimum(C0_im[0,:,:,ref_i*3:ref_i*3+3] * 255.0,255.0),0.0)))
-            
-        
+
+
 else:
     for ind in range(numtest-1):
         input_image_src, input_flow_forward_src, input_flow_backward_src = prepare_input_w_flow(test_low[ind],num_frames=num_frame,gray=True)
         if input_image_src is None or input_flow_forward_src is None or input_flow_backward_src is None:
-            print("Not able to read the images/flows.")
+            print("Not able to read the images/gary flows.")
             continue
         st=time.time()
 
@@ -175,10 +175,10 @@ else:
         print("test time for %s --> %.3f"%(ind, time.time()-st))
         h,w = C0_im.shape[1:3]
         if not os.path.isdir("%s/%s" % (model, out_folder)):
-            os.makedirs("%s/%s/predictions0" % (model, out_folder))
-            os.makedirs("%s/%s/predictions1" % (model, out_folder))
-            os.makedirs("%s/%s/predictions2" % (model, out_folder))
-            os.makedirs("%s/%s/predictions3" % (model, out_folder))
+            os.makedirs("%s/%s/predictions0" % (model, out_folder), exist_ok=True)
+            os.makedirs("%s/%s/predictions1" % (model, out_folder), exist_ok=True)
+            os.makedirs("%s/%s/predictions2" % (model, out_folder), exist_ok=True)
+            os.makedirs("%s/%s/predictions3" % (model, out_folder), exist_ok=True)
 
         # refine network
         # 처음프레임에는 두장의 이미지 넣어주고, 그 뒤로는 예측한 output과 그 다음 프레임을 넣어줘서 다음 프레임을 정제함.

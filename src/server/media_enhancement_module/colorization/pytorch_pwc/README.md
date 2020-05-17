@@ -19,6 +19,11 @@ The official PyTorch implementation has adopted my approach of using the Caffe w
 ## setup
 To download the pre-trained models, run `bash download.bash`. These originate from the original authors, I just converted them to PyTorch.
 
+```
+source download.bash
+```
+
+
 The correlation layer is implemented in CUDA using CuPy, which is why CuPy is a required dependency. It can be installed using `pip install cupy` or alternatively using one of the provided binary packages as outlined in the CuPy repository.
 
 ## usage

@@ -32,5 +32,8 @@ def save_response_content(response, destination):
 print('Dowloading VGG-19 Model (510Mb)')
 download_file_from_google_drive('0B_B_FOgPxgFLRjdEdE9NNTlzUWc', 'VGG_Model/imagenet-vgg-verydeep-19.mat')
 
-print('Downloading ckpt_woflow (239Mb)')
-download_file_from_google_drive('1yL8x7RL_82Mvyh_ebmh3uF6wiPOO2dU7','ckpt_woflow.zip')
+#print('Downloading only colorization / ckpt_woflow (239Mb)')
+#download_file_from_google_drive('1yL8x7RL_82Mvyh_ebmh3uF6wiPOO2dU7','ckpt_woflow.zip')
+
+print('Downloading whole colorization model / whole_model ')
+download_file_from_google_drive('1UCnrVqeaAYl-Nsxg3M7ItrvM86Kn-T9X', 'whole_model.zip')
