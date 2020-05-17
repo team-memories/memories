@@ -7,3 +7,12 @@
 1. `npx knex migrate:latest && npx knex seed:run` (데이터 베이스에 테이블을 생성하고 데이터를 시딩한다. 데이터에 문제가 생겼을 경우 `npx knex migrate:rollback`으로 롤백 가능.)
 1. `npm start` or `npm run dev`(Nodemon 사용)
 1. NGINX 설정 `docker run --name nginx --rm -p 8080:80 -v $(pwd)/media:/usr/share/nginx/html/media:ro -d nginx`
+
+# TODO
+[ ] Dockerfile들 개선 필요. (cuda 기반 이미지로 교체)
+[ ] Kubernetes 설정
+[ ] Terraform 을 이용해 AWS EKS로 배포.
+[ ] GPU inference 설정
+[ ] TF serving 등의 서빙 라이브러리 이용 가능한지 검토
+[ ] 속도 개선
+[ ] 품질 향상 모듈의 각 모듈(Super resolution, ...)이 여전히 highly coupling 되어있다. 개선하자.
