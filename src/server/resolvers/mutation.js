@@ -68,14 +68,14 @@ module.exports = {
 
         const originalUrl = (
           await s3.upload({
-            Bucket: "memories_data",
+            Bucket: "memories-media-data",
             Key: `${id}-${filename}`,
             Body: originalFile,
           })
         ).location;
         const thumbnailUrl = (
           await s3.upload({
-            Bucket: "memories_data",
+            Bucket: "memories-media-data",
             Key: `${id}-thumbnail-${filename}`,
             Body: thumbnailFile,
           })
