@@ -1,5 +1,3 @@
-import os
-
 from flask import Flask, request, jsonify
 import numpy as np
 from imageio import imread, imsave
@@ -30,6 +28,7 @@ def convert_photo():
     param = request.get_json(force=True)
     file_in_path, file_out_path = param["file_in_path"], param["file_out_path"]
     image_super_resolution(file_in_path, file_out_path)
+    return {}, 200
 
 
 app.run(debug=True, port=4103, host='0.0.0.0')

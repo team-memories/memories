@@ -22,6 +22,7 @@ def convert_photo():
     folder_in_path, fps_in_path, file_out_path = param["folder_in_path"], param["fps_in_path"], param[
         "file_out_path"]
     zooming_slow_mo(folder_in_path, fps_in_path, file_out_path)
+    return {}, 200
 
 
 app.run(debug=True, port=4203, host="0.0.0.0")

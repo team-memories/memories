@@ -15,9 +15,7 @@ def enhance():
     param = request.get_json(force=True)
     folder_in_path, folder_out_path = param["folder_in_path"], param["folder_out_path"]
     video_colorization(folder_in_path, folder_out_path)
-    return {
-        "success": True
-    }
+    return {}, 200
 
 
 app.run(debug=True, port=4202, host="0.0.0.0")

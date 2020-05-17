@@ -26,9 +26,7 @@ def enhance():
     file_in_path, frames_folder_out_path, thumbnail_out_path, fps_out_path = \
         param["file_in_path"], param["frames_folder_out_path"], param["thumbnail_out_path"], param["fps_out_path"]
     preprocess(file_in_path, frames_folder_out_path, thumbnail_out_path, fps_out_path)
-    return {
-        "success": True
-    }
+    return {}, 200
 
 
 app.run(debug=True, port=4201, host="0.0.0.0")
