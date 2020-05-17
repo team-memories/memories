@@ -7,9 +7,10 @@ app = Flask(__name__)
 MEDIA_DATA_PATH = "/media_data/"
 
 
-def preprocess_video(file_in_path, folder_out_path):
+def preprocess_video(file_in_path, frames_folder_out_path, thumbnail_out_path, fps_out_path):
     url = 'http://localhost:4201/v1/preprocess'
-    requests.post(url, json={'file_in_path': file_in_path, 'folder_out_path': folder_out_path})
+    requests.post(url, json={'file_in_path': file_in_path, 'frames_folder_out_path': frames_folder_out_path,
+                             'thumbnail_out_path': thumbnail_out_path, 'fps_out_path': fps_out_path})
 
 
 def video_colorization(folder_in_path, folder_out_path):
@@ -20,27 +21,6 @@ def video_colorization(folder_in_path, folder_out_path):
 def super_resolution_and_video_interpolation(folder_in_path, folder_out_path):
     url = 'http://localhost:4203/v1/enhance'
     requests.post(url, json={'folder_in_path': folder_in_path, 'folder_out_path': folder_out_path})
-
-
-@app.route('/v1/enhance/video', methods=['POST'])
-def enhance_video():
-    param = request.get_json(force=True)
-    file_name, id = param["file_name"], param["id"]
-    file_path = os.path.join(MEDIA_DATA_PATH, file_name)
-    enhanced_media_folder_path = file_path + "_enhanced"
-    os.system(f"mkdir -p {enhanced_media_folder_path}")
-
-    file_in_path = file_path
-    frames_out_folder_path = os.path.join(enhanced_media_folder_path, "frames")
-    preprocess_video(file_in_path, frames_out_folder_path)
-
-    folder_in_path = frames_out_folder_path
-    folder_out_path = os.path.join(enhanced_media_folder_path, "color")
-    video_colorization(folder_in_path, folder_out_path)
-
-    folder_in_path = frames_out_folder_path
-    folder_out_path = os.path.join(enhanced_media_folder_path, "color_sr")
-    super_resolution_and_video_interpolation(folder_in_path, folder_out_path)
 
 
 def image_preprocess(file_in_path, file_out_path):
@@ -60,6 +40,31 @@ def image_colorization(file_in_path, file_out_path):
 def image_super_resolution(file_in_path, file_out_path):
     url = 'http://localhost:4103/v1/enhance'
     requests.post(url, json={'file_in_path': file_in_path, 'file_out_path': file_out_path})
+
+
+@app.route('/v1/enhance/video', methods=['POST'])
+def enhance_video():
+    param = request.get_json(force=True)
+    file_name, id = param["file_name"], param["id"]
+    file_path = os.path.join(MEDIA_DATA_PATH, file_name)
+    enhanced_media_folder_path = file_path + "_enhanced"
+    os.system(f"mkdir -p {enhanced_media_folder_path}")
+
+    file_in_path = file_path
+    frames_folder_out_path = os.path.join(enhanced_media_folder_path, "frames")
+    thumbnail_out_path = os.path.join(enhanced_media_folder_path, "thumbnail.png")
+    fps_out_path = os.path.join(enhanced_media_folder_path, "fps")
+    preprocess_video(file_in_path, frames_folder_out_path, thumbnail_out_path, fps_out_path)
+
+    folder_in_path = frames_folder_out_path
+    folder_out_path = os.path.join(enhanced_media_folder_path, "color")
+    video_colorization(folder_in_path, folder_out_path)
+
+    folder_in_path = frames_folder_out_path
+    folder_out_path = os.path.join(enhanced_media_folder_path, "color_sr")
+    super_resolution_and_video_interpolation(folder_in_path, folder_out_path)
+
+    # file_path와 thumbnail_out_path, file_out_path를 저장
 
 
 @app.route("/v1/enhance/photo", methods=['POST'])
