@@ -18,7 +18,7 @@ RUN /opt/conda/bin/conda install -y ffmpeg && \
     /opt/conda/bin/conda clean -ya
 ENV PATH /opt/conda/bin:$PATH
 
-RUN pip install torch torchvision pnumpy opencv-python lmdb pyyaml matplotlib seaborn
+RUN pip install torch torchvision numpy opencv-python lmdb pyyaml matplotlib seaborn
 WORKDIR /app
 COPY . .
 RUN cd Zooming-Slow-Mo-CVPR-2020/codes/models/DCNv2 && bash make.sh && python test.test
