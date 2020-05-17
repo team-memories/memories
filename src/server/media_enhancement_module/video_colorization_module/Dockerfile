@@ -23,7 +23,7 @@ RUN /opt/conda/bin/pip install Flask requests pypng
 
 WORKDIR /app
 COPY . .
-RUN cd colorization && python download_models.py && unzip ckpt_woflow.zip
+RUN cd colorization && mkdir VGG_Model && python download_models.py && unzip ckpt_woflow.zip
 RUN cd colorization && python change_conv2d.py
 
 EXPOSE 4202
