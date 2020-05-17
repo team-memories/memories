@@ -46,6 +46,10 @@ class MediaDB extends SQLDataSource {
     return result[0];
   }
 
+  async updateMedia(id, args) {
+    return this.knex("media").where({ id }).update(args);
+  }
+
   async deleteMedia(id) {
     await this.knex("media").where({ id }).del();
     return true;
