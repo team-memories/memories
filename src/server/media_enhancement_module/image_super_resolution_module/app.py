@@ -2,7 +2,7 @@ import os
 
 from flask import Flask, request, jsonify
 import numpy as np
-from scipy.misc import imread, imsave
+from imageio import imread, imsave
 from ISR.models import RDN, RRDN
 
 app = Flask(__name__)
@@ -20,9 +20,6 @@ def image_super_resolution(file_in_path, file_out_path):
     else:
         sr_img = rrdn.predict(lr_img)
         print('gans')
-
-    if not os.path.exists(file_out_path):
-        os.makedirs(file_out_path)
 
     imsave(file_out_path, sr_img)
 
