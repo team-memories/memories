@@ -5,17 +5,23 @@ from flask import Flask, request, jsonify
 app = Flask(__name__)
 
 
-def image_super_resolution(path):
+def zooming_slow_mo(folder_in_path, fps_in_path, file_out_path):
     subprocess.run(f"""
-    python Image_SR/image_sr.py --test_dir ${path}/SR_input/ --out_dir ${path}/SR_output/
+    cd Zooming-Slow-Mo-CVPR-2020/codes && \
+    fps=$(cat {fps_in_path}) && \
+    fps=$(($fps*2)) && \
+    python frames_to_video.py --model ../experiments/pretrained_models/xiang2020zooming.pth \
+    --input {folder_in_path} \
+    --output {file_out_path} --fps $fps  --N_out 3 && \
     """, shell=True)
 
 
-@app.route("/v1/convert/", methods=['POST'])
+@app.route("/v1/enhance/", methods=['POST'])
 def convert_photo():
     param = request.get_json(force=True)
-    path = param["path"]
-    image_super_resolution(path)
+    folder_in_path, fps_in_path, file_out_path = param["folder_in_path"], param["fps_in_path"], param[
+        "file_out_path"]
+    zooming_slow_mo(folder_in_path, fps_in_path, file_out_path)
 
 
-app.run(debug=True, port=4103)
+app.run(debug=True, port=4203)

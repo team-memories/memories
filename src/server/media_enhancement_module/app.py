@@ -18,9 +18,10 @@ def video_colorization(folder_in_path, folder_out_path):
     requests.post(url, json={'folder_in_path': folder_in_path, 'folder_out_path': folder_out_path})
 
 
-def super_resolution_and_video_interpolation(folder_in_path, folder_out_path):
+def super_resolution_and_video_interpolation(folder_in_path, fps_in_path, file_out_path):
     url = 'http://localhost:4203/v1/enhance'
-    requests.post(url, json={'folder_in_path': folder_in_path, 'folder_out_path': folder_out_path})
+    requests.post(url, json={'folder_in_path': folder_in_path, 'fps_in_path': fps_in_path,
+                             'file_out_path': file_out_path})
 
 
 def image_preprocess(file_in_path, file_out_path):
@@ -61,8 +62,11 @@ def enhance_video():
     video_colorization(folder_in_path, folder_out_path)
 
     folder_in_path = frames_folder_out_path
-    folder_out_path = os.path.join(enhanced_media_folder_path, "color_sr")
-    super_resolution_and_video_interpolation(folder_in_path, folder_out_path)
+    fps_in_path = fps_out_path
+    file_out_path = os.path.join(enhanced_media_folder_path, "enhanced_" + file_name)
+    super_resolution_and_video_interpolation(folder_in_path, fps_in_path, file_out_path)
+
+    return {}, 200
 
     # file_path와 thumbnail_out_path, file_out_path를 저장
 
@@ -88,6 +92,8 @@ def enhance_photo():
     # file_path와 file_out_path를 AWS S3에 업로드
 
     # 변환 완료시 DB에 업데이트
+
+    return {}, 200
 
 
 app.run(debug=True, port=4001)
