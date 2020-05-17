@@ -8,7 +8,7 @@ function Header () {
   return (
     <Layout>
     {/*TODO(gee05053) 반응형 세분화하기*/}
-      <Layout.Header style={{ backgroundColor: '#F8F8F8', boxShadow: '5px 1px 7px #B8B8B8' }}>
+      <Layout.Header style={{ backgroundColor: '#FFFFFF', boxShadow: '1px 1px 3px #B8B8B8' }}>
         <Row>
           <Col flex={1}>
             <HeaderLogo/>

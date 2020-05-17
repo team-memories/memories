@@ -1,7 +1,6 @@
 import { Form, Input } from 'antd';
 import React from 'react';
 import { Layout } from '../constants';
-import PropTypes from 'prop-types';
 
 const { TextArea } = Input;
 
