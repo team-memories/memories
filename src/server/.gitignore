@@ -144,3 +144,5 @@ cython_debug/
 # Mock db dump
 mock_db.dump
 media/
+/media_enhancement_module/video_colorization_module/colorization/ckpt_woflow/
+/media_enhancement_module/video_colorization_module/colorization/VGG_Model/
