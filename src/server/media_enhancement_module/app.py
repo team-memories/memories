@@ -61,7 +61,7 @@ def enhance_video():
     folder_out_path = os.path.join(enhanced_media_folder_path, "color")
     video_colorization(folder_in_path, folder_out_path)
 
-    folder_in_path = frames_folder_out_path
+    folder_in_path = folder_out_path
     fps_in_path = fps_out_path
     file_out_path = os.path.join(enhanced_media_folder_path, "enhanced_" + file_name)
     super_resolution_and_video_interpolation(folder_in_path, fps_in_path, file_out_path)
