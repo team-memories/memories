@@ -21,6 +21,7 @@ ENV PATH /opt/conda/bin:$PATH
 RUN pip install torch torchvision numpy opencv-python lmdb pyyaml matplotlib seaborn
 WORKDIR /app
 COPY . .
+RUN ls -la
 RUN cd Zooming-Slow-Mo-CVPR-2020/codes/models/DCNv2 && bash make.sh && python test.test
 
 EXPOSE 4203
