@@ -22,6 +22,7 @@ parser.add_argument("--is-image", action='store_true', default=False,
                     help="Whether test is image or not / defualt=False, That is, Test is video ")
 parser.add_argument("--use-gpu", action='store_false', default=True, help='Whether use or not /default=True')
 parser.add_argument("--flow-root-dir", default='./data', type=str, help='root path of flow dir ')
+parser.add_argument("--out-dir", default='./data/output', type=str, help='output path to store')
 ARGS = parser.parse_args()
 print(ARGS)
 
@@ -31,7 +32,9 @@ test_dir = ARGS.test_dir
 is_image = ARGS.is_image
 flow_root_dir = ARGS.flow_root_dir
 num_frame = 2 # number of read in frames
+out_dir = ARGS.out_dir
 
+os.makedirs(out_dir, exist_ok=True)
 
 # 남은 gpu 메모리중 가장 큰 메모리의 gpu를 사용한다.
 if ARGS.use_gpu:
@@ -151,14 +154,14 @@ if is_image:
         C0_im=sess.run(C0,feed_dict={input_i:np.concatenate((im,im),axis=3)})
         print("test time for %s --> %.3f"%(ind, time.time()-st))
         h,w = C0_im.shape[1:3]
-        if not os.path.isdir("%s/%s" % (model, out_folder)):
-            os.makedirs("%s/%s/predictions0" % (model, out_folder), exist_ok=True)
-            os.makedirs("%s/%s/predictions1" % (model, out_folder), exist_ok=True)
-            os.makedirs("%s/%s/predictions2" % (model, out_folder), exist_ok=True)
-            os.makedirs("%s/%s/predictions3" % (model, out_folder), exist_ok=True)
+        if os.path.isdir(out_dir):
+            os.makedirs("%s/predictions0" %out_dir, exist_ok=True)
+            os.makedirs("%s/predictions1" %out_dir, exist_ok=True)
+            os.makedirs("%s/predictions2" %out_dir, exist_ok=True)
+            os.makedirs("%s/predictions3" %out_dir, exist_ok=True)
 
         for ref_i in range(4):
-            sic.imsave("%s/%s/predictions%d/final_%06d.jpg"%(model, out_folder, ref_i, ind),np.uint8(np.maximum(np.minimum(C0_im[0,:,:,ref_i*3:ref_i*3+3] * 255.0,255.0),0.0)))
+            sic.imsave("%s/predictions%d/final_%06d.jpg"%(out_dir, ref_i, ind),np.uint8(np.maximum(np.minimum(C0_im[0,:,:,ref_i*3:ref_i*3+3] * 255.0,255.0),0.0)))
 
 
 else:
@@ -174,11 +177,11 @@ else:
             })
         print("test time for %s --> %.3f"%(ind, time.time()-st))
         h,w = C0_im.shape[1:3]
-        if not os.path.isdir("%s/%s" % (model, out_folder)):
-            os.makedirs("%s/%s/predictions0" % (model, out_folder), exist_ok=True)
-            os.makedirs("%s/%s/predictions1" % (model, out_folder), exist_ok=True)
-            os.makedirs("%s/%s/predictions2" % (model, out_folder), exist_ok=True)
-            os.makedirs("%s/%s/predictions3" % (model, out_folder), exist_ok=True)
+        if os.path.isdir(out_dir):
+            os.makedirs("%s/predictions0" %out_dir, exist_ok=True)
+            os.makedirs("%s/predictions1" %out_dir, exist_ok=True)
+            os.makedirs("%s/predictions2" %out_dir, exist_ok=True)
+            os.makedirs("%s/predictions3" %out_dir, exist_ok=True)
 
         # refine network
         # 처음프레임에는 두장의 이미지 넣어주고, 그 뒤로는 예측한 output과 그 다음 프레임을 넣어줘서 다음 프레임을 정제함.
@@ -188,8 +191,8 @@ else:
                         input_i:input_image_src,\
                         gray_flow_backward:input_flow_backward_src, input_flow_backward:input_flow_backward_src})
                 outputs[ref_i] = output
-                sic.imsave("%s/%s/predictions%d/final_%06d.jpg"%(model, out_folder, ref_i, ind),np.uint8(np.maximum(np.minimum(C0_im[0,:,:,ref_i*3:ref_i*3+3] * 255.0,255.0),0.0)))
-                sic.imsave("%s/%s/predictions%d/final_%06d.jpg"%(model, out_folder, ref_i, ind+1),np.uint8(np.maximum(np.minimum(output[0,:,:,:] * 255.0,255.0),0.0)))
+                sic.imsave("%s/predictions%d/final_%06d.jpg"%(out_dir, ref_i, ind),np.uint8(np.maximum(np.minimum(C0_im[0,:,:,ref_i*3:ref_i*3+3] * 255.0,255.0),0.0)))
+                sic.imsave("%s/predictions%d/final_%06d.jpg"%(out_dir, ref_i, ind+1),np.uint8(np.maximum(np.minimum(output[0,:,:,:] * 255.0,255.0),0.0)))
 
         else:
             for ref_i in range(4):
@@ -197,4 +200,4 @@ else:
                         input_i:input_image_src, \
                         gray_flow_backward:input_flow_backward_src, input_flow_backward:input_flow_backward_src})
                 outputs.append(output[0,:,:,:])
-                sic.imsave("%s/%s/predictions%d/final_%06d.jpg"%(model, out_folder, ref_i, ind+1),np.uint8(np.maximum(np.minimum(output[0,:,:,:] * 255.0,255.0),0.0)))
+                sic.imsave("%s/predictions%d/final_%06d.jpg"%(out_dir, ref_i, ind+1),np.uint8(np.maximum(np.minimum(output[0,:,:,:] * 255.0,255.0),0.0)))
