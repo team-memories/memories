@@ -93,6 +93,9 @@ module.exports = {
           thumbnailUrl,
           isProcessing: false,
         });
+      })
+      .catch(function (error) {
+        console.log(error);
       });
     return mediaDB.createMedia({
       title,
