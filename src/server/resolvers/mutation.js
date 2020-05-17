@@ -10,7 +10,7 @@ const axios = require("axios");
 AWS.config.update({ region: "ap-northeast-2" });
 const s3 = new AWS.S3({ apiVersion: "2006-03-01" });
 
-const MEDIA_PATH = "/media_data/";
+const MEDIA_PATH = "/media_data";
 module.exports = {
   uploadMedia: async (
     _,
@@ -31,7 +31,7 @@ module.exports = {
     }
     const stream = createReadStream();
     const id = shortid.generate();
-    const path = `/${MEDIA_PATH}/${id}-${filename}`;
+    const path = `${MEDIA_PATH}/${id}-${filename}`;
     // const originalUrl = `${process.env.URL}:8080/media/original/${id}-${filename}`;
 
     await new Promise((resolve, reject) => {

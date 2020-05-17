@@ -12,7 +12,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./memories_db/:/var/lib/postgresql/data
+      - ~/memories_db/:/var/lib/postgresql/data
     restart: always
     environment:
       POSTGRES_PASSWORD: memories
@@ -21,7 +21,7 @@ services:
     ports:
       - "4001:4001"
     volumes:
-      - ./media_data/:/media_data/
+      - ~/media_data/:/media_data/
     restart: always
     environment:
       ISR_SERVICE_ADDR: image_super_resolution_service:4103
