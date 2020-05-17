@@ -30,6 +30,7 @@ function MediaDetailCardQuery (props) {
       errorPolicy: 'all'
     }
   )
+  // Loading이 중앙에 나타남
   if (loading) return (<Spin tip="Loading..." style={{ paddingTop: "25%", paddingLeft: "47%" }}/>)
   // TODO(Lhyejin): 자세히 에러 처리 해주기
   if (error) {

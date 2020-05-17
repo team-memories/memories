@@ -6,6 +6,7 @@ import './background.css'
 
 function MediaCard(props){
   return (
+    //Link를 통해서 state 전달, props.data는 search query로 부터 나온 결과값 리스트
     <Link to={{pathname: `/watch`, search: `?id=${props.id}`, state: {data: props.data}}}>
       <figure className = "snip1361">
         <img style={{ width: '100%', borderTopLeftRadius: 10, borderTopRightRadius: 10 }}
