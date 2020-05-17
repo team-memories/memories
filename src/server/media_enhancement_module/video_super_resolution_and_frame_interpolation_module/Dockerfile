@@ -20,6 +20,7 @@ RUN /opt/conda/bin/conda install -y ffmpeg && \
 ENV PATH /opt/conda/bin:$PATH
 
 RUN pip install numpy opencv-python lmdb pyyaml matplotlib seaborn
+RUN pip install Flask requests
 WORKDIR /app
 COPY . .
 RUN cd Zooming-Slow-Mo-CVPR-2020/codes/models/modules/DCNv2 && bash make.sh
