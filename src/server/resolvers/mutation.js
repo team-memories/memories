@@ -58,7 +58,7 @@ module.exports = {
     axios
       .post(
         `http://${process.env.MEDIA_QUALITY_ENHANCEMENT_SERVICE_ADDR}${URL_EXT}`,
-        { filename: `${id}-${filename}` }
+        { file_name: `${id}-${filename}` }
       )
       .then(async (response) => {
         // TODO(yun-kwak): Promise 적극적으로 사용
