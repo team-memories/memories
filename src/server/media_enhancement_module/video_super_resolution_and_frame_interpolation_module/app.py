@@ -24,4 +24,4 @@ def convert_photo():
     zooming_slow_mo(folder_in_path, fps_in_path, file_out_path)
 
 
-app.run(debug=True, port=4203)
+app.run(debug=True, port=4203, host="0.0.0.0")

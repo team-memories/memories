@@ -96,4 +96,4 @@ def enhance_photo():
     return {}, 200
 
 
-app.run(debug=True, port=4001)
+app.run(debug=True, port=4001, host="0.0.0.0")
