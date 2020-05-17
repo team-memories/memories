@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   main_graphql_api_server:
-    image: node
+    image: main_api_server:b0.1
     ports:
       - "4000:4000"
     environment:
