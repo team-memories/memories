@@ -80,6 +80,8 @@ function MediaAddComment (props) {
     mutate({ variables: variables }).then(() => {
       message.info('댓글 등록이 완료되었습니다.');
     });
+
+    // 등록을 완료한 댓글의 state 를 ''로 설정
     handleCancel();
   };
 
