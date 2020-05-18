@@ -51,7 +51,7 @@ function MediaDeleteComment (props) {
           border: 'none',
           background: '#f0f8ff',
           position: 'absolute',
-          left: '95%',
+          right: '2%',
           top: '1.5%'
         }}
       />
