@@ -8,7 +8,8 @@ cd ../..
 conda activate color
 cd colorization
 # --model parameter path / --test-dir frame 있는 path
-python test_main_whole.py --model Result_whole --test-dir ../data/color_input --flow-root-dir ../data
+python test_main_whole.py --model colorization/whole_model/ --test-dir data/color_input --flow-root-dir data --out_dir  ../data/VFI_input
+
 cd ../
 
 
