@@ -1,7 +1,7 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { Button, message } from 'antd'
-import { UploadOutlined } from '@ant-design/icons'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Button, message } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
 
 function UploadButton () {
   if (sessionStorage.getItem("token")) {
@@ -11,7 +11,7 @@ function UploadButton () {
           <UploadOutlined style={{ fontSize: '30px', color: '#72A4DD' }}/>
         </Button>
       </Link>
-    )
+    );
   }
   else {
     return (
@@ -20,8 +20,8 @@ function UploadButton () {
           <UploadOutlined style={{ fontSize: '30px', color: '#72A4DD' }}/>
         </Button>
       </Link>
-    )
+    );
   }
 }
 
-export default UploadButton
+export default UploadButton;
