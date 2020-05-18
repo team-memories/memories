@@ -1,10 +1,16 @@
 "use strict";
 const { createWriteStream, unlink } = require("fs");
+const fs = require("fs");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const shortid = require("shortid");
+const AWS = require("aws-sdk");
+const axios = require("axios");
 
-const UPLOAD_DIR = "../media";
+AWS.config.update({ region: "ap-northeast-2" });
+const s3 = new AWS.S3({ apiVersion: "2006-03-01" });
+
+const MEDIA_PATH = "/media_data";
 module.exports = {
   uploadMedia: async (
     _,
@@ -25,8 +31,8 @@ module.exports = {
     }
     const stream = createReadStream();
     const id = shortid.generate();
-    const path = `${__dirname}/${UPLOAD_DIR}/original/${id}-${filename}`;
-    const originalUrl = `${process.env.URL}:8080/media/original/${id}-${filename}`;
+    const path = `${MEDIA_PATH}/${id}-${filename}`;
+    // const originalUrl = `${process.env.URL}:8080/media/original/${id}-${filename}`;
 
     await new Promise((resolve, reject) => {
       const writeStream = createWriteStream(path);
@@ -46,6 +52,56 @@ module.exports = {
 
       stream.pipe(writeStream);
     });
+
+    const URL_EXT =
+      type === "PHOTO" ? "/v1/enhance/photo" : "/v1/enhance/video";
+    axios
+      .post(
+        `http://${process.env.MEDIA_QUALITY_ENHANCEMENT_SERVICE_ADDR}${URL_EXT}`,
+        { file_name: `${id}-${filename}` }
+      )
+      .then(async (response) => {
+        // TODO(yun-kwak): Promise 적극적으로 사용
+        const originalFile = fs.readFileSync(response.data.originalFilePath);
+        let thumbnailFile;
+        if (response.data.thumbnailUrl) {
+          thumbnailFile = fs.readFileSync(response.data.originalFilePath);
+        } else {
+          thumbnailFile = fs.readFileSync(response.data.thumbnailUrl);
+        }
+        const enhancedFile = fs.readFileSync(response.data.enhancedFilePath);
+
+        const originalUrl = (
+          await s3.upload({
+            Bucket: "memories-media-data",
+            Key: `${id}-${filename}`,
+            Body: originalFile,
+          })
+        ).location;
+        const thumbnailUrl = (
+          await s3.upload({
+            Bucket: "memories-media-data",
+            Key: `${id}-thumbnail-${filename}`,
+            Body: thumbnailFile,
+          })
+        ).location;
+        const url = (
+          await s3.upload({
+            Bucket: "memories-media-data",
+            Key: `${id}-enhanced-${filename}`,
+            Body: enhancedFile,
+          })
+        ).location;
+        await mediaDB.updateMedia(id, {
+          originalUrl,
+          url,
+          thumbnailUrl,
+          isProcessing: false,
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     return mediaDB.createMedia({
       title,
       description,
@@ -53,14 +109,12 @@ module.exports = {
       location,
       type,
       category,
-      originalUrl: originalUrl,
-      thumbnailUrl: originalUrl,
-      url: originalUrl,
+      originalUrl: "",
+      thumbnailUrl: "",
+      url: "",
       authorId: userId,
       isProcessing: true,
     });
-    // TODO(yun-kwak): thumbnail 추출
-    // TODO(yun-kwak): 품질 향상 서비스 연결
   },
   deleteMedia: async (_, { id }, { userId, dataSources: { mediaDB } }) => {
     const media = await mediaDB.getMedia(id);
