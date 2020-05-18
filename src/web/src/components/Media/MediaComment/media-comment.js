@@ -1,8 +1,9 @@
 import React from 'react';
-import gql from 'graphql-tag';
+import gql from "graphql-tag";
+import MediaAddComment from './media-add-comment';
+import MediaCommentList from './media-comment-list';
 import { useQuery } from '@apollo/react-hooks';
 import { Spin } from 'antd';
-import MediaCommentList from './media-comment-list';
 
 const GET_COMMENTS = gql`
     query ($mediaId: ID!){
@@ -21,7 +22,8 @@ const GET_COMMENTS = gql`
     }
 `;
 
-function MediaCommentQuery (props) {
+// parent: MediaDetailCard
+function MediaComment (props) {
   const { loading, error, data } = useQuery(GET_COMMENTS, {
     variables: { mediaId: props.mediaId },
     errorPolicy: 'all'
@@ -30,9 +32,12 @@ function MediaCommentQuery (props) {
   if (error) return (console.log(error));
   return (
     <div>
-      <MediaCommentList comments={data.media.comments} />
+      {/* 댓글 작성 */}
+      <MediaAddComment mediaId={props.mediaId} GET_COMMENTS={GET_COMMENTS}/>
+      {/* 기존의 댓글, 삭제 */}
+      <MediaCommentList comments={data.media.comments} mediaId={props.mediaId} GET_COMMENTS={GET_COMMENTS}/>
     </div>
   );
 }
 
-export default MediaCommentQuery;
+export default MediaComment;
