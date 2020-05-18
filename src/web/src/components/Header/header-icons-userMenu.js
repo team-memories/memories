@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, Popover, Avatar, Card } from 'antd'
 import { UserOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
@@ -12,6 +12,16 @@ function UserMenu () {
     sessionStorage.removeItem("user_profileImgUrl")
     window.location.replace('/')
   }
+  const [clicked, handleClickedChange] = useState(false)
+
+  const handleClickChange = (visible) => {
+    handleClickedChange(visible)
+  }
+
+  const hidePopover = () => {
+    handleClickedChange(false)
+  }
+
   const title = (
     <div>
       <p/>
@@ -35,7 +45,7 @@ function UserMenu () {
     <div>
       <p>
         <Link to="/user">
-          <Button type="link">
+          <Button type="link" onClick={hidePopover}>
             내 앨범
           </Button>
         </Link>
@@ -47,7 +57,7 @@ function UserMenu () {
   )
   //logout 버튼을 누르면 sessionSotrage에 있는 token을 지우고 홈으로 이동
   return (
-    <Popover title={title} content={content} placement="bottom" trigger="click">
+    <Popover title={title} content={content} placement="bottom" trigger="click" visible={clicked} onVisibleChange={handleClickChange}>
       <Button type="link" ghost>
         <Avatar icon={<UserOutlined />} style={{backgroundColor: "#87d068"}}/>
       </Button>
