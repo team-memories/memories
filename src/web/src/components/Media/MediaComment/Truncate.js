@@ -18,7 +18,6 @@
 // Initial version of react-truncate module (v2.4.0)
 
 import React from 'react';
-import PropTypes from 'prop-types';
 
 export default class Truncate extends React.Component {
   static defaultProps = {
@@ -172,7 +171,10 @@ export default class Truncate extends React.Component {
     const targetWidth = (
       width ||
       // Floor the result to deal with browser subpixel precision
-      Math.floor(target.parentNode.getBoundingClientRect().width)
+      // Math.floor(target.parentNode.getBoundingClientRect().width)
+
+      // sujin -> targetWidth를 95% 로 설정
+      Math.floor(target.parentNode.getBoundingClientRect().width * 0.95)
     );
 
     // Delay calculation until parent node is inserted to the document
