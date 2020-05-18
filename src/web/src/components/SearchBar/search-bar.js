@@ -37,7 +37,7 @@ function SearchBar () {
       <Col flex={1}>
         <SearchBarInput onChangeTitle={onChangeTitle} onPressEnter={onPressEnter}/>
       </Col>
-      <Col>
+      <Col >
         <SearchBarPlaceSelect onChangeLocation={onChangeLocation}/>
       </Col>
       <Col>

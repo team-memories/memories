@@ -1,28 +1,23 @@
-import React from 'react'
-import { Col, Layout, Row } from 'antd'
-import HeaderLogo from './header-logo'
-import SearchBar from '../SearchBar/search-bar'
-import HeaderIcons from './header-icons'
+import React from 'react';
+import { Col, Row } from 'antd';
+import HeaderLogo from './header-logo';
+import SearchBar from '../SearchBar/search-bar';
+import HeaderIcons from './header-icons';
 
 function Header () {
   return (
-    <Layout>
-    {/*TODO(gee05053) 반응형 세분화하기*/}
-      <Layout.Header style={{ backgroundColor: '#FFFFFF', boxShadow: '1px 1px 3px #B8B8B8' }}>
-        <Row>
-          <Col flex={1}>
-            <HeaderLogo/>
-          </Col>
-          <Col flex={4}>
-            <SearchBar/>
-          </Col>
-          <Col flex={1}>
-            <HeaderIcons/>
-          </Col>
-        </Row>
-      </Layout.Header>
-    </Layout>
-  )
+    <Row align='middle' style={{ backgroundColor: '#F8F8F8', boxShadow: '5px 1px 7px #B8B8B8'}} justify='center'>
+      <Col style={{marginTop: '20px', marginBottom: '20px', marginLeft: '30px'}}xl={{marginleft: '50px'}}>
+        <HeaderLogo/>
+      </Col>
+      <Col offset={2} xs={{span: 5, offset: 1}} sm={{span:7.5}} md={{span: 10}} xl={{span: 15}} style={{marginTop: '10px', marginBottom:'10px'}}>
+        <SearchBar/>
+      </Col>
+      <Col flex={1.5}>
+        <HeaderIcons/>
+      </Col>
+    </Row>
+  );
 }
 
-export default Header
+export default Header;
