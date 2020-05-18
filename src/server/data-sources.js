@@ -116,6 +116,7 @@ class CommentDB extends SQLDataSource {
     return await this.knex
       .from("comment")
       .where({ mediaId: id })
+      .orderBy("id", "desc")
       .cache(CACHE_TTL);
   }
 
