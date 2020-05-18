@@ -51,9 +51,18 @@ const Editor = ({ onChange, onCancel, onSubmit, submitting, value }) => (
   </div>
 );
 
+// parent: MediaComment
 function MediaAddComment (props) {
   const [commentValue, setCommentValue] = useState('');
-  const [mutate] = useMutation(CREATE_COMMENT);
+  const [mutate] = useMutation(
+    CREATE_COMMENT,
+    {
+      // mutation 보내면 refetching
+      refetchQueries: [{
+        query: props.GET_COMMENTS, variables: { mediaId: props.mediaId }
+      }]
+    }
+  );
 
   const handleSubmit = () => {
     // 글을 입력하지 않고 댓글 버튼을 누르면 경고 메시지를 띄운다.
@@ -68,11 +77,10 @@ function MediaAddComment (props) {
     };
 
     // 댓글 등록 mutation
-    // TODO: useEffect를 사용하여 page reload가 아닌 component update로 수정하기.
     mutate({ variables: variables }).then(() => {
       message.info('댓글 등록이 완료되었습니다.');
-      window.location.reload(false);
     });
+    handleCancel();
   };
 
   // 취소 버튼을 누르면 작성중이던 댓글이 '' 로 초기화됨

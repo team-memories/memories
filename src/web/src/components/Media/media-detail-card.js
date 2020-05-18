@@ -4,6 +4,7 @@ import MediaDetailDeleteButton from './media-detail-delete-button';
 import ImageCompare from './media-detail-card-image-compare';
 import MediaAddComment from './MediaComment/media-add-comment';
 import MediaCommentQuery from './MediaComment/media-comment-query';
+import MediaComment from './MediaComment/media-comment';
 
 function MediaInfo (props) {
   return (
@@ -44,10 +45,8 @@ function MediaDetailCard (props) {
       <ImageCompare url={props.media.url} originalUrl={props.media.originalUrl}/>
       {/* 상세 정보 */}
       <MediaInfo media={props.media}/>
-      {/* 댓글 추가 */}
-      <MediaAddComment mediaId={props.media.id}/>
-      {/* 기존의 댓글들 */}
-      <MediaCommentQuery mediaId={props.media.id}/>
+      {/* 댓글 */}
+      <MediaComment mediaId={props.media.id}/>
     </div>
   );
 }

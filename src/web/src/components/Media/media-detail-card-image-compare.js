@@ -15,7 +15,7 @@ function ImageCompare (props) {
         <ReactCompareImage
           leftImage={before}
           rightImage={after}
-          sliderPositionPercentage='0.07'
+          sliderPositionPercentage={0.07}
         />
       </div>
     </div>
