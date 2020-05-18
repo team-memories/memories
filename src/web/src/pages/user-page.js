@@ -16,6 +16,7 @@ const MyMediaQuery = gql`
       author {
         name
         profileImgUrl
+        id
       }
     }
   }
