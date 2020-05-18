@@ -149,19 +149,14 @@ if is_image:
         im=im[np.newaxis,:h,:w,np.newaxis]
 
         st=time.time()
-
+        image_name = os.path.basename(test_low[ind])
         # colorization C0
         C0_im=sess.run(C0,feed_dict={input_i:np.concatenate((im,im),axis=3)})
         print("test time for %s --> %.3f"%(ind, time.time()-st))
         h,w = C0_im.shape[1:3]
-        if os.path.isdir(out_dir):
-            os.makedirs("%s/predictions0" %out_dir, exist_ok=True)
-            os.makedirs("%s/predictions1" %out_dir, exist_ok=True)
-            os.makedirs("%s/predictions2" %out_dir, exist_ok=True)
-            os.makedirs("%s/predictions3" %out_dir, exist_ok=True)
 
-        for ref_i in range(4):
-            sic.imsave("%s/predictions%d/final_%06d.jpg"%(out_dir, ref_i, ind),np.uint8(np.maximum(np.minimum(C0_im[0,:,:,ref_i*3:ref_i*3+3] * 255.0,255.0),0.0)))
+        for ref_i in range(1):
+            sic.imsave("%s/%s"%(out_dir, image_name),np.uint8(np.maximum(np.minimum(C0_im[0,:,:,ref_i*3:ref_i*3+3] * 255.0,255.0),0.0)))
 
 
 else:
@@ -177,27 +172,22 @@ else:
             })
         print("test time for %s --> %.3f"%(ind, time.time()-st))
         h,w = C0_im.shape[1:3]
-        if os.path.isdir(out_dir):
-            os.makedirs("%s/predictions0" %out_dir, exist_ok=True)
-            os.makedirs("%s/predictions1" %out_dir, exist_ok=True)
-            os.makedirs("%s/predictions2" %out_dir, exist_ok=True)
-            os.makedirs("%s/predictions3" %out_dir, exist_ok=True)
-
+        image_name = os.path.splitext(os.path.basename(test_low[ind]))[0]
         # refine network
         # 처음프레임에는 두장의 이미지 넣어주고, 그 뒤로는 예측한 output과 그 다음 프레임을 넣어줘서 다음 프레임을 정제함.
         if ind == 0:
-            for ref_i in range(4):
+            for ref_i in range(1):
                 output= sess.run(final_r1,feed_dict={c0:C0_im[:,:,:,ref_i*3:ref_i*3+3], c1:C1_im[:,:,:,ref_i*3:ref_i*3+3], \
                         input_i:input_image_src,\
                         gray_flow_backward:input_flow_backward_src, input_flow_backward:input_flow_backward_src})
                 outputs[ref_i] = output
-                sic.imsave("%s/predictions%d/final_%06d.jpg"%(out_dir, ref_i, ind),np.uint8(np.maximum(np.minimum(C0_im[0,:,:,ref_i*3:ref_i*3+3] * 255.0,255.0),0.0)))
-                sic.imsave("%s/predictions%d/final_%06d.jpg"%(out_dir, ref_i, ind+1),np.uint8(np.maximum(np.minimum(output[0,:,:,:] * 255.0,255.0),0.0)))
+                sic.imsave("%s/%s%06d.jpg"%(out_dir, image_name[:-6], ind),np.uint8(np.maximum(np.minimum(C0_im[0,:,:,ref_i*3:ref_i*3+3] * 255.0,255.0),0.0)))
+                sic.imsave("%s/%s%06d.jpg"%(out_dir, image_name[:-6], ind+1),np.uint8(np.maximum(np.minimum(output[0,:,:,:] * 255.0,255.0),0.0)))
 
         else:
-            for ref_i in range(4):
+            for ref_i in range(1):
                 output = sess.run(final_r1,feed_dict={c0:outputs[ref_i], c1:C1_im[:,:,:,:3], \
                         input_i:input_image_src, \
                         gray_flow_backward:input_flow_backward_src, input_flow_backward:input_flow_backward_src})
                 outputs.append(output[0,:,:,:])
-                sic.imsave("%s/predictions%d/final_%06d.jpg"%(out_dir, ref_i, ind+1),np.uint8(np.maximum(np.minimum(output[0,:,:,:] * 255.0,255.0),0.0)))
+                sic.imsave("%s/%s%06d.jpg"%(out_dir, image_name[:-6], ind+1),np.uint8(np.maximum(np.minimum(output[0,:,:,:] * 255.0,255.0),0.0)))
