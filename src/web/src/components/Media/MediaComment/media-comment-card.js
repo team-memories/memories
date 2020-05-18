@@ -22,7 +22,7 @@ function MediaCommentCard (props) {
             content={
               <div>
                 <ShowMoreText more='더보기' less='간략히 보기'>
-                  <p>{props.content}</p>
+                  <p style={{width: '95%'}}>{props.content}</p>
                 </ShowMoreText>
                 <MediaDeleteComment
                   commentId={props.commentId}
@@ -44,7 +44,7 @@ function MediaCommentCard (props) {
             }
             content={
               <ShowMoreText more='더보기' less='간략히 보기'>
-                <p>{props.content}</p>
+                <p style={{width: '95%'}}>{props.content}</p>
               </ShowMoreText>
             }
             style={{ marginBottom: '1%'}}
