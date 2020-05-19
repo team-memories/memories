@@ -51,18 +51,28 @@ function MediaViewPage (props) {
       {onHeader ? <Header/> : <div/>}
       <Row justify="center" style={{ paddingTop: '3rem' }}>
         <Col span={2} style={{paddingTop: '20rem', paddingLeft: '2rem'}}>
-          {/*왼쪽 화살표를 누르면 이전 미디어로 이동, 이때 state는 data를 전달해줌*/}
+          {/*왼쪽 화살표를 누르면 이전 미디어로 이동, 이때 state는 data를 전달해줌, 리스트 원소가 한개이면 버튼 사용 불가능*/}
           <Link to={{pathname: `/watch`, search: `?id=${data[previous_index].id}`, state: {data: data}}}>
-            <Button shape="circle" icon={<ArrowLeftOutlined style={{fontSize: 30}}/>} size="large"/>
+            {
+              (data.length === 1) ? 
+              <Button shape="circle" icon={<ArrowLeftOutlined style={{fontSize: 30}}/>} size="large" disabled/>
+              :
+              <Button shape="circle" icon={<ArrowLeftOutlined style={{fontSize: 30}}/>} size="large"/>
+            }
           </Link>
         </Col>
         <Col span={19}>
           <MediaDetailCardQuery mediaId={query.get('id')}/>
         </Col>
         <Col span={2} style={{paddingTop: '20rem', paddingLeft: '4.2rem'}}>
-          {/*오른쪽 화살표를 누르면 이전 미디어로 이동, 이때 state는 data를 전달해줌*/}
+          {/*오른쪽 화살표를 누르면 이전 미디어로 이동, 이때 state는 data를 전달해줌, 리스트 원소가 한개이면 버튼 사용 불가능*/}
           <Link to={{pathname: `/watch`, search: `?id=${data[next_index].id}`, state: {data: data}}}>
-            <Button shape="circle" icon={<ArrowRightOutlined style={{fontSize: 30}}/>} size="large"/>
+            {
+              (data.length === 1) ? 
+              <Button shape="circle" icon={<ArrowRightOutlined style={{fontSize: 30}}/>} size="large" disabled/>
+              :
+              <Button shape="circle" icon={<ArrowRightOutlined style={{fontSize: 30}}/>} size="large"/>
+            }
           </Link>
         </Col>
       </Row>
