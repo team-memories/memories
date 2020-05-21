@@ -1,7 +1,7 @@
 from deoldify import device
 from deoldify.device_id import DeviceId
 #choices:  CPU, GPU0...GPU7
-device.set(device=DeviceId.GPU3)
+device.set(device=DeviceId.GPU0)
 
 import torch
 
