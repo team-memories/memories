@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from fastai.core import *
 from fastai.vision import *
 from matplotlib.axes import Axes
@@ -206,9 +207,9 @@ class ModelImageVisualizer:
 
 
 class VideoColorizer:
-    def __init__(self, vis: ModelImageVisualizer):
+    def __init__(self, vis: ModelImageVisualizer, workfolder: str = './video'):
         self.vis = vis
-        workfolder = Path('./video')
+        workfolder = Path(workfolder)
         self.source_folder = workfolder / "source"
         self.bwframes_root = workfolder / "bwframes"
         self.audio_root = workfolder / "audio"
@@ -247,6 +248,19 @@ class VideoColorizer:
         ffmpeg.input(str(source_path)).output(
             str(bwframe_path_template), format='image2', vcodec='mjpeg', qscale=0
         ).run(capture_stdout=True)
+        
+        # audio 추출
+        audio_file = Path(str(source_path).replace('.mp4', '.aac'))
+        if audio_file.exists():
+            audio_file.unlink()
+
+        os.system(
+            'ffmpeg -y -i "'
+            + str(source_path)
+            + '" -vn -acodec copy "'
+            + str(audio_file)
+            + '"'
+        )
 
     def _colorize_raw_frames(
         self, source_path: Path, render_factor: int = None, post_process: bool = True,
@@ -334,7 +348,7 @@ class VideoColorizer:
     def colorize_from_file_name(
         self, file_name: str, render_factor: int = None,  watermarked: bool = True, post_process: bool = True,
     ) -> Path:
-        source_path = self.source_folder / file_name
+        source_path = Path(file_name)
         return self._colorize_from_path(
             source_path, render_factor=render_factor,  post_process=post_process,watermarked=watermarked
         )
@@ -350,11 +364,12 @@ class VideoColorizer:
         self._colorize_raw_frames(
             source_path, render_factor=render_factor,post_process=post_process,watermarked=watermarked
         )
-        return self._build_video(source_path)
+        #return self._build_video(source_path)
+        return print('finished')
 
 
-def get_video_colorizer(render_factor: int = 21) -> VideoColorizer:
-    return get_stable_video_colorizer(render_factor=render_factor)
+def get_video_colorizer(render_factor: int = 21, workfolder='./video') -> VideoColorizer:
+    return get_stable_video_colorizer(render_factor=render_factor, workfolder=workfolder)
 
 
 def get_artistic_video_colorizer(
@@ -373,12 +388,13 @@ def get_stable_video_colorizer(
     root_folder: Path = Path('./'),
     weights_name: str = 'ColorizeVideo_gen',
     results_dir='result_images',
-    render_factor: int = 21
+    render_factor: int = 21,
+    workfolder='./video'
 ) -> VideoColorizer:
     learn = gen_inference_wide(root_folder=root_folder, weights_name=weights_name)
     filtr = MasterFilter([ColorizerFilter(learn=learn)], render_factor=render_factor)
     vis = ModelImageVisualizer(filtr, results_dir=results_dir)
-    return VideoColorizer(vis)
+    return VideoColorizer(vis, workfolder=workfolder)
 
 
 def get_image_colorizer(
