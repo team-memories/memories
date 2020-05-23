@@ -10,3 +10,16 @@ class DeviceId(IntEnum):
     GPU6 = 6,
     GPU7 = 7,
     CPU = 99
+    
+    def __str__(self):
+        return self.name.lower()
+
+    def __repr__(self):
+        return str(self)
+
+    @staticmethod
+    def argparse(s):
+        try:
+            return DeviceId[s.upper()]
+        except KeyError:
+            return s
