@@ -34,9 +34,15 @@ python video_colorize.py --in_dir [directory path including video file] --out_di
 ```
 
 **video output**
-in_dir/video.aac - 원본 비디오 소리 추출한 파일
-output_dir/bwframes - 원본 frame 저장한 directory
-output_dir/colorframes - colorized frame 저장한 directory
+ex) input video : video.mp4
+
+1 in_dir/video.aac - 원본 비디오 소리 추출한 파일
+
+bwframes와 colorframes에 영상 이름으로 폴더 만들어짐.
+
+2. output_dir/bwframes/video/ - 원본 frame 저장한 directory
+
+3. output_dir/colorframes/video/ - colorized frame 저장한 directory
 
 
 
