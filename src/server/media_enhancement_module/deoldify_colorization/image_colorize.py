@@ -9,11 +9,14 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--in_dir", default="data/color_input", type=str, help="input folder")
 parser.add_argument("--out_dir", default="data/output", type=str, help="output folder")
 parser.add_argument("--gpu", default=DeviceId.CPU, type=DeviceId.argparse, choices=list(DeviceId))
+parser.add_argument("--render_factor", default=21, type=int, help="colorization render factor")
 
 args = parser.parse_args()
 in_dir = args.in_dir
 out_dir = args.out_dir
 gpu = args.gpu
+render_factor = args.render_factor
+
 os.makedirs(out_dir, exist_ok=True)
 
 device.set(device=gpu)
