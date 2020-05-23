@@ -1,9 +1,10 @@
+# -*- coding: utf-8 -*-
 import numpy as np
 import tensorflow as tf
 import os, cv2
-import math,scipy
+import math, scipy
 import myflowlib_up as flowlib
-import scipy.misc as sic
+from scipy import misc as sic
 # from flownet2.src import flow_warp
 from tensorflow.python.ops import array_ops
 from tensorflow.python.ops import math_ops
@@ -40,6 +41,7 @@ def is_image_file(filename):
     return any(filename.endswith(extension) for extension in IMG_EXTENSIONS)
 
 '''
+filename: last 6 words are frame number 
 Return: gray_images, color_images
         gray_images-    [num_frames, H, W, 1]
         color_images-   [num_frames, H, W, 3]
@@ -63,14 +65,16 @@ def read_image_sequence(filename, num_frames):
     img_l_seq=img1/255.0
     img_h_seq=imgh1/255.0
     for i in range(num_frames-1):
-        filei = int(file1) + i + 1
-        filenamei = os.path.split(filename)[0] + "/" + "{:>05}".format(filei).format() + ext
+       # t+1 프레임
+        filei = int(file1[-6:]) + i + 1
+        filenamei = os.path.split(filename)[0] + "/" + file1[:-6] + "{:>06}".format(filei).format() + ext
         try:
             imgi = sic.imread(filenamei).astype(np.float32)
             imghi = imgi
         except:
             #print("Cannot read the following %d frames\n"%(num_frames))
             return None, None
+        # 
         imgi = cv2.cvtColor(imgi, cv2.COLOR_RGB2GRAY)
         imgi = np.expand_dims(imgi,2)
 
@@ -83,9 +87,9 @@ def read_image_sequence(filename, num_frames):
 def read_image_SPMC(filename, num_frames):
     file1 = os.path.splitext(os.path.basename(filename))[0]
     ext = os.path.splitext(os.path.basename(filename))[1]
-
     img1 = sic.imread(filename)
     imgh1 = sic.imread(filename.replace("input4","gt"))
+
     if img1 is None or imgh1 is None:
         print("Cannot read the first frame\n")
         return None,None
@@ -154,16 +158,19 @@ def read_flow_sequence(filename, num_frames):
     file1 = os.path.splitext(os.path.basename(filename))[0]
     folder = os.path.split(filename)[0]
     ext = os.path.splitext(os.path.basename(filename))[1]
-    
-    filej = file1
+    filej = int(file1[-6:])
     for i in range(num_frames-1):
-        filei = int(file1) + i + 1
+        filei = filej + i + 1
+
         if "SPMC" in filename:
             flow_forward = flowlib.read_flow(folder+"/Forward/{:>04}".format(filej).format()+"_"+"{:>04}".format(filei).format()+".flo")
             flow_backward = flowlib.read_flow(folder+"/Backward/{:>04}".format(filei).format()+"_"+"{:>04}".format(filej).format()+".flo")
         else:
-            flow_forward = flowlib.read_flow(folder.replace("480p","Forward")+"/"+"{:>05}".format(filej).format()+"_"+"{:>05}".format(filei).format()+".flo")
-            flow_backward = flowlib.read_flow(folder.replace("480p","Backward")+"/"+"{:>05}".format(filei).format()+"_"+"{:>05}".format(filej).format()+".flo")
+            try:
+                flow_forward = flowlib.read_flow(folder+"/Forward"+"/"+file1[:-6]+"{:>06}".format(filej).format()+"_"+file1[:-6]+"{:>06}".format(filei).format()+".flo")
+                flow_backward = flowlib.read_flow(folder+"/Backward"+"/"+file1[:-6]+"{:>06}".format(filei).format()+"_"+file1[:-6]+"{:>06}".format(filej).format()+".flo")
+            except:
+                return None, None
         filej = filei
         if i == 0:
             flow_forward_seq = flow_forward
@@ -269,8 +276,7 @@ def get_weight_bias(vgg_layers,i):
     bias=tf.constant(np.reshape(bias,(bias.size)))
     return weights,bias
 
-vgg_rawnet=scipy.io.loadmat('colorization/VGG_Model/imagenet-vgg-verydeep-19.mat')
-# vgg_rawnet=scipy.io.loadmat('VGG_Model/imagenet-vgg-verydeep-19.mat')
+vgg_rawnet=scipy.io.loadmat('VGG_Model/imagenet-vgg-verydeep-19.mat')
 def build_vgg19(input,reuse=False):
     with tf.compat.v1.variable_scope("vgg19"):
         if reuse:
