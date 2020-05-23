@@ -7,7 +7,9 @@
 ### Prepare:
 
 ```
+# 만약 안된다면 env.yml 사용
 conda env create -f environment.yml
+
 
 # image model
 mkdir models
