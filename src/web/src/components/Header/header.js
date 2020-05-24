@@ -6,7 +6,7 @@ import HeaderIcons from './header-icons';
 
 function Header () {
   return (
-    <Row align='middle' style={{ backgroundColor: '#F8F8F8', boxShadow: '5px 1px 7px #B8B8B8'}} justify='center'>
+    <Row align='middle' style={{ backgroundColor: 'white', boxShadow: '5px 1px 7px #B8B8B8'}} justify='center'>
       <Col style={{marginTop: '20px', marginBottom: '20px', marginLeft: '30px'}}xl={{marginleft: '50px'}}>
         <HeaderLogo/>
       </Col>
