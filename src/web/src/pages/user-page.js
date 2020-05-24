@@ -32,7 +32,7 @@ function UserPage (props) {
     <div>
       <div style={{ width: '70%', margin: '3rem auto' }}>
         <h1>
-          내가 올린 이미지
+          내가 올린 영상
         </h1>
       </div>
       <MediaList data={data.myMedia}/>
