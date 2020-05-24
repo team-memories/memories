@@ -87,21 +87,18 @@ def read_flow(filename):
     :return: optical flow data in matrix
     """
     f = open(filename, 'rb')
-    try:
-        magic = np.fromfile(f, np.float32, count=1)[0]    # For Python3.x
-    except:
-        magic = np.fromfile(f, np.float32, count=1)       # For Python2.x
+    magic = np.fromfile(f, np.float32, count=1)
     data2d = None
 
     if 202021.25 != magic:
-        print('Magic number incorrect. Invalid .flo file')
+        print ('Magic number incorrect. Invalid .flo file')
     else:
-        w = np.fromfile(f, np.int32, count=1)
-        h = np.fromfile(f, np.int32, count=1)
-        #print("Reading %d x %d flo file" % (h, w))
-        data2d = np.fromfile(f, np.float32, count=2 * w[0] * h[0])
+        w = np.fromfile(f, np.int32, count=1)[0]
+        h = np.fromfile(f, np.int32, count=1)[0]
+        # print ("Reading %d x %d flo file" % (h, w))
+        data2d = np.fromfile(f, np.float32, count=2 * w * h)
         # reshape data into 3D array (columns, rows, channels)
-        data2d = np.resize(data2d, (h[0], w[0], 2))
+        data2d = np.resize(data2d, (h, w, 2))
     f.close()
     return data2d
 
@@ -128,6 +125,47 @@ def read_flow_png(flow_file):
     flow[invalid_idx, 1] = 0
     return flow
 
+def write_flow_round(flow, filename):
+    """
+    write optical flow in Middlebury .flo format
+    :param flow: optical flow map
+    :param filename: optical flow file path to be saved
+    :return: None
+    """
+    f = open(filename, 'wb')
+    flow = (flow*100).astype(np.int16)
+    magic = np.array([202021.25], dtype=np.float32)
+    (height, width) = flow.shape[0:2]
+    w = np.array([width], dtype=np.int32)
+    h = np.array([height], dtype=np.int32)
+    magic.tofile(f)
+    w.tofile(f)
+    h.tofile(f)
+    flow.tofile(f)
+    f.close()
+
+def read_flow_round(filename):
+    """
+    read optical flow from Middlebury .flo file
+    :param filename: name of the flow file
+    :return: optical flow data in matrix
+    """
+    f = open(filename, 'rb')
+    magic = np.fromfile(f, np.float32, count=1)
+    data2d = None
+
+    if 202021.25 != magic:
+        print ('Magic number incorrect. Invalid .flo file')
+    else:
+        w = np.fromfile(f, np.int32, count=1)[0]
+        h = np.fromfile(f, np.int32, count=1)[0]
+        # print ("Reading %d x %d flo file" % (h, w))
+        data2d = np.fromfile(f, np.int16, count=2 * w * h)
+        # reshape data into 3D array (columns, rows, channels)
+        data2d = np.resize(data2d, (h, w, 2))
+        data2d = data2d.astype(np.float32)/100
+    f.close()
+    return data2d
 
 def write_flow(flow, filename):
     """
@@ -146,7 +184,6 @@ def write_flow(flow, filename):
     h.tofile(f)
     flow.tofile(f)
     f.close()
-
 
 def segment_flow(flow):
     h = flow.shape[0]
@@ -240,7 +277,7 @@ def flow_error(tu, tv, u, v):
     return mepe
 
 
-def flow_to_image(flow, display=False):
+def flow_to_image(flow):
     """
     Convert flow into middlebury color code image
     :param flow: optical flow map
@@ -267,8 +304,7 @@ def flow_to_image(flow, display=False):
     rad = np.sqrt(u ** 2 + v ** 2)
     maxrad = max(-1, np.max(rad))
 
-    if display:
-        print("max flow: %.4f\nflow range:\nu = %.3f .. %.3f\nv = %.3f .. %.3f" % (maxrad, minu,maxu, minv, maxv))
+    print ("max flow: %.4f\nflow range:\nu = %.3f .. %.3f\nv = %.3f .. %.3f" % (maxrad, minu,maxu, minv, maxv))
 
     u = u/(maxrad + np.finfo(float).eps)
     v = v/(maxrad + np.finfo(float).eps)
@@ -382,10 +418,11 @@ def warp_image(im, flow):
     flow_height = flow.shape[0]
     flow_width = flow.shape[1]
     n = image_height * image_width
-    (iy, ix) = np.float32(np.mgrid[0:image_height, 0:image_width])
-    (fy, fx) = np.float32(np.mgrid[0:flow_height, 0:flow_width])
-    fx += flow[:,:,0]
-    fy += flow[:,:,1]
+    (iy, ix) = np.mgrid[0:image_height, 0:image_width]
+    (fy, fx) = np.mgrid[0:flow_height, 0:flow_width]
+    # print(flow.shape, flow.shape)
+    fx = fx + flow[:,:,0]
+    fy = fy + flow[:,:,1]
     mask = np.logical_or(fx <0 , fx > flow_width)
     mask = np.logical_or(mask, fy < 0)
     mask = np.logical_or(mask, fy > flow_height)
