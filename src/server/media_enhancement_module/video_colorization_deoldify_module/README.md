@@ -24,14 +24,13 @@ wget https://media.githubusercontent.com/media/jantic/DeOldify/master/resource_i
 
 
 ### Inference
-실행하기전에 GPU인지 CPU인지 인자로 넣어주기(default=GPU0) - 직접파일 수정
 
 ```
 # image colorize
-python image_colorize.py --in_dir [directory path including image file] --out_dir [output diretory path]
+python image_colorize.py --in_dir [directory path including image file] --out_dir [output diretory path] --gpu [gpu0, gpu1, cpu...]
 
 # video colorize
-python video_colorize.py --in_dir [directory path including video file] --out_dir [output directory path]
+python video_colorize.py --in_dir [directory path including video file] --out_dir [output directory path] --gpu [gpu0, gpu1, cpu...]
 
 ```
 
