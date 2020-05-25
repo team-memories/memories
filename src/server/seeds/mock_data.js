@@ -456,6 +456,21 @@ exports.seed = async function (knex) {
       year: 1950,
       authorId: 4,
     },
+    {
+      description: "VIDEO TEST",
+      category: "CITY",
+      originalUrl:
+        "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4",
+      url:
+        "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4",
+      isProcessing: false,
+      type: "VIDEO",
+      thumbnailUrl: "https://dummyimage.com/1920x1080.png/cc0000/ffffff",
+      title: "VIDEO TEST",
+      location: "대한민국 서울특별시 중구",
+      year: 2001,
+      authorId: 1,
+    },
   ]);
   await knex("comment").insert([
     {
