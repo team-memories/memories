@@ -7,6 +7,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
          curl \
          ca-certificates \
          libjpeg-dev \
+         libsm6 \
+         libxext6 \
+         libxrender-dev \
          wget \
          libpng-dev && \
      rm -rf /var/lib/apt/lists/*
@@ -23,13 +26,15 @@ RUN conda env create -f environment.yml && \
 
 RUN mkdir models
 RUN wget https://www.dropbox.com/s/mwjep3vyqk5mkjc/ColorizeStable_gen.pth?dl=0 -O ./models/ColorizeStable_gen.pth
-RUN /opt/conda/bin/pip install Flask requests
+# Make RUN commands use the new environment:
+SHELL ["conda", "run", "-n", "deoldify", "/bin/bash", "-c"]
+RUN pip install Flask requests
 WORKDIR /app
 COPY . .
 
-# Make RUN commands use the new environment:
-SHELL ["conda", "run", "-n", "deoldify", "/bin/bash", "-c"]
 
 # The code to run when container is started:
-EXPOSE 4102
-ENTRYPOINT ["conda", "run", "-n", "deoldify", "python", "app.py"]
+EXPOSE 4202
+ENV PATH /opt/conda/envs/deoldify/bin:$PATH
+ENTRYPOINT ["python"]
+CMD ["app.py"]
