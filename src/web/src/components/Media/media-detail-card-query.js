@@ -8,6 +8,7 @@ import ErrorView from '../error-view';
 const GET_MEDIA = gql`
   query ($mediaId: ID!){
     media(id: $mediaId){
+      __typename
       id
       title
       originalUrl
