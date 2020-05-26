@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
-TAG=b0.1 && \
+TAG=b0.2 && \
 docker build . -t media_quality_enhancement_service:${TAG} && \
+cd image_colorization_module && \
+docker build . -t image_colorization_service:${TAG} && \
+cd - && \
 cd image_super_resolution_module && \
 docker build . -t image_super_resolution_service:${TAG} && \
 cd - && \

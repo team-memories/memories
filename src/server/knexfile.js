@@ -3,9 +3,9 @@ module.exports = {
   development: {
     client: "postgresql",
     connection: {
-      database: process.env.DEV_DB,
-      user: process.env.DEV_DB_USER,
-      password: process.env.DEV_DB_PW,
+      database: process.env["DEV_DB"],
+      user: process.env["DEV_DB_USER"],
+      password: process.env["DEV_DB_PW"],
     },
     seeds: {
       directory: "./seeds",
@@ -15,9 +15,9 @@ module.exports = {
   production: {
     client: "postgresql",
     connection: {
-      database: process.env.DB,
-      user: process.env.DB_USER,
-      password: process.env.DB_PW,
+      database: process.env["DB"],
+      user: process.env["DB_USER"],
+      password: process.env["DB_PW"],
     },
     pool: {
       min: 2,

@@ -336,8 +336,8 @@ def extract_frames(ffmpeg_dir, video, outDir):
     """
 
     error = ""
-    print('{} -i {} -vsync 0 {}/%06d.png'.format(os.path.join(ffmpeg_dir, "ffmpeg"), video, outDir))
-    retn = os.system('{} -i "{}" -vsync 0 {}/%06d.png'.format(os.path.join(ffmpeg_dir, "ffmpeg"), video, outDir))
+    print('{} -i {} -vsync 0 {}/%05d.png'.format(os.path.join(ffmpeg_dir, "ffmpeg"), video, outDir))
+    retn = os.system('{} -i "{}" -vsync 0 {}/%05d.png'.format(os.path.join(ffmpeg_dir, "ffmpeg"), video, outDir))
     if retn:
         error = "Error converting file:{}. Exiting.".format(video)
     return error
@@ -346,8 +346,8 @@ def create_video(ffmpeg_dir, dir, output, fps):
     error = ""
     # print('{} -r {} -i {}/%6d.png -vcodec ffvhuff {}'.format(os.path.join(ffmpeg_dir, "ffmpeg"), fps, dir, output))
     # retn = os.system('{} -r {} -i {}/%6d.png -vcodec ffvhuff "{}"'.format(os.path.join(ffmpeg_dir, "ffmpeg"), fps, dir, output))
-    print('{} -r {} -f image2 -i {}/%6d.png {} -y'.format(os.path.join(ffmpeg_dir, "ffmpeg"), fps, dir, output))
-    retn = os.system('{} -r {} -f image2 -i {}/%6d.png {} -y'.format(os.path.join(ffmpeg_dir, "ffmpeg"), fps, dir, output))
+    print('{} -r {} -f image2 -i {}/%5d.png {} -y'.format(os.path.join(ffmpeg_dir, "ffmpeg"), fps, dir, output))
+    retn = os.system('{} -r {} -f image2 -i {}/%5d.png {} -y'.format(os.path.join(ffmpeg_dir, "ffmpeg"), fps, dir, output))
     if retn:
         error = "Error creating output video. Exiting."
     return error

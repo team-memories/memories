@@ -26,11 +26,19 @@ wget https://media.githubusercontent.com/media/jantic/DeOldify/master/resource_i
 ### Inference
 
 ```
-# image colorize
-python image_colorize.py --in_file [image file path] --out_file [output file path] --gpu [gpu0, gpu1, cpu...]
+# video colorize
+python video_colorize.py --in_file [video file path] --out_dir [colorized output directory path] --in_frame_dir [byproduct frames path] --gpu [gpu0, gpu1, cpu...]
 
 ```
 
+**video output**
+ex) input video : video.mp4
+
+1 in_dir/video.aac - 원본 비디오 소리 추출한 파일
+
+2. in_frame_dir/. - 원본 frame 저장한 directory
+
+3. out_dir/. - colorized frame 저장한 directory
 
 
 

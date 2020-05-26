@@ -21,8 +21,10 @@ ENV PATH /opt/conda/bin:$PATH
 
 RUN pip install lmdb pyyaml seaborn Flask requests
 WORKDIR /app
-COPY . .
+RUN mkdir -p COPY Zooming-Slow-Mo-CVPR-2020/codes/models
+COPY Zooming-Slow-Mo-CVPR-2020/codes/models Zooming-Slow-Mo-CVPR-2020/codes/models
 RUN cd Zooming-Slow-Mo-CVPR-2020/codes/models/modules/DCNv2 && bash make.sh
+COPY . .
 
 EXPOSE 4203
 ENTRYPOINT ["python"]
