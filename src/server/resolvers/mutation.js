@@ -10,6 +10,11 @@ const axios = require("axios");
 AWS.config.update({ region: "ap-northeast-2" });
 const ID = process.env["AWS_ACCESS_KEY_ID"];
 const SECRET = process.env["AWS_SECRET_ACCESS_KEY"];
+console.log(`----------------------------------\n
+AWS_ACCESS_KEY_ID: ${ID}\n
+AWS_SECRET_ACCESS_KEY: ${SECRET}\n
+----------------------------------\n
+`);
 
 const BUCKET_NAME = "memories-media-data";
 

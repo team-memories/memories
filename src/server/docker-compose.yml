@@ -8,6 +8,9 @@ services:
       - ~/media_data/:/media_data/
     environment:
       MEDIA_QUALITY_ENHANCEMENT_SERVICE_ADDR: media_quality_enhancement_service:4001
+      AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+      AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+      SECRET: $SECRET
     restart: always
   db:
     image: postgres
