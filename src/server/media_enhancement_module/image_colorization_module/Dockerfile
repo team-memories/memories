@@ -28,10 +28,10 @@ RUN conda env create -f environment.yml && \
 SHELL ["conda", "run", "-n", "deoldify", "/bin/bash", "-c"]
 RUN pip install Flask requests
 WORKDIR /app
-COPY . .
 
 RUN mkdir models
 RUN wget https://www.dropbox.com/s/mwjep3vyqk5mkjc/ColorizeStable_gen.pth?dl=0 -O ./models/ColorizeStable_gen.pth
+COPY . .
 
 # The code to run when container is started:
 EXPOSE 4202

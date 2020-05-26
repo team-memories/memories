@@ -18,8 +18,6 @@ out_file = args.out_file
 gpu = args.gpu
 render_factor = args.render_factor
 
-os.makedirs(out_file, exist_ok=True)
-
 device.set(device=gpu)
 
 import fastai

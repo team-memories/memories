@@ -7,8 +7,7 @@ app = Flask(__name__)
 
 def process(file_in_path, file_out_path):
     subprocess.run(f"python image_colorize.py --in_file {file_in_path} \
-            --out_dir {file_out_path} --gpu gpu0")
-
+            --out_file {file_out_path} --gpu gpu0", shell=True)
 
 @app.route("/v1/enhance", methods=['POST'])
 def enhance():
@@ -18,4 +17,4 @@ def enhance():
     return {}, 200
 
 
-app.run(debug=True, port=4102, host="0.0.0.0")
+app.run(port=4102, host="0.0.0.0")
