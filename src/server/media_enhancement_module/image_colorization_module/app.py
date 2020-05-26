@@ -5,8 +5,8 @@ from flask import Flask, request
 app = Flask(__name__)
 
 
-def process(folder_in_path, folder_out_path):
-    subprocess.run(f"python image_colorize.py --in_dir {folder_in_path} \
+def process(file_in_path, folder_out_path):
+    subprocess.run(f"python image_colorize.py --in_file {file_in_path} \
             --out_dir {folder_out_path} --gpu 0")
 
 

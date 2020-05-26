@@ -27,7 +27,7 @@ wget https://media.githubusercontent.com/media/jantic/DeOldify/master/resource_i
 
 ```
 # image colorize
-python image_colorize.py --in_file [image file path] --out_dir [output diretory path] --gpu [gpu0, gpu1, cpu...]
+python image_colorize.py --in_file [image file path] --out_file [output file path] --gpu [gpu0, gpu1, cpu...]
 
 ```
 
