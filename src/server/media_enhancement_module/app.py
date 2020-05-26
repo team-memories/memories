@@ -24,21 +24,9 @@ def super_resolution_and_video_interpolation(folder_in_path, fps_in_path, file_o
                              'file_out_path': file_out_path})
 
 
-def image_preprocess(file_in_path, file_out_path):
-    from PIL import Image
-
-    img = Image.open(file_in_path).convert("L")
-    img.save(file_out_path)
-
-
 def image_colorization(file_in_path, file_out_path):
-    file_name = os.path.basename(file_in_path)
-    os.system(f"mkdir -p {file_in_path}_enhanced/color_input/")
-    os.system(f"cp {file_in_path} {file_in_path}_enhanced/color_input/{file_name}")
-    folder_in_path = file_in_path + "_enhanced/color_input/"
-    folder_out_path = file_in_path + "_enhanced/color_output/"
-    video_colorization(folder_in_path, folder_out_path)
-    os.system(f"cp {os.path.join(folder_out_path, file_name)} {file_out_path}")
+    url = f"http://{os.environ['IMAGE_COLORIZATION_ADDR']}/v1/enhance"
+    request.post(url, json={'file_in_path': file_in_path, 'file_out_path': file_out_path})
 
 
 def image_super_resolution(file_in_path, file_out_path):
@@ -87,14 +75,12 @@ def enhance_photo():
     os.system(f"mkdir -p {enhanced_media_folder_path}")
 
     # TODO(yun-kwak): 흑백 판단하여 이미 컬러 사진이면 colorization 건너 뛰게 만들기
-    file_in_path = file_path
-    file_out_path = os.path.join(enhanced_media_folder_path, "bw_" + file_name)
-    image_preprocess(file_in_path, file_out_path)
 
-    file_in_path = file_out_path
+    file_in_path = file_path
     file_out_path = os.path.join(enhanced_media_folder_path, "color_" + file_name)
     image_colorization(file_in_path, file_out_path)
 
+    # TODO(yun-kwak): 이미 고화질 사진이라면 Super resolution 건너 뛰게 만들기
     file_in_path = file_out_path
     file_out_path = os.path.join(enhanced_media_folder_path, "color_sr_" + file_name)
     image_super_resolution(file_in_path, file_out_path)
