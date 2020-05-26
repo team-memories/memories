@@ -16,7 +16,7 @@ RUN curl -o ~/miniconda.sh https://repo.anaconda.com/miniconda/Miniconda3-latest
     rm ~/miniconda.sh
 RUN /opt/conda/bin/conda install -y opencv numpy scipy==1.1.0 matplotlib Psutil Pillow&& \
     /opt/conda/bin/conda clean -ya
-RUN /opt/conda/bin/pip install -e ".[gpu]" ISR PyYAML Flask
+RUN /opt/conda/bin/pip install ISR[gpu] PyYAML Flask
 
 ENV PATH /opt/conda/bin:$PATH
 
