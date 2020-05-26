@@ -65,9 +65,9 @@ module.exports = {
         const originalFile = fs.readFileSync(response.data.originalFilePath);
         let thumbnailFile;
         if (response.data.thumbnailUrl) {
-          thumbnailFile = fs.readFileSync(response.data.originalFilePath);
-        } else {
           thumbnailFile = fs.readFileSync(response.data.thumbnailUrl);
+        } else {
+          thumbnailFile = fs.readFileSync(response.data.originalFilePath);
         }
         const enhancedFile = fs.readFileSync(response.data.enhancedFilePath);
 
