@@ -27,7 +27,7 @@ wget https://media.githubusercontent.com/media/jantic/DeOldify/master/resource_i
 
 ```
 # video colorize
-python video_colorize.py --in_file [directory path including video file] --out_dir [output directory path] --in_frame_dir [input frames path] --gpu [gpu0, gpu1, cpu...]
+python video_colorize.py --in_file [video file path] --out_dir [colorized output directory path] --in_frame_dir [byproduct frames path] --gpu [gpu0, gpu1, cpu...]
 
 ```
 
