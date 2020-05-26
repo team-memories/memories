@@ -25,8 +25,8 @@ def super_resolution_and_video_interpolation(folder_in_path, fps_in_path, file_o
 
 
 def image_colorization(file_in_path, file_out_path):
-    url = f"http://{os.environ['IMAGE_COLORIZATION_ADDR']}/v1/enhance"
-    request.post(url, json={'file_in_path': file_in_path, 'file_out_path': file_out_path})
+    url = f"http://{os.environ['IMAGE_COLORIZATION_SERVICE_ADDR']}/v1/enhance"
+    requests.post(url, json={'file_in_path': file_in_path, 'file_out_path': file_out_path})
 
 
 def image_super_resolution(file_in_path, file_out_path):
