@@ -9,6 +9,7 @@ def process(file_in_path, file_out_path):
     subprocess.run(f"python image_colorize.py --in_file {file_in_path} \
             --out_file {file_out_path} --gpu gpu0", shell=True)
 
+
 @app.route("/v1/enhance", methods=['POST'])
 def enhance():
     param = request.get_json(force=True)
