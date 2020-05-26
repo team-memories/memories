@@ -6,9 +6,9 @@ import argparse, os
 torch.backends.cudnn.benchmark=True
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--in_file",required=True, default="data/input/test.mp4", type=str, help="input file path")
-parser.add_argument("--out_dir", default="./video_output", type=str, help="output folder")
-parser.add_argument("--in_frame_dir", default="./video/input_bw", type=str, help="input bw frames path")
+parser.add_argument("--in_file", required=True, type=str, help="input file path")
+parser.add_argument("--out_dir", required=True, type=str, help="output folder")
+parser.add_argument("--in_frame_dir", required=True, type=str, help="input bw frames path")
 parser.add_argument("--gpu", default=DeviceId.CPU, type=DeviceId.argparse, choices=list(DeviceId))
 
 args = parser.parse_args()
