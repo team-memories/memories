@@ -8,7 +8,15 @@ const AWS = require("aws-sdk");
 const axios = require("axios");
 
 AWS.config.update({ region: "ap-northeast-2" });
-const s3 = new AWS.S3({ apiVersion: "2006-03-01" });
+const ID = process.env["AWS_ACCESS_KEY_ID"];
+const SECRET = process.env["AWS_SECRET_ACCESS_KEY"];
+
+const BUCKET_NAME = "memories-media-data";
+
+const s3 = new AWS.S3({
+  accessKeyId: ID,
+  secretAccessKey: SECRET,
+});
 
 const MEDIA_PATH = "/media_data";
 module.exports = {
@@ -53,56 +61,8 @@ module.exports = {
       stream.pipe(writeStream);
     });
 
-    const URL_EXT =
-      type === "PHOTO" ? "/v1/enhance/photo" : "/v1/enhance/video";
-    axios
-      .post(
-        `http://${process.env.MEDIA_QUALITY_ENHANCEMENT_SERVICE_ADDR}${URL_EXT}`,
-        { file_name: `${id}-${filename}` }
-      )
-      .then(async (response) => {
-        // TODO(yun-kwak): Promise 적극적으로 사용
-        const originalFile = fs.readFileSync(response.data.originalFilePath);
-        let thumbnailFile;
-        if (response.data.thumbnailUrl) {
-          thumbnailFile = fs.readFileSync(response.data.thumbnailUrl);
-        } else {
-          thumbnailFile = fs.readFileSync(response.data.originalFilePath);
-        }
-        const enhancedFile = fs.readFileSync(response.data.enhancedFilePath);
-
-        const originalUrl = (
-          await s3.upload({
-            Bucket: "memories-media-data",
-            Key: `${id}-${filename}`,
-            Body: originalFile,
-          })
-        ).location;
-        const thumbnailUrl = (
-          await s3.upload({
-            Bucket: "memories-media-data",
-            Key: `${id}-thumbnail-${filename}`,
-            Body: thumbnailFile,
-          })
-        ).location;
-        const url = (
-          await s3.upload({
-            Bucket: "memories-media-data",
-            Key: `${id}-enhanced-${filename}`,
-            Body: enhancedFile,
-          })
-        ).location;
-        await mediaDB.updateMedia(id, {
-          originalUrl,
-          url,
-          thumbnailUrl,
-          isProcessing: false,
-        });
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    return mediaDB.createMedia({
+    // DB에 저장
+    const createdMedia = await mediaDB.createMedia({
       title,
       description,
       year,
@@ -115,6 +75,61 @@ module.exports = {
       authorId: userId,
       isProcessing: true,
     });
+    const mediaId = createdMedia.id;
+
+    const URL_EXT =
+      type === "PHOTO" ? "/v1/enhance/photo" : "/v1/enhance/video";
+    axios
+      .post(
+        `http://${process.env.MEDIA_QUALITY_ENHANCEMENT_SERVICE_ADDR}${URL_EXT}`,
+        { file_name: `${id}-${filename}` }
+      )
+      .then(async (response) => {
+        console.log(response.data);
+        const originalFile = fs.readFileSync(response.data["originalFilePath"]);
+        let thumbnailFile;
+        if (response.data.thumbnailUrl) {
+          thumbnailFile = fs.readFileSync(response.data["thumbnailUrl"]);
+        } else {
+          thumbnailFile = fs.readFileSync(response.data["originalFilePath"]);
+        }
+        const enhancedFile = fs.readFileSync(response.data["enhancedFilePath"]);
+
+        await s3
+          .upload({
+            Bucket: BUCKET_NAME,
+            Key: `${id}-${filename}`,
+            Body: originalFile,
+            ACL: "public-read",
+          })
+          .promise();
+        await s3
+          .upload({
+            Bucket: BUCKET_NAME,
+            Key: `${id}-thumbnail-${filename}`,
+            Body: thumbnailFile,
+            ACL: "public-read",
+          })
+          .promise();
+        await s3
+          .upload({
+            Bucket: BUCKET_NAME,
+            Key: `${id}-enhanced-${filename}`,
+            Body: enhancedFile,
+            ACL: "public-read",
+          })
+          .promise();
+        await mediaDB.updateMedia(mediaId, {
+          originalUrl: `https://memories-media-data.s3.ap-northeast-2.amazonaws.com/${id}-${filename}`,
+          thumbnailUrl: `https://memories-media-data.s3.ap-northeast-2.amazonaws.com/${id}-thumbnail-${filename}`,
+          url: `https://memories-media-data.s3.ap-northeast-2.amazonaws.com/${id}-enhanced-${filename}`,
+          isProcessing: false,
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    return createdMedia;
   },
   deleteMedia: async (_, { id }, { userId, dataSources: { mediaDB } }) => {
     const media = await mediaDB.getMedia(id);
