@@ -23,13 +23,14 @@ COPY environment.yml .
 RUN conda env create -f environment.yml && \
     conda clean -ya
 
-RUN mkdir models
-RUN wget https://www.dropbox.com/s/336vn9y4qwyg9yz/ColorizeVideo_gen.pth?dl=0 -O ./models/ColorizeVideo_gen.pth
 # Make RUN commands use the new environment:
 SHELL ["conda", "run", "-n", "deoldify", "/bin/bash", "-c"]
 RUN pip install Flask requests
 WORKDIR /app
 COPY . .
+
+RUN mkdir models
+RUN wget https://www.dropbox.com/s/336vn9y4qwyg9yz/ColorizeVideo_gen.pth?dl=0 -O ./models/ColorizeVideo_gen.pth
 
 # The code to run when container is started:
 EXPOSE 4202
