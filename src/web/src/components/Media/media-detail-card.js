@@ -37,10 +37,17 @@ function MediaInfo (props) {
 }
 
 function MediaDetailCard (props) {
+  //받아온 media type가 Photo이면 ImageCompare, Video면 video
   return (
     <div>
-      {/* slider */}
-      <ImageCompare url={props.media.url} originalUrl={props.media.originalUrl}/>
+
+      {/* media */}
+      {
+        (props.media.__typename === "Photo")
+        ? <ImageCompare url={props.media.url} originalUrl={props.media.originalUrl}/>
+        : <video style={{width: '100%', margin: 'auto', paddingTop: 50, paddingBottom: 30}} src={props.media.url} controls/>
+
+      }
       {/* 상세 정보 */}
       <MediaInfo media={props.media}/>
       {/* 댓글 */}
