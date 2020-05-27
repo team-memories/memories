@@ -7,7 +7,7 @@ import PlaceholderImg from '../../Image/placeholder.jpg'
 
 function MediaList (props) {
   return (
-    <div style={{ width: '70%', margin: '3rem auto' }}>
+    <div style={{ width: '90%', margin: '3rem auto' }}>
       <Row gutter={[36, 16]}>
         {props.data.filter(media => media !== null).map(media => {
           let temp_media = {
@@ -59,13 +59,6 @@ function MediaList (props) {
                         author={temp_media.author} id={temp_media.id} url={temp_media.url} data={props.data} typename={temp_media.__typename} thumbnailUrl={temp_media.thumbnailUrl}/>
               </Col>
             );
-          //해당 창이 user가 아니면 카드가 핀터레스트처럼 나타남
-          return (
-            <Col xs={24} md={12} lg={8} xl={8} key={temp_media.id}>
-              <MediaCard title={temp_media.title} location={temp_media.location} year={temp_media.year}
-                author={temp_media.author} id={temp_media.id} url={temp_media.url} data={props.data}/>
-            </Col>
-          );
         })}
       </Row>
     </div>

@@ -260,7 +260,7 @@ function ReactCompareImage(props) {
       position: 'relative',
       width: '100%',
       height: `${containerHeight}px`,
-      maxHeight: '600px', // sujin
+      maxHeight: '750px', // sujin
       overflow: 'hidden',
     },
     rightImage: {

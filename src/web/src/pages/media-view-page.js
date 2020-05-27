@@ -50,7 +50,7 @@ function MediaViewPage (props) {
     <div onMouseMove={move}>
       {onHeader ? <Header/> : <div/>}
       <Row justify="center" style={{ paddingTop: '3rem' }}>
-        <Col span={2} style={{paddingTop: '20rem', paddingLeft: '2rem'}}>
+        <Col span={2} style={{paddingTop: '25rem', paddingLeft: '2rem'}}>
           {/*왼쪽 화살표를 누르면 이전 미디어로 이동, 이때 state는 data를 전달해줌, 리스트 원소가 한개이면 버튼 사용 불가능*/}
           {
             (props.location.state) ?
@@ -69,7 +69,7 @@ function MediaViewPage (props) {
         <Col span={19}>
           <MediaDetailCardQuery mediaId={query.get('id')}/>
         </Col>
-        <Col span={2} style={{paddingTop: '20rem', paddingLeft: '4.2rem'}}>
+        <Col span={2} style={{paddingTop: '25rem', paddingLeft: '4.2rem'}}>
           {/*오른쪽 화살표를 누르면 이전 미디어로 이동, 이때 state는 data를 전달해줌, 리스트 원소가 한개이면 버튼 사용 불가능*/}
           {
             (props.location.state) ?
