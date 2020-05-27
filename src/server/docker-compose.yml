@@ -42,7 +42,7 @@ services:
       - "~/media_data/:/media_data/"
     restart: always
     environment:
-      - NVIDIA_VISIBLE_DEVICES=3
+      - NVIDIA_VISIBLE_DEVICES=2
   image_super_resolution_service:
     image: image_super_resolution_service:b0.2
     ports:
@@ -51,7 +51,7 @@ services:
       - ~/media_data/:/media_data/
     restart: always
     environment:
-      - NVIDIA_VISIBLE_DEVICES=3
+      - NVIDIA_VISIBLE_DEVICES=2
 
   video_preprocessing_service:
     image: video_preprocessing_service:b0.2
