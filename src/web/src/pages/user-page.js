@@ -18,6 +18,7 @@ const MyMediaQuery = gql`
         profileImgUrl
         id
       }
+      thumbnailUrl
     }
   }
 `
@@ -30,9 +31,9 @@ function UserPage (props) {
   if (data.myMedia.length === 0) return <div>찾은 결과가 없습니다.</div>
   return (
     <div>
-      <div style={{ width: '70%', margin: '3rem auto' }}>
+      <div style={{ width: '90%', margin: '3rem auto'}}>
         <h1>
-          내가 올린 영상
+          내가 올린 미디어
         </h1>
       </div>
       <MediaList data={data.myMedia}/>
