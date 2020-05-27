@@ -25,7 +25,7 @@ const MyMediaQuery = gql`
 
 function UserPage (props) {
   props.onChangeIsMediaView(window.location.pathname === "/watch")
-  const { loading, error, data } = useQuery(MyMediaQuery)
+  const { loading, error, data } = useQuery(MyMediaQuery, {errorPolicy: 'all', fetchPolicy: 'cache-and-network'})
   if (loading) return <div>Loading...</div>
   if (error) return <div>Error: {error.message}</div>
   if (data.myMedia.length === 0) return <div>찾은 결과가 없습니다.</div>
