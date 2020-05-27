@@ -347,7 +347,7 @@ def create_video(ffmpeg_dir, dir, output, fps):
     # print('{} -r {} -i {}/%6d.png -vcodec ffvhuff {}'.format(os.path.join(ffmpeg_dir, "ffmpeg"), fps, dir, output))
     # retn = os.system('{} -r {} -i {}/%6d.png -vcodec ffvhuff "{}"'.format(os.path.join(ffmpeg_dir, "ffmpeg"), fps, dir, output))
     print('{} -r {} -f image2 -i {}/%5d.png {} -y'.format(os.path.join(ffmpeg_dir, "ffmpeg"), fps, dir, output))
-    retn = os.system('{} -r {} -f image2 -i {}/%5d.png {} -y'.format(os.path.join(ffmpeg_dir, "ffmpeg"), fps, dir, output))
+    retn = os.system('{} -r {}  -f image2 -i {}/%5d.png -vcodec libx264 -acodec aac {} -y'.format(os.path.join(ffmpeg_dir, "ffmpeg"), fps, dir, output))
     if retn:
         error = "Error creating output video. Exiting."
     return error

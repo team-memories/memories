@@ -16,8 +16,10 @@ RUN curl -o ~/miniconda.sh https://repo.anaconda.com/miniconda/Miniconda3-latest
     rm ~/miniconda.sh
 RUN /opt/conda/bin/conda install -y ffmpeg && \
     /opt/conda/bin/conda install -y pytorch==1.1.0 torchvision==0.3.0 cudatoolkit=10.0 opencv numpy matplotlib -c pytorch && \
+    /opt/conda/bin/conda install -y x264=='1!152.20180717' ffmpeg=4.0.2 -c conda-forge && \
     /opt/conda/bin/conda clean -ya
 ENV PATH /opt/conda/bin:$PATH
+
 
 RUN pip install lmdb pyyaml seaborn Flask requests
 WORKDIR /app
