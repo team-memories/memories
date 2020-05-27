@@ -7,6 +7,7 @@ import { Spin } from 'antd'
 const SearchQuery = gql`
   query searchItems($queryStr: String!, $location: String!, $yearTo: Int, $yearFrom: Int) {
     search(queryStr: $queryStr, location: $location, yearTo: $yearTo, yearFrom: $yearFrom) {
+      __typename
       author{
         id
         name
@@ -18,6 +19,7 @@ const SearchQuery = gql`
       location
       title
       url
+      thumbnailUrl
     }
   }
 `;
