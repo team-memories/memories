@@ -158,15 +158,6 @@ export const LocationOptions = [
             ]
           },
           {
-            value: '성남시',
-            label: '성남시',
-            children: [
-              { value: '분당구', label: '분당구' },
-              { value: '수정구', label: '수정구' },
-              { value: '중원구', label: '중원구' },
-            ]
-          },
-          {
             value: '수원시',
             label: '수원시',
             children: [

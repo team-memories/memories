@@ -20,7 +20,7 @@ function DropzoneBox (props) {
     >
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <Dropzone
-          type="file"
+          type={'file'}
           multiple={false}
           onDrop={props.onChange}
           required
