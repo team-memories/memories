@@ -36,11 +36,11 @@ const UPLOAD_MEDIA = gql`
 function UploadPage (props) {
   const { useMutation } = require('@apollo/react-hooks');
   const [media, setMedia] = useState([]);
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState();
   const [location, setLocation] = useState('대한민국');
   const [category, setCategory] = useState();
   const [year, setYear] = useState(new Date().getFullYear());
-  const [description, setDescription] = useState('');
+  const [description, setDescription] = useState();
   const [mutate] = useMutation(UPLOAD_MEDIA);
   const history = useHistory();
 
@@ -78,7 +78,6 @@ function UploadPage (props) {
       .catch(e => {
         message.error('업로드에 실패하였습니다.');
         console.log(e);
-        // console.log(e.networkError.result.errors);
       });
   };
   props.onChangeIsMediaView(window.location.pathname === "/watch");
