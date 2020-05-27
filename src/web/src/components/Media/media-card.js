@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Avatar, Card } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
 import './background.css';
 
 function MediaCard(props){
@@ -14,6 +15,9 @@ function MediaCard(props){
         <figcaption>
           <Card.Meta
             avatar={
+              (props.author.profileImgUrl === '') ?
+              <Avatar size={40} icon={<UserOutlined />} style={{backgroundColor: "#87d068"}}/>
+              :
               <Avatar size={40} src={props.author.profileImgUrl} shape="circle"/>
             }
             description={
