@@ -15,7 +15,7 @@ import UserPage from './pages/user-page';
 import 'antd/dist/antd.css';
 import { setContext } from 'apollo-link-context';
 
-const URI = 'http://15.165.74.170:4000/';
+const URI = 'http://203.246.113.62:4000/';
 
 const httpLink = createUploadLink({
   uri: URI
