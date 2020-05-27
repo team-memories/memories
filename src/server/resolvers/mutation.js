@@ -128,7 +128,7 @@ module.exports = {
         const enhancedUrl = `https://memories-media-data.s3.ap-northeast-2.amazonaws.com/${id}-enhanced-${filename}`;
         let thumbnailUrl;
         if (type === "VIDEO") {
-          thumbnailUrl = `https://memories-media-data.s3.ap-northeast-2.amazonaws.com/${id}-thumbnail-${filename}`;
+          thumbnailUrl = `https://memories-media-data.s3.ap-northeast-2.amazonaws.com/${id}-thumbnail.png`;
         } else {
           thumbnailUrl = originalUrl;
         }
