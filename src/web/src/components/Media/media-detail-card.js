@@ -1,10 +1,17 @@
-import React from 'react';
+import React  from 'react';
 import { Avatar, List, Divider } from 'antd';
 import MediaDetailDeleteButton from './media-detail-delete-button';
 import ImageCompare from './media-detail-card-image-compare';
 import MediaComment from './MediaComment/media-comment';
 
 function MediaInfo (props) {
+  const categoryName = (category) => {
+    switch (category) {
+    case "CITY": return "도시";
+    case "NATURE": return "자연";
+    case "OBJECT": return "사물";
+    }
+  };
   return (
     <div>
       <List>
@@ -27,7 +34,7 @@ function MediaInfo (props) {
           />
           <div style={{fontSize: 15}}>
             {props.media.location}
-            <br/>{props.media.year}{props.media.category && " / " + props.media.category}
+            <br/>{props.media.year}{props.media.category && " / " + categoryName(props.media.category)}
           </div>
         </List.Item>
         <List.Item>

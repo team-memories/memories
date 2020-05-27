@@ -5,12 +5,13 @@ import MediaSearchQuery from '../components/Media/media-search-query';
 function HomePage (props) {
   let title = '석수동';
   let location = '대한민국';
-  let yearFrom = 1990;
-  let yearTo = 2020;
+  let yearFrom = 1970;
+  let yearTo = 1980;
   props.onChangeIsMediaView(window.location.pathname === "/watch");
   return (
     <div>
       <ServiceIntro
+        title={title}
         location={location}
         yearFrom={yearFrom}
         yearTo={yearTo}
