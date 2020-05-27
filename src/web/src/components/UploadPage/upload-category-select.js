@@ -10,9 +10,9 @@ function UploadCategorySelect (props) {
       name="category"
     >
       <Select onChange={props.onChange}>
-        <Select.Option value="city">도시</Select.Option>
-        <Select.Option value="nature">자연</Select.Option>
-        <Select.Option value="object">사물</Select.Option>
+        <Select.Option value="CITY">도시</Select.Option>
+        <Select.Option value="NATURE">자연</Select.Option>
+        <Select.Option value="OBJECT">사물</Select.Option>
       </Select>
     </Form.Item>
   );

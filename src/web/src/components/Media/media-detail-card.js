@@ -44,8 +44,8 @@ function MediaDetailCard (props) {
       {/* media */}
       {
         (props.media.__typename === "Photo")
-        ? <ImageCompare url={props.media.url} originalUrl={props.media.originalUrl}/>
-        : <video style={{width: '100%', margin: 'auto', paddingTop: 50, paddingBottom: 30}} src={props.media.url} controls/>
+          ? <ImageCompare url={props.media.url} originalUrl={props.media.originalUrl}/>
+          : <video style={{width: '100%', margin: 'auto', paddingTop: 50, paddingBottom: 30}} src={props.media.url} controls/>
 
       }
       {/* 상세 정보 */}

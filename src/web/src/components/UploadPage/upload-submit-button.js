@@ -11,7 +11,7 @@ function UploadSubmitButton (props) {
       <Button
         type="primary"
         size="large"
-        onChange={props.onClick}
+        onClick={props.onClick}
         htmlType="submit"
       >
         Submit

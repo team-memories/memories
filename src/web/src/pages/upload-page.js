@@ -20,9 +20,15 @@ const UPLOAD_MEDIA = gql`
             description: $description
             category: $category
         ) {
+            id
             title
-            location
-            year
+            thumbnailUrl
+            originalUrl
+            url
+            author {
+                id
+                name
+            }
         }
     }
 `;
@@ -32,7 +38,7 @@ function UploadPage (props) {
   const [media, setMedia] = useState([]);
   const [title, setTitle] = useState('');
   const [location, setLocation] = useState('대한민국');
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState();
   const [year, setYear] = useState(new Date().getFullYear());
   const [description, setDescription] = useState('');
   const [mutate] = useMutation(UPLOAD_MEDIA);
@@ -40,6 +46,7 @@ function UploadPage (props) {
 
   const onMediaChange = (e) => {
     setMedia(e[0]);
+    console.log(e[0]);
   };
 
   const onTitleChange = (e) => {
@@ -63,10 +70,16 @@ function UploadPage (props) {
   };
 
   const handleSubmit = () => {
-    mutate({ variables: { media, title, location, year, description } }).then(() => {
-      message.info('Submit!');
-      history.push('/');
-    });
+    mutate({ variables: { media, title, location, year, description, category } })
+      .then(() => {
+        message.info('Submit!');
+        history.push('/');
+      })
+      .catch(e => {
+        message.error('업로드에 실패하였습니다.');
+        console.log(e);
+        console.log(e.networkError.result.errors);
+      });
   };
   props.onChangeIsMediaView(window.location.pathname === "/watch");
   return (
