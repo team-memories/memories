@@ -118,7 +118,7 @@ module.exports = {
           await s3
             .upload({
               Bucket: BUCKET_NAME,
-              Key: `${id}-thumbnail-${filename}`,
+              Key: `${id}-thumbnail.png`,
               Body: thumbnailFile,
               ACL: "public-read",
             })
