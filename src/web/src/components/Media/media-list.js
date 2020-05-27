@@ -1,9 +1,9 @@
-import React from 'react'
-import { Col, Row, Spin } from 'antd'
-import { LoadingOutlined } from '@ant-design/icons'
-import MediaCard from './media-card'
-import UserMediaCard from '../UserPage/user-media-card'
-import PlaceholderImg from '../../Image/placeholder.jpg'
+import React from 'react';
+import { Col, Row, Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+import MediaCard from './media-card';
+import UserMediaCard from '../UserPage/user-media-card';
+import PlaceholderImg from '../../Image/placeholder.jpg';
 
 function MediaList (props) {
   return (
@@ -28,7 +28,7 @@ function MediaList (props) {
                 <Col xs={24} md={12} lg={8} xl={8} key={temp_media.id}>
                   <Spin indicator={<LoadingOutlined style={{ fontSize: 30, color: 'gray' }}/>}>
                     <UserMediaCard title={temp_media.title} location={temp_media.location} year={temp_media.year}
-                              author={temp_media.author} id={temp_media.id} url={PlaceholderImg} typename={temp_media.__typename} thumbnailUrl={PlaceholderImg}/>
+                      author={temp_media.author} id={temp_media.id} url={PlaceholderImg} typename={temp_media.__typename} thumbnailUrl={PlaceholderImg}/>
                   </Spin>
                 </Col>
               );
@@ -38,27 +38,27 @@ function MediaList (props) {
                 <Col xs={24} md={12} lg={8} xl={8} key={temp_media.id}>
                   <Spin indicator={<LoadingOutlined style={{ fontSize: 30, color: 'gray' }}/>}>
                     <MediaCard title={temp_media.title} location={temp_media.location} year={temp_media.year}
-                              author={temp_media.author} id={temp_media.id} url={PlaceholderImg} typename={temp_media.__typename} thumbnailUrl={PlaceholderImg}/>
+                      author={temp_media.author} id={temp_media.id} url={PlaceholderImg} typename={temp_media.__typename} thumbnailUrl={PlaceholderImg}/>
                   </Spin>
                 </Col>
               );
           //isProcessing이 false일 때
           else
-            //해당 창이 user이면 카드가 이전버전처럼 나타남
-            if (window.location.pathname === "/user")
-                return (
-                  <Col xs={24} md={12} lg={8} xl={8} key={temp_media.id}>
-                    <UserMediaCard title={temp_media.title} location={temp_media.location} year={temp_media.year}
-                          author={temp_media.author} id={temp_media.id} url={temp_media.url} data={props.data} typename={temp_media.__typename} thumbnailUrl={temp_media.thumbnailUrl}/>
-                  </Col>
-                )
-            //해당 창이 user가 아니면 카드가 핀터레스트처럼 나타남
+          //해당 창이 user이면 카드가 이전버전처럼 나타남
+          if (window.location.pathname === "/user")
             return (
               <Col xs={24} md={12} lg={8} xl={8} key={temp_media.id}>
-                <MediaCard title={temp_media.title} location={temp_media.location} year={temp_media.year}
-                        author={temp_media.author} id={temp_media.id} url={temp_media.url} data={props.data} typename={temp_media.__typename} thumbnailUrl={temp_media.thumbnailUrl}/>
+                <UserMediaCard title={temp_media.title} location={temp_media.location} year={temp_media.year}
+                  author={temp_media.author} id={temp_media.id} url={temp_media.url} data={props.data} typename={temp_media.__typename} thumbnailUrl={temp_media.thumbnailUrl}/>
               </Col>
             );
+            //해당 창이 user가 아니면 카드가 핀터레스트처럼 나타남
+          return (
+            <Col xs={24} md={12} lg={8} xl={8} key={temp_media.id}>
+              <MediaCard title={temp_media.title} location={temp_media.location} year={temp_media.year}
+                author={temp_media.author} id={temp_media.id} url={temp_media.url} data={props.data} typename={temp_media.__typename} thumbnailUrl={temp_media.thumbnailUrl}/>
+            </Col>
+          );
         })}
       </Row>
     </div>

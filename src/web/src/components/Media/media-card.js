@@ -14,7 +14,7 @@ function MediaCard(props){
           (props.typename === 'Photo') ?
             <img style={{ width: '100%', borderTopLeftRadius: 10, borderTopRightRadius: 10, borderBottomLeftRadius: 10, borderBottomRightRadius: 10 }}
               src={props.url} alt="thumbnail"/>
-          :
+            :
             <img style={{ width: '100%', borderTopLeftRadius: 10, borderTopRightRadius: 10, borderBottomLeftRadius: 10, borderBottomRightRadius: 10 }}
               src={props.thumbnailUrl} alt="thumbnail"/>
         }
@@ -22,9 +22,9 @@ function MediaCard(props){
           <Card.Meta
             avatar={
               (props.author.profileImgUrl === '') ?
-              <Avatar size={40} icon={<UserOutlined />} style={{backgroundColor: "#87d068"}}/>
-              :
-              <Avatar size={40} src={props.author.profileImgUrl} shape="circle"/>
+                <Avatar size={40} icon={<UserOutlined />} style={{backgroundColor: "#87d068"}}/>
+                :
+                <Avatar size={40} src={props.author.profileImgUrl} shape="circle"/>
             }
             description={
               <div style={{
