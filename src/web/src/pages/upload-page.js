@@ -72,7 +72,7 @@ function UploadPage (props) {
   const handleSubmit = () => {
     mutate({ variables: { media, title, location, year, description, category } })
       .then(() => {
-        message.info('Submit!');
+        message.info('제출 완료되었습니다.');
         history.push('/');
       })
       .catch(e => {
