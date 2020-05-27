@@ -25,7 +25,10 @@ function MediaInfo (props) {
             description={<div style={{fontSize: 15}}>{props.media.author.name}</div>}
             style={{ textAlign: 'left' }}
           />
-          <div style={{fontSize: 15}}>{props.media.location}<br/>{props.media.year}</div>
+          <div style={{fontSize: 15}}>
+            {props.media.location}
+            <br/>{props.media.year}{props.media.category && " / " + props.media.category}
+          </div>
         </List.Item>
         <List.Item>
           {props.media.description}

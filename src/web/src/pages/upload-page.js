@@ -78,7 +78,7 @@ function UploadPage (props) {
       .catch(e => {
         message.error('업로드에 실패하였습니다.');
         console.log(e);
-        console.log(e.networkError.result.errors);
+        // console.log(e.networkError.result.errors);
       });
   };
   props.onChangeIsMediaView(window.location.pathname === "/watch");
