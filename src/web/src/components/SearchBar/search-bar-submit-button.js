@@ -1,16 +1,16 @@
-import React, { Component } from 'react'
-import { Button } from 'antd'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Button } from 'antd';
+import { Link } from 'react-router-dom';
 
-export default class SearchBarSubmitButton extends Component {
-  render () {
-    return (
-      <Link
-        to={`/search?title=${this.props.title}&location=${this.props.location}&yearFrom=${this.props.yearFrom}&yearTo=${this.props.yearTo}`}>
-        <Button>
-          Search
-        </Button>
-      </Link>
-    )
-  }
+function SearchBarSubmitButton (props) {
+  return (
+    <Link
+      to={`/search?title=${props.title}&location=${props.location}&yearFrom=${props.yearFrom}&yearTo=${props.yearTo}`}>
+      <Button>
+        Search
+      </Button>
+    </Link>
+  );
 }
+
+export default SearchBarSubmitButton;

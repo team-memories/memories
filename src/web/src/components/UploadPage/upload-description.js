@@ -1,20 +1,21 @@
-import { Form, Input } from 'antd'
-import React from 'react'
+import { Form, Input } from 'antd';
+import React from 'react';
+import { Layout } from '../constants';
 
-const layout = {
-  labelCol: { span: 3 },
-  wrapperCol: { span: 16 },
-}
-
-const { TextArea } = Input
+const { TextArea } = Input;
 
 function UploadPageDescription (props) {
   return (
     <Form.Item
-      {...layout}
+      {...Layout}
       label="Description"
       name="Description"
-      rules={[{ required: false, message: 'Description' }]}
+      rules={[
+        {
+          required: true,
+          message: 'Please input description',
+        },
+      ]}
     >
       <TextArea
         rows={4}
@@ -23,7 +24,7 @@ function UploadPageDescription (props) {
         onChange={props.onChange}
       />
     </Form.Item>
-  )
+  );
 }
 
-export default UploadPageDescription
+export default UploadPageDescription;

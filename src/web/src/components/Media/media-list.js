@@ -1,74 +1,68 @@
-import React from 'react'
-import { useQuery } from '@apollo/react-hooks'
-import { Col, Row, Spin } from 'antd'
-import { LoadingOutlined } from '@ant-design/icons'
-import MediaCard from './media-card'
-import gql from 'graphql-tag'
-
-const SearchQuery = gql`
-  query searchItems($title: String!, $location: String!, $yearTo: Int, $yearFrom: Int) {
-    search(title: $title, location: $location, yearTo: $yearTo, yearFrom: $yearFrom) {
-      author{
-        name
-        profileImgUrl
-      }
-      year
-      isProcessing
-      id
-      location
-      title
-      url
-    }
-  }
-`
+import React from 'react';
+import { Col, Row, Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+import MediaCard from './media-card';
+import UserMediaCard from '../UserPage/user-media-card';
+import PlaceholderImg from '../../Image/placeholder.jpg';
 
 function MediaList (props) {
-  const { loading, error, data } = useQuery(SearchQuery, {
-    variables: {
-      title: props.title,
-      location: props.location,
-      yearFrom: props.yearFrom,
-      yearTo: props.yearTo
-    },
-    errorPolicy: 'all',
-    fetchPolicy: 'cache-and-network'
-  })
-  if (loading) return <div>Loading...</div>
-  if (error) return <div>Error: {error.message}</div>
-  if (data.search.length === 0) return <div>찾은 결과가 없습니다.</div>
   return (
-    <div style={{ width: '70%', margin: '3rem auto' }}>
+    <div style={{ width: '90%', margin: '3rem auto' }}>
       <Row gutter={[36, 16]}>
-        {data.search.filter(media => media !== null).map(media => {
-            let temp_media = {
-              ...media,
-              title: (media.title) ? media.title : '',
-              location: (media.location) ? media.location : '대한민국',
-              year: (media.year) ? media.year : '',
-              author: (media.author) ? media.author : { name: 'Unknown', profileImgUrl: '' },
-              isProcessing: (media.isProcessing) ? media.isProcessing : false,
-            }
-            temp_media.author.name = (temp_media.author.name) ? temp_media.author.name : 'Unknown'
-            temp_media.author.profileImgUrl = (temp_media.author.profileImgUrl) ? temp_media.author.profileImgUrl : ''
-            if(temp_media.isProcessing === true) return(
-              <Col xs={24} md={12} lg={8} xl={8} key={temp_media.id}>
-                <Spin indicator={<LoadingOutlined style={{fontSize: 30, color: 'gray'}}/>}>
-                <MediaCard title={temp_media.title} location={temp_media.location} year={temp_media.year}
-                           author={temp_media.author} id={temp_media.id} url={temp_media.url}/>
-                </Spin>
-              </Col>
-            )
+        {props.data.filter(media => media !== null).map(media => {
+          let temp_media = {
+            ...media,
+            title: (media.title) ? media.title : '',
+            location: (media.location) ? media.location : '대한민국',
+            year: (media.year) ? media.year : '',
+            author: (media.author) ? media.author : { name: 'Unknown', profileImgUrl: '' },
+            isProcessing: (media.isProcessing) ? media.isProcessing : false,
+          };
+          temp_media.author.name = (temp_media.author.name) ? temp_media.author.name : 'Unknown';
+          temp_media.author.profileImgUrl = (temp_media.author.profileImgUrl) ? temp_media.author.profileImgUrl : '';
+          //isprocessing == true일 때
+          if (temp_media.isProcessing === true)
+            //해당 창이 user이면 카드가 이전버전처럼 나타남
+            if (window.location.pathname === '/user')
+              return (
+                <Col xs={24} md={12} lg={8} xl={8} key={temp_media.id}>
+                  <Spin indicator={<LoadingOutlined style={{ fontSize: 30, color: 'gray' }}/>}>
+                    <UserMediaCard title={temp_media.title} location={temp_media.location} year={temp_media.year}
+                      author={temp_media.author} id={temp_media.id} url={PlaceholderImg} typename={temp_media.__typename} thumbnailUrl={PlaceholderImg}/>
+                  </Spin>
+                </Col>
+              );
+            //해당 창이 user가 아니면 카드가 핀터레스트처럼 나타남
+            else
+              return (
+                <Col xs={24} md={12} lg={8} xl={8} key={temp_media.id}>
+                  <Spin indicator={<LoadingOutlined style={{ fontSize: 30, color: 'gray' }}/>}>
+                    <MediaCard title={temp_media.title} location={temp_media.location} year={temp_media.year}
+                      author={temp_media.author} id={temp_media.id} url={PlaceholderImg} typename={temp_media.__typename} thumbnailUrl={PlaceholderImg}/>
+                  </Spin>
+                </Col>
+              );
+          //isProcessing이 false일 때
+          else
+          //해당 창이 user이면 카드가 이전버전처럼 나타남
+          if (window.location.pathname === "/user")
             return (
               <Col xs={24} md={12} lg={8} xl={8} key={temp_media.id}>
-                <MediaCard title={temp_media.title} location={temp_media.location} year={temp_media.year}
-                           author={temp_media.author} id={temp_media.id} url={temp_media.url}/>
+                <UserMediaCard title={temp_media.title} location={temp_media.location} year={temp_media.year}
+                  author={temp_media.author} id={temp_media.id} url={temp_media.url} data={props.data} typename={temp_media.__typename} thumbnailUrl={temp_media.thumbnailUrl}/>
               </Col>
-            )
-          }
-        )}
+            );
+            //해당 창이 user가 아니면 카드가 핀터레스트처럼 나타남
+          return (
+            <Col xs={24} md={12} lg={8} xl={8} key={temp_media.id}>
+              <MediaCard title={temp_media.title} location={temp_media.location} year={temp_media.year}
+                author={temp_media.author} id={temp_media.id} url={temp_media.url} data={props.data} typename={temp_media.__typename} thumbnailUrl={temp_media.thumbnailUrl}/>
+            </Col>
+          );
+        })}
       </Row>
     </div>
-  )
+  );
 }
 
-export default MediaList
+export default MediaList;
