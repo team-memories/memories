@@ -20,7 +20,7 @@ services:
       - ~/memories_db/:/var/lib/postgresql/data
     restart: always
     environment:
-      POSTGRES_PASSWORD: memories
+      POSTGRES_PASSWORD: $DB_PW
   media_quality_enhancement_service:
     image: media_quality_enhancement_service:b0.2
     ports:
