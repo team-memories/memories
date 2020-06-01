@@ -128,6 +128,10 @@ class CommentDB extends SQLDataSource {
     return result[0];
   }
 
+  async updateComment(id, args) {
+    return this.knex("comment").where({ id }).update(args);
+  }
+
   async deleteComment(id) {
     await this.knex("comment").where({ id }).del();
     return true;
