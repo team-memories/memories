@@ -145,6 +145,32 @@ module.exports = {
       });
     return createdMedia;
   },
+  modifyMedia: async (
+    _,
+    { id, title, location, year, description, category },
+    { userId, dataSources: { mediaDB } }
+  ) => {
+    const media = await mediaDB.getMedia(id);
+    if (!userId) {
+      throw new Error("Login required");
+    }
+    if (!media) {
+      throw new Error("Media not found");
+    }
+    if (userId !== media.authorId) {
+      throw new Error("You are not the author of the media");
+    }
+    await mediaDB.updateMedia(id, {
+      title,
+      location,
+      year,
+      description,
+      category,
+    });
+    return {
+      id,
+    };
+  },
   deleteMedia: async (_, { id }, { userId, dataSources: { mediaDB } }) => {
     const media = await mediaDB.getMedia(id);
     if (!userId) {
@@ -204,6 +230,28 @@ module.exports = {
     });
 
     return comment;
+  },
+  modifyComment: async (
+    _,
+    { id, body },
+    { userId, dataSources: { commentDB } }
+  ) => {
+    const comment = await commentDB.getComment(id);
+    if (!userId) {
+      throw new Error("Login required");
+    }
+    if (!comment) {
+      throw new Error("Media not found");
+    }
+    if (userId !== comment.authorId) {
+      throw new Error("You are not the author of the comment");
+    }
+    await commentDB.updateComment(id, {
+      body,
+    });
+    return {
+      id,
+    };
   },
   deleteComment: async (_, { id }, { userId, dataSources: { commentDB } }) => {
     if (!userId) {

@@ -29,6 +29,21 @@ const typeDefs = gql`
       category: Category
     ): Media
     deleteMedia(id: ID!): Media
+    """
+    게시되어 있는 글을 수정하려면 현재 게시되어 있는 글의 정보를 보여주며 수정할 수 있는 페이지를 제공하고
+    사용자가 수정하고 싶은 정보를 자유롭게 수정하게 한 뒤, 바뀌지 않은 정보들도 함께 다시 서버로 전송하세요. (데이터의 일관성을 위해)
+    """
+    modifyMedia(
+      """
+      id: 수정할 media의 ID
+      """
+      id: ID!
+      title: String!
+      location: String!
+      year: Int!
+      description: String!
+      category: Category
+    ): Media
 
     createComment(mediaId: ID!, body: String!): Comment
     deleteComment(
@@ -37,6 +52,8 @@ const typeDefs = gql`
       """
       id: ID!
     ): Comment
+    modifyComment(id: ID!, body: String!): Comment
+
     signUp(email: String!, password: String!, name: String!): AuthPayload!
     signIn(email: String!, password: String!): AuthPayload!
   }
