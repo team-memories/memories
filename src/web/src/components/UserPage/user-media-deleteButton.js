@@ -18,7 +18,7 @@ const DELETE_MEDIA = gql`
 function UserMediaDeleteButton (props) {
   const [deleteMedia] = useMutation(DELETE_MEDIA, {
     onCompleted ({ deleteMedia: { title, author } }) {
-      message.success(`${author.name}의 ${title}가(이) 삭제되었습니다.`);
+      message.success(`${author.name}의 ${title}이(가) 삭제되었습니다.`);
       window.location.reload();
     },
     onError () {
