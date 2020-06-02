@@ -12,6 +12,7 @@ import HomePage from './pages/home-page';
 import LoginPage from './pages/login-page';
 import RegisterPage from './pages/register-page';
 import UserPage from './pages/user-page';
+import ModifyPage from './pages/media-modify-page'
 import 'antd/dist/antd.css';
 import { setContext } from 'apollo-link-context';
 
@@ -69,6 +70,7 @@ function App () {
         <Route exact path="/login" render={()=> <LoginPage afterLogin={afterLogin} onChangeIsMediaView={onChangeIsMediaView}/>}/>
         <Route exact path="/register" render={()=> <RegisterPage onChangeIsMediaView={onChangeIsMediaView}/>}/>
         <Route exact path="/user" render={()=> <UserPage onChangeIsMediaView={onChangeIsMediaView}/>}/>
+        <Route exact path="/modify" render={()=> <ModifyPage onChangeIsMediaView={onChangeIsMediaView}/>}/>
       </Switch>
     </ApolloProvider>
   );
