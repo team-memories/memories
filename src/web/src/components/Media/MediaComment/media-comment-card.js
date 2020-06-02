@@ -11,7 +11,7 @@ function MediaCommentCard (props) {
   const [modify,setModify] = useState(false)
   if (modify) {
     return (
-      <MediaModifyComment commentId={props.commentId} GET_COMMENTS={props.GET_COMMENTS} content={props.content} modify={{modify}} content={props.content} setModify={setModify}/>
+      <MediaModifyComment mediaId={props.mediaId} commentId={props.commentId} GET_COMMENTS={props.GET_COMMENTS} content={props.content} modify={{modify}} content={props.content} setModify={setModify}/>
     )
   }
   return (
