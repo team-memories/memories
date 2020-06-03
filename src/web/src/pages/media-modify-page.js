@@ -89,7 +89,7 @@ function ModifyPage (props) {
           (media.__typename === "Photo") ?
           <img src={media.url} width={"100%"} style={{marginBottom: "6%"}}/>
           :
-          <video src={props.media.url} width={"100%"} style={{marginBottom: "6%"}} controls/>
+          <video src={media.url} width={"100%"} style={{marginBottom: "6%"}} controls/>
         }
         <UploadPageTitle title={title} onChange={onTitleChange}/>
         <UploadPlaceSelect location={location} onChange={onLocationChange}/>
