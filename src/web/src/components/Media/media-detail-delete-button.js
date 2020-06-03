@@ -42,7 +42,7 @@ function MediaDetailDeleteButton (props) {
       okText={'Yes'}
       cancelText={'No'}
     >
-      <Button>delete</Button>
+      <Button>Delete</Button>
     </Popconfirm>
   );
 }
