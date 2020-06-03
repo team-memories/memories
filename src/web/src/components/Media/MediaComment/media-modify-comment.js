@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
 import { Comment, Avatar, Form, Button, Input, message, Space } from 'antd';
+import { ColorArray } from '../../constants';
 
 const { TextArea } = Input;
 
-const Modify_COMMENT = gql`
+const MODIFY_COMMENT = gql`
   mutation ($commentId: ID!, $body: String!) {
     modifyComment(id: $commentId body: $body) {
       id
@@ -48,7 +49,7 @@ const UserEditor = ({ onChange, onCancel, onSubmit, submitting, value }) => (
 function MediaModifyComment (props) {
   const [commentValue, setCommentValue] = useState(props.content);
   const [mutate] = useMutation(
-    Modify_COMMENT,
+    MODIFY_COMMENT,
     {
       // mutation 보내면 refetching
       refetchQueries: [{
@@ -75,7 +76,7 @@ function MediaModifyComment (props) {
 
   // 취소 버튼을 누르면 작성중이던 댓글이 '' 로 초기화됨
   const handleCancel = () => {
-    props.setModify(!props.modify)
+    props.setModify(!props.modify);
     setCommentValue('');
   };
 
@@ -89,10 +90,12 @@ function MediaModifyComment (props) {
     <div>
       <Comment
         // 사용자 섬네일 이미지 설정
-        avatar={
-          <Avatar
-            src={sessionStorage.getItem("user_profileImgUrl")}
-          />
+        avatar={(props.author.profileImgUrl === null) ?
+          <Avatar size={35} style={{backgroundColor: ColorArray[props.author.id % ColorArray.length]}}>
+            {props.author.name.charAt(0)}
+          </Avatar>
+          :
+          <Avatar size={35} src={props.author.profileImgUrl} shape="circle"/>
         }
         // 댓글 입력
         content={

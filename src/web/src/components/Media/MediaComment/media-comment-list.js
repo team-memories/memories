@@ -1,7 +1,7 @@
 import React from 'react';
 import MediaCommentCard from './media-comment-card';
 
-// parent: MediaCommentQuery
+// parent: MediaComment
 function MediaCommentList (props) {
   return (
     <div>
@@ -9,9 +9,7 @@ function MediaCommentList (props) {
       {props.comments && props.comments.map((comment, index) => (
         <MediaCommentCard
           key={index}
-          author={comment.author.name}
-          authorId={comment.author.id}
-          profileImgUrl={comment.author.profileImgUrl}
+          author={comment.author}
           content={comment.body}
           commentId={comment.id}
           mediaId={props.mediaId}

@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
 import { Comment, Avatar, Form, Button, Input, message, Space } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
+import { ColorArray } from '../../constants';
 
 const { TextArea } = Input;
 
@@ -134,9 +135,12 @@ function MediaAddComment (props) {
         <Comment
           // 사용자 섬네일 이미지 설정
           avatar={
-            <Avatar
-              src={sessionStorage.getItem("user_profileImgUrl")}
-            />
+            sessionStorage.getItem("user_profileImgUrl") === 'null'?
+              <Avatar size={35} style={{backgroundColor: ColorArray[sessionStorage.getItem("user_id") % ColorArray.length]}}>
+                {sessionStorage.getItem("user_name").charAt(0)}
+              </Avatar>
+              :
+              <Avatar size={35} src={sessionStorage.getItem("user_profileImgUrl")}  shape="circle" />
           }
           // 댓글 입력
           content={
@@ -158,7 +162,7 @@ function MediaAddComment (props) {
         <div style={{fontWeight: 'bold', fontSize: '18px'}}>댓글</div>
         <Comment
           // 게스트 섬네일 이미지 설정
-          avatar={<Avatar icon={<UserOutlined/>} style={{backgroundColor:"#82BEE6"}}/>}
+          avatar={<Avatar size={35} icon={<UserOutlined/>} style={{backgroundColor:"#82BEE6"}}/>}
           // 댓글 입력
           content={
             <GuestEditor

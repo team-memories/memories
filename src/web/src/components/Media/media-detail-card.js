@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import MediaDetailDeleteButton from './media-detail-delete-button';
 import ImageCompare from './media-detail-card-image-compare';
 import MediaComment from './MediaComment/media-comment';
+import { ColorArray } from '../constants';
 
 function MediaInfo (props) {
   const categoryName = (category) => {
@@ -31,7 +32,13 @@ function MediaInfo (props) {
           ]}
         >
           <List.Item.Meta
-            avatar={<Avatar size={50} src={props.media.author.profileImgUrl}/>}
+            avatar={(props.media.author.profileImgUrl === null) ?
+              <Avatar size={40} style={{backgroundColor: ColorArray[props.media.author.id % ColorArray.length]}}>
+                {props.media.author.name.charAt(0)}
+              </Avatar>
+              :
+              <Avatar size={40} src={props.media.author.profileImgUrl}/>
+            }
             title={<div style={{fontSize: 20}}>{props.media.title}</div>}
             description={<div style={{fontSize: 15}}>{props.media.author.name}</div>}
             style={{ textAlign: 'left' }}

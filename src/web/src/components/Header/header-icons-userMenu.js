@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Popover, Avatar, Card } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
+import { ColorArray } from '../constants';
 
 function UserMenu () {
   const logout = () => {
@@ -27,7 +27,12 @@ function UserMenu () {
       <p/>
       <Card.Meta
         avatar={
-          <Avatar size={50} src={sessionStorage.getItem("user_profileImgUrl")}/>
+          sessionStorage.getItem("user_profileImgUrl") === 'null'?
+            <Avatar size={50} style={{backgroundColor: ColorArray[sessionStorage.getItem("user_id") % ColorArray.length]}}>
+              {sessionStorage.getItem("user_name").charAt(0)}
+            </Avatar>
+            :
+            <Avatar size={50} src={sessionStorage.getItem("user_profileImgUrl")}  shape="circle" />
         }
         description={
           <div>
@@ -59,7 +64,13 @@ function UserMenu () {
   return (
     <Popover title={title} content={content} placement="bottom" trigger="click" visible={clicked} onVisibleChange={handleClickChange}>
       <Button type="link" ghost>
-        <Avatar icon={<UserOutlined />} style={{backgroundColor: "#87d068"}}/>
+        {sessionStorage.getItem("user_profileImgUrl") === 'null'?
+          <Avatar size={40} style={{backgroundColor: ColorArray[sessionStorage.getItem("user_id") % ColorArray.length]}}>
+            {sessionStorage.getItem("user_name").charAt(0)}
+          </Avatar>
+          :
+          <Avatar size={40} src={sessionStorage.getItem("user_profileImgUrl")}  shape="circle" />
+        }
       </Button>
     </Popover>
   );
