@@ -1,11 +1,19 @@
-import React from 'react';
-import { Comment, Avatar } from 'antd';
+import React, { useState } from 'react';
+import { Comment, Avatar, Button } from 'antd';
 import MediaDeleteComment from './media-delete-comment';
 import ShowMoreText from './react-show-more-text';
+import { RedoOutlined } from '@ant-design/icons';
+import MediaModifyComment from './media-modify-comment'
 
 // single comment card
 // parent: MediaCommentList
 function MediaCommentCard (props) {
+  const [modify,setModify] = useState(false)
+  if (modify) {
+    return (
+      <MediaModifyComment mediaId={props.mediaId} commentId={props.commentId} GET_COMMENTS={props.GET_COMMENTS} modify={{modify}} content={props.content} setModify={setModify}/>
+    )
+  }
   return (
     <div>
       {
@@ -24,6 +32,7 @@ function MediaCommentCard (props) {
                 <ShowMoreText more='더보기' less='간략히 보기'>
                   <p style={{width: '95%'}}>{props.content}</p>
                 </ShowMoreText>
+                <Button icon={<RedoOutlined />} style={{ border: 'none', background: '#f0f8ff', position: 'absolute', right: '6%', top: '1.5%'}} onClick={()=> setModify(!modify)}/>
                 <MediaDeleteComment
                   commentId={props.commentId}
                   mediaId={props.mediaId}

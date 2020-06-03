@@ -40,7 +40,7 @@ function MediaDetailCardQuery (props) {
     return (<ErrorView/>);
   } else
     return (
-      <MediaDetailCard media={data.media}/>
+      <MediaDetailCard media={data.media} GET_MEDIA={GET_MEDIA}/>
     );
 }
 

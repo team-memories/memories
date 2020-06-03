@@ -12,10 +12,10 @@ function MediaCard(props){
       <figure className = "snip1361">
         { //type가 Photo면 url을 카드에, 비디오면 thumbnail을 카드에 나타남
           (props.typename === 'Photo') ?
-            <img style={{ width: '100%', borderTopLeftRadius: 10, borderTopRightRadius: 10, borderBottomLeftRadius: 10, borderBottomRightRadius: 10 }}
+            <img style={{ width: '100%', borderRadius: 10 }}
               src={props.url} alt="thumbnail"/>
             :
-            <img style={{ width: '100%', borderTopLeftRadius: 10, borderTopRightRadius: 10, borderBottomLeftRadius: 10, borderBottomRightRadius: 10 }}
+            <img style={{ width: '100%', borderRadius: 10 }}
               src={props.thumbnailUrl} alt="thumbnail"/>
         }
         <figcaption>

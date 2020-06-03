@@ -9,7 +9,6 @@ function UploadPageDescription (props) {
     <Form.Item
       {...Layout}
       label="Description"
-      name="Description"
       rules={[
         {
           required: true,
@@ -22,6 +21,7 @@ function UploadPageDescription (props) {
         placeholder="Description"
         description={props.description}
         onChange={props.onChange}
+        value={props.description}
       />
     </Form.Item>
   );

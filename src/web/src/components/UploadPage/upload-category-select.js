@@ -7,9 +7,8 @@ function UploadCategorySelect (props) {
     <Form.Item
       {...Layout}
       label="Category"
-      name="category"
     >
-      <Select onChange={props.onChange}>
+      <Select onChange={props.onChange} value={props.category}>
         <Select.Option value="CITY">도시</Select.Option>
         <Select.Option value="NATURE">자연</Select.Option>
         <Select.Option value="OBJECT">사물</Select.Option>
