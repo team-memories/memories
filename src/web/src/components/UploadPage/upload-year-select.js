@@ -1,13 +1,13 @@
 import { DatePicker, Form } from 'antd';
 import React from 'react';
 import { Layout } from '../constants';
+import moment from 'moment'
 
 function UploadYearSelect (props) {
   return (
     <Form.Item
       {...Layout}
       label="Year"
-      name="year"
       rules={[
         {
           required: true,
@@ -19,6 +19,7 @@ function UploadYearSelect (props) {
         picker="year"
         year={props.year}
         onChange={props.onChange}
+        defaultValue={moment(props.year)}
       />
     </Form.Item>
   );

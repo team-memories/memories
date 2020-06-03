@@ -7,7 +7,6 @@ function UploadPageTitle (props) {
     <Form.Item
       {...Layout}
       label="Title"
-      name="title"
       rules={[
         {
           required: true,
@@ -15,7 +14,7 @@ function UploadPageTitle (props) {
         },
       ]}
     >
-      <Input placeholder="Title" onChange={props.onChange}/>
+      <Input placeholder="Title" onChange={props.onChange} value={props.title}/>
     </Form.Item>
   );
 }

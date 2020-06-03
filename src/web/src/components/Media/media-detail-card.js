@@ -23,7 +23,7 @@ function MediaInfo (props) {
                 // 작성자와 로그인 정보가 같을 경우에만 deleteButton 보이도록 설정
                 (props.media.author.id === sessionStorage.getItem("user_id")) &&
                 <div>
-                  <Link to={{pathname: `/modify`, search: `?id=${props.media.id}`, state: {media: props.media}}}><Button>Modify</Button></Link>
+                  <Link to={{pathname: `/modify`, search: `?id=${props.media.id}`, state: {media: props.media, GET_MEDIA: props.GET_MEDIA}}}><Button>Modify</Button></Link>
                   <MediaDetailDeleteButton mediaId={props.media.id}/>
                 </div>
               }
@@ -63,7 +63,7 @@ function MediaDetailCard (props) {
 
       }
       {/* 상세 정보 */}
-      <MediaInfo media={props.media}/>
+      <MediaInfo media={props.media} GET_MEDIA={props.GET_MEDIA}/>
       {/* 댓글 */}
       <MediaComment mediaId={props.media.id}/>
     </div>
