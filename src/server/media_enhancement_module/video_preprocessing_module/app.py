@@ -35,12 +35,11 @@ def check_SR(file_in_path):
 
 
 def check_file_size(file_in_path):
-    # TODO: 비디오 파일 길이 체크하기
     size_error = False
     output = subprocess.run(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', 
                         '-of', 'default=noprint_wrappers=1:nokey=1', file_in_path], stdout=subprocess.PIPE)
     output = output.stdout.splitlines()
-    duration = float(output[0]))
+    duration = float(output[0])
     if duration > 20.0:
         size_error = True
     return size_error
