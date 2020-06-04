@@ -61,7 +61,7 @@ function App () {
   
   return (
     <ApolloProvider client={client}>
-      {(!isMediaView) ? <Header/> : ""}
+      {(!isMediaView) && <Header/>}
       <Switch>
         <Route exact path="/" render={()=> <HomePage onChangeIsMediaView={onChangeIsMediaView}/>}/>
         <Route exact path="/search" render={()=> <MediaListPage onChangeIsMediaView={onChangeIsMediaView}/>}/>
