@@ -19,7 +19,7 @@ function UploadYearSelect (props) {
         picker="year"
         year={props.year}
         onChange={props.onChange}
-        defaultValue={moment(props.year)}
+        defaultValue={moment(props.year,'YYYY')}
       />
     </Form.Item>
   );
