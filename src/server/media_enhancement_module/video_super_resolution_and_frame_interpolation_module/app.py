@@ -7,11 +7,16 @@ app = Flask(__name__)
 
 def zooming_slow_mo(folder_in_path, fps_in_path, file_out_path):
     fps = float(open(fps_in_path).readline())
+    n_out = 3
+    if fps < 60.0:
+        fps *= 2
+    else:
+        n_out = 1
     subprocess.run(f"""
     cd Zooming-Slow-Mo-CVPR-2020/codes && \
     python frames_to_video.py --model ../experiments/pretrained_models/xiang2020zooming.pth \
     --input {folder_in_path} \
-    --output {file_out_path} --fps {fps*2}  --N_out 3
+    --output {file_out_path} --fps {fps}  --N_out {n_out}
     """, shell=True)
 
 
