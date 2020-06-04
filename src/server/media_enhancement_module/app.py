@@ -12,8 +12,9 @@ def preprocess_video(file_in_path, thumbnail_out_path, fps_out_path, frames_fold
     response = requests.post(url, json={'file_in_path': file_in_path,
                             'thumbnail_out_path': thumbnail_out_path, 'fps_out_path': fps_out_path,
                             'frames_folder_out_path': frames_folder_out_path})
-
-    return response.data['size_error'], response.data['is_color'], response.data['is_sr']
+    response = response.json()
+    app.logger.info(response)
+    return response['size_error'], response['is_color'], response['is_sr']
 
 
 def video_colorization(file_in_path, folder_out_path, frames_folder_out_path):
@@ -36,8 +37,9 @@ def video_postprocess(folder_in_path, file_out_path, fps_in_path):
 def preprocess_image(file_in_path):
     url = f'http://{os.environ["VIDEO_PREPROCESSING_SERVICE_ADDR"]}/v1/imagepreprocess'
     response = requests.post(url, json={'file_in_path': file_in_path})
-
-    return response.data['is_color'], response.data['is_sr']
+    response = response.json()
+    app.logger.info(response)
+    return response['is_color'], response['is_sr']
 
 
 def image_colorization(file_in_path, file_out_path):
@@ -114,14 +116,15 @@ def enhance_photo():
         image_colorization(file_in_path, file_out_path)
     else:
         file_out_path = file_in_path
-    
+        
+    file_in_path = file_out_path 
     # Super Resolution 체크
     if is_sr:
-        file_in_path = file_out_path
         file_out_path = os.path.join(enhanced_media_folder_path, "color_sr_" + file_name)
         image_super_resolution(file_in_path, file_out_path)
     else:
         file_out_path = file_in_path
+
     return {"originalFilePath": file_path,
             "enhancedFilePath": file_out_path}, 200
 

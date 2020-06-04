@@ -40,7 +40,7 @@ def check_file_size(file_in_path):
                         '-of', 'default=noprint_wrappers=1:nokey=1', file_in_path], stdout=subprocess.PIPE)
     output = output.stdout.splitlines()
     duration = float(output[0])
-    if duration > 20.0:
+    if duration > 60.0:
         size_error = True
     return size_error
 
@@ -82,9 +82,7 @@ def enhance():
     if is_color is False:
         video_to_frame(file_in_path, frames_folder_out_path)
 
-    return {"size_error":size_error,
-        "is_color":is_color,
-        "is_sr":is_sr}, 200
+    return {"size_error":size_error, "is_color":is_color, "is_sr":is_sr}, 200
 
 @app.route("/v1/videopostprocess", methods=['POST'])
 def video_postprocess():
@@ -99,8 +97,7 @@ def check_image():
     param = request.get_json(force=True)
     file_in_path = param["file_in_path"]
     is_color, is_sr = image_preprocess(file_in_path)
-    return {"is_color":is_color,
-        "is_sr":is_sr}, 200
+    return {"is_color":is_color,"is_sr":is_sr}, 200
 
 
 app.run(debug=True, port=4201, host="0.0.0.0")
