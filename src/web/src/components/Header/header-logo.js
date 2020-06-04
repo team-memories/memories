@@ -8,7 +8,7 @@ function HeaderLogo () {
       <img
         src={logo}
         alt="logo"
-        style={{ width: '150px', paddingLeft: '15px' }}
+        style={{ width: '150px', marginLeft: '15px' }}
       />
     </Link>
   );

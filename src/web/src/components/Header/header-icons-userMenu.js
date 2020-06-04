@@ -28,11 +28,11 @@ function UserMenu () {
       <Card.Meta
         avatar={
           sessionStorage.getItem("user_profileImgUrl") === 'null'?
-            <Avatar size={50} style={{backgroundColor: ColorArray[sessionStorage.getItem("user_id") % ColorArray.length]}}>
+            <Avatar size={45} style={{backgroundColor: ColorArray[sessionStorage.getItem("user_id") % ColorArray.length]}}>
               {sessionStorage.getItem("user_name").charAt(0)}
             </Avatar>
             :
-            <Avatar size={50} src={sessionStorage.getItem("user_profileImgUrl")}  shape="circle" />
+            <Avatar size={45} src={sessionStorage.getItem("user_profileImgUrl")}  shape="circle" />
         }
         description={
           <div>
