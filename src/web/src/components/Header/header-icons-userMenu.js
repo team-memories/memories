@@ -65,11 +65,11 @@ function UserMenu () {
     <Popover title={title} content={content} placement="bottom" trigger="click" visible={clicked} onVisibleChange={handleClickChange}>
       <Button type="link" ghost>
         {sessionStorage.getItem("user_profileImgUrl") === 'null'?
-          <Avatar size={40} style={{backgroundColor: ColorArray[sessionStorage.getItem("user_id") % ColorArray.length]}}>
+          <Avatar size={30} style={{backgroundColor: ColorArray[sessionStorage.getItem("user_id") % ColorArray.length]}}>
             {sessionStorage.getItem("user_name").charAt(0)}
           </Avatar>
           :
-          <Avatar size={40} src={sessionStorage.getItem("user_profileImgUrl")}  shape="circle" />
+          <Avatar size={30} src={sessionStorage.getItem("user_profileImgUrl")}  shape="circle" />
         }
       </Button>
     </Popover>
