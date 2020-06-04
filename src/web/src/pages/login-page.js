@@ -36,7 +36,7 @@ function LoginPage (props) {
       sessionStorage.setItem("user_email", user.email);
       props.afterLogin();
       message.success("로그인 성공");
-      history.push('/');
+      history.goBack();
     },
     onError() {
       message.error("이메일과 비밀번호를 확인해주세요.");
