@@ -20,6 +20,7 @@ parser.add_argument("--N_out", type=int, default=7,
                     help='Specify size of output frames of the network for faster conversion. This will depend on your cpu/gpu memory. Default: 7')
 parser.add_argument("--output", type=str, default="output.mp4", help='Specify output file name. Default: output.mp4')
 parser.add_argument("--input", type=str, required=True, help='path of frames to be converted')
+parser.add_argument("--audio", type=str, required=True, help="path of audio file")
 args = parser.parse_args()
 
 
@@ -84,7 +85,7 @@ def main():
 
     # now turn output images to video
     # generate mp4
-    util.create_video(args.ffmpeg_dir, save_out_folder, args.output, args.fps)
+    util.create_video(args.ffmpeg_dir, save_out_folder, args.output, args.fps, args.audio)
 
 
 if __name__ == '__main__':
