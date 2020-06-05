@@ -10,10 +10,10 @@ function Header () {
       <Col style={{marginTop: '20px', marginBottom: '20px', marginLeft: '30px'}} xl={{marginleft: '50px'}}>
         <HeaderLogo/>
       </Col>
-      <Col offset={2} xs={{span: 5, offset: 1}} sm={{span:7.5}} md={{span: 10}} xl={{span: 15}} xxl={{offset: 2, span: 14}} style={{marginTop: '10px', marginBottom:'10px', marginLeft: "13%"}}>
+      <Col offset={2} xs={{span: 5, offset: 1}} sm={{span:7.5}} md={{span: 10}} xl={{span: 15}} xxl={{span: 15, offset: 2}} style={{marginTop: '10px', marginBottom:'10px'}}>
         <SearchBar/>
       </Col>
-      <Col xs={{span: 7.5, offset: 4}} xxl={{offset: 2}} style={{marginLeft: "62px"}}>
+      <Col xxl={{offset: 1}}>
         <HeaderIcons/>
       </Col>
     </Row>
