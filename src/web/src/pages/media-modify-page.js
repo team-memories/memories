@@ -36,7 +36,7 @@ function ModifyPage (props) {
   const media = props.location.state.media;
   const { useMutation } = require('@apollo/react-hooks');
   const [title, setTitle] = useState(media.title);
-  const [location, setLocation] = useState('대한민국');
+  const [location, setLocation] = useState(media.location);
   const [category, setCategory] = useState(media.category);
   const [year, setYear] = useState(media.year);
   const [description, setDescription] = useState(media.description);

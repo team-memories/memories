@@ -5,7 +5,6 @@ import SearchBar from '../SearchBar/search-bar';
 import HeaderIcons from './header-icons';
 
 function Header () {
-  console.log(window.innerWidth)
   return (
     <Row align='middle' style={{ backgroundColor: 'white', boxShadow: '5px 1px 7px #B8B8B8', minWidth: "592px"}}>
       <Col style={{marginTop: '20px', marginBottom: '20px', marginLeft: '30px'}} xl={{marginleft: '50px'}}>

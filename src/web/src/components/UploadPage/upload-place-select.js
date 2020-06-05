@@ -16,11 +16,10 @@ function UploadPlaceSelect (props) {
     >
       <Cascader
         options={LocationOptions}
-        defaultValue={['대한민국']}
+        defaultValue={props.location.split(" ")}
         style={{ display: '100%' }}
         changeOnSelect
         onChange={props.onChange}
-        location={props.location}
       />
     </Form.Item>
   );
