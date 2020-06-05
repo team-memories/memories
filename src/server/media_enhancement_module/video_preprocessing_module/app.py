@@ -119,6 +119,7 @@ def video_postprocess():
         param["folder_in_path"], param["file_out_path"], param["fps_in_path"], param["audio_file_path"]
     frame_to_video(folder_in_path, file_out_path, fps_in_path, audio_file_path)
 
+    return {}, 200
 
 
 @app.route("/v1/imagepreprocess", methods=['POST'])
