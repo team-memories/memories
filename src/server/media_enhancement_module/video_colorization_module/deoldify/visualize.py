@@ -249,18 +249,6 @@ class VideoColorizer:
             str(bwframe_path_template), format='image2', vcodec='mjpeg', qscale=0
         ).run(capture_stdout=True)
         
-        # audio 추출
-        audio_file = Path(str(source_path).replace('.mp4', '.aac'))
-        if audio_file.exists():
-            audio_file.unlink()
-
-        os.system(
-            'ffmpeg -y -i "'
-            + str(source_path)
-            + '" -vn -acodec copy "'
-            + str(audio_file)
-            + '"'
-        )
 
     def _colorize_raw_frames(
         self, source_path: Path, render_factor: int = None, post_process: bool = True,

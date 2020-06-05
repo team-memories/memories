@@ -14,7 +14,7 @@ def preprocess_video(file_in_path, thumbnail_out_path, fps_out_path, frames_fold
                             'frames_folder_out_path': frames_folder_out_path})
     response = response.json()
     app.logger.info(response)
-    return response['size_error'], response['is_color'], response['is_sr']
+    return response['size_error'], response['is_color'], response['is_sr'], response['audio_file_path']
 
 
 def video_colorization(file_in_path, folder_out_path, frames_folder_out_path):
@@ -23,15 +23,16 @@ def video_colorization(file_in_path, folder_out_path, frames_folder_out_path):
                              'frames_folder_out_path': frames_folder_out_path})
 
 
-def super_resolution_and_video_interpolation(folder_in_path, fps_in_path, file_out_path):
+def super_resolution_and_video_interpolation(folder_in_path, fps_in_path, file_out_path, audio_file_path):
     url = f'http://{os.environ["VSR_VFI_SERVICE_ADDR"]}/v1/enhance'
     requests.post(url, json={'folder_in_path': folder_in_path, 'fps_in_path': fps_in_path,
-                             'file_out_path': file_out_path})
+                             'file_out_path': file_out_path, 'audio_file_path': audio_file_path})
 
-def video_postprocess(folder_in_path, file_out_path, fps_in_path):
+
+def video_postprocess(folder_in_path, file_out_path, fps_in_path, audio_file_path):
     url = f'http://{os.environ["VIDEO_PREPROCESSING_SERVICE_ADDR"]}/v1/videopostprocess'
     requests.post(url, json={'folder_in_path': folder_in_path, 'file_out_path': file_out_path,
-                            'fps_in_path': fps_in_path})
+                            'fps_in_path': fps_in_path, 'audio_file_path': audio_file_path})
 
 
 def preprocess_image(file_in_path):
@@ -69,7 +70,7 @@ def enhance_video():
     frames_folder_out_path = os.path.join(enhanced_media_folder_path, "frames")
 
     # Video Preprocess
-    size_error, is_color, is_sr = preprocess_video(file_in_path, thumbnail_out_path, fps_out_path, frames_folder_out_path)
+    size_error, is_color, is_sr, audio_file_path = preprocess_video(file_in_path, thumbnail_out_path, fps_out_path, frames_folder_out_path)
 
     # 동영상 긴 경우, error를 내보냄
     # TODO(Lhyejin): size_error일 경우, error를 내보냄
@@ -89,10 +90,10 @@ def enhance_video():
     
     # Super Resolution 체크
     if is_sr:
-        super_resolution_and_video_interpolation(folder_in_path, fps_in_path, file_out_path)
+        super_resolution_and_video_interpolation(folder_in_path, fps_in_path, file_out_path, audio_file_path)
     else:
         # 동영상으로 만들기
-        video_postprocess(folder_in_path, file_out_path, fps_in_path)
+        video_postprocess(folder_in_path, file_out_path, fps_in_path, audio_file_path)
 
     return {"thumbnailFilePath": thumbnail_out_path,
             "originalFilePath": file_path,
