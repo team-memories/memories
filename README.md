@@ -1,5 +1,7 @@
 # Memories  
 
+
+
 ## 1. 프로젝트 소개
 
 <img src="./doc/image/Memories_logo.png" height="300" weight="300"/>
@@ -10,6 +12,8 @@
 
  “현재 시대는 정보화 사회에서 정보, 재화를 공유하는 공유 사회로 넘어가고 있다” 한계비용제로사회에서 언급한 제레미 리프킨의 말이다. SNS상에서 지인들에게 정보를 공유하며 살아가는 것이 익숙한 현대인들에게 본 프로젝트는 서로의 추억을 공유하며 볼 수 있는 플랫폼을 제공해주고자 한다. 사용자는 우리의 플랫폼을 이용해 자신이 다시 보고 싶은 그 시절 그 장소를 검색해 생생한 화질의 영상들을 보며 추억을 되살릴 수 있다. 또한, 함께 공유하고 싶은 풍경이나 물건 등의 영상이 있다면 플랫폼에 업로드하여 향상된 품질로 모든 사용자가 다 같이 볼 수 있게끔 할 수 있다.
 
+
+
 ## 2. Abstract
 
 "Can I vividly see the old place I remember again?"
@@ -19,10 +23,18 @@ People film videos to keep their daily lives such as travel, friendship, anniver
 “The current era is shifting from an information society to a sharing society that shares information and goods,” said Jeremy Rifkin, referring to the zero marginal society. Modern people who are accustomed to living by sharing information with friends on SNS
 This project aims to provide a platform for people to share and view each other's memories. Users can use our platform to search for the place in those days when they want to see it again, and watch the videos with vivid media quality to bring back memories. In addition, if there are videos of scenery or objects that you want to share together, you can upload them to the platform so that all users can see them together with improved quality.
 
+
+
 ## 3. 최종 발표 영상
+
+[![최종 발표 ](https://github.com/kookmin-sw/capstone-2020-12/blob/master/doc/image/video_image2.png?raw=true)]()
+
 
 
 ## 4. 시연 영상
+
+[![시연 동영상](https://github.com/kookmin-sw/capstone-2020-12/blob/master/doc/image/%E1%84%89%E1%85%B5%E1%84%8B%E1%85%A7%E1%86%AB%E1%84%8B%E1%85%A7%E1%86%BC%E1%84%89%E1%85%A1%E1%86%BC%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.png?raw=true)](https://youtu.be/cJTdU75QZ1Q)
+
 
 
 ## 5. 팀 소개
@@ -84,6 +96,8 @@ E-mail : agatha197@kookmin.ac.kr
 E-mail : dncjf0223@kookmin.ac.kr
 ```
 
+
+
 ## 6. 사용법
 
 회원가입 & 로그인 (선택)
@@ -128,6 +142,8 @@ E-mail : dncjf0223@kookmin.ac.kr
 2. Modify 버튼을 눌러 제목, 지역, 카테고리, 년도, 설명을 수정
 3. Submit 버튼 클릭 
 ```
+
+
 
 ## 7. 변환 결과
 
