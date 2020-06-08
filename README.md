@@ -19,22 +19,13 @@ People film videos to keep their daily lives such as travel, friendship, anniver
 “The current era is shifting from an information society to a sharing society that shares information and goods,” said Jeremy Rifkin, referring to the zero marginal society. Modern people who are accustomed to living by sharing information with friends on SNS
 This project aims to provide a platform for people to share and view each other's memories. Users can use our platform to search for the place in those days when they want to see it again, and watch the videos with vivid media quality to bring back memories. In addition, if there are videos of scenery or objects that you want to share together, you can upload them to the platform so that all users can see them together with improved quality.
 
-## 3. 소개 영상
+## 3. 최종 발표 영상
+  
+  
+## 4. 시연 영상
 
-[![Watch the video](https://github.com/kookmin-sw/capstone-2020-12/blob/master/doc/image/video_image.png)](https://youtu.be/sUI4vGXoerw)
-
-### 3.1) 중간 1차 발표 영상
-
-[![Watch the video](https://github.com/kookmin-sw/capstone-2020-12/blob/master/doc/image/video_image2.png)](https://drive.google.com/file/d/11GnQ5ppcaEti0KHbXU4I6XhiT305TU2Y/view?usp=sharing)
-
-### 3.2) 중간 2차 발표 영상
-
-[![Watch the video](https://github.com/kookmin-sw/capstone-2020-12/blob/master/doc/image/video_image2.png)](https://youtu.be/o9lZpSU3TNM)
-
-### 3.3) 최종 발표 영상
-
-
-## 4. 팀 소개
+  
+## 5. 팀 소개
 
 <img src="./doc/image/이재구교수님.png" height="200" weight="200"/>
 Professor : 이재구 교수님
@@ -90,7 +81,7 @@ E-mail : agatha197@kookmin.ac.kr
 E-mail : dncjf0223@kookmin.ac.kr
 ```
 
-## 5. 사용법
+## 6. 사용법
 
 회원가입 & 로그인 (선택)
 
@@ -135,7 +126,7 @@ E-mail : dncjf0223@kookmin.ac.kr
 3. Submit 버튼 클릭 
 ```
 
-## 6. 변환 결과
+## 7. 변환 결과
 
 <img src="https://lh6.googleusercontent.com/oZC0SjeEt-clPCk56QZfxAVMVZjRnOiFGXWx3iJdGiXMvf0kEuirXao9yrktA_VGwMKYeJFEZpn45VhdQiP0U2khGTIHTS3pvPhdqBf6wco5FLPMuCrIocOlqinMeeCE6hakhqRHM1I" height="300" width="600"/> 
 
