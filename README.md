@@ -20,17 +20,18 @@ People film videos to keep their daily lives such as travel, friendship, anniver
 This project aims to provide a platform for people to share and view each other's memories. Users can use our platform to search for the place in those days when they want to see it again, and watch the videos with vivid media quality to bring back memories. In addition, if there are videos of scenery or objects that you want to share together, you can upload them to the platform so that all users can see them together with improved quality.
 
 ## 3. 최종 발표 영상
-  
-  
+
+
 ## 4. 시연 영상
 
-  
+
 ## 5. 팀 소개
 
 <img src="./doc/image/이재구교수님.png" height="200" weight="200"/>
-Professor : 이재구 교수님
-
-
+Professor : 이재구 교수님  
+  
+  
+  
 * 김병조(팀장)  
 
 <img src="./doc/image/김병조.jpg" height="300" weight="300"/>
@@ -133,4 +134,3 @@ E-mail : dncjf0223@kookmin.ac.kr
 <img src="https://lh4.googleusercontent.com/2BHmorKJXERIlxv1H5iMMHG_yHr3KRgy49VnlLpfUzwRz_gyxdP1miFds2M-BNuph8GAnrExhp3PRXK5ivPUeqHqUBc922YxBaonT1d_Uixrxde-OA_2jeaU415P4bAFezzufJTU6hM" height="300" width="600"/> 
 
 <img src="https://lh3.googleusercontent.com/1nuSI3dkmaJo3W6bqvqrTaA166oMHEEDRHUvdyWqgCE1i6lUd8WfA1ARhSGIddUPlsrzQFF44Dro058WzuPkPjdWwhV4kqZm6fFWG26zSaOokw-ye_5tIUpYOhUymt4KI5NVay85Frg" height="300" width="620"/> 
-
