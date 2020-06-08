@@ -45,7 +45,7 @@ As stated in the <a href="https://github.com/NVlabs/PWC-Net#license">licensing t
 ```
 [1]  @inproceedings{Sun_CVPR_2018,
          author = {Deqing Sun and Xiaodong Yang and Ming-Yu Liu and Jan Kautz},
-         title = {{PWC-Net}: {CNNs} for Optical Flow Using Pyramid, Warping, and Cost Volume},
+         title = {PWC-Net}: {CNNs} for Optical Flow Using Pyramid, Warping, and Cost Volume},
          booktitle = {IEEE Conference on Computer Vision and Pattern Recognition},
          year = {2018}
      }
