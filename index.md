@@ -22,7 +22,7 @@ This project aims to provide a platform for people to share and view each other'
 
 ## 3. 최종 발표 영상
 
-[![최종 발표 ](https://github.com/kookmin-sw/capstone-2020-12/blob/master/doc/image/final_image.png?raw=true)]()
+[![최종 발표 ](https://github.com/kookmin-sw/capstone-2020-12/blob/master/doc/image/final_image.png?raw=true)](https://www.youtube.com/watch?v=lXbIrGTT7Ps)
 
 
 
