@@ -70,15 +70,20 @@ function UploadPage (props) {
   };
 
   const handleSubmit = () => {
-    mutate({ variables: { media, title, location, year, description, category } })
-      .then(() => {
-        message.info('제출 완료되었습니다.');
-        history.push('/');
-      })
-      .catch(e => {
-        message.error('업로드에 실패하였습니다.');
-        console.log(e);
-      });
+    if (title == "" || description == "") {
+      message.error("모든 정보를 입력해주세요.")
+    }
+    else {
+      mutate({ variables: { media, title, location, year, description, category } })
+        .then(() => {
+          message.info('제출 완료되었습니다.');
+          history.push('/');
+        })
+        .catch(e => {
+          message.error('업로드에 실패하였습니다.');
+          console.log(e);
+        });
+    }
   };
   props.onChangeIsMediaView(window.location.pathname === "/watch");
   return (
