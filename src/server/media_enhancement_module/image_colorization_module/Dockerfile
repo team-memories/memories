@@ -31,6 +31,8 @@ WORKDIR /app
 
 RUN mkdir models
 RUN wget https://www.dropbox.com/s/mwjep3vyqk5mkjc/ColorizeStable_gen.pth?dl=0 -O ./models/ColorizeStable_gen.pth
+RUN wget -P /root/.torch/models/ https://download.pytorch.org/models/resnet101-5d3b4d8f.pth
+RUN wget https://www.dropbox.com/s/zkehq1uwahhbc2o/ColorizeArtistic_gen.pth?dl=0 -O ./models/ColorizeArtistic_gen.pth
 COPY . .
 
 # The code to run when container is started:
