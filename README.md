@@ -33,7 +33,7 @@ This project aims to provide a platform for people to share and view each other'
 
 ## 4. 시연 영상
 
-[![시연 동영상](https://github.com/kookmin-sw/capstone-2020-12/blob/master/doc/image/%E1%84%89%E1%85%B5%E1%84%8B%E1%85%A7%E1%86%AB%E1%84%8B%E1%85%A7%E1%86%BC%E1%84%89%E1%85%A1%E1%86%BC%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.png?raw=true)](https://youtu.be/oXESAG_IX-M)
+[![시연 동영상](https://github.com/kookmin-sw/capstone-2020-12/blob/master/doc/image/%EC%8B%9C%EC%97%B0%EC%98%81%EC%83%81%EC%9D%B4%EB%AF%B8%EC%A7%80.png?raw=true)](https://youtu.be/oXESAG_IX-M)
 
 
 
