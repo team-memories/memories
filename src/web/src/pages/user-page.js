@@ -1,5 +1,6 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
+import { Spin } from 'antd';
 import MediaList from '../components/Media/media-list';
 import gql from 'graphql-tag';
 
@@ -26,7 +27,7 @@ const MyMediaQuery = gql`
 function UserPage (props) {
   props.onChangeIsMediaView(window.location.pathname === "/watch");
   const { loading, error, data } = useQuery(MyMediaQuery, {errorPolicy: 'all', fetchPolicy: 'cache-and-network'});
-  if (loading) return <div>Loading...</div>;
+  if (loading) return (<Spin tip="Loading..." style={{ paddingTop: "25%", paddingLeft: "47%" }}/>);
   if (error) return <div>Error: {error.message}</div>;
   return (
     <div>

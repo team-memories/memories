@@ -41,6 +41,7 @@ function UploadPage (props) {
   const [category, setCategory] = useState();
   const [year, setYear] = useState(new Date().getFullYear());
   const [description, setDescription] = useState();
+  const [isSubmitCliked, setClicked] = useState(false);
   const [mutate] = useMutation(UPLOAD_MEDIA);
   const history = useHistory();
 
@@ -70,7 +71,10 @@ function UploadPage (props) {
   };
 
   const handleSubmit = () => {
-    if (sessionStorage.getItem('user_id') !== "1" && sessionStorage.getItem('user_id') !== "3" && sessionStorage.getItem('user_id') !== "4" && sessionStorage.getItem('user_id') !== "5" &&
+    if (media.path === undefined) {
+      message.error("파일을 업로드해주세요.")
+    }
+    else if (sessionStorage.getItem('user_id') !== "1" && sessionStorage.getItem('user_id') !== "3" && sessionStorage.getItem('user_id') !== "4" && sessionStorage.getItem('user_id') !== "5" &&
     sessionStorage.getItem('user_id') !== "6" && sessionStorage.getItem('user_id') !== "7") {
       message.error("현재는 승인된 계정만 업로드 할 수 있습니다.")
     }
@@ -78,6 +82,7 @@ function UploadPage (props) {
       message.error("모든 정보를 입력해주세요.")
     }
     else {
+      setClicked(true)
       mutate({ variables: { media, title, location, year, description, category } })
         .then(() => {
           message.info('제출 완료되었습니다.');
@@ -85,6 +90,7 @@ function UploadPage (props) {
         })
         .catch(e => {
           message.error('업로드에 실패하였습니다.');
+          setClicked(false)
           console.log(e);
         });
     }
@@ -99,7 +105,7 @@ function UploadPage (props) {
         <UploadCategorySelect category={category} onChange={onCategoryChange}/>
         <UploadYearSelect year={year} onChange={onYearChange}/>
         <UploadPageDescription description={description} onChange={onDescriptionChange}/>
-        <UploadSubmitButton onClick={handleSubmit}/>
+        <UploadSubmitButton onClick={handleSubmit} isSubmit={isSubmitCliked}/>
       </Form>
     </div>
   );

@@ -8,14 +8,27 @@ const tailLayout = {
 function UploadSubmitButton (props) {
   return (
     <Form.Item {...tailLayout}>
-      <Button
-        type="primary"
-        size="large"
-        onClick={props.onClick}
-        htmlType="submit"
-      >
-        Submit
-      </Button>
+      {
+        (props.isSubmit) ?
+          <Button
+            type="primary"
+            size="large"
+            onClick={props.onClick}
+            htmlType="submit"
+            disabled
+          >
+            Submit
+          </Button>
+        :
+          <Button
+            type="primary"
+            size="large"
+            onClick={props.onClick}
+            htmlType="submit"
+          >
+            Submit
+          </Button>
+      }
     </Form.Item>
   );
 }
