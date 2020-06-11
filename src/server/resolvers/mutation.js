@@ -28,24 +28,38 @@ module.exports = {
   uploadMedia: async (
     _,
     { media, title, location, year, description, category },
-    { dataSources: { mediaDB }, userId }
+    { dataSources: { mediaDB, userDB }, userId }
   ) => {
+
     if (!userId) {
       throw new Error("Login required");
     }
     const { createReadStream, filename, mimetype } = await media;
+
+    console.log(`[Enhance] Received a media file.\n
+    user id: ${userId}\n
+    user name: ${await userDB.getAttribute("name", userId)}\n
+    file name: ${filename} 
+    `);
+
     let type = "";
     if (mimetype.includes("image")) {
       type = "PHOTO";
     } else if (mimetype.includes("video")) {
       type = "VIDEO";
     } else {
+      console.log("Unsupported mimetype");
       throw new Error("Unsupported mimetype");
     }
+    console.log(`mimetype: ${type}`);
+
     const stream = createReadStream();
     const id = shortid.generate();
+    // TODO(yun-kwak) 파일 이름에 공백있으면 문제가 발생한다. uniqueFileName 으로 실제 사용자로부터 받은 이름을 사용하지 않도록 바꾸기
     const uniqueFileName = `${id}-${filename}`;
     const path = `${MEDIA_PATH}/${uniqueFileName}`;
+
+    console.log(`Unique file name of ${filename} is ${uniqueFileName}`)
 
     await new Promise((resolve, reject) => {
       const writeStream = createWriteStream(path);
@@ -81,6 +95,7 @@ module.exports = {
       isProcessing: true,
     });
     const mediaId = createdMedia.id;
+    console.log("Media record was created. ID is " + mediaId);
 
     const URL_EXT =
       type === "PHOTO" ? "/v1/enhance/photo" : "/v1/enhance/video";
@@ -90,7 +105,8 @@ module.exports = {
         { file_name: `${uniqueFileName}` }
       )
       .then(async (response) => {
-        console.log(response.data);
+        console.log(`${uniqueFileName} Enhancement Complete! This is the response data from Media Enhancement Service\n
+        ${JSON.stringify(response.data)}`);
         const originalFile = fs.readFileSync(response.data["originalFilePath"]);
         await s3
           .upload({
