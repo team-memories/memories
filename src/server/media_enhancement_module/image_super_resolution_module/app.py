@@ -24,7 +24,6 @@ def image_super_resolution(file_in_path, file_out_path):
 
 @app.route("/v1/enhance", methods=['POST'])
 def convert_photo():
-    print(request.form)
     param = request.get_json(force=True)
     file_in_path, file_out_path = param["file_in_path"], param["file_out_path"]
     image_super_resolution(file_in_path, file_out_path)
