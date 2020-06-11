@@ -30,6 +30,8 @@ WORKDIR /app
 
 RUN mkdir models
 RUN wget https://www.dropbox.com/s/336vn9y4qwyg9yz/ColorizeVideo_gen.pth?dl=0 -O ./models/ColorizeVideo_gen.pth
+RUN wget -P /root/.torch/models/ https://download.pytorch.org/models/resnet101-5d3b4d8f.pth
+
 COPY . .
 
 # The code to run when container is started:
