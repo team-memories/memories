@@ -158,8 +158,27 @@ module.exports = {
           isProcessing: false,
         });
       })
-      .catch(function (error) {
-        console.log(error);
+      .catch(async function (error) {
+        console.log(`Something bad happened in Media Enhancement Service.
+            Media ${mediaId} was not enhanced`);
+        const originalFile = fs.readFileSync(response.data["originalFilePath"]);
+        await s3
+          .upload({
+            Bucket: BUCKET_NAME,
+            Key: `${uniqueFileName}`,
+            Body: originalFile,
+            ACL: "public-read",
+          })
+          .promise();
+        const originalUrl = `https://memories-media-data.s3.ap-northeast-2.amazonaws.com/${uniqueFileName}`;
+
+        await mediaDB.updateMedia(mediaId, {
+          originalUrl,
+          thumbnailUrl: originalUrl,
+          url: originalUrl,
+          title: "[Original]" + title,
+          isProcessing: false,
+        });
       });
     return createdMedia;
   },
