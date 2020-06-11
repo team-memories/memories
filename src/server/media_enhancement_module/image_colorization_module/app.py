@@ -18,4 +18,4 @@ def enhance():
     return {}, 200
 
 
-app.run(port=4102, host="0.0.0.0")
+app.run(port=4102, host="0.0.0.0", threaded=False, processes=3)

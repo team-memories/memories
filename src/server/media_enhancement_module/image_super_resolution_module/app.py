@@ -14,10 +14,8 @@ def image_super_resolution(file_in_path, file_out_path):
 
     if lr_img.shape[0] >= 360 or lr_img.shape[1] >= 640:
         sr_img = rdn.predict(lr_img)
-        print('noise')
     else:
         sr_img = rrdn.predict(lr_img)
-        print('gans')
 
     imsave(file_out_path, sr_img)
 
@@ -30,4 +28,4 @@ def convert_photo():
     return {}, 200
 
 
-app.run(port=4103, host='0.0.0.0')
+app.run(port=4103, host='0.0.0.0', threaded=False, processes=1)

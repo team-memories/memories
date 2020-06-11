@@ -130,4 +130,4 @@ def check_image():
     return {"is_color": is_color,"is_sr": is_sr}, 200
 
 
-app.run(debug=True, port=4201, host="0.0.0.0")
+app.run(port=4201, host="0.0.0.0")
