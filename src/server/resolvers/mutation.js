@@ -112,7 +112,9 @@ module.exports = {
       .then(async (response) => {
         console.log(`${uniqueFileName} Enhancement Complete! This is the response data from Media Enhancement Service
         ${JSON.stringify(response.data)}`);
+
         const originalFile = fs.readFileSync(response.data["originalFilePath"]);
+        const originalUrl = `https://memories-media-data.s3.ap-northeast-2.amazonaws.com/${uniqueFileName}`;
         await s3
           .upload({
             Bucket: BUCKET_NAME,
@@ -122,7 +124,19 @@ module.exports = {
           })
           .promise();
 
+        if (response.data["isOriginal"]) {
+          await mediaDB.updateMedia(mediaId, {
+            originalUrl,
+            thumbnailUrl: originalUrl,
+            url: originalUrl,
+            title: "[Original] " + title,
+            isProcessing: false,
+          });
+          return;
+        }
+
         const enhancedFile = fs.readFileSync(response.data["enhancedFilePath"]);
+        const enhancedUrl = `https://memories-media-data.s3.ap-northeast-2.amazonaws.com/${id}-enhanced-${uniqueFileName}`;
         await s3
           .upload({
             Bucket: BUCKET_NAME,
@@ -145,8 +159,6 @@ module.exports = {
             })
             .promise();
         }
-        const originalUrl = `https://memories-media-data.s3.ap-northeast-2.amazonaws.com/${uniqueFileName}`;
-        const enhancedUrl = `https://memories-media-data.s3.ap-northeast-2.amazonaws.com/${id}-enhanced-${uniqueFileName}`;
         let thumbnailUrl;
         if (type === "VIDEO") {
           thumbnailUrl = `https://memories-media-data.s3.ap-northeast-2.amazonaws.com/${id}-thumbnail.png`;
@@ -179,7 +191,7 @@ module.exports = {
           originalUrl,
           thumbnailUrl: originalUrl,
           url: originalUrl,
-          title: "[Original]" + title,
+          title: "[Original] " + title,
           isProcessing: false,
         });
       });
