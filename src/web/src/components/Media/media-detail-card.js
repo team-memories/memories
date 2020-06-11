@@ -65,7 +65,9 @@ function MediaDetailCard (props) {
       {/* media */}
       {
         (props.media.__typename === "Photo")
-          ? (props.media.url === props.media.originalUrl) ? <img url={props.media.url} alt={props.media.originalUrl}/> : <ImageCompare url={props.media.url} originalUrl={props.media.originalUrl}/>
+          ? (props.media.url === props.media.originalUrl) 
+            ? <img style={{width: '100%', margin: 'auto', paddingBottom: 30}} src={props.media.url} alt={props.media.originalUrl}/>
+            : <ImageCompare url={props.media.url} originalUrl={props.media.originalUrl}/>
           : <video style={{width: '100%', margin: 'auto', paddingBottom: 30}} src={props.media.url} controls/>
 
       }
