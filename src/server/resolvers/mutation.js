@@ -10,10 +10,10 @@ const axios = require("axios");
 AWS.config.update({ region: "ap-northeast-2" });
 const ID = process.env["AWS_ACCESS_KEY_ID"];
 const SECRET = process.env["AWS_SECRET_ACCESS_KEY"];
-console.log(`----------------------------------\n
-AWS_ACCESS_KEY_ID: ${ID}\n
-AWS_SECRET_ACCESS_KEY: ${SECRET}\n
-----------------------------------\n
+console.log(`----------------------------------
+AWS_ACCESS_KEY_ID: ${ID}
+AWS_SECRET_ACCESS_KEY: ${SECRET}
+----------------------------------
 `);
 
 const BUCKET_NAME = "memories-media-data";
@@ -36,9 +36,9 @@ module.exports = {
     }
     const { createReadStream, filename, mimetype } = await media;
 
-    console.log(`[Enhance] Received a media file.\n
-    user id: ${userId}\n
-    user name: ${await userDB.getAttribute("name", userId)}\n
+    console.log(`[Enhance] Received a media file.
+    user id: ${userId}
+    user name: ${await userDB.getAttribute("name", userId)}
     file name: ${filename} 
     `);
 
@@ -105,7 +105,7 @@ module.exports = {
         { file_name: `${uniqueFileName}` }
       )
       .then(async (response) => {
-        console.log(`${uniqueFileName} Enhancement Complete! This is the response data from Media Enhancement Service\n
+        console.log(`${uniqueFileName} Enhancement Complete! This is the response data from Media Enhancement Service
         ${JSON.stringify(response.data)}`);
         const originalFile = fs.readFileSync(response.data["originalFilePath"]);
         await s3
