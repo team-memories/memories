@@ -54,12 +54,7 @@ module.exports = {
     console.log(`mimetype: ${type}`);
 
     const stream = createReadStream();
-    const id = shortid.generate();
-    // TODO(yun-kwak) 파일 이름에 공백있으면 문제가 발생한다. uniqueFileName 으로 실제 사용자로부터 받은 이름을 사용하지 않도록 바꾸기
-    const uniqueFileName = `${id}-${filename}`;
-    const path = `${MEDIA_PATH}/${uniqueFileName}`;
 
-    console.log(`Unique file name of ${filename} is ${uniqueFileName}`)
 
     await new Promise((resolve, reject) => {
       const writeStream = createWriteStream(path);
@@ -97,6 +92,13 @@ module.exports = {
     const mediaId = createdMedia.id;
     console.log("Media record was created. ID is " + mediaId);
 
+    const id = shortid.generate();
+    const file_extension = filename.split('.').pop();
+    const uniqueFileName = `${id}-${mediaId}.${file_extension}`;
+    const path = `${MEDIA_PATH}/${uniqueFileName}`;
+
+    console.log(`Unique file name of ${filename} is ${uniqueFileName}`)
+
     const URL_EXT =
       type === "PHOTO" ? "/v1/enhance/photo" : "/v1/enhance/video";
     axios
@@ -121,7 +123,7 @@ module.exports = {
         await s3
           .upload({
             Bucket: BUCKET_NAME,
-            Key: `${id}-enhanced-${filename}`,
+            Key: `${id}-enhanced-${uniqueFileName}`,
             Body: enhancedFile,
             ACL: "public-read",
           })
@@ -141,7 +143,7 @@ module.exports = {
             .promise();
         }
         const originalUrl = `https://memories-media-data.s3.ap-northeast-2.amazonaws.com/${uniqueFileName}`;
-        const enhancedUrl = `https://memories-media-data.s3.ap-northeast-2.amazonaws.com/${id}-enhanced-${filename}`;
+        const enhancedUrl = `https://memories-media-data.s3.ap-northeast-2.amazonaws.com/${id}-enhanced-${uniqueFileName}`;
         let thumbnailUrl;
         if (type === "VIDEO") {
           thumbnailUrl = `https://memories-media-data.s3.ap-northeast-2.amazonaws.com/${id}-thumbnail.png`;
