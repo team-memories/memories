@@ -53,8 +53,32 @@ module.exports = {
     }
     console.log(`mimetype: ${type}`);
 
+    // DB에 저장
+    const createdMedia = await mediaDB.createMedia({
+      title,
+      description,
+      year,
+      location,
+      type,
+      category,
+      originalUrl: "",
+      thumbnailUrl: "",
+      url: "",
+      authorId: userId,
+      isProcessing: true,
+    });
+
     const stream = createReadStream();
 
+    const mediaId = createdMedia.id;
+    console.log("Media record was created. ID is " + mediaId);
+
+    const id = shortid.generate();
+    const file_extension = filename.split('.').pop();
+    const uniqueFileName = `${id}-${mediaId}.${file_extension}`;
+    const path = `${MEDIA_PATH}/${uniqueFileName}`;
+
+    console.log(`Unique file name of ${filename} is ${uniqueFileName}`)
 
     await new Promise((resolve, reject) => {
       const writeStream = createWriteStream(path);
@@ -75,29 +99,8 @@ module.exports = {
       stream.pipe(writeStream);
     });
 
-    // DB에 저장
-    const createdMedia = await mediaDB.createMedia({
-      title,
-      description,
-      year,
-      location,
-      type,
-      category,
-      originalUrl: "",
-      thumbnailUrl: "",
-      url: "",
-      authorId: userId,
-      isProcessing: true,
-    });
-    const mediaId = createdMedia.id;
-    console.log("Media record was created. ID is " + mediaId);
 
-    const id = shortid.generate();
-    const file_extension = filename.split('.').pop();
-    const uniqueFileName = `${id}-${mediaId}.${file_extension}`;
-    const path = `${MEDIA_PATH}/${uniqueFileName}`;
 
-    console.log(`Unique file name of ${filename} is ${uniqueFileName}`)
 
     const URL_EXT =
       type === "PHOTO" ? "/v1/enhance/photo" : "/v1/enhance/video";
@@ -161,7 +164,7 @@ module.exports = {
       .catch(async function (error) {
         console.log(`Something bad happened in Media Enhancement Service.
             Media ${mediaId} was not enhanced`);
-        const originalFile = fs.readFileSync(response.data["originalFilePath"]);
+        const originalFile = fs.readFileSync(path);
         await s3
           .upload({
             Bucket: BUCKET_NAME,
