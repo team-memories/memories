@@ -1,6 +1,22 @@
 import subprocess
 
 from flask import Flask, request, jsonify
+from logging.config import dictConfig
+
+dictConfig({
+    'version': 1,
+    'formatters': {'default': {
+        'format': '[%(asctime)s] %(levelname)s in %(module)s: %(message)s',
+    }},
+    'handlers': {'wsgi': {
+        'class': 'logging.StreamHandler',
+        'formatter': 'default'
+    }},
+    'root': {
+        'level': 'DEBUG',
+        'handlers': ['wsgi']
+    }
+})
 
 app = Flask(__name__)
 
@@ -25,7 +41,7 @@ def convert_photo():
     param = request.get_json(force=True)
     folder_in_path, fps_in_path, file_out_path, audio_file_path = param["folder_in_path"], param["fps_in_path"], param[
         "file_out_path"], param['audio_file_path']
-    print(f"Receive {folder_in_path}, original fps: {float(open(fps_in_path).readline())}")
+    app.logger.info(f"Receive {folder_in_path}, original fps: {float(open(fps_in_path).readline())}")
     zooming_slow_mo(folder_in_path, fps_in_path, file_out_path, audio_file_path)
     return {}, 200
 

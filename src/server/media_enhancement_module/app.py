@@ -1,7 +1,24 @@
 import os
 
 from flask import Flask, request, jsonify
+from logging.config import dictConfig
 import requests
+
+dictConfig({
+    'version': 1,
+    'formatters': {'default': {
+        'format': '[%(asctime)s] %(levelname)s in %(module)s: %(message)s',
+    }},
+    'handlers': {'wsgi': {
+        'class': 'logging.StreamHandler',
+        'formatter': 'default'
+    }},
+    'root': {
+        'level': 'DEBUG',
+        'handlers': ['wsgi']
+    }
+})
+
 
 app = Flask(__name__)
 MEDIA_DATA_PATH = "/media_data/"
@@ -71,7 +88,7 @@ def image_super_resolution(file_in_path, file_out_path):
 def enhance_video():
     param = request.get_json(force=True)
     file_name = param["file_name"]
-    print(f"Enhancing video: {file_name}")
+    app.logger.info(f"Enhancing video: {file_name}")
     file_path = os.path.join(MEDIA_DATA_PATH, file_name)
     enhanced_media_folder_path = os.path.join(MEDIA_DATA_PATH, os.path.splitext(file_name)[0] + "_enhanced")
     os.system(f"mkdir -p {enhanced_media_folder_path}")
@@ -85,7 +102,7 @@ def enhance_video():
     frames_folder_out_path = os.path.join(enhanced_media_folder_path, "frames")
 
     # Video Preprocess
-    print(f"Pre-processing video: {file_name}")
+    app.logger.info(f"Pre-processing video: {file_name}")
     size_error, is_color, is_sr, audio_file_path = preprocess_video(file_in_path, thumbnail_out_path, fps_out_path, frames_folder_out_path)
 
     # 동영상 긴 경우, error를 내보냄
@@ -95,10 +112,10 @@ def enhance_video():
 
     # Colorization 체크
     if is_color:
-        print(f"Colorizing video: {file_name}")
+        app.logger.info(f"Colorizing video: {file_name}")
         video_colorization(file_in_path, folder_out_path, frames_folder_out_path)
         folder_in_path = folder_out_path
-        print(f"Colorized video: {file_name}")
+        app.logger.info(f"Colorized video: {file_name}")
     else:
         # sr input
         folder_in_path = frames_folder_out_path
@@ -108,14 +125,14 @@ def enhance_video():
     
     # Super Resolution 체크
     if is_sr:
-        print(f"SR-VFI-ing video: {file_name}")
+        app.logger.info(f"SR-VFI-ing video: {file_name}")
         super_resolution_and_video_interpolation(folder_in_path, fps_in_path, file_out_path, audio_file_path)
-        print(f"SR-VFI-ed video: {file_name}")
+        app.logger.info(f"SR-VFI-ed video: {file_name}")
     else:
         # 동영상으로 만들기
-        print(f"Post-processing video: {file_name}")
+        app.logger.info(f"Post-processing video: {file_name}")
         video_postprocess(folder_in_path, file_out_path, fps_in_path, audio_file_path)
-        print(f"Post-processed video: {file_name}")
+        app.logger.info(f"Post-processed video: {file_name}")
 
     return {"thumbnailFilePath": thumbnail_out_path,
             "originalFilePath": file_path,
@@ -126,31 +143,31 @@ def enhance_video():
 def enhance_photo():
     param = request.get_json(force=True)
     file_name = param["file_name"]
-    print(f"Enhancing photo: {file_name}")
+    app.logger.info(f"Enhancing photo: {file_name}")
     file_path = os.path.join(MEDIA_DATA_PATH, file_name)
     enhanced_media_folder_path = file_path + "_enhanced"
     os.system(f"mkdir -p {enhanced_media_folder_path}")
 
     file_in_path = file_path
-    print(f"Pre-processing photo: {file_name}")
+    app.logger.info(f"Pre-processing photo: {file_name}")
     is_color, is_sr = preprocess_image(file_in_path)
 
     # Colorization 체크
     if is_color:
-        print(f"Colorizing photo: {file_name}")
+        app.logger.info(f"Colorizing photo: {file_name}")
         file_out_path = os.path.join(enhanced_media_folder_path, "color_" + file_name)
         image_colorization(file_in_path, file_out_path)
-        print(f"Colorized photo: {file_out_path}")
+        app.logger.info(f"Colorized photo: {file_out_path}")
     else:
         file_out_path = file_in_path
         
     file_in_path = file_out_path 
     # Super Resolution 체크
     if is_sr:
-        print(f"SR-ing photo: {file_name}")
+        app.logger.info(f"SR-ing photo: {file_name}")
         file_out_path = os.path.join(enhanced_media_folder_path, "color_sr_" + file_name)
         image_super_resolution(file_in_path, file_out_path)
-        print(f"SR-ed photo: {file_name}")
+        app.logger.info(f"SR-ed photo: {file_name}")
     else:
         file_out_path = file_in_path
 
@@ -158,4 +175,4 @@ def enhance_photo():
             "enhancedFilePath": file_out_path}, 200
 
 
-app.run(debug=True, port=4001, host="0.0.0.0")
+app.run(port=4001, host="0.0.0.0")

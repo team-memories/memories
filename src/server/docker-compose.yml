@@ -34,6 +34,7 @@ services:
       VIDEO_PREPROCESSING_SERVICE_ADDR: video_preprocessing_service:4201
       VIDEO_COLORIZATION_SERVICE_ADDR: video_colorization_service:4202
       VSR_VFI_SERVICE_ADDR: vsr_vfi_service:4203
+      PYTHONUNBUFFERED: 1
   image_colorization_service:
     image: image_colorization_service:b0.2
     ports:
@@ -42,7 +43,8 @@ services:
       - "~/media_data/:/media_data/"
     restart: always
     environment:
-      - NVIDIA_VISIBLE_DEVICES=2
+      - NVIDIA_VISIBLE_DEVICES=0
+      - PYTHONUNBUFFERED=1
   image_super_resolution_service:
     image: image_super_resolution_service:b0.2
     ports:
@@ -51,7 +53,8 @@ services:
       - ~/media_data/:/media_data/
     restart: always
     environment:
-      - NVIDIA_VISIBLE_DEVICES=2
+      - NVIDIA_VISIBLE_DEVICES=1
+      - PYTHONUNBUFFERED=1
 
   video_preprocessing_service:
     image: video_preprocessing_service:b0.2
@@ -60,6 +63,9 @@ services:
     volumes:
       - ~/media_data/:/media_data/
     restart: always
+    environment:
+      - PYTHONUNBUFFERED=1
+
   video_colorization_service:
     image: video_colorization_service:b0.2
     ports:
@@ -68,7 +74,8 @@ services:
       - ~/media_data/:/media_data/
     restart: always
     environment:
-      - NVIDIA_VISIBLE_DEVICES=3
+      - NVIDIA_VISIBLE_DEVICES=2
+      - PYTHONUNBUFFERED=1
   vsr_vfi_service:
     image: vsr_vfi_service:b0.2
     ports:
@@ -78,3 +85,4 @@ services:
       - ~/media_data/:/media_data/
     environment:
       - NVIDIA_VISIBLE_DEVICES=3
+      - PYTHONUNBUFFERED=1
