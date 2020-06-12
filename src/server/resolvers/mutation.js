@@ -124,28 +124,6 @@ module.exports = {
           })
           .promise();
 
-        if (response.data["isOriginal"]) {
-          await mediaDB.updateMedia(mediaId, {
-            originalUrl,
-            thumbnailUrl: originalUrl,
-            url: originalUrl,
-            title: "[Original] " + title,
-            isProcessing: false,
-          });
-          return;
-        }
-
-        const enhancedFile = fs.readFileSync(response.data["enhancedFilePath"]);
-        const enhancedUrl = `https://memories-media-data.s3.ap-northeast-2.amazonaws.com/${id}-enhanced-${uniqueFileName}`;
-        await s3
-          .upload({
-            Bucket: BUCKET_NAME,
-            Key: `${id}-enhanced-${uniqueFileName}`,
-            Body: enhancedFile,
-            ACL: "public-read",
-          })
-          .promise();
-
         if (type === "VIDEO") {
           const thumbnailFile = fs.readFileSync(
             response.data["thumbnailFilePath"]
@@ -165,6 +143,28 @@ module.exports = {
         } else {
           thumbnailUrl = originalUrl;
         }
+
+        if (response.data["isOriginal"]) {
+          await mediaDB.updateMedia(mediaId, {
+            originalUrl,
+            thumbnailUrl,
+            url: originalUrl,
+            title: "[Original] " + title,
+            isProcessing: false,
+          });
+          return;
+        }
+
+        const enhancedFile = fs.readFileSync(response.data["enhancedFilePath"]);
+        const enhancedUrl = `https://memories-media-data.s3.ap-northeast-2.amazonaws.com/${id}-enhanced-${uniqueFileName}`;
+        await s3
+          .upload({
+            Bucket: BUCKET_NAME,
+            Key: `${id}-enhanced-${uniqueFileName}`,
+            Body: enhancedFile,
+            ACL: "public-read",
+          })
+          .promise();
 
         await mediaDB.updateMedia(mediaId, {
           originalUrl,
