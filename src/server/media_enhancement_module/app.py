@@ -173,7 +173,7 @@ def enhance_photo():
         file_out_path = file_in_path
 
     return {"originalFilePath": file_path,
-            "enhancedFilePath": file_out_path, "isOriginal": not(is_color and is_sr)}, 200
+            "enhancedFilePath": file_out_path, "isOriginal": not(is_color or is_sr)}, 200
 
 
 app.run(port=4001, host="0.0.0.0")
