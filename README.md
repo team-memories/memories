@@ -101,7 +101,6 @@ E-mail : dncjf0223@kookmin.ac.kr
 ## 6. 사용법
 
 홈페이지
-[**share-memories.ml**](http://share-memories.ml)
 
 회원가입 & 로그인 (선택)
 
