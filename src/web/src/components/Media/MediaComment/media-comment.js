@@ -16,7 +16,7 @@ const GET_COMMENTS = gql`
                     profileImgUrl
                     name
                 }
-                body
+                content
             }
         }
     }

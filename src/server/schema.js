@@ -45,14 +45,14 @@ const typeDefs = gql`
       category: Category
     ): Media
 
-    createComment(mediaId: ID!, body: String!): Comment
+    createComment(mediaId: ID!, content: String!): Comment
     deleteComment(
       """
       id: Comment의 ID
       """
       id: ID!
     ): Comment
-    modifyComment(id: ID!, body: String!): Comment
+    modifyComment(id: ID!, content: String!): Comment
 
     signUp(email: String!, password: String!, name: String!): AuthPayload!
     signIn(email: String!, password: String!): AuthPayload!
@@ -162,7 +162,7 @@ const typeDefs = gql`
     """
     댓글의 내용
     """
-    body: String
+    content: String
   }
 `;
 

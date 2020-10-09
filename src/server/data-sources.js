@@ -120,9 +120,9 @@ class CommentDB extends SQLDataSource {
       .cache(CACHE_TTL);
   }
 
-  async createComment({ mediaId, authorId, body }) {
+  async createComment({ mediaId, authorId, content }) {
     const result = await this.knex
-      .insert({ mediaId, authorId, body })
+      .insert({ mediaId, authorId, content })
       .into("comment")
       .returning("*");
     return result[0];

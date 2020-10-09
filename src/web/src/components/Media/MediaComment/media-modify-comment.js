@@ -7,8 +7,8 @@ import { ColorArray } from '../../constants';
 const { TextArea } = Input;
 
 const MODIFY_COMMENT = gql`
-  mutation ($commentId: ID!, $body: String!) {
-    modifyComment(id: $commentId body: $body) {
+  mutation ($commentId: ID!, $content: String!) {
+    modifyComment(id: $commentId content: $content) {
       id
     }
   }
@@ -66,7 +66,7 @@ function MediaModifyComment (props) {
     }
 
     // 댓글 등록 mutation
-    mutate({ variables: {commentId : props.commentId, body : commentValue} }).then(() => {
+    mutate({ variables: {commentId : props.commentId, content : commentValue} }).then(() => {
       message.info('댓글 수정이 완료되었습니다.');
     });
 
