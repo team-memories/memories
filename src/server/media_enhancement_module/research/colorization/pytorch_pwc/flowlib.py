@@ -236,8 +236,7 @@ def flow_error(tu, tv, u, v):
 
     epe = np.sqrt((stu - su) ** 2 + (stv - sv) ** 2)
     epe = epe[ind2]
-    mepe = np.mean(epe)
-    return mepe
+    return np.mean(epe)
 
 
 def flow_to_image(flow, display=False):
@@ -292,8 +291,7 @@ def evaluate_flow_file(gt, pred):
     gt_flow = read_flow(gt)        # ground truth flow
     eva_flow = read_flow(pred)     # predicted flow
     # Calculate errors
-    average_pe = flow_error(gt_flow[:, :, 0], gt_flow[:, :, 1], eva_flow[:, :, 0], eva_flow[:, :, 1])
-    return average_pe
+    return flow_error(gt_flow[:, :, 0], gt_flow[:, :, 1], eva_flow[:, :, 0], eva_flow[:, :, 1])
 
 
 def evaluate_flow(gt_flow, pred_flow):
@@ -301,8 +299,7 @@ def evaluate_flow(gt_flow, pred_flow):
     gt: ground-truth flow
     pred: estimated flow
     """
-    average_pe = flow_error(gt_flow[:, :, 0], gt_flow[:, :, 1], pred_flow[:, :, 0], pred_flow[:, :, 1])
-    return average_pe
+    return flow_error(gt_flow[:, :, 0], gt_flow[:, :, 1], pred_flow[:, :, 0], pred_flow[:, :, 1])
 
 
 """
@@ -364,9 +361,7 @@ def read_image(filename):
     :param filename: name of the image file
     :return: image data in matrix uint8 type
     """
-    img = Image.open(filename)
-    im = np.array(img)
-    return im
+    return np.array(Image.open(filename))
 
 
 def warp_image(im, flow):

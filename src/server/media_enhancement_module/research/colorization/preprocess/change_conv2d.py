@@ -56,10 +56,7 @@ new_checkpoint_vars = {}
 reader = tf.compat.v1.train.NewCheckpointReader(old_check_file)
 
 for old_name in reader.get_variable_to_shape_map():
-    if old_name in vars_to_rename:
-        new_name = vars_to_rename[old_name]
-    else:
-        new_name = old_name
+    new_name = vars_to_rename[old_name] if old_name in vars_to_rename else old_name
     new_checkpoint_vars[new_name] = tf.Variable(reader.get_tensor(old_name))
 
 init = tf.compat.v1.global_variables_initializer()

@@ -3,6 +3,7 @@ import os
 from flask import Flask, request
 from PIL import Image, ImageStat
 from functools import reduce
+import requests
 
 app = Flask(__name__)
 
@@ -11,47 +12,32 @@ def check_color(file_in_path):
     MONOCHROMATIC_MAX_VARIANCE = 0.005
     COLOR = 1000
     MAYBE_COLOR = 400
-    is_color = True
     v = ImageStat.Stat(Image.open(file_in_path)).var
     is_monochromatic = reduce(lambda x, y: x and y < MONOCHROMATIC_MAX_VARIANCE, v, True)
-    if is_monochromatic:
-        is_color = False
-    else:
-        if len(v) == 3:
-            maxmin = abs(max(v) - min(v))
-            if maxmin > COLOR or maxmin > MAYBE_COLOR:
-                is_color = False
-
+    is_color = False if is_monochromatic else True
+    if len(v) == 3:
+        maxmin = abs(max(v) - min(v))
+        if maxmin > COLOR or maxmin > MAYBE_COLOR:
+            is_color = False
     return is_color
 
 
 def check_image_SR(file_in_path):
     image = Image.open(file_in_path)
-    is_sr = True
-    if (image.size[0]>=720 and image.size[1]>=1280) or (image.size[0]>=1280 and image.size[1]>=720):
-        is_sr = False
-
-    return is_sr
+    return (image.size[0]<720 and image.size[1] < 1280) or (image.size[0]<1280 and image.size[1]<720)
 
 
 def check_video_SR(file_in_path):
     image = Image.open(file_in_path)
-    is_sr = True
-    if (image.size[0]>=480 and image.size[1]>=720) or (image.size[0]>=720 and image.size[1]>=480):
-        is_sr = False
-
-    return is_sr
+    return (image.size[0]<480 and image.size[1]<720) or (image.size[0]<720 and image.size[1]<480)
 
 
 def check_file_size(file_in_path):
-    size_error = False
     output = subprocess.run(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', 
                         '-of', 'default=noprint_wrappers=1:nokey=1', file_in_path], stdout=subprocess.PIPE)
     output = output.stdout.splitlines()
     duration = float(output[0])
-    if duration > 60.0:
-        size_error = True
-    return size_error
+    return duration > 60.0
 
 
 def video_to_frame(file_in_path, frames_folder_out_path):
@@ -95,9 +81,7 @@ def video_preprocess(file_in_path, thumbnail_out_path, fps_out_path):
 
 
 def image_preprocess(file_in_path):
-    is_color = check_color(file_in_path)
-    is_sr = check_image_SR(file_in_path)
-    return is_color, is_sr
+    return check_color(file_in_path), check_image_SR(file_in_path)
 
 
 @app.route("/v1/videopreprocess", methods=['POST'])
@@ -110,7 +94,7 @@ def enhance():
         video_to_frame(file_in_path, frames_folder_out_path)
 
     return {"size_error": size_error, "is_color": is_color, "is_sr": is_sr,
-    "audio_file_path": audio_file_path}, 200
+    "audio_file_path": audio_file_path}, requests.codes.ok
 
 @app.route("/v1/videopostprocess", methods=['POST'])
 def video_postprocess():
@@ -119,7 +103,7 @@ def video_postprocess():
         param["folder_in_path"], param["file_out_path"], param["fps_in_path"], param["audio_file_path"]
     frame_to_video(folder_in_path, file_out_path, fps_in_path, audio_file_path)
 
-    return {}, 200
+    return {}, requests.codes.ok
 
 
 @app.route("/v1/imagepreprocess", methods=['POST'])
@@ -127,7 +111,7 @@ def check_image():
     param = request.get_json(force=True)
     file_in_path = param["file_in_path"]
     is_color, is_sr = image_preprocess(file_in_path)
-    return {"is_color": is_color,"is_sr": is_sr}, 200
+    return {"is_color": is_color,"is_sr": is_sr}, requests.codes.ok
 
 
 app.run(port=4201, host="0.0.0.0")
