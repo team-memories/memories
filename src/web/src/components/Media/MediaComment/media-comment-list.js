@@ -10,7 +10,7 @@ function MediaCommentList (props) {
         <MediaCommentCard
           key={index}
           author={comment.author}
-          content={comment.body}
+          content={comment.content}
           commentId={comment.id}
           mediaId={props.mediaId}
           GET_COMMENTS={props.GET_COMMENTS}

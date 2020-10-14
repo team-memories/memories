@@ -11,7 +11,7 @@ const DELETE_COMMENT = gql`
             author {
                 id
             }
-            body
+            content
         }
     }
 `;
