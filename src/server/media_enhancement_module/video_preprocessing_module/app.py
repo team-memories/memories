@@ -24,7 +24,7 @@ def check_color(file_in_path):
 
 def check_image_SR(file_in_path):
     image = Image.open(file_in_path)
-    return (image.size[0]<720 and image.size[1] < 1280) or (image.size[0]<1280 and image.size[1]<720)
+    return (image.size[0]<720 and image.size[1]<1280) or (image.size[0]<1280 and image.size[1]<720)
 
 
 def check_video_SR(file_in_path):
