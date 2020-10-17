@@ -1,4 +1,5 @@
 const defaultAttributeResolverMaker = require("../utils/default-attribute-resolver-maker");
+const constants = require("./constants");
 
 const mediaTypeResolvers = {
   __resolveType: async ({ id, type }, { dataSources: { mediaDB } }) => {
@@ -9,9 +10,9 @@ const mediaTypeResolvers = {
       mediaType = await mediaDB.getAttribute("type", id);
     }
     switch (mediaType) {
-      case "PHOTO":
+      case constants.types.photo:
         return "Photo";
-      case "VIDEO":
+      case constants.types.video:
         return "Video";
       default:
         throw new Error(
@@ -26,11 +27,7 @@ const commentResolver = async ({ id }, _, { dataSources: { commentDB } }) => {
   return commentDB.getCommentIdsByMediaId(id);
 };
 
-const authorResolver = async (
-  { id, authorId },
-  _,
-  { dataSources: { mediaDB } }
-) => {
+const authorResolver = async ({ id, authorId }, _, { dataSources: { mediaDB } }) => {
   if (authorId) {
     return { id: authorId };
   }

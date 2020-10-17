@@ -6,6 +6,7 @@ const bcrypt = require("bcryptjs");
 const shortid = require("shortid");
 const AWS = require("aws-sdk");
 const axios = require("axios");
+const constants = require("./constants");
 
 AWS.config.update({ region: "ap-northeast-2" });
 const ID = process.env["AWS_ACCESS_KEY_ID"];
@@ -38,14 +39,14 @@ module.exports = {
     console.log(`[Enhance] Received a media file.
     user id: ${userId}
     user name: ${await userDB.getAttribute("name", userId)}
-    file name: ${filename} 
+    file name: ${filename}
     `);
 
-    let type = "";
+    let type;
     if (mimetype.includes("image")) {
-      type = "PHOTO";
+      type = constants.types.photo;
     } else if (mimetype.includes("video")) {
-      type = "VIDEO";
+      type = constants.types.video;
     } else {
       console.log("Unsupported mimetype");
       throw new Error("Unsupported mimetype");
@@ -98,13 +99,11 @@ module.exports = {
       stream.pipe(writeStream);
     });
 
-    const URL_EXT =
-      type === "PHOTO" ? "/v1/enhance/photo" : "/v1/enhance/video";
+    const URL_EXT = type === constants.types.photo ? "/v1/enhance/photo" : "/v1/enhance/video";
     axios
-      .post(
-        `http://${process.env["MEDIA_QUALITY_ENHANCEMENT_SERVICE_ADDR"]}${URL_EXT}`,
-        { file_name: `${uniqueFileName}` }
-      )
+      .post(`http://${process.env["MEDIA_QUALITY_ENHANCEMENT_SERVICE_ADDR"]}${URL_EXT}`, {
+        file_name: `${uniqueFileName}`,
+      })
       .then(async (response) => {
         console.log(`${uniqueFileName} Enhancement Complete! This is the response data from Media Enhancement Service
         ${JSON.stringify(response.data)}`);
@@ -120,10 +119,8 @@ module.exports = {
           })
           .promise();
 
-        if (type === "VIDEO") {
-          const thumbnailFile = fs.readFileSync(
-            response.data["thumbnailFilePath"]
-          );
+        if (type === constants.types.video) {
+          const thumbnailFile = fs.readFileSync(response.data["thumbnailFilePath"]);
           await s3
             .upload({
               Bucket: BUCKET_NAME,
@@ -134,7 +131,7 @@ module.exports = {
             .promise();
         }
         let thumbnailUrl;
-        if (type === "VIDEO") {
+        if (type === constants.types.video) {
           thumbnailUrl = `https://memories-media-data.s3.ap-northeast-2.amazonaws.com/${id}-thumbnail.png`;
         } else {
           thumbnailUrl = originalUrl;
@@ -263,11 +260,7 @@ module.exports = {
       user,
     };
   },
-  createComment: async (
-    _,
-    { mediaId, content },
-    { userId, dataSources: { commentDB } }
-  ) => {
+  createComment: async (_, { mediaId, content }, { userId, dataSources: { commentDB } }) => {
     if (!userId) {
       throw new Error("Login required");
     }
@@ -279,11 +272,7 @@ module.exports = {
 
     return comment;
   },
-  modifyComment: async (
-    _,
-    { id, content },
-    { userId, dataSources: { commentDB } }
-  ) => {
+  modifyComment: async (_, { id, content }, { userId, dataSources: { commentDB } }) => {
     const comment = await commentDB.getComment(id);
     if (!userId) {
       throw new Error("Login required");
