@@ -184,14 +184,11 @@ class Network(torch.nn.Module):
 				tenFeat = None
 
 				if objPrevious is None:
-					tenFlow = None
-					tenFeat = None
-
 					tenVolume = torch.nn.functional.leaky_relu(input=correlation.FunctionCorrelation(tenFirst=tenFirst, tenSecond=tenSecond), negative_slope=0.1, inplace=False)
 
 					tenFeat = torch.cat([ tenVolume ], 1)
 
-				elif objPrevious is not None:
+				else:
 					tenFlow = self.netUpflow(objPrevious['tenFlow'])
 					tenFeat = self.netUpfeat(objPrevious['tenFeat'])
 
@@ -274,9 +271,7 @@ netNetwork = None
 ""
 def estimate(tenFirst, tenSecond):
 	global netNetwork
-
-	if netNetwork is None:
-		netNetwork = Network().cuda().eval()
+	netNetwork = Network().cuda().eval() if netNetwork is None else netNetwork
 	# end
 
 	assert(tenFirst.shape[1] == tenSecond.shape[1])

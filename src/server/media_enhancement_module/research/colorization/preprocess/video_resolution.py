@@ -43,6 +43,5 @@ def parse_args(args):
 
 if __name__ == "__main__":
     args = parse_args(sys.argv[1:])
-    files = get_names(args.input_path)
-    for i, file in enumerate(files):
+    for i, file in enumerate(get_names(args.input_path)): #get_names() : 해당 경로에서 파일 목록 불러오기
         extract_video_frames(file,i,args)
