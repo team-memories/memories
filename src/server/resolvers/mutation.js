@@ -6,7 +6,7 @@ const bcrypt = require("bcryptjs");
 const shortid = require("shortid");
 const AWS = require("aws-sdk");
 const axios = require("axios");
-const { types } = require("./constants");
+const { mediaTypes } = require("./enums");
 
 AWS.config.update({ region: "ap-northeast-2" });
 const ID = process.env["AWS_ACCESS_KEY_ID"];
@@ -44,9 +44,9 @@ module.exports = {
 
     let type;
     if (mimetype.includes("image")) {
-      type = types.photo;
+      type = mediaTypes.photo;
     } else if (mimetype.includes("video")) {
-      type = types.video;
+      type = mediaTypes.video;
     } else {
       console.log("Unsupported mimetype");
       throw new Error("Unsupported mimetype");
@@ -99,7 +99,7 @@ module.exports = {
       stream.pipe(writeStream);
     });
 
-    const URL_EXT = type === types.photo ? "/v1/enhance/photo" : "/v1/enhance/video";
+    const URL_EXT = type === mediaTypes.photo ? "/v1/enhance/photo" : "/v1/enhance/video";
     axios
       .post(`http://${process.env["MEDIA_QUALITY_ENHANCEMENT_SERVICE_ADDR"]}${URL_EXT}`, {
         file_name: `${uniqueFileName}`,
@@ -119,7 +119,7 @@ module.exports = {
           })
           .promise();
 
-        if (type === types.video) {
+        if (type === mediaTypes.video) {
           const thumbnailFile = fs.readFileSync(response.data["thumbnailFilePath"]);
           await s3
             .upload({
@@ -131,7 +131,7 @@ module.exports = {
             .promise();
         }
         let thumbnailUrl;
-        if (type === types.video) {
+        if (type === mediaTypes.video) {
           thumbnailUrl = `https://memories-media-data.s3.ap-northeast-2.amazonaws.com/${id}-thumbnail.png`;
         } else {
           thumbnailUrl = originalUrl;

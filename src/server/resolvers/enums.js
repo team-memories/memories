@@ -1,5 +1,5 @@
 module.exports = Object.freeze({
-  types: {
+  mediaTypes: {
     photo: "PHOTO",
     video: "VIDEO",
   },
