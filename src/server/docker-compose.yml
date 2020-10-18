@@ -13,7 +13,7 @@ services:
       SECRET: $SECRET
     restart: always
   db:
-    image: postgres
+    image: postgres:12-alpine
     ports:
       - "5432:5432"
     volumes:
