@@ -8,16 +8,16 @@ import { ColorArray } from '../../constants';
 const { TextArea } = Input;
 
 const CREATE_COMMENT = gql`
-    mutation ($mediaId: ID!, $body: String!) {
+    mutation ($mediaId: ID!, $content: String!) {
         createComment(
             mediaId: $mediaId
-            body: $body
+            content: $content
         ) {
             id
             author {
                 id
             }
-            body
+            content
         }
     }
 `;
@@ -105,7 +105,7 @@ function MediaAddComment (props) {
 
     const variables = {
       mediaId: props.mediaId,
-      body: commentValue,
+      content: commentValue,
     };
 
     // 댓글 등록 mutation

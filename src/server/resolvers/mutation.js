@@ -30,7 +30,6 @@ module.exports = {
     { media, title, location, year, description, category },
     { dataSources: { mediaDB, userDB }, userId }
   ) => {
-
     if (!userId) {
       throw new Error("Login required");
     }
@@ -74,11 +73,11 @@ module.exports = {
     console.log("Media record was created. ID is " + mediaId);
 
     const id = shortid.generate();
-    const file_extension = filename.split('.').pop();
+    const file_extension = filename.split(".").pop();
     const uniqueFileName = `${id}-${mediaId}.${file_extension}`;
     const path = `${MEDIA_PATH}/${uniqueFileName}`;
 
-    console.log(`Unique file name of ${filename} is ${uniqueFileName}`)
+    console.log(`Unique file name of ${filename} is ${uniqueFileName}`);
 
     await new Promise((resolve, reject) => {
       const writeStream = createWriteStream(path);
@@ -98,9 +97,6 @@ module.exports = {
 
       stream.pipe(writeStream);
     });
-
-
-
 
     const URL_EXT =
       type === "PHOTO" ? "/v1/enhance/photo" : "/v1/enhance/video";
@@ -269,7 +265,7 @@ module.exports = {
   },
   createComment: async (
     _,
-    { mediaId, body },
+    { mediaId, content },
     { userId, dataSources: { commentDB } }
   ) => {
     if (!userId) {
@@ -278,14 +274,14 @@ module.exports = {
     const comment = await commentDB.createComment({
       authorId: userId,
       mediaId,
-      body,
+      content,
     });
 
     return comment;
   },
   modifyComment: async (
     _,
-    { id, body },
+    { id, content },
     { userId, dataSources: { commentDB } }
   ) => {
     const comment = await commentDB.getComment(id);
@@ -299,7 +295,7 @@ module.exports = {
       throw new Error("You are not the author of the comment");
     }
     await commentDB.updateComment(id, {
-      body,
+      content,
     });
     return {
       id,
