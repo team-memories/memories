@@ -142,8 +142,15 @@ class CommentDB extends SQLDataSource {
   }
 }
 
+class TagDB extends SQLDataSource {
+  async getTagList() {
+    return this.knex("tag").select("*");
+  }
+}
+
 module.exports = {
   MediaDB,
   UserDB,
   CommentDB,
+  TagDB,
 };

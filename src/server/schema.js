@@ -17,6 +17,7 @@ const typeDefs = gql`
     ): [Media]!
     user(id: ID!): User!
     myMedia: [Media]!
+    tags: [Tag]
   }
 
   type Mutation {
@@ -163,6 +164,11 @@ const typeDefs = gql`
     댓글의 내용
     """
     content: String
+  }
+
+  type Tag {
+    id: ID!
+    tag_name: String!
   }
 `;
 
