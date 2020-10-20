@@ -12,4 +12,7 @@ module.exports = {
     }
     return mediaDB.getMediaByAuthorId(userId);
   },
+  tags: async (_, __, { dataSources: { tagDB } }) => {
+    return tagDB.getTagList();
+  }
 };
