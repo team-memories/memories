@@ -168,6 +168,11 @@ class TagMediaConnectDB extends SQLDataSource {
     await this.knex("tag_media_connect").insert({ tagId: tagId[0]["id"], mediaId: mediaId });
     return true;
   }
+
+  async deleteTagMediaConnect(mediaId) {
+    await this.knex("tag_media_connect").where({ mediaId: mediaId }).del();
+    return true;
+  }
 }
 
 module.exports = {
