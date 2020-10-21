@@ -64,15 +64,6 @@ const typeDefs = gql`
     user: User!
   }
 
-  enum Category {
-    CITY
-    NATURE
-    """
-    물건
-    """
-    OBJECT
-  }
-
   interface Media {
     id: ID!
     title: String

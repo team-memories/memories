@@ -30,11 +30,28 @@ class MediaDB extends SQLDataSource {
   }) {
     return this.knex
       .from("media")
+      .join("tag_media_connect", "tag_media_connect.mediaId", "media.id")
+      .join("tag", "tag.id", "tag_media_connect.tagId")
+      .select(
+        "media.id as id",
+        "media.title as title",
+        "media.type as type",
+        "media.thumbnailUrl as thumbnailUrl",
+        "media.originalUrl as originalUrl",
+        "media.url as url",
+        "media.authorId as authorId",
+        "media.location as location",
+        "media.year as year",
+        "media.description as description",
+        "media.isProcessing as isProcessing",
+        "tag.tag_name as tag_name",
+        "tag.id as tagId"
+      )
       .where(function () {
         // eslint-disable-next-line no-invalid-this
         this.where("title", "like", `%${queryStr}%`)
           .orWhere("description", "like", `%${queryStr}%`)
-          .orWhere("category", "like", `%${queryStr}%`);
+          .orWhere("tag.tag_name", "like", `%${queryStr}%`);
       })
       .andWhere("location", "like", `${location}%`)
       .andWhereBetween("year", [yearFrom, yearTo])
