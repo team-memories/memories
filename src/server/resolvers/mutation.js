@@ -28,8 +28,8 @@ const MEDIA_PATH = "/media_data";
 module.exports = {
   uploadMedia: async (
     _,
-    { media, title, location, year, description, category },
-    { dataSources: { mediaDB, userDB }, userId }
+    { media, title, location, year, description, tag_names },
+    { dataSources: { mediaDB, userDB, tagMediaConnectDB }, userId }
   ) => {
     if (!userId) {
       throw new Error("Login required");
@@ -60,7 +60,6 @@ module.exports = {
       year,
       location,
       type,
-      category,
       originalUrl: "",
       thumbnailUrl: "",
       url: "",
@@ -70,7 +69,10 @@ module.exports = {
 
     const stream = createReadStream();
 
-    const mediaId = createdMedia.id;
+    const mediaId = await createdMedia.id;
+    tag_names.forEach(async function(tag_name){ //tag_names는 리스트로 올 것임.
+      await tagMediaConnectDB.addTagMediaConnect(tag_name, mediaId);
+    });
     console.log("Media record was created. ID is " + mediaId);
 
     const id = shortid.generate();
