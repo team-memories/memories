@@ -27,7 +27,7 @@ const typeDefs = gql`
       location: String!
       year: Int!
       description: String!
-      category: Category
+      tags_names: [String]
     ): Media
     deleteMedia(id: ID!): Media
     """

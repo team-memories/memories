@@ -158,6 +158,16 @@ class TagMediaConnectDB extends SQLDataSource {
       .orderBy("id", "desc")
       .cache(CACHE_TTL);
   }
+
+  async addTagMediaConnect(tag_name, mediaId) {
+    let tagId = await this.knex("tag").select("id").where({ tag_name: tag_name });
+    if(tagId.length == 0) { //등록된 tag가 아니라면 tag먼저 추가하기
+      await this.knex("tag").insert({ tag_name: tag_name });
+      tagId = await this.knex("tag").select("id").where({ tag_name: tag_name }); //리스트안에 사전 형태로 들어옴. -> [ {id: 0} ]
+    }
+    await this.knex("tag_media_connect").insert({ tagId: tagId[0]["id"], mediaId: mediaId });
+    return true;
+  }
 }
 
 module.exports = {
