@@ -43,7 +43,7 @@ const typeDefs = gql`
       location: String!
       year: Int!
       description: String!
-      category: Category
+      tag_names: [String]
     ): Media
 
     createComment(mediaId: ID!, content: String!): Comment

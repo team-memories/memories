@@ -194,8 +194,8 @@ module.exports = {
   },
   modifyMedia: async (
     _,
-    { id, title, location, year, description, category },
-    { userId, dataSources: { mediaDB } }
+    { id, title, location, year, description, tag_names },
+    { userId, dataSources: { mediaDB, tagMediaConnectDB } }
   ) => {
     const media = await mediaDB.getMedia(id);
     if (!userId) {
@@ -212,7 +212,10 @@ module.exports = {
       location,
       year,
       description,
-      category,
+    });
+    await tagMediaConnectDB.deleteTagMediaConnect(id);
+    tag_names.forEach(async function(tag_name){
+      await tagMediaConnectDB.addTagMediaConnect(tag_name, id);
     });
     return {
       id,
