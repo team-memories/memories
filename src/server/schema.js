@@ -76,7 +76,6 @@ const typeDefs = gql`
   interface Media {
     id: ID!
     title: String
-    category: Category
     thumbnailUrl: String!
     originalUrl: String!
     """
@@ -93,6 +92,7 @@ const typeDefs = gql`
     """
     isProcessing: Boolean
     comments: [Comment]
+    tags: [Tag]
   }
 
   """
@@ -104,7 +104,6 @@ const typeDefs = gql`
   type Photo implements Media {
     id: ID!
     title: String
-    category: Category
     thumbnailUrl: String!
     originalUrl: String!
     """
@@ -121,12 +120,12 @@ const typeDefs = gql`
     """
     isProcessing: Boolean
     comments: [Comment]
+    tags: [Tag]
   }
 
   type Video implements Media {
     id: ID!
     title: String
-    category: Category
     thumbnailUrl: String!
     originalUrl: String!
     """
@@ -143,6 +142,7 @@ const typeDefs = gql`
     """
     isProcessing: Boolean
     comments: [Comment]
+    tags: [Tag]
   }
 
   type User {

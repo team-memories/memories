@@ -34,11 +34,14 @@ const authorResolver = async ({ id, authorId }, _, { dataSources: { mediaDB } })
   return { id: await mediaDB.getAttribute("authorId", id) };
 };
 
+const tagResolver = async ( { id }, _, { dataSources: { tagMediaConnectDB } }) => {
+  return tagMediaConnectDB.getTagNameByMediaId(id);
+}
+
 const videoTypeResolvers = {
   ...defaultAttributeResolverMaker(
     [
       "title",
-      "category",
       "thumbnailUrl",
       "originalUrl",
       "url",
@@ -51,12 +54,12 @@ const videoTypeResolvers = {
   ),
   comments: commentResolver,
   author: authorResolver,
+  tags: tagResolver
 };
 const photoTypeResolvers = {
   ...defaultAttributeResolverMaker(
     [
       "title",
-      "category",
       "thumbnailUrl",
       "originalUrl",
       "url",
@@ -69,6 +72,7 @@ const photoTypeResolvers = {
   ),
   comments: commentResolver,
   author: authorResolver,
+  tags: tagResolver
 };
 
 module.exports = {
