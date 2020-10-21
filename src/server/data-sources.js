@@ -148,9 +148,22 @@ class TagDB extends SQLDataSource {
   }
 }
 
+class TagMediaConnectDB extends SQLDataSource {
+  async getTagNameByMediaId(id) {
+    return await this.knex
+      .from("tag_media_connect")
+      .join("tag", "tag.id", "tag_media_connect.tagId")
+      .select("tag.id as id", "tag.tag_name as tag_name", "tag_media_connect.mediaId as mediaId")
+      .where({ mediaId: id })
+      .orderBy("id", "desc")
+      .cache(CACHE_TTL);
+  }
+}
+
 module.exports = {
   MediaDB,
   UserDB,
   CommentDB,
   TagDB,
+  TagMediaConnectDB,
 };
