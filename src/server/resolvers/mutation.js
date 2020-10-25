@@ -28,7 +28,7 @@ const MEDIA_PATH = "/media_data";
 module.exports = {
   uploadMedia: async (
     _,
-    { media, title, location, year, description, tag_names },
+    { media, title, location, year, description, tagNames },
     { dataSources: { mediaDB, userDB, tagMediaConnectDB }, userId }
   ) => {
     if (!userId) {
@@ -70,8 +70,8 @@ module.exports = {
     const stream = createReadStream();
 
     const mediaId = await createdMedia.id;
-    tag_names.forEach(async function(tag_name){ //tag_names는 리스트로 올 것임.
-      await tagMediaConnectDB.addTagMediaConnect(tag_name, mediaId);
+    tagNames.forEach(async function(tagName){ //tag_names는 리스트로 올 것임.
+      await tagMediaConnectDB.addTagMediaConnect(tagName, mediaId);
     });
     console.log("Media record was created. ID is " + mediaId);
 
@@ -194,7 +194,7 @@ module.exports = {
   },
   modifyMedia: async (
     _,
-    { id, title, location, year, description, tag_names },
+    { id, title, location, year, description, tagNames },
     { userId, dataSources: { mediaDB, tagMediaConnectDB } }
   ) => {
     const media = await mediaDB.getMedia(id);
@@ -214,8 +214,8 @@ module.exports = {
       description,
     });
     await tagMediaConnectDB.deleteTagMediaConnect(id);
-    tag_names.forEach(async function(tag_name){
-      await tagMediaConnectDB.addTagMediaConnect(tag_name, id);
+    tagNames.forEach(async function(tagName){
+      await tagMediaConnectDB.addTagMediaConnect(tagName, id);
     });
     return {
       id,

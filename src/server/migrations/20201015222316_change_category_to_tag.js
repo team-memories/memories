@@ -1,14 +1,14 @@
 exports.up = async function(knex) {
   await knex.schema.createTable("tag", function(table) {
     table.increments("id").unsigned().primary();
-    table.string("tag_name").notNullable();
+    table.string("tagName").notNullable();
   });
 
-  await knex("tag").insert({ tag_name: "CITY" });
-  await knex("tag").insert({ tag_name: "NATURE" });
-  await knex("tag").insert({ tag_name: "OBJECT" });
+  await knex("tag").insert({ tagName: "CITY" });
+  await knex("tag").insert({ tagName: "NATURE" });
+  await knex("tag").insert({ tagName: "OBJECT" });
 
-  await knex.schema.createTable("tag_media_connect", function(table) {
+  await knex.schema.createTable("tagMediaConnect", function(table) {
     table.integer("tagId").unsigned().notNullable();
     table
       .foreign("tagId")
@@ -25,9 +25,9 @@ exports.up = async function(knex) {
       .onDelete("CASCADE");
   });
 
-  let mediaJoinResult = await knex("media").join("tag", "tag.tag_name", "media.category").select("tag.id as tag", "media.id as media");
+  let mediaJoinResult = await knex("media").join("tag", "tag.tagName", "media.category").select("tag.id as tag", "media.id as media");
   mediaJoinResult.forEach(async function(row) {
-    await knex("tag_media_connect").insert({ tagId: row["tag"], mediaId: row["media"] });
+    await knex("tagMediaConnect").insert({ tagId: row["tag"], mediaId: row["media"] });
   });
 
   await knex.schema.table("media", function(table) {
@@ -42,8 +42,8 @@ exports.down = async function(knex) {
   });
 
   let mediaJoinTagName = await knex("media")
-    .join("tag_media_connect", "media.id", "tag_media_connect.mediaId")
-    .join("tag", "tag.id", "tag_media_connect.tagId")
+    .join("tagMediaConnect", "media.id", "tagMediaConnect.mediaId")
+    .join("tag", "tag.id", "tagMediaConnect.tagId")
     .select(
       "media.id as id",
       "media.title as title",
@@ -56,7 +56,7 @@ exports.down = async function(knex) {
       "media.year as year",
       "media.description as description",
       "media.isProcessing as isProcessing",
-      "tag.tag_name as tag_name"
+      "tag.tagName as tagName"
     );
   
   mediaJoinTagName.forEach(async function(row) {
@@ -73,10 +73,10 @@ exports.down = async function(knex) {
       year: row["year"],
       description: row["description"],
       isProcessing: row["isProcessing"],
-      category: row["tag_name"]
+      category: row["tagName"]
     });
   });
 
-  await knex.schema.dropTableIfExists("tag_media_connect");
+  await knex.schema.dropTableIfExists("tagMediaConnect");
   await knex.schema.dropTableIfExists("tag");
 };

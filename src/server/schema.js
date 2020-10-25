@@ -27,7 +27,7 @@ const typeDefs = gql`
       location: String!
       year: Int!
       description: String!
-      tags_names: [String]
+      tagNames: [String]
     ): Media
     deleteMedia(id: ID!): Media
     """
@@ -43,7 +43,7 @@ const typeDefs = gql`
       location: String!
       year: Int!
       description: String!
-      tag_names: [String]
+      tagNames: [String]
     ): Media
 
     createComment(mediaId: ID!, content: String!): Comment
@@ -159,7 +159,7 @@ const typeDefs = gql`
 
   type Tag {
     id: ID!
-    tag_name: String!
+    tagName: String!
   }
 `;
 

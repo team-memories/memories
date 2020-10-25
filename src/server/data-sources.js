@@ -30,8 +30,8 @@ class MediaDB extends SQLDataSource {
   }) {
     return this.knex
       .from("media")
-      .join("tag_media_connect", "tag_media_connect.mediaId", "media.id")
-      .join("tag", "tag.id", "tag_media_connect.tagId")
+      .join("tagMediaConnect", "tagMediaConnect.mediaId", "media.id")
+      .join("tag", "tag.id", "tagMediaConnect.tagId")
       .select(
         "media.id as id",
         "media.title as title",
@@ -44,14 +44,14 @@ class MediaDB extends SQLDataSource {
         "media.year as year",
         "media.description as description",
         "media.isProcessing as isProcessing",
-        "tag.tag_name as tag_name",
+        "tag.tagName as tagName",
         "tag.id as tagId"
       )
       .where(function () {
         // eslint-disable-next-line no-invalid-this
         this.where("title", "like", `%${queryStr}%`)
           .orWhere("description", "like", `%${queryStr}%`)
-          .orWhere("tag.tag_name", "like", `%${queryStr}%`);
+          .orWhere("tag.tagName", "like", `%${queryStr}%`);
       })
       .andWhere("location", "like", `${location}%`)
       .andWhereBetween("year", [yearFrom, yearTo])
@@ -168,26 +168,26 @@ class TagDB extends SQLDataSource {
 class TagMediaConnectDB extends SQLDataSource {
   async getTagNameByMediaId(id) {
     return await this.knex
-      .from("tag_media_connect")
-      .join("tag", "tag.id", "tag_media_connect.tagId")
-      .select("tag.id as id", "tag.tag_name as tag_name", "tag_media_connect.mediaId as mediaId")
+      .from("tagMediaConnect")
+      .join("tag", "tag.id", "tagMediaConnect.tagId")
+      .select("tag.id as id", "tag.tagName as tagName", "tagMediaConnect.mediaId as mediaId")
       .where({ mediaId: id })
       .orderBy("id", "desc")
       .cache(CACHE_TTL);
   }
 
-  async addTagMediaConnect(tag_name, mediaId) {
-    let tagId = await this.knex("tag").select("id").where({ tag_name: tag_name });
+  async addTagMediaConnect(tagName, mediaId) {
+    let tagId = await this.knex("tag").select("id").where({ tagName: tagName });
     if(tagId.length == 0) { //등록된 tag가 아니라면 tag먼저 추가하기
-      await this.knex("tag").insert({ tag_name: tag_name });
-      tagId = await this.knex("tag").select("id").where({ tag_name: tag_name }); //리스트안에 사전 형태로 들어옴. -> [ {id: 0} ]
+      await this.knex("tag").insert({ tagName: tagName });
+      tagId = await this.knex("tag").select("id").where({ tagName: tagName }); //리스트안에 사전 형태로 들어옴. -> [ {id: 0} ]
     }
-    await this.knex("tag_media_connect").insert({ tagId: tagId[0]["id"], mediaId: mediaId });
+    await this.knex("tagMediaConnect").insert({ tagId: tagId[0]["id"], mediaId: mediaId });
     return true;
   }
 
   async deleteTagMediaConnect(mediaId) {
-    await this.knex("tag_media_connect").where({ mediaId: mediaId }).del();
+    await this.knex("tagMediaConnect").where({ mediaId: mediaId }).del();
     return true;
   }
 }
