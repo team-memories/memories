@@ -77,6 +77,35 @@ class MediaDB extends SQLDataSource {
     // 해당 유저가 올린 모든 미디어를 반환한다.
     return this.knex("media").where({ authorId: id }).cache(CACHE_TTL);
   }
+
+  async getTagList() {
+    return this.knex("tag").select("*");
+  }
+
+  async getTagNameByMediaId(id) {
+    return await this.knex
+      .from("tagMediaConnect")
+      .join("tag", "tag.id", "tagMediaConnect.tagId")
+      .select("tag.id as id", "tag.tagName as tagName", "tagMediaConnect.mediaId as mediaId")
+      .where({ mediaId: id })
+      .orderBy("id", "desc")
+      .cache(CACHE_TTL);
+  }
+
+  async addTagMediaConnect(tagName, mediaId) {
+    let tagId = await this.knex("tag").select("id").where({ tagName: tagName });
+    if(tagId.length == 0) { //등록된 tag가 아니라면 tag먼저 추가하기
+      await this.knex("tag").insert({ tagName: tagName });
+      tagId = await this.knex("tag").select("id").where({ tagName: tagName }); //리스트안에 사전 형태로 들어옴. -> [ {id: 0} ]
+    }
+    await this.knex("tagMediaConnect").insert({ tagId: tagId[0]["id"], mediaId: mediaId });
+    return true;
+  }
+
+  async deleteTagMediaConnect(mediaId) {
+    await this.knex("tagMediaConnect").where({ mediaId: mediaId }).del();
+    return true;
+  }
 }
 
 class UserDB extends SQLDataSource {
@@ -159,43 +188,8 @@ class CommentDB extends SQLDataSource {
   }
 }
 
-class TagDB extends SQLDataSource {
-  async getTagList() {
-    return this.knex("tag").select("*");
-  }
-}
-
-class TagMediaConnectDB extends SQLDataSource {
-  async getTagNameByMediaId(id) {
-    return await this.knex
-      .from("tagMediaConnect")
-      .join("tag", "tag.id", "tagMediaConnect.tagId")
-      .select("tag.id as id", "tag.tagName as tagName", "tagMediaConnect.mediaId as mediaId")
-      .where({ mediaId: id })
-      .orderBy("id", "desc")
-      .cache(CACHE_TTL);
-  }
-
-  async addTagMediaConnect(tagName, mediaId) {
-    let tagId = await this.knex("tag").select("id").where({ tagName: tagName });
-    if(tagId.length == 0) { //등록된 tag가 아니라면 tag먼저 추가하기
-      await this.knex("tag").insert({ tagName: tagName });
-      tagId = await this.knex("tag").select("id").where({ tagName: tagName }); //리스트안에 사전 형태로 들어옴. -> [ {id: 0} ]
-    }
-    await this.knex("tagMediaConnect").insert({ tagId: tagId[0]["id"], mediaId: mediaId });
-    return true;
-  }
-
-  async deleteTagMediaConnect(mediaId) {
-    await this.knex("tagMediaConnect").where({ mediaId: mediaId }).del();
-    return true;
-  }
-}
-
 module.exports = {
   MediaDB,
   UserDB,
   CommentDB,
-  TagDB,
-  TagMediaConnectDB,
 };

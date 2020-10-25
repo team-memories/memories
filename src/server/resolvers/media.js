@@ -34,8 +34,8 @@ const authorResolver = async ({ id, authorId }, _, { dataSources: { mediaDB } })
   return { id: await mediaDB.getAttribute("authorId", id) };
 };
 
-const tagResolver = async ( { id }, _, { dataSources: { tagMediaConnectDB } }) => {
-  return tagMediaConnectDB.getTagNameByMediaId(id);
+const tagResolver = async ( { id }, _, { dataSources: { mediaDB } }) => {
+  return mediaDB.getTagNameByMediaId(id);
 }
 
 const videoTypeResolvers = {
