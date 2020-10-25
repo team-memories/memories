@@ -25,9 +25,9 @@ exports.up = async function(knex) {
       .onDelete("CASCADE");
   });
 
-  let mediaJoinResult = await knex("media").join("tag", "tag.tagName", "media.category").select("tag.id as tag", "media.id as media");
+  let mediaJoinResult = await knex("media").join("tag", "tag.tagName", "media.category").select("tag.id as tagId", "media.id as mediaId");
   mediaJoinResult.forEach(async function(row) {
-    await knex("tagMediaConnect").insert({ tagId: row["tag"], mediaId: row["media"] });
+    await knex("tagMediaConnect").insert({ tagId: row["tagId"], mediaId: row["mediaId"] });
   });
 
   await knex.schema.table("media", function(table) {
