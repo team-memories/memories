@@ -25,7 +25,7 @@ const s3 = new AWS.S3({
   secretAccessKey: SECRET,
 });
 
-const MEDIA_PATH = "/media_data";
+const MEDIA_PATH = process.env["MEDIA_PATH"];
 module.exports = {
   uploadMedia: async (
     _,
