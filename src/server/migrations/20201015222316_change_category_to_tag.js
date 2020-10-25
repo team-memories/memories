@@ -46,35 +46,11 @@ exports.down = async function(knex) {
     .join("tag", "tag.id", "tagMediaConnect.tagId")
     .select(
       "media.id as id",
-      "media.title as title",
-      "media.type as type",
-      "media.thumbnailUrl as thumbnailUrl",
-      "media.originalUrl as originalUrl",
-      "media.url as url",
-      "media.authorId as authorId",
-      "media.location as location",
-      "media.year as year",
-      "media.description as description",
-      "media.isProcessing as isProcessing",
       "tag.tagName as tagName"
     );
   
   mediaJoinTagName.forEach(async function(row) {
-    await knex("media").where("media.id", row["id"]).del();
-    await knex("media").insert({
-      id: row["id"],
-      title: row["title"],
-      type: row["type"],
-      thumbnailUrl: row["thumbnailUrl"],
-      originalUrl: row["originalUrl"],
-      url: row["url"],
-      authorId: row["authorId"],
-      location: row["location"],
-      year: row["year"],
-      description: row["description"],
-      isProcessing: row["isProcessing"],
-      category: row["tagName"]
-    });
+    await knex("media").where("id", row["id"]).update({ category: row["tagName"]});
   });
 
   await knex.schema.dropTableIfExists("tagMediaConnect");
