@@ -84,6 +84,10 @@ class UserDB extends SQLDataSource {
   async getUserByEmail(email) {
     return this.knex.select("*").first().from("user").where({ email });
   }
+
+  async deactivateUser(id) {
+    await this.knex("user").where(id).update("is_active", false);
+  }
 }
 
 class CommentDB extends SQLDataSource {
