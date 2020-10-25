@@ -6,19 +6,20 @@ const bcrypt = require("bcryptjs");
 const shortid = require("shortid");
 const AWS = require("aws-sdk");
 const axios = require("axios");
+
 const { mediaTypes } = require("./enums");
 
-AWS.config.update({ region: "ap-northeast-2" });
+function extractMediaTypeFromMIMEType(MIMEType) {
 const ID = process.env["AWS_ACCESS_KEY_ID"];
 const SECRET = process.env["AWS_SECRET_ACCESS_KEY"];
+const BUCKET_NAME = process.env["AWS_S3_MEDIA_DATA_BUCKET_NAME"];
 console.log(`----------------------------------
 AWS_ACCESS_KEY_ID: ${ID}
 AWS_SECRET_ACCESS_KEY: ${SECRET}
 ----------------------------------
 `);
 
-const BUCKET_NAME = "memories-media-data";
-
+AWS.config.update({ region: "ap-northeast-2" });
 const s3 = new AWS.S3({
   accessKeyId: ID,
   secretAccessKey: SECRET,
