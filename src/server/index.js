@@ -1,7 +1,7 @@
 require("dotenv").config();
 const { ApolloServer } = require("apollo-server");
 const typeDefs = require("./schema");
-const { MediaDB, CommentDB, UserDB, TagDB, TagMediaConnectDB } = require("./data-sources");
+const { MediaDB, CommentDB, UserDB } = require("./data-sources");
 const query = require("./resolvers/query");
 const mutation = require("./resolvers/mutation");
 const { media, photo, video } = require("./resolvers/media");
@@ -54,8 +54,6 @@ knex
 const mediaDB = new MediaDB(knexConfig);
 const userDB = new UserDB(knexConfig);
 const commentDB = new CommentDB(knexConfig);
-const tagDB = new TagDB(knexConfig);
-const tagMediaConnectDB = new TagMediaConnectDB(knexConfig);
 
 const server = new ApolloServer({
   typeDefs,
@@ -77,7 +75,7 @@ const server = new ApolloServer({
       userId,
     };
   },
-  dataSources: () => ({ mediaDB, userDB, commentDB, tagDB, tagMediaConnectDB }),
+  dataSources: () => ({ mediaDB, userDB, commentDB }),
 });
 
 server.listen().then(({ url }) => {
