@@ -82,7 +82,7 @@ class MediaDB extends SQLDataSource {
     return this.knex("tag").select("*");
   }
 
-  async getTagNameByMediaId(id) {
+  async getTagInfoByMediaId(id) {
     return await this.knex
       .from("tagMediaConnect")
       .join("tag", "tag.id", "tagMediaConnect.tagId")
@@ -94,7 +94,7 @@ class MediaDB extends SQLDataSource {
 
   async addTagMediaConnect(tagName, mediaId) {
     let tagId = await this.knex("tag").select("id").where({ tagName: tagName });
-    if(tagId.length == 0) { //등록된 tag가 아니라면 tag먼저 추가하기
+    if(!tagId.length) { //등록된 tag가 아니라면 tag먼저 추가하기
       await this.knex("tag").insert({ tagName: tagName });
       tagId = await this.knex("tag").select("id").where({ tagName: tagName }); //리스트안에 사전 형태로 들어옴. -> [ {id: 0} ]
     }
