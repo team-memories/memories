@@ -9,6 +9,7 @@ exports.up = async function(knex) {
   await knex("tag").insert({ tagName: "OBJECT" });
 
   await knex.schema.createTable("tagMediaConnect", function(table) {
+    table.primary(["tagId", "mediaId"]);
     table.integer("tagId").unsigned().notNullable();
     table
       .foreign("tagId")
