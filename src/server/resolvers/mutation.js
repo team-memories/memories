@@ -70,9 +70,8 @@ module.exports = {
     const stream = createReadStream();
 
     const mediaId = await createdMedia.id;
-    tagNames.forEach(async function(tagName){ //tag_names는 리스트로 올 것임.
-      await mediaDB.addTagMediaConnect(tagName, mediaId);
-    });
+    await mediaDB.addTagMediaConnect(tagNames, mediaId);
+    
     console.log("Media record was created. ID is " + mediaId);
 
     const id = shortid.generate();
@@ -213,10 +212,9 @@ module.exports = {
       year,
       description,
     });
-    await mediaDB.deleteTagMediaConnect(id);
-    tagNames.forEach(async function(tagName){
-      await mediaDB.addTagMediaConnect(tagName, id);
-    });
+
+   await mediaDB.modifyTagMediaConnect(tagNames, id);
+
     return {
       id,
     };

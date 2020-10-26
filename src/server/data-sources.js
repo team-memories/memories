@@ -91,18 +91,54 @@ class MediaDB extends SQLDataSource {
       .orderBy("id", "desc")
       .cache(CACHE_TTL);
   }
-  async addTagMediaConnect(tagName, mediaId) {
-    let tagId = await this.knex("tag").select("id").where({ tagName: tagName });
-    if(!tagId.length) { //등록된 tag가 아니라면 tag먼저 추가하기
-      tagId = await this.knex("tag").insert({ tagName: tagName }).returning("id"); //리스트안에 사전 형태로 들어옴. -> [ {id: 0} ]
+  
+  async addTagMediaConnect(tagNames, mediaId) {
+    const trxProvider = this.knex.transactionProvider();
+    const trx = await trxProvider();
+    try {
+      let result = await [];
+      await tagNames.forEach(async function(tagName){
+        let tagId = await trx("tag").where({ tagName: tagName }); //리스트 안에 사전 형태로 들어옴. -> [ { id: 0 }]
+        if(!tagId.length) { //등록된 tag가 아니라면 tag먼저 추가하기
+          tagId = await trx("tag").insert({ tagName: tagName }).returning("id"); //리스트안에 값이 들어옴. -> [ 0 ]
+          await result.push({ "tagId": tagId[0], "mediaId": mediaId });
+        }
+        else {
+          await result.push({ "tagId": tagId[0]["id"], "mediaId": mediaId });
+        }
+      });
+      await trx("tagMediaConnect").insert(result);
+      await trx.commit();
+    } catch {
+      await trx.rollback();
     }
-    await this.knex("tagMediaConnect").insert({ tagId: tagId[0]["id"], mediaId: mediaId });
-    return true;
   }
 
-  async deleteTagMediaConnect(mediaId) {
-    await this.knex("tagMediaConnect").where({ mediaId: mediaId }).del();
-    return true;
+  async modifyTagMediaConnect(tagNames, mediaId) {
+    const trxProvider = this.knex.transactionProvider();
+    const trx = await trxProvider();
+    try {
+      let result = await [];
+      await tagNames.forEach(async function(tagName){
+        let tagId = await trx("tag").where({ tagName: tagName });
+        if(!tagId.length) { //등록된 tag가 아니라면 tag먼저 추가하기
+          tagId = await trx("tag").insert({ tagName: tagName }).returning("id");
+          await result.push({ "tagId": tagId[0], "mediaId": mediaId });
+        }
+        else {
+          await result.push({ "tagId": tagId[0]["id"], "mediaId": mediaId });
+        }
+      });
+      await trx("tagMediaConnect").where({ mediaId: mediaId }).del();
+      await trx("tagMediaConnect").insert(result);
+      await trx.commit();
+    } catch {
+      await trx.rollback();
+    }
+  }
+
+  async getTagIdByTagName(tagName) {
+    return this.knex("tag").where({ tagName: tagName }).select("id");
   }
 }
 
