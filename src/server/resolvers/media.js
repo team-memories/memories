@@ -34,8 +34,8 @@ const authorResolver = async ({ id, authorId }, _, { dataSources: { mediaDB } })
   return { id: await mediaDB.getAttribute("authorId", id) };
 };
 
-const tagResolver = async ( { id }, _, { dataSources: { mediaDB } }) => {
-  return mediaDB.getTagByMediaId(id);
+const tagResolver = async ({ id }, _, { dataSources: { mediaDB }}) => {
+  return await mediaDB.getTagIdsByMediaId(id);
 }
 
 const videoTypeResolvers = {
@@ -54,7 +54,7 @@ const videoTypeResolvers = {
   ),
   comments: commentResolver,
   author: authorResolver,
-  tags: tagResolver
+  tags: tagResolver,
 };
 const photoTypeResolvers = {
   ...defaultAttributeResolverMaker(
@@ -72,7 +72,7 @@ const photoTypeResolvers = {
   ),
   comments: commentResolver,
   author: authorResolver,
-  tags: tagResolver
+  tags: tagResolver,
 };
 
 module.exports = {
@@ -80,3 +80,4 @@ module.exports = {
   video: videoTypeResolvers,
   photo: photoTypeResolvers,
 };
+

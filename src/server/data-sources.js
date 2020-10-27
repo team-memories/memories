@@ -13,14 +13,13 @@ class MediaDB extends SQLDataSource {
   }
 
   async getAttribute(attrName, id) {
-    const index = attrName.indexOf("TagMedia");
+    const index = attrName.indexOf("tag");
     if(index !== -1) {
-      attrNameSubString = attrName.substring(0,index)
+      let attrNameSubString = attrName.substring(3).toLowerCase();
       const result = await this.knex
         .select(attrNameSubString)
         .first()
-        .from("tagMediaConnect")
-        .where({ mediaId: id })
+        .from("tag")
         .cache(CACHE_TTL);
       return result[attrNameSubString];
     }
@@ -95,13 +94,12 @@ class MediaDB extends SQLDataSource {
     return this.knex("tag").select("*");
   }
 
-  async getTagByMediaId(id) {
+  async getTagIdsByMediaId(mediaId) {
     return await this.knex
       .from("tagMediaConnect")
-      .join("tag", "tag.id", "tagMediaConnect.tagId")
-      .select("tag.id as id", "tag.name as name", "tagMediaConnect.mediaId as mediaId")
-      .where({ mediaId: id })
-      .orderBy("id", "desc")
+      .select("tagId as id")
+      .where({ mediaId: mediaId })
+      .orderBy("mediaId", "desc")
       .cache(CACHE_TTL);
   }
   

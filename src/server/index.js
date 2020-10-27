@@ -7,6 +7,7 @@ const mutation = require("./resolvers/mutation");
 const { media, photo, video } = require("./resolvers/media");
 const user = require("./resolvers/user");
 const comment = require("./resolvers/comment");
+const tag = require("./resolvers/tag");
 const jwt = require("jsonwebtoken");
 
 const resolvers = {
@@ -17,6 +18,7 @@ const resolvers = {
   Video: video,
   User: user,
   Comment: comment,
+  Tag: tag,
 };
 const knexConfig = {
   client: "pg",
