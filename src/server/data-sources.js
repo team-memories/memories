@@ -13,6 +13,18 @@ class MediaDB extends SQLDataSource {
   }
 
   async getAttribute(attrName, id) {
+    const index = attrName.indexOf("TagMedia");
+    if(index !== -1) {
+      attrNameSubString = attrName.substring(0,index)
+      const result = await this.knex
+        .select(attrNameSubString)
+        .first()
+        .from("tagMediaConnect")
+        .where({ mediaId: id })
+        .cache(CACHE_TTL);
+      return result[attrNameSubString];
+    }
+    else {
       const result = await this.knex
         .select(attrName)
         .first()
@@ -20,6 +32,7 @@ class MediaDB extends SQLDataSource {
         .where({ id })
         .cache(CACHE_TTL);
       return result[attrName];
+    }
   }
 
   async searchMedia({
@@ -44,14 +57,14 @@ class MediaDB extends SQLDataSource {
         "media.year as year",
         "media.description as description",
         "media.isProcessing as isProcessing",
-        "tag.tagName as tagName",
+        "tag.name as name",
         "tag.id as tagId"
       )
       .where(function () {
         // eslint-disable-next-line no-invalid-this
         this.where("title", "like", `%${queryStr}%`)
           .orWhere("description", "like", `%${queryStr}%`)
-          .orWhere("tag.tagName", "like", `%${queryStr}%`);
+          .orWhere("tag.name", "like", `%${queryStr}%`);
       })
       .andWhere("location", "like", `${location}%`)
       .andWhereBetween("year", [yearFrom, yearTo])
@@ -86,7 +99,7 @@ class MediaDB extends SQLDataSource {
     return await this.knex
       .from("tagMediaConnect")
       .join("tag", "tag.id", "tagMediaConnect.tagId")
-      .select("tag.id as id", "tag.tagName as tagName", "tagMediaConnect.mediaId as mediaId")
+      .select("tag.id as id", "tag.name as name", "tagMediaConnect.mediaId as mediaId")
       .where({ mediaId: id })
       .orderBy("id", "desc")
       .cache(CACHE_TTL);
@@ -98,9 +111,9 @@ class MediaDB extends SQLDataSource {
     try {
       let result = await [];
       await tagNames.forEach(async function(tagName){
-        let tagId = await trx("tag").where({ tagName: tagName }); //리스트 안에 사전 형태로 들어옴. -> [ { id: 0 }]
+        let tagId = await trx("tag").where({ name: tagName }); //리스트 안에 사전 형태로 들어옴. -> [ { id: 0 }]
         if(!tagId.length) { //등록된 tag가 아니라면 tag먼저 추가하기
-          tagId = await trx("tag").insert({ tagName: tagName }).returning("id"); //리스트안에 값이 들어옴. -> [ 0 ]
+          tagId = await trx("tag").insert({ name: tagName }).returning("id"); //리스트안에 값이 들어옴. -> [ 0 ]
           await result.push({ "tagId": tagId[0], "mediaId": mediaId });
         }
         else {
@@ -120,9 +133,9 @@ class MediaDB extends SQLDataSource {
     try {
       let result = await [];
       await tagNames.forEach(async function(tagName){
-        let tagId = await trx("tag").where({ tagName: tagName });
+        let tagId = await trx("tag").where({ name: tagName });
         if(!tagId.length) { //등록된 tag가 아니라면 tag먼저 추가하기
-          tagId = await trx("tag").insert({ tagName: tagName }).returning("id");
+          tagId = await trx("tag").insert({ name: tagName }).returning("id");
           await result.push({ "tagId": tagId[0], "mediaId": mediaId });
         }
         else {
@@ -138,7 +151,7 @@ class MediaDB extends SQLDataSource {
   }
 
   async getTagIdByTagName(tagName) {
-    return this.knex("tag").where({ tagName: tagName }).select("id");
+    return this.knex("tag").where({ name: tagName }).select("id");
   }
 }
 

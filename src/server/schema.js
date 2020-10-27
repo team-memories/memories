@@ -159,7 +159,7 @@ const typeDefs = gql`
 
   type Tag {
     id: ID!
-    tagName: String!
+    name: String!
   }
 `;
 
