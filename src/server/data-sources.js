@@ -13,25 +13,20 @@ class MediaDB extends SQLDataSource {
   }
 
   async getAttribute(attrName, id) {
-    const index = attrName.indexOf("tag");
-    if(index !== -1) {
-      let attrNameSubString = attrName.substring(3).toLowerCase();
-      const result = await this.knex
-        .select(attrNameSubString)
-        .first()
-        .from("tag")
-        .cache(CACHE_TTL);
-      return result[attrNameSubString];
+    const tableList = ["media", "tag"]
+    let index;
+    if(!attrName.indexOf("tag")) {
+      index = 1;
+      attrName = attrName.substring(3).toLowerCase();
     }
-    else {
-      const result = await this.knex
-        .select(attrName)
-        .first()
-        .from("media")
-        .where({ id })
-        .cache(CACHE_TTL);
-      return result[attrName];
-    }
+    else index = 0;
+    const result = await this.knex
+      .select(attrName)
+      .first()
+      .from(tableList[index])
+      .where({ id })
+      .cache(CACHE_TTL);
+    return result[attrName];
   }
 
   async searchMedia({
