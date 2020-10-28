@@ -17,7 +17,7 @@ class MediaDB extends SQLDataSource {
     let index;
     if(!attrName.indexOf("tag")) {
       index = 1;
-      attrName = attrName.substring(3).toLowerCase();
+      attrName = attrName.substring("tag".length).toLowerCase();
     }
     else index = 0;
     const result = await this.knex
