@@ -4,7 +4,7 @@ const CACHE_TTL = 3;
 
 class MediaDB extends SQLDataSource {
   async getMedia(id) {
-    return await this.knex
+    return this.knex
       .select("*")
       .first()
       .from("media")
@@ -85,61 +85,38 @@ class MediaDB extends SQLDataSource {
     return this.knex("media").where({ authorId: id }).cache(CACHE_TTL);
   }
 
-  async getTagList() {
+  async getTags() {
     return this.knex("tag").select("*");
   }
 
   async getTagIdsByMediaId(mediaId) {
-    return await this.knex
+    return this.knex
       .from("tagMediaConnect")
       .select("tagId as id")
       .where({ mediaId: mediaId })
       .orderBy("mediaId", "desc")
       .cache(CACHE_TTL);
   }
-  
-  async addTagMediaConnect(tagNames, mediaId) {
-    const trxProvider = this.knex.transactionProvider();
-    const trx = await trxProvider();
-    try {
-      let result = await [];
-      await tagNames.forEach(async function(tagName){
-        let tagId = await trx("tag").where({ name: tagName }); //리스트 안에 사전 형태로 들어옴. -> [ { id: 0 }]
-        if(!tagId.length) { //등록된 tag가 아니라면 tag먼저 추가하기
-          tagId = await trx("tag").insert({ name: tagName }).returning("id"); //리스트안에 값이 들어옴. -> [ 0 ]
-          await result.push({ "tagId": tagId[0], "mediaId": mediaId });
-        }
-        else {
-          await result.push({ "tagId": tagId[0]["id"], "mediaId": mediaId });
-        }
-      });
-      await trx("tagMediaConnect").insert(result);
-      await trx.commit();
-    } catch {
-      await trx.rollback();
-    }
-  }
 
-  async modifyTagMediaConnect(tagNames, mediaId) {
-    const trxProvider = this.knex.transactionProvider();
-    const trx = await trxProvider();
+  async modifyTagMediaConnect(tagNames, mediaId, mode) {
     try {
-      let result = await [];
-      await tagNames.forEach(async function(tagName){
-        let tagId = await trx("tag").where({ name: tagName });
-        if(!tagId.length) { //등록된 tag가 아니라면 tag먼저 추가하기
-          tagId = await trx("tag").insert({ name: tagName }).returning("id");
-          await result.push({ "tagId": tagId[0], "mediaId": mediaId });
+      await this.knex.transaction(async (trx) => {
+        let result = [];
+        await tagNames.forEach(async function(tagName){
+          let tags = await trx("tag").where({ name: tagName });
+          if(!tags.length) { //등록된 tag가 아니라면 tag먼저 추가하기
+            tags = await trx("tag").insert({ name: tagName }, ["id"]);
+          }
+          result.push({ "tagId": tags[0]["id"], "mediaId": mediaId });
+        });
+        if(mode == "modify") {
+          await this.knex("tagMediaConnect").where({ mediaId: mediaId }).del().transacting(trx);
         }
-        else {
-          await result.push({ "tagId": tagId[0]["id"], "mediaId": mediaId });
-        }
+        await this.knex("tagMediaConnect").insert(result).transacting(trx);
       });
-      await trx("tagMediaConnect").where({ mediaId: mediaId }).del();
-      await trx("tagMediaConnect").insert(result);
-      await trx.commit();
-    } catch {
-      await trx.rollback();
+    } catch(error) {
+      console.log(error);
+      throw new Error("Fail to modifyTagMediaConnect")
     }
   }
 
@@ -178,7 +155,7 @@ class UserDB extends SQLDataSource {
 
 class CommentDB extends SQLDataSource {
   async getComment(id) {
-    return await this.knex
+    return this.knex
       .select("*")
       .first()
       .from("comment")
@@ -196,14 +173,14 @@ class CommentDB extends SQLDataSource {
   }
 
   async getCommentIdsByAuthorId(id) {
-    return await this.knex
+    return this.knex
       .from("comment")
       .where({ authorId: id })
       .cache(CACHE_TTL);
   }
 
   async getCommentIdsByMediaId(id) {
-    return await this.knex
+    return this.knex
       .from("comment")
       .where({ mediaId: id })
       .orderBy("id", "desc")

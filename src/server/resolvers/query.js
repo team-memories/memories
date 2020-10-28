@@ -13,6 +13,6 @@ module.exports = {
     return mediaDB.getMediaByAuthorId(userId);
   },
   tags: async (_, __, { dataSources: { mediaDB } }) => {
-    return mediaDB.getTagList();
+    return mediaDB.getTags();
   }
 };

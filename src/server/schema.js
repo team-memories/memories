@@ -27,7 +27,7 @@ const typeDefs = gql`
       location: String!
       year: Int!
       description: String!
-      tagNames: [String]
+      tagNames: [String]!
     ): Media
     deleteMedia(id: ID!): Media
     """
@@ -43,7 +43,7 @@ const typeDefs = gql`
       location: String!
       year: Int!
       description: String!
-      tagNames: [String]
+      tagNames: [String]!
     ): Media
 
     createComment(mediaId: ID!, content: String!): Comment
@@ -83,7 +83,7 @@ const typeDefs = gql`
     """
     isProcessing: Boolean
     comments: [Comment]
-    tags: [Tag]
+    tags: [Tag]!
   }
 
   """
@@ -111,7 +111,7 @@ const typeDefs = gql`
     """
     isProcessing: Boolean
     comments: [Comment]
-    tags: [Tag]
+    tags: [Tag]!
   }
 
   type Video implements Media {
@@ -133,7 +133,7 @@ const typeDefs = gql`
     """
     isProcessing: Boolean
     comments: [Comment]
-    tags: [Tag]
+    tags: [Tag]!
   }
 
   type User {
