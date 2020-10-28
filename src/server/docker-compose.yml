@@ -1,6 +1,17 @@
 version: '3.8'
 services:
+  db:
+    image: postgres:12-alpine
+    ports:
+      - "5432:5432"
+    volumes:
+      - ~/memories_db/:/var/lib/postgresql/data
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: $DB_PW
   main_graphql_api_server:
+    depends_on:
+      - db
     image: main_api_server:b0.2
     ports:
       - "4000:4000"
@@ -12,12 +23,3 @@ services:
       AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
       SECRET: $SECRET
     restart: always
-  db:
-    image: postgres:12-alpine
-    ports:
-      - "5432:5432"
-    volumes:
-      - ~/memories_db/:/var/lib/postgresql/data
-    restart: always
-    environment:
-      POSTGRES_PASSWORD: $DB_PW
