@@ -310,4 +310,20 @@ module.exports = {
     // Success
     return comment;
   },
+  deactivateUser: async (_, { id }, { userId, dataSources: {userDB } }) => {
+    if (!userId) {
+      throw new Error("Login required");
+    }
+    const user = await userDB.getUser(id);
+    if (!user) {
+      throw new Error("User not found");
+    }
+    if (userId !== user.id) {
+      throw new Error("You are not the User of the account")
+    }
+    if (!await userDB.deactivateUser(id)) {
+      throw new Error("Cannot deactivate the account");
+    }
+    return user;
+  },
 };

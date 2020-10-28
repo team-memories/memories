@@ -131,8 +131,19 @@ class UserDB extends SQLDataSource {
     return this.knex.select("*").first().from("user").where({ email: email, isActive: true });
   }
 
+  async getUser(id) {
+    console.log(id);
+    return this.knex
+    .select("*")
+    .first()
+    .from("user")
+    .where({ id })
+    .cache(CACHE_TTL);
+  }
+
   async deactivateUser(id) {
-    await this.knex("user").where(id).update({ isActive : false });
+    await this.knex("user").where({ id }).update({ isActive : false });
+    return true;
   }
 }
 

@@ -56,6 +56,7 @@ const typeDefs = gql`
 
     signUp(email: String!, password: String!, name: String!): AuthPayload!
     signIn(email: String!, password: String!): AuthPayload!
+    deactivateUser(id: ID!): User!
   }
 
   type AuthPayload {
@@ -153,6 +154,7 @@ const typeDefs = gql`
     email: String
     name: String
     profileImgUrl: String
+    isActive: Boolean
     myMedia: [Media]!
   }
 
