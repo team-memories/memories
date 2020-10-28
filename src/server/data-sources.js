@@ -98,18 +98,19 @@ class MediaDB extends SQLDataSource {
       .cache(CACHE_TTL);
   }
 
-  async modifyTagMediaConnect(tagNames, mediaId, mode) {
+  async modifyTagMediaConnect(tagNames, mediaId) {
     try {
       await this.knex.transaction(async (trx) => {
-        let result = [];
-        await tagNames.forEach(async function(tagName){
+        const result = [];
+        for(const tagName of tagNames) {
           let tags = await trx("tag").where({ name: tagName });
           if(!tags.length) { //등록된 tag가 아니라면 tag먼저 추가하기
-            tags = await trx("tag").insert({ name: tagName }, ["id"]);
+            tags = await trx("tag").insert({ name: tagName },["id"]);
           }
           result.push({ "tagId": tags[0]["id"], "mediaId": mediaId });
-        });
-        if(mode == "modify") {
+        }
+        const existMedia = await this.knex("tagMediaConnect").where({ mediaId: mediaId }).transacting(trx);
+        if(existMedia.length) { //tagMediaConnect 테이블에 존재하던 미디어라면 수정을 하는 것, 존재하지 않았다면 새로 추가하는 것.
           await this.knex("tagMediaConnect").where({ mediaId: mediaId }).del().transacting(trx);
         }
         await this.knex("tagMediaConnect").insert(result).transacting(trx);

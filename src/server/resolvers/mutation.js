@@ -70,7 +70,7 @@ module.exports = {
     const stream = createReadStream();
 
     const mediaId = await createdMedia.id;
-    await mediaDB.modifyTagMediaConnect(tagNames, mediaId, "add");
+    await mediaDB.modifyTagMediaConnect(tagNames, mediaId);
     
     console.log("Media record was created. ID is " + mediaId);
 
@@ -213,7 +213,7 @@ module.exports = {
       description,
     });
 
-   await mediaDB.modifyTagMediaConnect(tagNames, id, "modify");
+   await mediaDB.modifyTagMediaConnect(tagNames, id);
 
     return {
       id,
