@@ -137,7 +137,7 @@ class UserDB extends SQLDataSource {
     .select("*")
     .first()
     .from("user")
-    .where({ id })
+    .where({ id: id, isActive: true })
     .cache(CACHE_TTL);
   }
 
