@@ -17,6 +17,7 @@ const typeDefs = gql`
     ): [Media]!
     user(id: ID!): User!
     myMedia: [Media]!
+    tags: [Tag]
   }
 
   type Mutation {
@@ -26,7 +27,7 @@ const typeDefs = gql`
       location: String!
       year: Int!
       description: String!
-      category: Category
+      tagNames: [String]!
     ): Media
     deleteMedia(id: ID!): Media
     """
@@ -42,7 +43,7 @@ const typeDefs = gql`
       location: String!
       year: Int!
       description: String!
-      category: Category
+      tagNames: [String]!
     ): Media
 
     createComment(mediaId: ID!, content: String!): Comment
@@ -63,19 +64,9 @@ const typeDefs = gql`
     user: User!
   }
 
-  enum Category {
-    CITY
-    NATURE
-    """
-    물건
-    """
-    OBJECT
-  }
-
   interface Media {
     id: ID!
     title: String
-    category: Category
     thumbnailUrl: String!
     originalUrl: String!
     """
@@ -92,6 +83,7 @@ const typeDefs = gql`
     """
     underProcessing: Boolean
     comments: [Comment]
+    tags: [Tag]!
   }
 
   """
@@ -103,7 +95,6 @@ const typeDefs = gql`
   type Photo implements Media {
     id: ID!
     title: String
-    category: Category
     thumbnailUrl: String!
     originalUrl: String!
     """
@@ -120,12 +111,12 @@ const typeDefs = gql`
     """
     underProcessing: Boolean
     comments: [Comment]
+    tags: [Tag]!
   }
 
   type Video implements Media {
     id: ID!
     title: String
-    category: Category
     thumbnailUrl: String!
     originalUrl: String!
     """
@@ -142,6 +133,7 @@ const typeDefs = gql`
     """
     underProcessing: Boolean
     comments: [Comment]
+    tags: [Tag]!
   }
 
   type User {
@@ -163,6 +155,11 @@ const typeDefs = gql`
     댓글의 내용
     """
     content: String
+  }
+
+  type Tag {
+    id: ID!
+    name: String!
   }
 `;
 

@@ -64,7 +64,7 @@ async function writeFileToPath(readStream, path) {
 module.exports = {
   uploadMedia: async (
     _,
-    { media, title, location, year, description, category },
+    { media, title, location, year, description, tagNames },
     { dataSources: { mediaDB, userDB }, userId }
   ) => {
     if (!userId) {
@@ -87,13 +87,17 @@ module.exports = {
       year,
       location,
       type,
-      category,
+      originalUrl: "",
+      thumbnailUrl: "",
+      url: "",
       authorId: userId,
     });
 
     const stream = createReadStream();
 
-    const mediaId = createdMedia.id;
+    const mediaId = await createdMedia.id;
+    await mediaDB.modifyTagMediaConnect(tagNames, mediaId);
+    
     console.log("Media record was created. ID is " + mediaId);
 
     const id = shortid.generate();
@@ -194,7 +198,7 @@ module.exports = {
   },
   modifyMedia: async (
     _,
-    { id, title, location, year, description, category },
+    { id, title, location, year, description, tagNames },
     { userId, dataSources: { mediaDB } }
   ) => {
     const media = await mediaDB.getMedia(id);
@@ -212,8 +216,10 @@ module.exports = {
       location,
       year,
       description,
-      category,
     });
+
+   await mediaDB.modifyTagMediaConnect(tagNames, id);
+
     return {
       id,
     };

@@ -34,6 +34,10 @@ const authorResolver = async ({ id, authorId }, _, { dataSources: { mediaDB } })
   return { id: await mediaDB.getAttribute("authorId", id) };
 };
 
+const tagResolver = async ({ id }, _, { dataSources: { mediaDB }}) => {
+  return await mediaDB.getTagIdsByMediaId(id);
+}
+
 const underProcessingResolver = async ({ id }, _, { dataSources: { mediaDB } }) => {
   return mediaDB.isUnderProcessing(id);
 };
@@ -42,7 +46,6 @@ const videoTypeResolvers = {
   ...defaultAttributeResolverMaker(
     [
       "title",
-      "category",
       "thumbnailUrl",
       "originalUrl",
       "url",
@@ -54,13 +57,13 @@ const videoTypeResolvers = {
   ),
   comments: commentResolver,
   author: authorResolver,
+  tags: tagResolver,
   underProcessing: underProcessingResolver,
 };
 const photoTypeResolvers = {
   ...defaultAttributeResolverMaker(
     [
       "title",
-      "category",
       "thumbnailUrl",
       "originalUrl",
       "url",
@@ -72,6 +75,7 @@ const photoTypeResolvers = {
   ),
   comments: commentResolver,
   author: authorResolver,
+  tags: tagResolver,
   underProcessing: underProcessingResolver,
 };
 
@@ -80,3 +84,4 @@ module.exports = {
   video: videoTypeResolvers,
   photo: photoTypeResolvers,
 };
+
