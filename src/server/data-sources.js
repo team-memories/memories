@@ -178,7 +178,7 @@ class UserDB extends SQLDataSource {
       .select(attrName)
       .first()
       .from("user")
-      .where({ id })
+      .where({ id: id, isActive: true })
       .cache(CACHE_TTL);
     return result[attrName];
   }
@@ -192,11 +192,22 @@ class UserDB extends SQLDataSource {
   }
 
   async getUserByEmail(email) {
-    return this.knex.select("*").first().from("user").where({ email });
+    return this.knex.select("*").first().from("user").where({ email: email, isActive: true });
+  }
+
+  async getUser(id) {
+    console.log(id);
+    return this.knex
+    .select("*")
+    .first()
+    .from("user")
+    .where({ id: id, isActive: true })
+    .cache(CACHE_TTL);
   }
 
   async deactivateUser(id) {
-    await this.knex("user").where(id).update("is_active", false);
+    await this.knex("user").where({ id }).update({ isActive : false });
+    return true;
   }
 }
 
