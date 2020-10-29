@@ -97,7 +97,7 @@ class MediaDB extends SQLDataSource {
   }
 
   async deleteMedia(id) {
-    await this.knex("media").where({ id }).del();
+    await this.knex("media").where({ id }).update("isActive", false);
     return true;
   }
 
