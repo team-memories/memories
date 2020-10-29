@@ -38,6 +38,10 @@ const tagResolver = async ({ id }, _, { dataSources: { mediaDB }}) => {
   return await mediaDB.getTagIdsByMediaId(id);
 }
 
+const underProcessingResolver = async ({ id }, _, { dataSources: { mediaDB } }) => {
+  return mediaDB.isUnderProcessing(id);
+};
+
 const videoTypeResolvers = {
   ...defaultAttributeResolverMaker(
     [
@@ -48,13 +52,13 @@ const videoTypeResolvers = {
       "location",
       "year",
       "description",
-      "isProcessing",
     ],
     "mediaDB"
   ),
   comments: commentResolver,
   author: authorResolver,
   tags: tagResolver,
+  underProcessing: underProcessingResolver,
 };
 const photoTypeResolvers = {
   ...defaultAttributeResolverMaker(
@@ -66,13 +70,13 @@ const photoTypeResolvers = {
       "location",
       "year",
       "description",
-      "isProcessing",
     ],
     "mediaDB"
   ),
   comments: commentResolver,
   author: authorResolver,
   tags: tagResolver,
+  underProcessing: underProcessingResolver,
 };
 
 module.exports = {

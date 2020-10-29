@@ -66,8 +66,54 @@ class MediaDB extends SQLDataSource {
   }
 
   async createMedia(args) {
-    const result = await this.knex.insert(args).into("media").returning("*");
-    return result[0];
+    let media;
+    try {
+      await this.knex.transaction(async (trx) => {
+        media = await this.knex
+          .insert({ ...args, originalUrl: "", thumbnailUrl: "", url: "" })
+          .into("media")
+          .returning("*")
+          .first()
+          .transacting(trx);
+        await this.knex
+          .insert({ id: media["id"] })
+          .into("media_under_processing")
+          .transacting(trx);
+      });
+    } catch (error) {
+      console.error(error);
+      throw new Error("Failed to create media. check the log");
+    }
+    return media;
+  }
+
+  async completeProcessing(id, url, thumbnailUrl, originalUrl, title) {
+    // validate
+    if (await this.isUnderProcessing(id)) {
+      throw Error("Already processed media");
+    }
+
+    try {
+      await this.knex.transaction(async (trx) => {
+        const deleteFromMediaUnderProcessingTable = this.knex("media_under_processing")
+          .where("id", id)
+          .delete()
+          .transacting(trx);
+        const updateMedia = this.knex("media")
+          .where({ id })
+          .update({ url, thumbnailUrl, originalUrl, title })
+          .transacting(trx);
+        await deleteFromMediaUnderProcessingTable;
+        await updateMedia;
+      });
+    } catch (error) {
+      console.error(error);
+      throw new Error("Failed to create media. check the log");
+    }
+  }
+
+  async isUnderProcessing(id) {
+    return !!(await this.knex("media_under_processing").where({ id }).length);
   }
 
   async updateMedia(id, args) {
