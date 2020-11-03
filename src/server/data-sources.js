@@ -50,7 +50,6 @@ class MediaDB extends SQLDataSource {
         "media.location as location",
         "media.year as year",
         "media.description as description",
-        "media.isProcessing as isProcessing",
         "tag.name as name",
         "tag.id as tagId"
       )
