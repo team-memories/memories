@@ -7,7 +7,7 @@ const shortid = require("shortid");
 const AWS = require("aws-sdk");
 const axios = require("axios");
 
-const { mediaTypes } = require("./enums");
+const { mediaTypes } = require("../utils/enums");
 
 const ID = process.env["AWS_ACCESS_KEY_ID"];
 const SECRET = process.env["AWS_SECRET_ACCESS_KEY"];
@@ -97,7 +97,7 @@ module.exports = {
 
     const mediaId = await createdMedia.id;
     await mediaDB.modifyTagMediaConnect(tagNames, mediaId);
-    
+
     console.log("Media record was created. ID is " + mediaId);
 
     const id = shortid.generate();

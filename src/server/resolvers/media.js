@@ -1,5 +1,5 @@
 const defaultAttributeResolverMaker = require("../utils/default-attribute-resolver-maker");
-const { mediaTypes } = require("./enums");
+const { mediaTypes } = require("../utils/enums");
 
 const mediaTypeResolvers = {
   __resolveType: async ({ id, type }, { dataSources: { mediaDB } }) => {
