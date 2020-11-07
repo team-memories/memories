@@ -157,6 +157,7 @@ const typeDefs = gql`
     댓글의 내용
     """
     content: String
+    isActive: Boolean
   }
 
   type Tag {

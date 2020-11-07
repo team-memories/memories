@@ -197,15 +197,15 @@ class UserDB extends SQLDataSource {
   async getUser(id) {
     console.log(id);
     return this.knex
-    .select("*")
-    .first()
-    .from("user")
-    .where({ id: id, isActive: true })
-    .cache(CACHE_TTL);
+      .select("*")
+      .first()
+      .from("user")
+      .where({ id: id, isActive: true })
+      .cache(CACHE_TTL);
   }
 
   async deactivateUser(id) {
-    await this.knex("user").where({ id }).update({ isActive : false });
+    await this.knex("user").where({ id }).update({ isActive: false });
     return true;
   }
 }
@@ -257,7 +257,7 @@ class CommentDB extends SQLDataSource {
   }
 
   async deleteComment(id) {
-    await this.knex("comment").where({ id }).del();
+    await this.knex("comment").where({ id }).update({ isActive: false });
     return true;
   }
 }
