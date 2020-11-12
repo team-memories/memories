@@ -81,7 +81,7 @@ const GuestEditor = ({onChange, onCancel, value}) => (
       </Form.Item>
     </Space>
   </div>
-); 
+);
 
 // parent: MediaComment
 function MediaAddComment (props) {
@@ -127,7 +127,7 @@ function MediaAddComment (props) {
     setCommentValue(e.target.value);
   };
 
-  // 로그인이 되어 있는 경우 
+  // 로그인이 되어 있는 경우
   if (sessionStorage.getItem("token")) {
     return (
       <div>

@@ -13,8 +13,11 @@ const SearchQuery = gql`
         name
         profileImgUrl
       }
+      tags{
+        name
+      }
       year
-      isProcessing
+      underProcessing
       id
       location
       title

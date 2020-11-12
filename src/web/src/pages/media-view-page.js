@@ -28,10 +28,10 @@ function MediaViewPage (props) {
 
   // detail-view-page인지 확인, navbar 생성 여부 확인하기 위해서
   props.onChangeIsMediaView(window.location.pathname === "/watch");
-  
+
   // props.location.state.data: search 쿼리에서 받아온 결과값들이 저장되어 있는 리스트, 리스트 안에는 오브젝트(미디어 아이디, 유저 이름, title 등등)가 들어있음
   // 가공중인 곳은 넘어가면 안되므로 filter함수로 제외
-  const data = (props.location.state) ? props.location.state.data.filter(media => media.isProcessing === false) : ["null"];
+  const data = (props.location.state) ? props.location.state.data.filter(media => media.underProcessing === false) : ["null"];
 
   //현재 detail-view-page에서 보이는 미디어의 인덱스를 찾음
   const index = (props.location.state) ? data.findIndex(findIndex) : -1;
@@ -56,7 +56,7 @@ function MediaViewPage (props) {
             (props.location.state) ?
               <Link to={{pathname: `/watch`, search: `?id=${data[previous_index].id}`, state: {data: data}}}>
                 {
-                  (data.length === 1) ? 
+                  (data.length === 1) ?
                     <Button shape="circle" icon={<ArrowLeftOutlined style={{fontSize: 30}}/>} size="large" disabled/>
                     :
                     <Button shape="circle" icon={<ArrowLeftOutlined style={{fontSize: 30}}/>} size="large"/>
@@ -75,7 +75,7 @@ function MediaViewPage (props) {
             (props.location.state) ?
               <Link to={{pathname: `/watch`, search: `?id=${data[next_index].id}`, state: {data: data}}}>
                 {
-                  (data.length === 1) ? 
+                  (data.length === 1) ?
                     <Button shape="circle" icon={<ArrowRightOutlined style={{fontSize: 30}}/>} size="large" disabled/>
                     :
                     <Button shape="circle" icon={<ArrowRightOutlined style={{fontSize: 30}}/>} size="large"/>

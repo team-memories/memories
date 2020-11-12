@@ -5,20 +5,20 @@ import gql from 'graphql-tag';
 import UploadPageTitle from '../components/UploadPage/upload-page-title';
 import UploadYearSelect from '../components/UploadPage/upload-year-select';
 import UploadPlaceSelect from '../components/UploadPage/upload-place-select';
-import UploadCategorySelect from '../components/UploadPage/upload-category-select';
+import UploadTagsSelect from '../components/UploadPage/upload-tags-select';
 import UploadSubmitButton from '../components/UploadPage/upload-submit-button';
 import UploadPageDescription from '../components/UploadPage/upload-description';
 import DropzoneBox from '../components/UploadPage/dropzone-box';
 
 const UPLOAD_MEDIA = gql`
-    mutation ($media: Upload!, $title: String!, $location: String!, $year: Int!, $description: String!, $category: Category) {
+    mutation ($media: Upload!, $title: String!, $location: String!, $year: Int!, $description: String!, $tags: [String!]) {
         uploadMedia(
             media: $media
             title: $title
             location: $location
             year: $year
             description: $description
-            category: $category
+            tagNames: $tags
         ) {
             id
             title
@@ -38,7 +38,7 @@ function UploadPage (props) {
   const [media, setMedia] = useState([]);
   const [title, setTitle] = useState();
   const [location, setLocation] = useState('대한민국');
-  const [category, setCategory] = useState();
+  const [tags, setTags] = useState([]);
   const [year, setYear] = useState(new Date().getFullYear());
   const [description, setDescription] = useState();
   const [isSubmitCliked, setClicked] = useState(false);
@@ -66,8 +66,8 @@ function UploadPage (props) {
     setDescription(e.target.value);
   };
 
-  const onCategoryChange = (e) => {
-    setCategory(e);
+  const onTagsChange = (e) => {
+    setTags(e);
   };
 
   const handleSubmit = () => {
@@ -83,7 +83,7 @@ function UploadPage (props) {
     }
     else {
       setClicked(true)
-      mutate({ variables: { media, title, location, year, description, category } })
+      mutate({ variables: { media, title, location, year, description, tags } })
         .then(() => {
           message.info('제출 완료되었습니다.');
           history.push('/');
@@ -102,7 +102,7 @@ function UploadPage (props) {
         <DropzoneBox onChange={onMediaChange} mediaName={media.name}/>
         <UploadPageTitle title={title} onChange={onTitleChange}/>
         <UploadPlaceSelect location={location} onChange={onLocationChange}/>
-        <UploadCategorySelect category={category} onChange={onCategoryChange}/>
+        <UploadTagsSelect tags={tags} onChange={onTagsChange}/>
         <UploadYearSelect year={year} onChange={onYearChange}/>
         <UploadPageDescription description={description} onChange={onDescriptionChange}/>
         <UploadSubmitButton onClick={handleSubmit} isSubmit={isSubmitCliked}/>
