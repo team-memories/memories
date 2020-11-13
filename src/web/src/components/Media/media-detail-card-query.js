@@ -16,7 +16,10 @@ const GET_MEDIA = gql`
       location
       year
       description
-      category
+      tags{
+        name
+      }
+      underProcessing
       author {
         id
         name

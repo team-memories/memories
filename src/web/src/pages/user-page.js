@@ -13,7 +13,7 @@ const MyMediaQuery = gql`
       location
       year
       url
-      isProcessing
+      underProcessing
       author {
         name
         profileImgUrl

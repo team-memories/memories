@@ -16,7 +16,7 @@ function MediaList (props) {
             location: (media.location) ? media.location : '대한민국',
             year: (media.year) ? media.year : '',
             author: (media.author) ? media.author : { name: 'Unknown', profileImgUrl: '' },
-            isProcessing: (media.isProcessing) ? media.isProcessing : false,
+            underProcessing: (media.underProcessing) ? media.underProcessing : false,
           };
           temp_media.author.name = (temp_media.author.name) ? temp_media.author.name : 'Unknown';
           temp_media.author.profileImgUrl = (temp_media.author.profileImgUrl) ? temp_media.author.profileImgUrl : '';

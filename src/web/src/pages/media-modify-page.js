@@ -5,19 +5,19 @@ import gql from 'graphql-tag';
 import UploadPageTitle from '../components/UploadPage/upload-page-title';
 import UploadYearSelect from '../components/UploadPage/upload-year-select';
 import UploadPlaceSelect from '../components/UploadPage/upload-place-select';
-import UploadCategorySelect from '../components/UploadPage/upload-category-select';
+import UploadTagsSelect from '../components/UploadPage/upload-tags-select';
 import UploadSubmitButton from '../components/UploadPage/upload-submit-button';
 import UploadPageDescription from '../components/UploadPage/upload-description';
 
 const MODIFY_MEDIA = gql`
-  mutation ($id: ID!, $title: String!, $location: String!, $year: Int!, $description: String!, $category: Category) {
+  mutation ($id: ID!, $title: String!, $location: String!, $year: Int!, $description: String!, $tags: [String!]) {
     modifyMedia(
       id : $id
       title: $title
       location: $location
       year: $year
       description: $description
-      category: $category
+      tagNames: $tags
     ) {
       id
       title
@@ -37,7 +37,7 @@ function ModifyPage (props) {
   const { useMutation } = require('@apollo/react-hooks');
   const [title, setTitle] = useState(media.title);
   const [location, setLocation] = useState(media.location);
-  const [category, setCategory] = useState(media.category);
+  const [tags, setTags] = useState(media.tags);
   const [year, setYear] = useState(media.year);
   const [description, setDescription] = useState(media.description);
   const [mutate] = useMutation(MODIFY_MEDIA,
@@ -66,12 +66,12 @@ function ModifyPage (props) {
     setDescription(e.target.value);
   };
 
-  const onCategoryChange = (e) => {
-    setCategory(e);
+  const onTagsChange = (e) => {
+    setTags([e]);
   };
 
   const handleSubmit = () => {
-    mutate({ variables: { id: media.id, title: title, location: location, year: year, description: description, category: category } })
+    mutate({ variables: { id: media.id, title: title, location: location, year: year, description: description, tags: tags } })
       .then(() => {
         message.info('제출 완료되었습니다.');
         history.goBack();
@@ -93,7 +93,7 @@ function ModifyPage (props) {
         }
         <UploadPageTitle title={title} onChange={onTitleChange}/>
         <UploadPlaceSelect location={location} onChange={onLocationChange}/>
-        <UploadCategorySelect category={category} onChange={onCategoryChange}/>
+        <UploadTagsSelect tags={tags} onChange={onTagsChange}/>
         <UploadYearSelect year={year} onChange={onYearChange}/>
         <UploadPageDescription description={description} onChange={onDescriptionChange}/>
         <UploadSubmitButton onClick={handleSubmit}/>
