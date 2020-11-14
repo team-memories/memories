@@ -253,10 +253,11 @@ module.exports = {
     };
   },
   signIn: async (_, args, { dataSources: { userDB } }) => {
-    const { password, ...user } = await userDB.getUserByEmail(args.email);
+    const user = await userDB.getUserByEmail(args.email);
     if (!user) {
       throw new Error("No such user found");
     }
+    const password = user.password;
     const valid = await bcrypt.compare(args.password, password);
     if (!valid) {
       throw new Error("Invalid password");
