@@ -72,7 +72,6 @@ class MediaDB extends SQLDataSource {
           .insert({ ...args, originalUrl: "", thumbnailUrl: "", url: "" })
           .into("media")
           .returning("*")
-          .first()
           .transacting(trx);
         await this.knex
           .insert({ id: media["id"] })
