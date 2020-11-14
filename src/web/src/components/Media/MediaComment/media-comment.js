@@ -26,7 +26,9 @@ const GET_COMMENTS = gql`
 function MediaComment (props) {
   const { loading, error, data } = useQuery(GET_COMMENTS, {
     variables: { mediaId: props.mediaId },
-    errorPolicy: 'all'
+    errorPolicy: 'all',
+    fetchPolicy: 'cache-and-network',
+    nextFetchPolicy: "cache-first",
   });
   if (loading) return (<Spin tip={"Loading..."}/>);
   if (error) return (console.log(error));

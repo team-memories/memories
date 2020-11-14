@@ -8,18 +8,17 @@ class MediaDB extends SQLDataSource {
       .select("*")
       .first()
       .from("media")
-      .where({ id })
+      .where({ id: id, isActive: true })
       .cache(CACHE_TTL);
   }
 
   async getAttribute(attrName, id) {
-    const tableList = ["media", "tag"]
+    const tableList = ["media", "tag"];
     let index;
-    if(!attrName.indexOf("tag")) {
+    if (!attrName.indexOf("tag")) {
       index = 1;
       attrName = attrName.substring("tag".length).toLowerCase();
-    }
-    else index = 0;
+    } else index = 0;
     const result = await this.knex
       .select(attrName)
       .first()
@@ -50,10 +49,12 @@ class MediaDB extends SQLDataSource {
         "media.location as location",
         "media.year as year",
         "media.description as description",
+        "media.isActive as isActive",
         "tag.name as name",
         "tag.id as tagId"
       )
-      .where(function () {
+      .where("isActive", true)
+      .andWhere(function () {
         // eslint-disable-next-line no-invalid-this
         this.where("title", "like", `%${queryStr}%`)
           .orWhere("description", "like", `%${queryStr}%`)
@@ -147,22 +148,22 @@ class MediaDB extends SQLDataSource {
     try {
       await this.knex.transaction(async (trx) => {
         const result = [];
-        for(const tagName of tagNames) {
+        for (const tagName of tagNames) {
           let tags = await trx("tag").where({ name: tagName });
-          if(!tags.length) { //등록된 tag가 아니라면 tag먼저 추가하기
-            tags = await trx("tag").insert({ name: tagName },["id"]);
+          if (!tags.length) { // 등록된 tag가 아니라면 tag먼저 추가하기
+            tags = await trx("tag").insert({ name: tagName }, ["id"]);
           }
-          result.push({ "tagId": tags[0]["id"], "mediaId": mediaId });
+          result.push({ tagId: tags[0]["id"], mediaId: mediaId });
         }
         const existMedia = await this.knex("tagMediaConnect").where({ mediaId: mediaId }).transacting(trx);
-        if(existMedia.length) { //tagMediaConnect 테이블에 존재하던 미디어라면 수정을 하는 것, 존재하지 않았다면 새로 추가하는 것.
+        if (existMedia.length) { // tagMediaConnect 테이블에 존재하던 미디어라면 수정을 하는 것, 존재하지 않았다면 새로 추가하는 것.
           await this.knex("tagMediaConnect").where({ mediaId: mediaId }).del().transacting(trx);
         }
         await this.knex("tagMediaConnect").insert(result).transacting(trx);
       });
-    } catch(error) {
+    } catch (error) {
       console.log(error);
-      throw new Error("Fail to modifyTagMediaConnect")
+      throw new Error("Fail to modifyTagMediaConnect");
     }
   }
 
@@ -177,7 +178,7 @@ class UserDB extends SQLDataSource {
       .select(attrName)
       .first()
       .from("user")
-      .where({ id: id, isActive: true })
+      .where({ id })
       .cache(CACHE_TTL);
     return result[attrName];
   }
@@ -191,7 +192,7 @@ class UserDB extends SQLDataSource {
   }
 
   async getUserByEmail(email) {
-    return this.knex.select("*").first().from("user").where({ email: email, isActive: true });
+    return this.knex.select("*").first().from("user").where({ email });
   }
 
   async getUser(id) {
@@ -205,7 +206,7 @@ class UserDB extends SQLDataSource {
   }
 
   async deactivateUser(id) {
-    await this.knex("user").where({ id }).update({ isActive: false });
+    await this.knex("user").where({ id }).update({ isActive: false, name: "탈퇴한 회원" });
     return true;
   }
 }
@@ -216,7 +217,7 @@ class CommentDB extends SQLDataSource {
       .select("*")
       .first()
       .from("comment")
-      .where({ id })
+      .where({ id: id, isActive: true })
       .cache(CACHE_TTL);
   }
 
@@ -224,7 +225,7 @@ class CommentDB extends SQLDataSource {
     const result = await this.knex
       .select(attrName)
       .from("comment")
-      .where({ id })
+      .where({ id: id, isActive: true })
       .cache(CACHE_TTL);
     return result[0][attrName];
   }
@@ -239,7 +240,7 @@ class CommentDB extends SQLDataSource {
   async getCommentIdsByMediaId(id) {
     return this.knex
       .from("comment")
-      .where({ mediaId: id })
+      .where({ mediaId: id, isActive: true })
       .orderBy("id", "desc")
       .cache(CACHE_TTL);
   }

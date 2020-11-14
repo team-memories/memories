@@ -14,5 +14,5 @@ module.exports = {
   },
   tags: async (_, __, { dataSources: { mediaDB } }) => {
     return mediaDB.getTags();
-  }
+  },
 };

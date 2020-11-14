@@ -78,6 +78,7 @@ const typeDefs = gql`
     location: String
     year: Int
     description: String
+    isActive: Boolean
     """
     서버에서 미디어 파일의 변환 및 업로드 작업이 진행중이라면 True
     완료되어서 미디어 조회가 가능하다면 False
@@ -106,6 +107,7 @@ const typeDefs = gql`
     location: String
     year: Int
     description: String
+    isActive: Boolean
     """
     서버에서 미디어 파일의 변환 및 업로드 작업이 진행중이라면 True
     완료되어서 미디어 조회가 가능하다면 False
@@ -128,6 +130,7 @@ const typeDefs = gql`
     location: String
     year: Int
     description: String
+    isActive: Boolean
     """
     서버에서 미디어 파일의 변환 및 업로드 작업이 진행중이라면 True
     완료되어서 미디어 조회가 가능하다면 False

@@ -36,7 +36,7 @@ const authorResolver = async ({ id, authorId }, _, { dataSources: { mediaDB } })
 
 const tagResolver = async ({ id }, _, { dataSources: { mediaDB }}) => {
   return await mediaDB.getTagIdsByMediaId(id);
-}
+};
 
 const underProcessingResolver = async ({ id }, _, { dataSources: { mediaDB } }) => {
   return mediaDB.isUnderProcessing(id);
@@ -52,6 +52,7 @@ const videoTypeResolvers = {
       "location",
       "year",
       "description",
+      "isActive",
     ],
     "mediaDB"
   ),
@@ -70,6 +71,7 @@ const photoTypeResolvers = {
       "location",
       "year",
       "description",
+      "isActive",
     ],
     "mediaDB"
   ),
@@ -84,4 +86,3 @@ module.exports = {
   video: videoTypeResolvers,
   photo: photoTypeResolvers,
 };
-

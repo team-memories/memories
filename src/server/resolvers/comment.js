@@ -1,7 +1,7 @@
 const defaultAttributeResolverMaker = require("../utils/default-attribute-resolver-maker");
 
 module.exports = {
-  ...defaultAttributeResolverMaker(["content"], "commentDB"),
+  ...defaultAttributeResolverMaker(["content", "isActive"], "commentDB"),
   author: async ({ id, authorId }, _, { dataSources: { commentDB } }) => {
     if (authorId) {
       return { id: authorId };
