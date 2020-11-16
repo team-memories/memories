@@ -34,12 +34,18 @@ function LoginPage (props) {
       sessionStorage.setItem("user_name", user.name);
       sessionStorage.setItem("user_profileImgUrl", user.profileImgUrl);
       sessionStorage.setItem("user_email", user.email);
+      sessionStorage.setItem("user_isActive", user.isActive);
       props.afterLogin();
       message.success("로그인 성공");
       history.goBack();
     },
     onError() {
-      message.error("이메일과 비밀번호를 확인해주세요.");
+      if (!sessionStorage.getItem("user_isActive")) {
+        message.error("탈퇴한 회원입니다.");
+      }
+      else {
+        message.error("이메일과 비밀번호를 확인해주세요.");
+      }
     }
   });
   const history = useHistory();

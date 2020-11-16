@@ -23,7 +23,7 @@ class MediaDB extends SQLDataSource {
       .select(attrName)
       .first()
       .from(tableList[index])
-      .where({ id: id, isActive: true })
+      .where({ id: id })
       .cache(CACHE_TTL);
     return result[attrName];
   }
@@ -206,7 +206,7 @@ class UserDB extends SQLDataSource {
   }
 
   async deactivateUser(id) {
-    await this.knex("user").where({ id }).update({ isActive: false, name: "탈퇴한 회원" });
+    await this.knex("user").where({ id }).update({ isActive: false, name: "알 수 없음" });
     return true;
   }
 }

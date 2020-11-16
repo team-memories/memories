@@ -261,6 +261,10 @@ module.exports = {
     if (!valid) {
       throw new Error("Invalid password");
     }
+    const isActive = await userDB.getAttribute("isActive", user.id);
+    if (!isActive) {
+      throw new Error("This account is no longer available. Logging in is unavailable.");
+    }
 
     const token = jwt.sign({ userId: user.id }, process.env.SECRET);
     return {
