@@ -23,7 +23,7 @@ class MediaDB extends SQLDataSource {
       .select(attrName)
       .first()
       .from(tableList[index])
-      .where({ id })
+      .where({ id: id, isActive: true })
       .cache(CACHE_TTL);
     return result[attrName];
   }
@@ -128,7 +128,7 @@ class MediaDB extends SQLDataSource {
   async getMediaByAuthorId(id) {
     // id: 유저의 고유 id
     // 해당 유저가 올린 모든 미디어를 반환한다.
-    return this.knex("media").where({ authorId: id }).cache(CACHE_TTL);
+    return this.knex("media").where({ authorId: id, isActive: true }).cache(CACHE_TTL);
   }
 
   async getTags() {
