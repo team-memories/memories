@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Avatar, Card } from 'antd';
+import { Avatar, Card, Badge } from 'antd';
 import './background.css';
 import {ColorArray} from '../constants';
+import {PlayCircleFilled} from '@ant-design/icons';
 
 function MediaCard(props){
   return (
@@ -15,8 +16,11 @@ function MediaCard(props){
             <img style={{ width: '100%', borderRadius: 10 }}
               src={props.url} alt="thumbnail"/>
             :
-            <img style={{ width: '100%', borderRadius: 10 }}
-              src={props.thumbnailUrl} alt="thumbnail"/>
+            <Badge size="default" count={<PlayCircleFilled/>}
+              style={{color: '#f5222d'}} offset={[-20, 20]}>
+              <img style={{ width: '100%', borderRadius: 10 }}
+                src={props.thumbnailUrl} alt="thumbnail"/>
+            </Badge>
         }
         <figcaption>
           <Card.Meta
@@ -55,7 +59,7 @@ function MediaCard(props){
           />
         </figcaption>
       </figure>
-  
+
     </Link>
   );
 }
