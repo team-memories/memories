@@ -50,6 +50,7 @@ class MediaDB extends SQLDataSource {
         "media.year as year",
         "media.description as description",
         "media.isActive as isActive",
+        "media.createdAt as createdAt",
         "tag.name as name",
         "tag.id as tagId"
       )
@@ -62,6 +63,7 @@ class MediaDB extends SQLDataSource {
       })
       .andWhere("location", "like", `${location}%`)
       .andWhereBetween("year", [yearFrom, yearTo])
+      .orderBy("createdAt", "desc")
       .cache(CACHE_TTL);
   }
 
@@ -128,7 +130,10 @@ class MediaDB extends SQLDataSource {
   async getMediaByAuthorId(id) {
     // id: 유저의 고유 id
     // 해당 유저가 올린 모든 미디어를 반환한다.
-    return this.knex("media").where({ authorId: id, isActive: true }).cache(CACHE_TTL);
+    return this.knex("media")
+      .where({ authorId: id, isActive: true })
+      .orderBy("createdAt", "desc")
+      .cache(CACHE_TTL);
   }
 
   async getTags() {
@@ -226,15 +231,13 @@ class CommentDB extends SQLDataSource {
       .select(attrName)
       .from("comment")
       .where({ id: id, isActive: true })
+      .orderBy("createdAt", "desc")
       .cache(CACHE_TTL);
     return result[0][attrName];
   }
 
   async getCommentIdsByAuthorId(id) {
-    return this.knex
-      .from("comment")
-      .where({ authorId: id })
-      .cache(CACHE_TTL);
+    return this.knex.from("comment").where({ authorId: id }).cache(CACHE_TTL);
   }
 
   async getCommentIdsByMediaId(id) {
