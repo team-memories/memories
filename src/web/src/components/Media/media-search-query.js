@@ -36,7 +36,8 @@ function MediaSearchQuery (props) {
       yearTo: props.yearTo
     },
     errorPolicy: 'all',
-    fetchPolicy: 'cache-and-network'
+    fetchPolicy: 'cache-and-network',
+    nextFetchPolicy: "cache-first"
   });
   if (loading) return <Spin tip="Loading..." style={{ paddingTop: "23%", paddingLeft: "47%" }}/>;
   if (error) return <div>Error: {error.message}</div>;
