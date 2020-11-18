@@ -62,8 +62,8 @@ class MediaDB extends SQLDataSource {
   }) {
     const result = await this.knex
       .from("media")
-      .join("tagMediaConnect", "tagMediaConnect.mediaId", "media.id")
-      .join("tag", "tag.id", "tagMediaConnect.tagId")
+      .leftOuterJoin("tagMediaConnect", "tagMediaConnect.mediaId", "media.id")
+      .leftOuterJoin("tag", "tag.id", "tagMediaConnect.tagId")
       .select(
         "media.id as id",
         "media.title as title",
