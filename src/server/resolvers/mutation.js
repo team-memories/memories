@@ -146,7 +146,7 @@ module.exports = {
           thumbnailUrl = originalUrl;
         }
 
-        if (response.data["isOriginal"]) { //변환이 필요없을 때({random}-{id}-enhanced가 없는게 문제)
+        if (response.data["isOriginal"]) {
           if (type == mediaTypes.video) { //실패 and video
             await mediaDB.completeProcessing(mediaId, {
               random: id,
@@ -206,7 +206,7 @@ module.exports = {
           .promise();
         const originalUrl = `${process.env["AWS_S3URL"]}/${id}-${mediaId}-original.${fileExtension}`;
 
-        await mediaDB.completeProcessing(mediaId, { //오류일때는 {random}-{id}-enhanced와 {random}-{id}-thumbnail를 만들지 않음.
+        await mediaDB.completeProcessing(mediaId, {
           random: id,
           urlFileExtension: fileExtension,
           thumbnailFileExtension: fileExtension,
