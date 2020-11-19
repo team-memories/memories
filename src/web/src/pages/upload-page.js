@@ -41,7 +41,7 @@ function UploadPage (props) {
   const [tags, setTags] = useState([]);
   const [year, setYear] = useState(new Date().getFullYear());
   const [description, setDescription] = useState();
-  const [isSubmitCliked, setClicked] = useState(false);
+  const [isSubmitClicked, setClicked] = useState(false);
   const [mutate] = useMutation(UPLOAD_MEDIA);
   const history = useHistory();
 
@@ -105,7 +105,7 @@ function UploadPage (props) {
         <UploadTagsSelect tags={tags} onChange={onTagsChange}/>
         <UploadYearSelect year={year} onChange={onYearChange}/>
         <UploadPageDescription description={description} onChange={onDescriptionChange}/>
-        <UploadSubmitButton onClick={handleSubmit} isSubmit={isSubmitCliked}/>
+        <UploadSubmitButton onClick={handleSubmit} isSubmit={isSubmitClicked}/>
       </Form>
     </div>
   );
