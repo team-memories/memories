@@ -5,6 +5,9 @@ module.exports = {
   search: async (_, args, { dataSources: { mediaDB } }) => {
     return mediaDB.searchMedia(args);
   },
+  searchTag: async (_, args, { dataSources: { mediaDB } }) => {
+    return mediaDB.searchTag(args);
+  },
   user: async (_, { id }) => ({ id }),
   myMedia: async (_, __, { userId, dataSources: { mediaDB } }) => {
     if (!userId) {

@@ -175,6 +175,14 @@ class MediaDB extends SQLDataSource {
   async getTagIdByTagName(tagName) {
     return this.knex("tag").where({ name: tagName }).select("id");
   }
+
+  async searchTag({ queryStr = "" }) {
+    return this.knex
+      .from("tag")
+      .select("id", "name")
+      .where("name", "like", `%${queryStr}%`)
+      .cache(CACHE_TTL);
+  }
 }
 
 class UserDB extends SQLDataSource {
