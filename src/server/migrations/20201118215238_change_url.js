@@ -13,10 +13,10 @@ const s3 = new AWS.S3({
 
 exports.up = async function(knex) {
   await knex.schema.table("media", function(table){
-    table.text("random");
-    table.boolean("convert").notNullable().defaultTo(true);
-    table.text("urlFileExtension");
-    table.text("thumbnailFileExtension");
+    table.string("random", 14);
+    table.boolean("isConvert").notNullable().defaultTo(true);
+    table.string("urlFileExtension", 4);
+    table.string("thumbnailFileExtension", 4);
   });
 
   const result = await knex("media").select("id", "url", "originalUrl", "thumbnailUrl", "type");
@@ -129,9 +129,9 @@ exports.up = async function(knex) {
   }
 
   await knex.schema.table("media", function(table){
-    table.text("random").notNullable().alter();
-    table.text("urlFileExtension").notNullable().alter();
-    table.text("thumbnailFileExtension").notNullable().alter();
+    table.string("random",14).notNullable().alter();
+    table.string("urlFileExtension",4).notNullable().alter();
+    table.string("thumbnailFileExtension",4).notNullable().alter();
   });
 
   await knex.schema.table("media", function(table){
@@ -193,6 +193,6 @@ exports.down = async function(knex) {
     table.dropColumn("random");
     table.dropColumn("urlFileExtension");
     table.dropColumn("thumbnailFileExtension");
-    table.dropColumn("convert");
+    table.dropColumn("isConvert");
   });
 };
