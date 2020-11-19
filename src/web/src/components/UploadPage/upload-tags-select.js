@@ -13,7 +13,6 @@ const SEARCH_TAG_QUERY = gql`
   }
 `;
 
-// TODO(sujin): tag 검색, 추가 바로 반영되도록
 function UploadTagsSelect (props) {
   const [isEditing, setEditing] = useState(false);
   const [inputVisible, setInputVisible] = useState(false);
@@ -42,7 +41,7 @@ function UploadTagsSelect (props) {
     setInputVisible(true);
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = e => {
     setInputValue(e);
     setSearchValue(e);
   };
@@ -84,6 +83,7 @@ function UploadTagsSelect (props) {
 
   const { error, data } = useQuery(SEARCH_TAG_QUERY, {
     variables: { queryStr: searchValue },
+    onCompleted: handleSearch,
     errorPolicy: 'all',
     fetchPolicy: 'cache-and-network',
     nextFetchPolicy: "cache-first",
@@ -109,7 +109,6 @@ function UploadTagsSelect (props) {
                 options={options}
                 onBlur={handleEditInputConfirm}
                 onChange={handleEditInputChange}
-                onSearch={handleSearch}
                 style={{width: '78px', marginRight: '8px', verticalAlign: 'top' }}
               />
             );
@@ -163,7 +162,6 @@ function UploadTagsSelect (props) {
             options={options}
             onBlur={handleInputConfirm}
             onChange={handleInputChange}
-            onSearch={handleSearch}
             style={{width: '78px', marginRight: '8px', verticalAlign: 'top' }}
           />
         )}
