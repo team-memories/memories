@@ -74,9 +74,9 @@ function UploadTagsSelect (props) {
 
   // AutoComplete 의 옵션 설정: 기존에 등록되어 있는 태그에서 검색 (최대 3개)
   const handleSearch = (value) => {
-    let result = !value
+    let result = !value || !data || !!data && data.searchTag.length === 0
       ? []
-      : data.searchTag.slice(0, 3).map((tag) => {return {value: tag.name};});
+      : !!data && data.searchTag.slice(0, 3).map((tag) => {return {value: tag.name};});
 
     setOptions(result);
   };
