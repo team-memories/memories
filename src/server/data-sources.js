@@ -21,12 +21,12 @@ class MediaDB extends SQLDataSource {
     } else index = 0;
     if (attrName == "url" || attrName == "originalUrl" || attrName == "thumbnailUrl") {
       const result = await this.knex
-      .select("random", "id", "urlFileExtension", "thumbnailFileExtension", "type", "convert")
+      .select("random", "id", "urlFileExtension", "thumbnailFileExtension", "type", "isConverted")
       .first()
       .from(tableList[index])
       .where({ id: id })
       .cache(CACHE_TTL);
-      if (result.convert) { //성공
+      if (result.isConverted) { //성공
         if (attrName == "url") {
           return `${process.env["AWS_S3URL"]}/${result.random}-${result.id}-enhanced.${result.urlFileExtension}`;
         } else if (attrName == "originalUrl" || (attrName == "thumbnailUrl" && result.type == "PHOTO")) {
@@ -71,7 +71,7 @@ class MediaDB extends SQLDataSource {
         "media.random as random",
         "media.urlFileExtension as urlFileExtension",
         "media.thumbnailFileExtension as thumbnailFileExtension",
-        "media.convert as convert",
+        "media.isConverted as isConverted",
         "media.authorId as authorId",
         "media.location as location",
         "media.year as year",
@@ -93,7 +93,7 @@ class MediaDB extends SQLDataSource {
       .orderBy("createdAt", "desc")
       .cache(CACHE_TTL);
     for (const media of result) {
-      if (media.convert) {
+      if (media.isConverted) {
         media["url"] = `${process.env["AWS_S3URL"]}/${media.random}-${media.id}-enhanced.${media.urlFileExtension}`;
       } else {
         media["url"] = `${process.env["AWS_S3URL"]}/${media.random}-${media.id}-original.${media.urlFileExtension}`;
@@ -130,7 +130,7 @@ class MediaDB extends SQLDataSource {
     return media;
   }
 
-  async completeProcessing(id, random, urlFileExtension, thumbnailFileExtension, convert, title) {
+  async completeProcessing(id, random, urlFileExtension, thumbnailFileExtension, isConverted, title) {
     // validate
     if (await this.isUnderProcessing(id)) {
       throw Error("Already processed media");
@@ -144,7 +144,7 @@ class MediaDB extends SQLDataSource {
           .transacting(trx);
         const updateMedia = this.knex("media")
           .where({ id })
-          .update({ random, urlFileExtension, thumbnailFileExtension, convert, title })
+          .update({ random, urlFileExtension, thumbnailFileExtension, isConverted, title })
           .transacting(trx);
         await deleteFromMediaUnderProcessingTable;
         await updateMedia;

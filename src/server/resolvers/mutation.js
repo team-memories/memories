@@ -152,7 +152,7 @@ module.exports = {
               random: id,
               urlFileExtension: fileExtension,
               thumbnailFileExtension: "png",
-              convert: false,
+              isConverted: false,
               title: "[Original] " + title,
             });
           } else { //실패 and photo
@@ -160,7 +160,7 @@ module.exports = {
               random: id,
               urlFileExtension: fileExtension,
               thumbnailFileExtension: fileExtension,
-              convert: false,
+              isConverted: false,
               title: "[Original] " + title,
             });
           }
@@ -210,7 +210,7 @@ module.exports = {
           random: id,
           urlFileExtension: fileExtension,
           thumbnailFileExtension: fileExtension,
-          convert: false,
+          isConverted: false,
           title: "[Original] " + title,
         });
       });

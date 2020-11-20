@@ -14,7 +14,7 @@ const s3 = new AWS.S3({
 exports.up = async function(knex) {
   await knex.schema.table("media", function(table){
     table.string("random", 14);
-    table.boolean("isConvert").notNullable().defaultTo(true);
+    table.boolean("isConverted").notNullable().defaultTo(true);
     table.string("urlFileExtension", 4);
     table.string("thumbnailFileExtension", 4);
   });
@@ -148,11 +148,11 @@ exports.down = async function(knex) {
     table.text("thumbnailUrl");
   });
 
-  const result = await knex("media").select("id", "random", "convert", "type", "urlFileExtension", "thumbnailFileExtension");
+  const result = await knex("media").select("id", "random", "isConverted", "type", "urlFileExtension", "thumbnailFileExtension");
 
   for (const media of result) {
     let fileName = `${media.random}-${media.id}`;
-    if (media.convert) {
+    if (media.isConverted) {
       if (media.type == "VIDEO") { //성공 and video
         await knex("media").update({
           url: `${process.env["AWS_S3URL"]}/${fileName}-enhanced.${media.urlFileExtension}`,
@@ -193,6 +193,6 @@ exports.down = async function(knex) {
     table.dropColumn("random");
     table.dropColumn("urlFileExtension");
     table.dropColumn("thumbnailFileExtension");
-    table.dropColumn("isConvert");
+    table.dropColumn("isConverted");
   });
 };
