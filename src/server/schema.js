@@ -15,6 +15,7 @@ const typeDefs = gql`
       yearFrom: Int
       yearTo: Int
     ): [Media]!
+    searchTag(queryStr: String): [Tag]!
     user(id: ID!): User!
     myMedia: [Media]!
     tags: [Tag]
