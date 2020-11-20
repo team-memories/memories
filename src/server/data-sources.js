@@ -19,13 +19,39 @@ class MediaDB extends SQLDataSource {
       index = 1;
       attrName = attrName.substring("tag".length).toLowerCase();
     } else index = 0;
-    const result = await this.knex
-      .select(attrName)
+    if (attrName == "url" || attrName == "originalUrl" || attrName == "thumbnailUrl") {
+      const result = await this.knex
+      .select("random", "id", "urlFileExtension", "thumbnailFileExtension", "type", "convert")
       .first()
       .from(tableList[index])
       .where({ id: id })
       .cache(CACHE_TTL);
-    return result[attrName];
+      if (result.convert) { //성공
+        if (attrName == "url") {
+          return `${process.env["AWS_S3URL"]}/${result.random}-${result.id}-enhanced.${result.urlFileExtension}`;
+        } else if (attrName == "originalUrl" || (attrName == "thumbnailUrl" && result.type == "PHOTO")) {
+          return `${process.env["AWS_S3URL"]}/${result.random}-${result.id}-original.${result.urlFileExtension}`;
+        } else {
+          return `${process.env["AWS_S3URL"]}/${result.random}-${result.id}-thumbnail.${result.thumbnailFileExtension}`;
+        }
+      } else { //실패
+        if (attrName == "url") {
+          return `${process.env["AWS_S3URL"]}/${result.random}-${result.id}-original.${result.urlFileExtension}`;
+        } else if (attrName == "originalUrl" || (attrName == "thumbnailUrl" && result.type == "PHOTO")) {
+          return `${process.env["AWS_S3URL"]}/${result.random}-${result.id}-original.${result.urlFileExtension}`;
+        } else {
+          return `${process.env["AWS_S3URL"]}/${result.random}-${result.id}-thumbnail.${result.thumbnailFileExtension}`;
+        }
+      }
+    } else {
+      const result = await this.knex
+        .select(attrName)
+        .first()
+        .from(tableList[index])
+        .where({ id: id })
+        .cache(CACHE_TTL);
+      return result[attrName];
+    };
   }
 
   async searchMedia({
@@ -34,17 +60,18 @@ class MediaDB extends SQLDataSource {
     yearFrom = 1900,
     yearTo = 2100,
   }) {
-    return this.knex
+    const result = await this.knex
       .from("media")
-      .join("tagMediaConnect", "tagMediaConnect.mediaId", "media.id")
-      .join("tag", "tag.id", "tagMediaConnect.tagId")
+      .leftOuterJoin("tagMediaConnect", "tagMediaConnect.mediaId", "media.id")
+      .leftOuterJoin("tag", "tag.id", "tagMediaConnect.tagId")
       .select(
         "media.id as id",
         "media.title as title",
         "media.type as type",
-        "media.thumbnailUrl as thumbnailUrl",
-        "media.originalUrl as originalUrl",
-        "media.url as url",
+        "media.random as random",
+        "media.urlFileExtension as urlFileExtension",
+        "media.thumbnailFileExtension as thumbnailFileExtension",
+        "media.convert as convert",
         "media.authorId as authorId",
         "media.location as location",
         "media.year as year",
@@ -65,6 +92,20 @@ class MediaDB extends SQLDataSource {
       .andWhereBetween("year", [yearFrom, yearTo])
       .orderBy("createdAt", "desc")
       .cache(CACHE_TTL);
+    for (const media of result) {
+      if (media.convert) {
+        media["url"] = `${process.env["AWS_S3URL"]}/${media.random}-${media.id}-enhanced.${media.urlFileExtension}`;
+      } else {
+        media["url"] = `${process.env["AWS_S3URL"]}/${media.random}-${media.id}-original.${media.urlFileExtension}`;
+      };
+      media["originalUrl"] = `${process.env["AWS_S3URL"]}/${media.random}-${media.id}-original.${media.urlFileExtension}`;
+      if (media.type == "VIDEO") {
+        media["thumbnailUrl"] = `${process.env["AWS_S3URL"]}/${media.random}-${media.id}-thumbnail.${media.thumbnailFileExtension}`;
+      } else {
+        media["thumbnailUrl"] = media["originalUrl"];
+      };
+    };
+    return result;
   }
 
   async createMedia(args) {
@@ -72,7 +113,7 @@ class MediaDB extends SQLDataSource {
     try {
       await this.knex.transaction(async (trx) => {
         media = await this.knex
-          .insert({ ...args, originalUrl: "", thumbnailUrl: "", url: "" })
+          .insert({ ...args, random: "" })
           .into("media")
           .returning("*")
           .first()
@@ -89,7 +130,7 @@ class MediaDB extends SQLDataSource {
     return media;
   }
 
-  async completeProcessing(id, url, thumbnailUrl, originalUrl, title) {
+  async completeProcessing(id, random, urlFileExtension, thumbnailFileExtension, convert, title) {
     // validate
     if (await this.isUnderProcessing(id)) {
       throw Error("Already processed media");
@@ -103,7 +144,7 @@ class MediaDB extends SQLDataSource {
           .transacting(trx);
         const updateMedia = this.knex("media")
           .where({ id })
-          .update({ url, thumbnailUrl, originalUrl, title })
+          .update({ random, urlFileExtension, thumbnailFileExtension, convert, title })
           .transacting(trx);
         await deleteFromMediaUnderProcessingTable;
         await updateMedia;
