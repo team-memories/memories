@@ -6,7 +6,7 @@ import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
 
 const SEARCH_TAG_QUERY = gql`
-  query ($queryStr: String!) {
+  query ($queryStr: String) {
     searchTag(queryStr: $queryStr) {
       name
     }
