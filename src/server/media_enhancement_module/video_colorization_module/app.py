@@ -1,6 +1,6 @@
 import subprocess
+
 from flask import Flask, request
-import requests
 
 app = Flask(__name__)
 
@@ -16,7 +16,7 @@ def enhance():
     file_in_path, folder_out_path, frames_folder_out_path = \
         param["file_in_path"], param["folder_out_path"], param["frames_folder_out_path"]
     process(file_in_path, folder_out_path, frames_folder_out_path)
-    return {}, requests.codes.ok
+    return {}, 200
 
 
 if __name__ == '__main__':

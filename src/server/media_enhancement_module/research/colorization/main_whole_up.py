@@ -76,7 +76,10 @@ def prepare_input_w_flow(path, num_frames,gray=False):
     input_image_src, input_image_target = utils.read_image_sequence(path, num_frames=num_frame)
     if input_image_target is None:
         return None, None, None, None
-    input_flow_forward,input_flow_backward = utils.read_flow_sequence(path.replace("korea_data","FLOWImages"), num_frames=num_frame) if not gray else utils.read_flow_sequence(path.replace("korea_data","FLOWImages_GRAY"), num_frames=num_frame)     
+    if not gray:
+        input_flow_forward,input_flow_backward = utils.read_flow_sequence(path.replace("korea_data","FLOWImages"), num_frames=num_frame)
+    else:
+        input_flow_forward,input_flow_backward = utils.read_flow_sequence(path.replace("korea_data","FLOWImages_GRAY"), num_frames=num_frame)        
     h=input_image_src.shape[0]//32*32
     w=input_image_src.shape[1]//32*32
     if input_flow_forward is None:

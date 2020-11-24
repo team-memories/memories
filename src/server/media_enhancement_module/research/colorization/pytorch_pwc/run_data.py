@@ -290,7 +290,8 @@ netNetwork = None
 def estimate(tenFirst, tenSecond):
 	global netNetwork
 
-  netNetwork = Network().cuda().eval() if netNetwork is None else netNetwork
+	if netNetwork is None:
+		netNetwork = Network().cuda().eval()
 	# end
     
 	if tenFirst.shape[1] != tenSecond.shape[1] or tenFirst.shape[2] != tenSecond.shape[2]:

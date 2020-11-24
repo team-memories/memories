@@ -1,7 +1,7 @@
 import subprocess
+
 from flask import Flask, request, jsonify
 from logging.config import dictConfig
-import requests
 
 dictConfig({
     'version': 1,
@@ -43,7 +43,7 @@ def convert_photo():
         "file_out_path"], param['audio_file_path']
     app.logger.info(f"Receive {folder_in_path}, original fps: {float(open(fps_in_path).readline())}")
     zooming_slow_mo(folder_in_path, fps_in_path, file_out_path, audio_file_path)
-    return {}, requests.codes.ok
+    return {}, 200
 
 
 app.run(port=4203, host="0.0.0.0", threaded=False, processes=1)

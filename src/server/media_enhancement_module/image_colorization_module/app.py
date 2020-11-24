@@ -1,6 +1,6 @@
 import subprocess
+
 from flask import Flask, request
-import requests
 
 app = Flask(__name__)
 
@@ -15,7 +15,7 @@ def enhance():
     param = request.get_json(force=True)
     file_in_path, file_out_path = param["file_in_path"], param["file_out_path"]
     process(file_in_path, file_out_path)
-    return {}, requests.codes.ok
+    return {}, 200
 
 
 app.run(port=4102, host="0.0.0.0", threaded=False, processes=3)

@@ -110,9 +110,10 @@ def read_image_SPMC(filename, num_frames):
         if imgi is None:
             print("Cannot read the following %d frames\n"%(num_frames))
             return None,None
-        elif isgray:
-            imgi = np.concatenate((imgi,imgi,imgi),axis=2)
-            imghi = np.concatenate((imghi,imghi,imghi),axis=2)
+        else:
+            if isgray:
+                imgi = np.concatenate((imgi,imgi,imgi),axis=2)
+                imghi = np.concatenate((imghi,imghi,imghi),axis=2)
         img_l_seq = np.concatenate((img_l_seq,imgi),axis=2)
         img_h_seq = np.concatenate((img_h_seq,imghi),axis=2)
 
