@@ -18,7 +18,7 @@ AWS_SECRET_ACCESS_KEY: ${SECRET}
 ----------------------------------
 `);
 
-AWS.config.update({ region: "ap-northeast-2" });
+AWS.config.update({ region: process.env["AWS_REGION"] });
 const s3 = new AWS.S3({
   accessKeyId: ID,
   secretAccessKey: SECRET,
@@ -87,9 +87,9 @@ module.exports = {
       year,
       location,
       type,
-      originalUrl: "",
-      thumbnailUrl: "",
-      url: "",
+      random: "",
+      urlFileExtension: "",
+      thumbnailFileExtension: "",
       authorId: userId,
     });
 
@@ -118,11 +118,11 @@ module.exports = {
         ${JSON.stringify(response.data)}`);
 
         const originalFile = fs.readFileSync(response.data["originalFilePath"]);
-        const originalUrl = `https://memories-media-data.s3.ap-northeast-2.amazonaws.com/${uniqueFileName}`;
+        const originalUrl = `${process.env["AWS_S3URL"]}/${id}-${mediaId}-original.${fileExtension}`;
         await s3
           .upload({
             Bucket: BUCKET_NAME,
-            Key: `${uniqueFileName}`,
+            Key: `${id}-${mediaId}-original.${fileExtension}`,
             Body: originalFile,
             ACL: "public-read",
           })
@@ -133,7 +133,7 @@ module.exports = {
           await s3
             .upload({
               Bucket: BUCKET_NAME,
-              Key: `${id}-thumbnail.png`,
+              Key: `${id}-${mediaId}-thumbnail.png`,
               Body: thumbnailFile,
               ACL: "public-read",
             })
@@ -141,37 +141,56 @@ module.exports = {
         }
         let thumbnailUrl;
         if (type === mediaTypes.video) {
-          thumbnailUrl = `https://memories-media-data.s3.ap-northeast-2.amazonaws.com/${id}-thumbnail.png`;
+          thumbnailUrl = `${process.env["AWS_S3URL"]}/${id}-${mediaId}-thumbnail.png`;
         } else {
           thumbnailUrl = originalUrl;
         }
 
         if (response.data["isOriginal"]) {
-          await mediaDB.completeProcessing(mediaId, {
-            originalUrl,
-            thumbnailUrl,
-            url: originalUrl,
-            title: "[Original] " + title,
-          });
+          if (type == mediaTypes.video) { //실패 and video
+            await mediaDB.completeProcessing(mediaId, {
+              random: id,
+              urlFileExtension: fileExtension,
+              thumbnailFileExtension: "png",
+              isConverted: false,
+              title: "[Original] " + title,
+            });
+          } else { //실패 and photo
+            await mediaDB.completeProcessing(mediaId, {
+              random: id,
+              urlFileExtension: fileExtension,
+              thumbnailFileExtension: fileExtension,
+              isConverted: false,
+              title: "[Original] " + title,
+            });
+          }
           return;
         }
 
         const enhancedFile = fs.readFileSync(response.data["enhancedFilePath"]);
-        const enhancedUrl = `https://memories-media-data.s3.ap-northeast-2.amazonaws.com/${id}-enhanced-${uniqueFileName}`;
+        const enhancedUrl = `${process.env["AWS_S3URL"]}/${id}-${mediaId}-enhanced.${fileExtension}`;
         await s3
           .upload({
             Bucket: BUCKET_NAME,
-            Key: `${id}-enhanced-${uniqueFileName}`,
+            Key: `${id}-${mediaId}-enhanced.${fileExtension}`,
             Body: enhancedFile,
             ACL: "public-read",
           })
           .promise();
 
-        await mediaDB.completeProcessing(mediaId, {
-          originalUrl,
-          thumbnailUrl,
-          url: enhancedUrl,
-        });
+        if (type == mediaTypes.video) { //성공 and video
+          await mediaDB.completeProcessing(mediaId, {
+            random: id,
+            urlFileExtension: fileExtension,
+            thumbnailFileExtension: "png"
+          });
+        } else { //성공 and photo
+          await mediaDB.completeProcessing(mediaId, {
+            random: id,
+            urlFileExtension: fileExtension,
+            thumbnailFileExtension: fileExtension
+          });
+        }
       })
       .catch(async function (error) {
         console.log(`Something bad happened in Media Enhancement Service.
@@ -180,17 +199,18 @@ module.exports = {
         await s3
           .upload({
             Bucket: BUCKET_NAME,
-            Key: `${uniqueFileName}`,
+            Key: `${id}-${mediaId}-original.${fileExtension}`,
             Body: originalFile,
             ACL: "public-read",
           })
           .promise();
-        const originalUrl = `https://memories-media-data.s3.ap-northeast-2.amazonaws.com/${uniqueFileName}`;
+        const originalUrl = `${process.env["AWS_S3URL"]}/${id}-${mediaId}-original.${fileExtension}`;
 
         await mediaDB.completeProcessing(mediaId, {
-          originalUrl,
-          thumbnailUrl: originalUrl,
-          url: originalUrl,
+          random: id,
+          urlFileExtension: fileExtension,
+          thumbnailFileExtension: fileExtension,
+          isConverted: false,
           title: "[Original] " + title,
         });
       });
@@ -262,6 +282,10 @@ module.exports = {
     if (!valid) {
       throw new Error("Invalid password");
     }
+    const isActive = await userDB.getAttribute("isActive", user.id);
+    if (!isActive) {
+      throw new Error("This account is no longer available. Logging in is unavailable.");
+    }
 
     const token = jwt.sign({ userId: user.id }, process.env.SECRET);
     return {
@@ -317,7 +341,7 @@ module.exports = {
     // Success
     return comment;
   },
-  deactivateUser: async (_, { id }, { userId, dataSources: {userDB } }) => {
+  deactivateUser: async (_, { id }, { userId, dataSources: { userDB } }) => {
     if (!userId) {
       throw new Error("Login required");
     }
@@ -326,9 +350,9 @@ module.exports = {
       throw new Error("User not found");
     }
     if (userId !== user.id) {
-      throw new Error("You are not the User of the account")
+      throw new Error("You are not the User of the account");
     }
-    if (!await userDB.deactivateUser(id)) {
+    if (!(await userDB.deactivateUser(id))) {
       throw new Error("Cannot deactivate the account");
     }
     return user;

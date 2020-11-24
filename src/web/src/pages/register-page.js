@@ -30,7 +30,11 @@ function RegisterPage (props) {
       history.goBack();
     },
     onError() {
-      message.error("중복된 이메일 입니다.");
+      if (!sessionStorage.getItem("user_isActive")) {
+        message.error("탈퇴한 회원입니다.");
+      } else {
+        message.error("중복된 이메일 입니다.");
+      }
     }
   });
   const history = useHistory();
