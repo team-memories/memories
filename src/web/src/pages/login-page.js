@@ -6,6 +6,7 @@ import { Form, message } from 'antd';
 import SignPageEmail from '../components/SignPage/sign-page-email';
 import SignPagePassword from '../components/SignPage/sign-page-password';
 import LoginPageButton from '../components/SignPage/login-page-button';
+import GoogleLoginButton from '../components/SignPage/google-login-button';
 
 const SIGNIN = gql`
   mutation ($email: String!, $password: String!) {
@@ -72,14 +73,15 @@ function LoginPage (props) {
   props.onChangeIsMediaView(window.location.pathname === "/watch");
   return (
     <div style={{ maxWidth: '450px', margin: '13rem auto'}} >
-      <h1>
-        Login
+      <h1 style={{textAlign:"center"}}>
+        로그인
       </h1>
       <Form>
         <SignPageEmail onChangeEmail={onChangeEmail}/>
         <SignPagePassword onChangePassword={onChangePassword}/>
         <LoginPageButton onClickLogin={onClickLogin}/>
       </Form>
+      <GoogleLoginButton afterLogin={props.afterLogin} />
     </div>
   );
 }
