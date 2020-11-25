@@ -55,7 +55,13 @@ const typeDefs = gql`
       id: ID!
     ): Comment
     modifyComment(id: ID!, content: String!): Comment
-
+    signInWithGoogle(googleId: String!): AuthPayload!
+    signUpWithGoogle(
+      googleId: String!
+      email: String!
+      name: String!
+      profileImgUrl: String
+    ): AuthPayload!
     signUp(email: String!, password: String!, name: String!): AuthPayload!
     signIn(email: String!, password: String!): AuthPayload!
     deactivateUser(id: ID!): User!

@@ -245,8 +245,19 @@ class UserDB extends SQLDataSource {
     return result[0];
   }
 
+  async createGoogleUser({ googleId, email, name, profileImgUrl }) {
+    const result = await this.knex
+      .insert({ googleId, email, name, profileImgUrl })
+      .into("user")
+      .returning("*");
+    return result[0];
+  }
   async getUserByEmail(email) {
     return this.knex.select("*").first().from("user").where({ email });
+  }
+
+  async getUserByGoogleId(googleId) {
+    return this.knex.select("*").first().from("user").where({ googleId });
   }
 
   async getUser(id) {
