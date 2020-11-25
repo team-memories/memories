@@ -65,9 +65,9 @@ function RegisterPage (props) {
 
   props.onChangeIsMediaView(window.location.pathname === "/watch");
   return (
-    <div style={{ maxWidth: '450px', margin: '13rem auto'}} >
-      <h1 style={{textAlign:"center"}}>
-        회원가입
+    <div style={{ maxWidth: '450px', margin: '9rem auto'}} >
+      <h1 style={{ textAlign: 'center', marginBottom: '3rem' }}>
+        SIGN UP
       </h1>
       <Form>
         <RegisterPageName onChangeName={onChangeName}/>

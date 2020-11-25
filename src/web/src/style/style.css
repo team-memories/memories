@@ -1,8 +1,9 @@
-.google-button-class {
+.google-button-class, .login-button-class, .register-button-class {
 	width: 450px;
+	font-size: large;
 	align-items: center;
 }
 
-.google-button-class div{
-	margin-left: 29%;
+.google-button-class div {
+	margin-left: 32%;
 }
