@@ -1,11 +1,11 @@
-import { Input, Form, Tag, Tooltip, AutoComplete } from 'antd';
+import { Form, Tag, Tooltip, AutoComplete } from 'antd';
 import React, { useEffect, useRef, useState } from 'react';
 import { Layout } from '../constants';
 import { PlusOutlined } from '@ant-design/icons';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
 
-const SEARCH_TAG_QUERY = gql`
+const SEARCH_TAG = gql`
   query ($queryStr: String) {
     searchTag(queryStr: $queryStr) {
       name
@@ -81,7 +81,7 @@ function UploadTagsSelect (props) {
     setOptions(result);
   };
 
-  const { error, data } = useQuery(SEARCH_TAG_QUERY, {
+  const { error, data } = useQuery(SEARCH_TAG, {
     variables: { queryStr: searchValue },
     onCompleted: handleSearch,
     errorPolicy: 'all',
