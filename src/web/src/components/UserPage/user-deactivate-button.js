@@ -13,7 +13,6 @@ const DEACTIVATE_USER = gql`
 `;
 
 function UserDeactivateButton (props) {
-  console.log(props.userId);
   const logout = () => {
     sessionStorage.removeItem("token");
     sessionStorage.removeItem("user_id");

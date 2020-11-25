@@ -41,7 +41,7 @@ function UserPage (props) {
         (data.myMedia.length === 0) ? <div style={{ width: '90%', height: "100%", margin: '3rem auto'}}>업로드한 미디어가 없습니다.</div> : <MediaList data={data.myMedia}/>
       }
       <div style={{width: "90%", margin: "3rem auto"}}>
-        <UserDeactivateButton stype={{margin:"3%"}}/>
+        <UserDeactivateButton userId={sessionStorage.getItem('user_id')} stype={{margin:"3%"}}/>
       </div>
     </div>
 
