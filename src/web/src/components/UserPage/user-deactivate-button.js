@@ -1,19 +1,18 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
-import { Button, message, Popconfirm } from 'antd';
-import { DeleteOutlined } from '@ant-design/icons';
+import { Button, message, Modal } from 'antd';
+import { WarningOutlined } from '@ant-design/icons';
 
 const DEACTIVATE_USER = gql`
   mutation deactivateUser($userId: ID!){
-    deactivateUser(id: $userId){
+    deactivateUser(id: $userId) {
       name
     }
   }
 `;
 
 function UserDeactivateButton (props) {
-  console.log(props.userId);
   const logout = () => {
     sessionStorage.removeItem("token");
     sessionStorage.removeItem("user_id");
@@ -24,7 +23,7 @@ function UserDeactivateButton (props) {
   };
   const [deactivateUser] = useMutation(DEACTIVATE_USER, {
     onCompleted ({ deactivateUser: { name } }) {
-      message.success(`${name}님의 회원탈퇴가 성공하였습니다.`);
+      message.success(`${name}님의 회원 탈퇴가 성공하였습니다.`);
       // 로그아웃 & home
       logout();
     },
@@ -32,23 +31,25 @@ function UserDeactivateButton (props) {
       message.error('탈퇴를 실패하였습니다.');
     }
   });
-  const confirm = (userId) => {
-    deactivateUser({variables: {userId}});
+
+  const handleOnClick = () => {
+    Modal.confirm({
+      title: "회원 탈퇴",
+      content: "탈퇴를 진행하시겠습니까?",
+      icon: <WarningOutlined />,
+      okText: 'Yes',
+      okType: 'danger',
+      cancelText: 'No',
+      onOk() {
+        deactivateUser({ variables: { userId: props.userId } });
+      },
+      onCancel() {
+        message.error('탈퇴를 취소하였습니다.');
+      },
+    });
   };
-  const cancel = () => {
-    message.error('탈퇴를 취소하였습니다.');
-  };
-  // TODO(Lhyejin): delete button ui 집어넣기
   return (
-    <Popconfirm
-      title="탈퇴를 진행하시겠습니까?"
-      onConfirm={() => confirm(props.userId)}
-      onCancel={cancel}
-      okText={'Yes'}
-      cancelText={'No'}
-    >
-      <Button danger> 회원탈퇴 </Button>
-    </Popconfirm>
+    <Button style={{ float: 'right' }} onClick={handleOnClick}>회원 탈퇴</Button>
   );
 }
 

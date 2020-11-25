@@ -51,7 +51,7 @@ function UserMenu () {
       <p>
         <Link to="/user">
           <Button type="link" onClick={hidePopover}>
-            내 앨범
+            마이페이지
           </Button>
         </Link>
       </p>
