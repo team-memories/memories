@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import gql from 'graphql-tag';
 import { GoogleLogin } from 'react-google-login';
 import { useMutation } from '@apollo/react-hooks';
@@ -7,7 +7,7 @@ import '../../style/style.css';
 import { message } from 'antd';
 const config = require('../../config');
 
-const SIGNINWITHGOOGLE = gql`
+const SIGN_IN_WITH_GOOGLE = gql`
   mutation ($googleId: String!) {
     signInWithGoogle(
       googleId: $googleId
@@ -24,7 +24,7 @@ const SIGNINWITHGOOGLE = gql`
 `;
 
 function GoogleLoginButton (props) {
-  const [mutate] = useMutation(SIGNINWITHGOOGLE, {
+  const [mutate] = useMutation(SIGN_IN_WITH_GOOGLE, {
     onCompleted({signInWithGoogle: {token, user}}) {
       sessionStorage.setItem("token", token);
       sessionStorage.setItem("user_id", user.id);
@@ -54,7 +54,7 @@ function GoogleLoginButton (props) {
     mutate({ variables: { googleId:res.profileObj.googleId} });
   };
 
-  const errorGoogle = (error) => {
+  const errorGoogle = () => {
     message.error("google access 실패");
   };
 

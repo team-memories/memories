@@ -6,7 +6,7 @@ import gql from 'graphql-tag';
 import UserDeactivateButton from '../components/UserPage/user-deactivate-button';
 
 
-const MyMediaQuery = gql`
+const MY_MEDIA = gql`
   query {
     myMedia {
       id
@@ -27,7 +27,7 @@ const MyMediaQuery = gql`
 
 function UserPage (props) {
   props.onChangeIsMediaView(window.location.pathname === "/watch");
-  const { loading, error, data } = useQuery(MyMediaQuery, {errorPolicy: 'all', fetchPolicy: 'cache-and-network'});
+  const { loading, error, data } = useQuery(MY_MEDIA, {errorPolicy: 'all', fetchPolicy: 'cache-and-network'});
   if (loading) return (<Spin tip="Loading..." style={{ paddingTop: "25%", paddingLeft: "47%" }}/>);
   if (error) return <div>Error: {error.message}</div>;
   return (
