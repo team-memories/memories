@@ -258,6 +258,38 @@ module.exports = {
     await mediaDB.deleteMedia(id);
     return media;
   },
+  signInWithGoogle: async (_, { googleId }, { userId, dataSources: { userDB } }) => {
+    const user = await userDB.getUserByGoogleId(googleId);
+    if (!user) {
+      throw new Error("No such user found");
+    }
+    const isActive = await userDB.getAttribute("isActive", user.id);
+    if (!isActive) {
+      throw new Error("This account is no longer available. Logging in is unavailable.");
+    }
+    const token = jwt.sign({ userId: user.id }, process.env.SECRET);
+    return {
+      token,
+      user,
+    };
+  },
+  signUpWithGoogle: async (
+    _,
+    { googleId, email, name, profileImgUrl },
+    { dataSources: { userDB } }
+  ) => {
+    const user = await userDB.createGoogleUser({
+      googleId,
+      email,
+      name,
+      profileImgUrl,
+    });
+    const token = jwt.sign({ userId: user.id }, process.env.SECRET);
+    return {
+      token,
+      user,
+    };
+  },
   signUp: async (_, { email, password, name }, { dataSources: { userDB } }) => {
     const hashedPassword = await bcrypt.hash(password, 3);
     const user = await userDB.createUser({

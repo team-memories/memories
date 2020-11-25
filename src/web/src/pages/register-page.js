@@ -7,6 +7,7 @@ import SignPageEmail from '../components/SignPage/sign-page-email';
 import SignPagePassword from '../components/SignPage/sign-page-password';
 import RegisterPageButton from '../components/SignPage/register-page-button';
 import RegisterPageName from '../components/SignPage/register-page-name';
+import GoogleRegisterButton from '../components/SignPage/google-register-button';
 
 const SIGNUP = gql`
   mutation ($email: String!, $password: String!, $name: String!) {
@@ -65,8 +66,8 @@ function RegisterPage (props) {
   props.onChangeIsMediaView(window.location.pathname === "/watch");
   return (
     <div style={{ maxWidth: '450px', margin: '13rem auto'}} >
-      <h1>
-        Register
+      <h1 style={{textAlign:"center"}}>
+        회원가입
       </h1>
       <Form>
         <RegisterPageName onChangeName={onChangeName}/>
@@ -74,6 +75,7 @@ function RegisterPage (props) {
         <SignPagePassword onChangePassword={onChangePassword}/>
         <RegisterPageButton onClickRegister={onClickRegister}/>
       </Form>
+      <GoogleRegisterButton/>
     </div>
   );
 }
