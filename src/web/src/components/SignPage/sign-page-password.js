@@ -8,6 +8,7 @@ function SignPagePassword (props) {
       {/*비밀번호를 입력하지않으면 비밀번호를 입력하라는 메세지 출력*/}
       <Form.Item
         name="password"
+        hasFeedback
         rules={
           [{
             required: true,
