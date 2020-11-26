@@ -21,11 +21,11 @@ class MediaDB extends SQLDataSource {
     } else index = 0;
     if (attrName == "url" || attrName == "originalUrl" || attrName == "thumbnailUrl") {
       const result = await this.knex
-      .select("random", "id", "urlFileExtension", "thumbnailFileExtension", "type", "isConverted")
-      .first()
-      .from(tableList[index])
-      .where({ id: id })
-      .cache(CACHE_TTL);
+        .select("random", "id", "urlFileExtension", "thumbnailFileExtension", "type", "isConverted")
+        .first()
+        .from(tableList[index])
+        .where({ id: id })
+        .cache(CACHE_TTL);
       if (result.isConverted) { //성공
         if (attrName == "url") {
           return `${process.env["AWS_S3URL"]}/${result.random}-${result.id}-enhanced.${result.urlFileExtension}`;
@@ -273,6 +273,10 @@ class UserDB extends SQLDataSource {
   async deactivateUser(id) {
     await this.knex("user").where({ id }).update({ isActive: false, name: "알 수 없음" });
     return true;
+  }
+
+  async updateUser(id, args) {
+    return this.knex("user").where({ id }).update(args);
   }
 }
 

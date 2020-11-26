@@ -26,7 +26,7 @@ function SignPagePasswordConfirm (props) {
           }),
         ]}
       >
-        <Input.Password prefix={<LockFilled className="site-form-item-icon"/>} placeholder="비밀번호 확인"
+        <Input.Password prefix={<LockFilled/>} placeholder="비밀번호 확인"
           size="large" style={{ border: 'none', borderBottom: '1px solid #d9d9d9' }}/>
       </Form.Item>
     </div>

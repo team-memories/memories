@@ -16,7 +16,7 @@ function SignPagePassword (props) {
           }
           ]}
       >
-        <Input.Password prefix={<LockOutlined className="site-form-item-icon"/>} placeholder="비밀번호"
+        <Input.Password prefix={<LockOutlined/>} placeholder="비밀번호"
           onChange={props.onChangePassword} size="large" style={{ border: 'none', borderBottom: '1px solid #d9d9d9' }}/>
       </Form.Item>
     </div>

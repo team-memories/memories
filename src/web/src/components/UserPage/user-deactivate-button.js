@@ -34,7 +34,7 @@ function UserDeactivateButton (props) {
 
   const handleOnClick = () => {
     Modal.confirm({
-      title: "회원 탈퇴",
+      title: "회원탈퇴",
       content: "탈퇴를 진행하시겠습니까?",
       icon: <WarningOutlined />,
       okText: 'Yes',
@@ -49,7 +49,7 @@ function UserDeactivateButton (props) {
     });
   };
   return (
-    <Button style={{ float: 'right' }} onClick={handleOnClick}>회원 탈퇴</Button>
+    <Button style={{ float: 'right' }} onClick={handleOnClick}>회원탈퇴</Button>
   );
 }
 

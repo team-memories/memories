@@ -65,6 +65,7 @@ const typeDefs = gql`
     signUp(email: String!, password: String!, name: String!): AuthPayload!
     signIn(email: String!, password: String!): AuthPayload!
     deactivateUser(id: ID!): User!
+    modifyUser(id: ID!, password: String!, name: String): AuthPayload!
   }
 
   type AuthPayload {
