@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { Form, message } from 'antd';
 import SignPageEmail from '../components/SignPage/sign-page-email';
 import SignPagePassword from '../components/SignPage/sign-page-password';
+import SignPagePasswordConfirm from '../components/SignPage/sign-page-password-confirm';
 import RegisterPageButton from '../components/SignPage/register-page-button';
 import RegisterPageName from '../components/SignPage/register-page-name';
 import GoogleRegisterButton from '../components/SignPage/google-register-button';
@@ -65,14 +66,15 @@ function RegisterPage (props) {
 
   props.onChangeIsMediaView(window.location.pathname === "/watch");
   return (
-    <div style={{ maxWidth: '450px', margin: '13rem auto'}} >
-      <h1 style={{textAlign:"center"}}>
-        회원가입
+    <div style={{ maxWidth: '450px', margin: '6rem auto'}} >
+      <h1 style={{ textAlign: 'center', marginBottom: '3rem' }}>
+        SIGN UP
       </h1>
       <Form>
         <RegisterPageName onChangeName={onChangeName}/>
         <SignPageEmail onChangeEmail={onChangeEmail}/>
         <SignPagePassword onChangePassword={onChangePassword}/>
+        <SignPagePasswordConfirm password={password}/>
         <RegisterPageButton onClickRegister={onClickRegister}/>
       </Form>
       <GoogleRegisterButton/>

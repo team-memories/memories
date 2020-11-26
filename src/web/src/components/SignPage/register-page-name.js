@@ -1,12 +1,10 @@
 import React from 'react';
-import {Input, Form} from 'antd';
+import { Input, Form } from 'antd';
+import { ProfileOutlined } from '@ant-design/icons';
 
 function RegisterPageName (props) {
   return (
     <div>
-      <h4 style={{marginTop : '2rem'}}>
-        Name
-      </h4>
       {/*이름을 입력하지않고 Register 버튼을 누르면 이름을 입력하세요 메세지 출력*/}
       <Form.Item
         name="name"
@@ -18,7 +16,8 @@ function RegisterPageName (props) {
           }
           ]}
       >
-        <Input placeholder="Name" onChange={props.onChangeName}/>
+        <Input prefix={<ProfileOutlined className="site-form-item-icon"/>} placeholder="이름"
+          onChange={props.onChangeName} size="large" style={{ border: 'none', borderBottom: '1px solid #d9d9d9' }}/>
       </Form.Item>
     </div>
   );

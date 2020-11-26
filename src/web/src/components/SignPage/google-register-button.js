@@ -7,7 +7,7 @@ import { message } from 'antd';
 import '../../style/style.css';
 const config = require('../../config');
 
-const SIGNUPWITHGOOGLE = gql`
+const SIGN_UP_WITH_GOOGLE = gql`
   mutation ($googleId: String!, $email: String!, $name: String!, $profileImgUrl: String) {
     signUpWithGoogle(
       googleId: $googleId
@@ -21,7 +21,7 @@ const SIGNUPWITHGOOGLE = gql`
 `;
 
 function GoogleRegisterButton (props) {
-  const [mutate] = useMutation(SIGNUPWITHGOOGLE, {
+  const [mutate] = useMutation(SIGN_UP_WITH_GOOGLE, {
     onCompleted() {
       message.success("회원가입 완료!");
       history.goBack();
@@ -48,13 +48,13 @@ function GoogleRegisterButton (props) {
     });
   };
 
-  const errorGoogle = (error) => {
+  const errorGoogle = () => {
     message.error("google access 실패");
   };
 
   return (
     <GoogleLogin clientId={config.googleCloudId}
-      buttonText={"Sign Up With Google"}
+      buttonText={"구글 계정 회원가입"}
       onSuccess={responseGoogle}
       onFailure={errorGoogle}
       className={"google-button-class"}

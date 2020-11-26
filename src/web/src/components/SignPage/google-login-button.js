@@ -60,7 +60,7 @@ function GoogleLoginButton (props) {
 
   return (
     <GoogleLogin clientId={config.googleCloudId}
-      buttonText={"Sign In With Google"}
+      buttonText={"구글 계정 로그인"}
       onSuccess={responseGoogle}
       onFailure={errorGoogle}
       className={"google-button-class"}
