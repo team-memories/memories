@@ -1,7 +1,5 @@
 # Memories  
 
-[**https://kookmin-sw.github.io/capstone-2020-12/**](https://kookmin-sw.github.io/capstone-2020-12/)
-
 ## 1. 프로젝트 소개
 
 <img src="./doc/image/Memories_logo.png" height="300" weight="300"/>
