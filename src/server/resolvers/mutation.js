@@ -238,7 +238,7 @@ module.exports = {
       description,
     });
 
-   await mediaDB.modifyTagMediaConnect(tagNames, id);
+    await mediaDB.modifyTagMediaConnect(tagNames, id);
 
     return {
       id,
@@ -387,5 +387,27 @@ module.exports = {
       throw new Error("Cannot deactivate the account");
     }
     return user;
+  },
+  modifyUser: async (_, { id, name, password }, { userId, dataSources: { userDB } }) => {
+    const user = await userDB.getUser(id);
+
+    if (!userId) {
+      throw new Error("Login required");
+    }
+    if (!name) {
+      throw new Error("Name not found");
+    }
+    if (userId !== user.id) {
+      throw new Error("You are not the User of the account");
+    }
+    const hashedPassword = await bcrypt.hash(password, 3);
+    if (!(await userDB.updateUser(id, { name: name, password: hashedPassword }))) {
+      throw new Error("Cannot update the user info");
+    }
+    const token = jwt.sign({ userId: user.id }, process.env.SECRET);
+    return {
+      token,
+      user,
+    };
   },
 };

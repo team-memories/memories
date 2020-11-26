@@ -3,9 +3,9 @@ import { useQuery } from '@apollo/react-hooks';
 import { Avatar, Descriptions, Layout, Spin } from 'antd';
 import MediaList from '../components/Media/media-list';
 import gql from 'graphql-tag';
-import UserDeactivateButton from '../components/UserPage/user-deactivate-button';
 import { ColorArray } from '../components/constants';
 import { EditOutlined } from '@ant-design/icons';
+import UserEditButton from '../components/UserPage/user-edit-button';
 
 const MY_MEDIA = gql`
   query {
@@ -63,6 +63,10 @@ function UserPage (props) {
           </Layout.Content>
         </Layout>
       </Layout>
+      {/* 회원 정보 수정 */}
+      <div style={{ width: '90%', margin: '2% 3% 3% 3%' }}>
+        <UserEditButton/>
+      </div>
       {/* 내 게시글 */}
       <h2 style={{ fontSize: 18, fontWeight: 500, width: '90%', margin: '5rem auto 2rem auto' }}>
         <EditOutlined style={{ paddingRight: 10 }}/>내 게시글
@@ -73,10 +77,6 @@ function UserPage (props) {
           :
           <MediaList data={data.myMedia}/>
       }
-      {/* 회원 탈퇴 */}
-      <div style={{ width: '90%', margin: '3%', display: 'inline-block' }}>
-        <UserDeactivateButton userId={sessionStorage.getItem('user_id')}/>
-      </div>
     </div>
 
   );
