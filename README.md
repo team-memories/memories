@@ -1,9 +1,8 @@
 # Memories  
-[share-memories.ml](http://share-memories.ml/)
-
-![Home](doc/image/Screen%20Shot%202020-12-01%20at%2010.50.44%20PM.png)
 
 ## 1. 프로젝트 소개
+[share-memories.ml](http://share-memories.ml/)
+
 
 <img src="./doc/image/Memories_logo.png" height="300" weight="300"/>
 
@@ -132,7 +131,7 @@ E-mail : dncjf0223@kookmin.ac.kr
 
 
 ## 7. 변환 결과
-
+![Home](doc/image/Screen%20Shot%202020-12-01%20at%2010.50.44%20PM.png)
 <img src="https://lh6.googleusercontent.com/oZC0SjeEt-clPCk56QZfxAVMVZjRnOiFGXWx3iJdGiXMvf0kEuirXao9yrktA_VGwMKYeJFEZpn45VhdQiP0U2khGTIHTS3pvPhdqBf6wco5FLPMuCrIocOlqinMeeCE6hakhqRHM1I" height="300" width="600"/> 
 
 <img src="https://lh4.googleusercontent.com/2BHmorKJXERIlxv1H5iMMHG_yHr3KRgy49VnlLpfUzwRz_gyxdP1miFds2M-BNuph8GAnrExhp3PRXK5ivPUeqHqUBc922YxBaonT1d_Uixrxde-OA_2jeaU415P4bAFezzufJTU6hM" height="300" width="600"/> 
