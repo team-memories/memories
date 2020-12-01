@@ -1,6 +1,8 @@
 # Memories  
 [share-memories.ml](http://share-memories.ml/)
 
+![Home](doc/image/Screen%20Shot%202020-12-01%20at%2010.50.44%20PM.png)
+
 ## 1. 프로젝트 소개
 
 <img src="./doc/image/Memories_logo.png" height="300" weight="300"/>
