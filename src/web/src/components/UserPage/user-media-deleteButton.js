@@ -7,7 +7,7 @@ import { DeleteOutlined } from '@ant-design/icons';
 const DELETE_MEDIA = gql`
   mutation deleteMedia($mediaId: ID!){
     deleteMedia(id: $mediaId){
-      title,
+      title
       author{
         name
       }

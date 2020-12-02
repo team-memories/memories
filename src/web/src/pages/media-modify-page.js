@@ -10,7 +10,7 @@ import UploadSubmitButton from '../components/UploadPage/upload-submit-button';
 import UploadPageDescription from '../components/UploadPage/upload-description';
 
 const MODIFY_MEDIA = gql`
-  mutation ($id: ID!, $title: String!, $location: String!, $year: Int!, $description: String!, $tags: [String!]) {
+  mutation ($id: ID!, $title: String!, $location: String!, $year: Int!, $description: String!, $tags: [String]!) {
     modifyMedia(
       id : $id
       title: $title
@@ -20,14 +20,6 @@ const MODIFY_MEDIA = gql`
       tagNames: $tags
     ) {
       id
-      title
-      thumbnailUrl
-      originalUrl
-      url
-      author {
-        id
-        name
-      }
     }
   }
 `;
@@ -37,9 +29,11 @@ function ModifyPage (props) {
   const { useMutation } = require('@apollo/react-hooks');
   const [title, setTitle] = useState(media.title);
   const [location, setLocation] = useState(media.location);
-  const [tags, setTags] = useState(media.tags);
   const [year, setYear] = useState(media.year);
   const [description, setDescription] = useState(media.description);
+  const [tags, setTags] = useState(
+    media.tags.map((tagNames) => { return tagNames.name; })
+  );
   const [mutate] = useMutation(MODIFY_MEDIA,
     {
       // mutation 보내면 refetching
@@ -67,7 +61,7 @@ function ModifyPage (props) {
   };
 
   const onTagsChange = (e) => {
-    setTags([e]);
+    setTags(e);
   };
 
   const handleSubmit = () => {
