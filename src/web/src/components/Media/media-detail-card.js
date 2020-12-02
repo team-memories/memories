@@ -1,5 +1,5 @@
 import React  from 'react';
-import { Avatar, List, Divider, Button, Tag } from 'antd';
+import { Avatar, List, Divider, Button } from 'antd';
 import { Link } from 'react-router-dom';
 import MediaDetailDeleteButton from './media-detail-delete-button';
 import ImageCompare from './media-detail-card-image-compare';
