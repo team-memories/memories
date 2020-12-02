@@ -16,7 +16,7 @@ const GET_MEDIA = gql`
       location
       year
       description
-      tags{
+      tags {
         name
       }
       underProcessing

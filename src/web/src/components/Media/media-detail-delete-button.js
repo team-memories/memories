@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
 import { useHistory } from 'react-router-dom';
 import { Button, message, Popconfirm } from 'antd';
+import { DeleteOutlined } from '@ant-design/icons';
 
 const DELETE_MEDIA = gql`
   mutation deleteMedia($mediaId: ID!){
@@ -42,7 +43,7 @@ function MediaDetailDeleteButton (props) {
       okText={'Yes'}
       cancelText={'No'}
     >
-      <Button>Delete</Button>
+      <Button shape="circle" icon={<DeleteOutlined />}/>
     </Popconfirm>
   );
 }
