@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Avatar, Badge, Card } from 'antd';
+import { Avatar, Card } from 'antd';
 import UserMediaDeleteButton from './user-media-deleteButton';
 import { ColorArray } from '../constants';
 import { PlayCircleFilled } from '@ant-design/icons';
@@ -16,11 +16,20 @@ function MediaCard(props){
           <img style={{ width: '100%', borderTopLeftRadius: 10, borderTopRightRadius: 10 }} src={props.url} alt="thumbnail"/>
         </Link>
         :
-        <Badge size="default" count={<PlayCircleFilled/>} style={{color: '#f5222d'}} offset={[-20, 20]}>
-          <Link to={{pathname: `/watch`, search: `?id=${props.id}`, state: {data: props.data}}}>
-            <img style={{ width: '100%', borderTopLeftRadius: 10, borderTopRightRadius: 10 }} src={props.thumbnailUrl} alt="thumbnail"/>
-          </Link>
-        </Badge>}
+        <Link to={{pathname: `/watch`, search: `?id=${props.id}`, state: {data: props.data}}}>
+          <img style={{ width: '100%', borderTopLeftRadius: 10, borderTopRightRadius: 10 }} src={props.thumbnailUrl} alt="thumbnail"/>
+          <PlayCircleFilled
+            style={{
+              color: 'white',
+              position: 'absolute',
+              zIndex: 2,
+              top: '25%',
+              left: '45%',
+              fontSize: '40px',
+            }}
+          />
+        </Link>
+      }
     >
       <Card.Meta
         avatar={(props.author.profileImgUrl === '') ?

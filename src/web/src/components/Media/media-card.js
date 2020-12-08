@@ -1,32 +1,48 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Avatar, Card, Badge } from 'antd';
+import { Avatar, Card } from 'antd';
 import './background.css';
-import {ColorArray} from '../constants';
-import {PlayCircleFilled} from '@ant-design/icons';
+import { ColorArray } from '../constants';
+import { PlayCircleFilled } from '@ant-design/icons';
 
-function MediaCard(props){
+function MediaCard (props) {
+  const [isHovering, setIsHovering] = useState(false);
+  const handleIsHovering = () => {
+    setIsHovering(!isHovering);
+  };
   return (
     //Link를 통해서 state 전달, props.data는 search query로 부터 나온 결과값 리스트
-    <Link to={{pathname: `/watch`, search: `?id=${props.id}`, state: {data: props.data}}}>
-      <figure className = "snip1361">
+    <Link to={{ pathname: `/watch`, search: `?id=${props.id}`, state: { data: props.data } }}>
+      <figure className="snip1361" onMouseEnter={handleIsHovering} onMouseLeave={handleIsHovering}>
         { //type가 Photo면 url을 카드에, 비디오면 thumbnail을 카드에 나타남
           (props.typename === 'Photo') ?
             <img style={{ width: '100%', borderRadius: 10 }}
               src={props.url} alt="thumbnail"/>
             :
-            <Badge size="default" count={<PlayCircleFilled/>}
-              style={{color: '#f5222d'}} offset={[-20, 20]}>
-              <img style={{ width: '100%', borderRadius: 10 }}
-                src={props.thumbnailUrl} alt="thumbnail"/>
-            </Badge>
+            <div style={{ position: 'relative' }}>
+              <img style={{ width: '100%', borderRadius: 10, zIndex: 1 }} src={props.thumbnailUrl}
+                alt="thumbnail"/>
+              {!!isHovering &&
+              <PlayCircleFilled
+                style={{
+                  color: 'white',
+                  position: 'absolute',
+                  zIndex: 2,
+                  top: '43%',
+                  left: '45%',
+                  fontSize: '40px',
+                }}
+              />
+              }
+            </div>
         }
         <figcaption>
           <Card.Meta
             avatar={
               (props.author.profileImgUrl === '') ?
-                <Avatar size={40} style={{backgroundColor: ColorArray[props.author.id % ColorArray.length]}}>
+                <Avatar size={40}
+                  style={{ backgroundColor: ColorArray[props.author.id % ColorArray.length] }}>
                   {props.author.name.charAt(0)}
                 </Avatar>
                 :
