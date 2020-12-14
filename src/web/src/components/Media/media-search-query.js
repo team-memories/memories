@@ -4,7 +4,7 @@ import MediaList from './media-list';
 import gql from 'graphql-tag';
 import { Spin } from 'antd';
 
-const SEARCH = gql`
+export const SEARCH = gql`
   query searchItems($queryStr: String!, $location: String!, $yearTo: Int, $yearFrom: Int) {
     search(queryStr: $queryStr, location: $location, yearTo: $yearTo, yearFrom: $yearFrom) {
       __typename
@@ -27,7 +27,7 @@ const SEARCH = gql`
   }
 `;
 
-function MediaSearchQuery (props) {
+export function MediaSearchQuery (props) {
   const { loading, error, data } = useQuery(SEARCH, {
     variables: {
       queryStr: props.title,
@@ -46,5 +46,3 @@ function MediaSearchQuery (props) {
     <MediaList data={data.search}/>
   );
 }
-
-export default MediaSearchQuery;
