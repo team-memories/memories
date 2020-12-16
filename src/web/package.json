@@ -70,7 +70,7 @@
     "eslint-plugin-react": "^7.19.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.9.0",
-    "react-test-renderer": "^17.0.1"
+    "react-test-renderer": "^16.13.1"
   },
   "babel": {
     "presets": [
@@ -85,6 +85,9 @@
   "jest": {
     "moduleNameMapper": {
       "\\.(css|less|scss|jpg|png)$": "identity-obj-proxy"
-    }
+    },
+    "transformIgnorePatterns": [
+      "/node_modules/(?!antd|@ant-design|rc-.+?|@babel/runtime).+(js|jsx)$"
+    ]
   }
 }

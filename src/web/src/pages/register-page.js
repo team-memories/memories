@@ -10,7 +10,7 @@ import RegisterPageButton from '../components/SignPage/register-page-button';
 import RegisterPageName from '../components/SignPage/register-page-name';
 import GoogleRegisterButton from '../components/SignPage/google-register-button';
 
-const SIGNUP = gql`
+export const SIGNUP = gql`
   mutation ($email: String!, $password: String!, $name: String!) {
     signUp(
       email: $email
@@ -26,7 +26,7 @@ function RegisterPage (props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [mutate] = useMutation(SIGNUP, {
+  const [mutate, { loading, error, data }] = useMutation(SIGNUP, {
     onCompleted() {
       message.success("회원가입 완료!");
       history.goBack();
@@ -65,6 +65,8 @@ function RegisterPage (props) {
   };
 
   props.onChangeIsMediaView(window.location.pathname === "/watch");
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error!</p>;
   return (
     <div style={{ maxWidth: '450px', margin: '6rem auto'}} >
       <h1 style={{ textAlign: 'center', marginBottom: '3rem' }}>

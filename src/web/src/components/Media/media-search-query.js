@@ -27,7 +27,7 @@ export const SEARCH = gql`
   }
 `;
 
-export function MediaSearchQuery (props) {
+function MediaSearchQuery (props) {
   const { loading, error, data } = useQuery(SEARCH, {
     variables: {
       queryStr: props.title,
@@ -46,3 +46,5 @@ export function MediaSearchQuery (props) {
     <MediaList data={data.search}/>
   );
 }
+
+export default MediaSearchQuery;

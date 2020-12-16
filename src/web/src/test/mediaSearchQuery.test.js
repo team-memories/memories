@@ -2,7 +2,8 @@ import React from 'react';
 import { create, act } from 'react-test-renderer';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { MockedProvider } from '@apollo/react-testing';
-import { MediaSearchQuery, SEARCH } from '../components/Media/media-search-query';
+import { SEARCH } from '../components/Media/media-search-query';
+import MediaSearchQuery from '../components/Media/media-search-query';
 
 describe("mediaSearchQuery render test", ()=> {
   window.matchMedia = window.matchMedia || function() {
