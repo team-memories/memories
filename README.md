@@ -39,11 +39,11 @@ https://youtu.be/oXESAG_IX-M
 
 ## 5. 팀 소개
 
-* 김병조(팀장)  
+* 김병조  
 
 ```
 역할 : Leader, Super Resolution Model, Front end 개발 
-E-mail : gee05053@gmail.ac.kr
+E-mail : gee05053@gmail.com
 ```
 
 * 곽윤혁  
@@ -136,3 +136,7 @@ Home Page
 <img src="https://lh4.googleusercontent.com/2BHmorKJXERIlxv1H5iMMHG_yHr3KRgy49VnlLpfUzwRz_gyxdP1miFds2M-BNuph8GAnrExhp3PRXK5ivPUeqHqUBc922YxBaonT1d_Uixrxde-OA_2jeaU415P4bAFezzufJTU6hM" height="300" width="600"/> 
 
 <img src="https://lh3.googleusercontent.com/1nuSI3dkmaJo3W6bqvqrTaA166oMHEEDRHUvdyWqgCE1i6lUd8WfA1ARhSGIddUPlsrzQFF44Dro058WzuPkPjdWwhV4kqZm6fFWG26zSaOokw-ye_5tIUpYOhUymt4KI5NVay85Frg" height="300" width="620"/> 
+
+## 8. 기술 설명
+
+<img src="./doc/image/SystemStructure.png" height="400" width="620"/>
