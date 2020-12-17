@@ -28,6 +28,9 @@ This project aims to provide a platform for people to share and view each other'
 
 <img src="./doc/image/SystemStructure.png" height="250" width="800"/>
 
+- [Server](https://github.com/team-memories/memories/blob/master/src/server/README.md)
+- [Web](https://github.com/team-memories/memories/blob/master/src/web/README.md)
+
 
 ## 4. 소개 영상 & 시연 영상
 
