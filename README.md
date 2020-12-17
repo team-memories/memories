@@ -24,16 +24,16 @@ People film videos to keep their daily lives such as travel, friendship, anniver
 This project aims to provide a platform for people to share and view each other's memories. Users can use our platform to search for the place in those days when they want to see it again, and watch the videos with vivid media quality to bring back memories. In addition, if there are videos of scenery or objects that you want to share together, you can upload them to the platform so that all users can see them together with improved quality.
 
 
+## 3. 기술 설명
 
-## 3. 소개 영상
-
-https://www.youtube.com/watch?v=lXbIrGTT7Ps
-
+<img src="./doc/image/SystemStructure.png" height="400" width="900"/>
 
 
-## 4. 시연 영상
+## 4. 소개 영상 & 시연 영상
 
-https://youtu.be/oXESAG_IX-M
+소개: https://www.youtube.com/watch?v=lXbIrGTT7Ps
+
+시연: https://youtu.be/oXESAG_IX-M
 
 
 
@@ -136,7 +136,3 @@ Home Page
 <img src="https://lh4.googleusercontent.com/2BHmorKJXERIlxv1H5iMMHG_yHr3KRgy49VnlLpfUzwRz_gyxdP1miFds2M-BNuph8GAnrExhp3PRXK5ivPUeqHqUBc922YxBaonT1d_Uixrxde-OA_2jeaU415P4bAFezzufJTU6hM" height="300" width="600"/> 
 
 <img src="https://lh3.googleusercontent.com/1nuSI3dkmaJo3W6bqvqrTaA166oMHEEDRHUvdyWqgCE1i6lUd8WfA1ARhSGIddUPlsrzQFF44Dro058WzuPkPjdWwhV4kqZm6fFWG26zSaOokw-ye_5tIUpYOhUymt4KI5NVay85Frg" height="300" width="620"/> 
-
-## 8. 기술 설명
-
-<img src="./doc/image/SystemStructure.png" height="400" width="620"/>
