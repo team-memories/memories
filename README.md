@@ -26,7 +26,7 @@ This project aims to provide a platform for people to share and view each other'
 
 ## 3. 기술 설명
 
-<img src="./doc/image/SystemStructure.png" height="400" width="900"/>
+<img src="./doc/image/SystemStructure.png" height="250" width="800"/>
 
 
 ## 4. 소개 영상 & 시연 영상
