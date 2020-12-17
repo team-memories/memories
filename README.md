@@ -45,14 +45,14 @@ This project aims to provide a platform for people to share and view each other'
 * 김병조  
 
 ```
-역할 : Leader, Super Resolution Model, Front end 개발 
+역할 : Super Resolution Model, Front end 개발 
 E-mail : gee05053@gmail.com
 ```
 
 * 곽윤혁  
 
 ```
-역할 : Software Project Leader, Frame Interpolation Model, Back end 개발 
+역할 : Frame Interpolation Model, Back end 개발 
 E-mail : rev1c0sm0s@gmail.com
 ```
 
