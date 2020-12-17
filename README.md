@@ -25,30 +25,25 @@ This project aims to provide a platform for people to share and view each other'
 
 
 
-## 3. 최종 발표 영상
+## 3. 소개 영상
 
-[![최종 발표 ](https://github.com/kookmin-sw/capstone-2020-12/blob/master/doc/image/final_image.png?raw=true)](https://www.youtube.com/watch?v=lXbIrGTT7Ps)
+https://www.youtube.com/watch?v=lXbIrGTT7Ps
 
 
 
 ## 4. 시연 영상
 
-[![시연 동영상](https://github.com/kookmin-sw/capstone-2020-12/blob/master/doc/image/%EC%8B%9C%EC%97%B0%EC%98%81%EC%83%81%EC%9D%B4%EB%AF%B8%EC%A7%80.png?raw=true)](https://youtu.be/oXESAG_IX-M)
+https://youtu.be/oXESAG_IX-M
 
 
 
 ## 5. 팀 소개
 
-```
-이재구 교수님
-역할 : 지도 교수
-```
-
 * 김병조(팀장)  
 
 ```
 역할 : Leader, Super Resolution Model, Front end 개발 
-E-mail : gee05053@kookmin.ac.kr
+E-mail : gee05053@gmail.ac.kr
 ```
 
 * 곽윤혁  
@@ -131,7 +126,7 @@ E-mail : dncjf0223@kookmin.ac.kr
 
 
 ## 7. 변환 결과
-Home
+Home Page
 ![Home](doc/image/Screen%20Shot%202020-12-01%20at%2010.50.44%20PM.png)
 <img src="https://lh6.googleusercontent.com/oZC0SjeEt-clPCk56QZfxAVMVZjRnOiFGXWx3iJdGiXMvf0kEuirXao9yrktA_VGwMKYeJFEZpn45VhdQiP0U2khGTIHTS3pvPhdqBf6wco5FLPMuCrIocOlqinMeeCE6hakhqRHM1I" height="300" width="600"/> 
 
