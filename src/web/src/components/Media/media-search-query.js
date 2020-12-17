@@ -4,7 +4,7 @@ import MediaList from './media-list';
 import gql from 'graphql-tag';
 import { Spin } from 'antd';
 
-const SEARCH = gql`
+export const SEARCH = gql`
   query searchItems($queryStr: String!, $location: String!, $yearTo: Int, $yearFrom: Int) {
     search(queryStr: $queryStr, location: $location, yearTo: $yearTo, yearFrom: $yearFrom) {
       __typename

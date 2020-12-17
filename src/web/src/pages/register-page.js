@@ -10,7 +10,7 @@ import RegisterPageButton from '../components/SignPage/register-page-button';
 import RegisterPageName from '../components/SignPage/register-page-name';
 import GoogleRegisterButton from '../components/SignPage/google-register-button';
 
-const SIGNUP = gql`
+export const SIGNUP = gql`
   mutation ($email: String!, $password: String!, $name: String!) {
     signUp(
       email: $email
