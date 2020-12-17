@@ -4,7 +4,7 @@
 [share-memories.ml](http://share-memories.ml/)
 
 
-<img src="./doc/image/Memories_logo.png" height="100" weight="50"/>
+<img src="./doc/image/Memories_logo.png" height="120" weight="70"/>
 
 **"내가 추억하는 그 때 그곳을 다시 생생하게 볼 수 있을까?"**
 
