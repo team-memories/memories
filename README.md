@@ -37,7 +37,7 @@ Details
 
 소개: https://www.youtube.com/watch?v=lXbIrGTT7Ps
 
-시연: https://youtu.be/oXESAG_IX-M
+시연: https://youtu.be/aQ-ykTmq0wM
 
 
 
